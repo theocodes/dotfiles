@@ -1,5 +1,9 @@
 args@{ config, lib, pkgs, modulesPath, ... }:
-let hostname = "nebula";
+let
+  vars = { hostname = "nebula"; };
+  additionalArgs = args // vars;
+
+  extendArguments = module: import module additionalArgs;
 in {
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -14,14 +18,6 @@ in {
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  users.users.theocodes = {
-    isNormalUser = true;
-    hashedPassword =
-      "$6$nCMdQaHrRiC0W$KTsvDnO7.bu6MBKR9Nl4wabZkH5AdwFBLCrmY7Cmn88g3gpO7X9qEDFPLJQlbU.qPTHiTt196/IeZdtJdSlMz0";
-    extraGroups = [ "wheel" "networkmanager" ];
-    shell = pkgs.zsh;
-  };
 
   # use nvim overlay until 0.5.0 is out
   nixpkgs.overlays = [
@@ -46,33 +42,14 @@ in {
     networkmanagerapplet
   ];
 
-  # work vpn
-  services.strongswan = {
-    enable = true;
-    secrets = [
-      "ipsec.d/ipsec.nm-l2tp.secrets"
+  imports =
+    [ <home-manager/nixos> ]
+    ++ map extendArguments [
+      ./common/hardware.nix
+      ./common/networking.nix
+      ./common/users.nix
+      ./services/xserver.nix
     ];
-  };
-
-  networking = {
-    hostName = hostname;
-    enableIPv6 = false;
-
-    # TODO will fail on a new machine
-    useDHCP = false;
-    interfaces.eno2.useDHCP = true;
-    interfaces.wlo1.useDHCP = true;
-
-    networkmanager = {
-      enable = true;
-    };
-  };
-
-  imports = [
-     <home-manager/nixos>
-    (./hardware + "/${hostname}.nix")
-     ./services/xserver.nix
-  ];
 
   home-manager.users.theocodes = import ./home.nix args;
   system.stateVersion = "20.09"; # dont change this

@@ -1,5 +1,7 @@
-{ config, pkgs, lib, ... }:
-
+args@{ config, pkgs, lib, ... }:
+let
+  extendArguments = module: import module args;
+in
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -27,7 +29,7 @@
     jq yq xsel xclip nixfmt gnupg
   ];
 
-  imports = [
+  imports = map extendArguments [
     ./terminal/shell.nix
     ./services/gpg.nix
     ./programs/git.nix
@@ -36,5 +38,5 @@
     ./development/go.nix
   ];
 
-  home.stateVersion = "20.09";
+  home.stateVersion = "20.09"; # don't change this!
 }
