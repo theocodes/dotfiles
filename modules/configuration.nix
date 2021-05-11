@@ -11,19 +11,9 @@ in {
   # allow proprietary
   nixpkgs.config.allowUnfree = true;
 
-  # graphic drivers
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support
-  services.xserver.libinput.enable = true;
 
   users.users.theocodes = {
     isNormalUser = true;
@@ -33,9 +23,17 @@ in {
     shell = pkgs.zsh;
   };
 
+  # use nvim overlay until 0.5.0 is out
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url =
+        "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+    }))
+  ];
+
   # system level packages
   environment.systemPackages = with pkgs; [
-    wget vim firefox
+    wget vim neovim-nightly firefox
 
     dunst picom nitrogen
     dmenu
@@ -62,18 +60,12 @@ in {
     };
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  imports = [
+     <home-manager/nixos>
+    (./hardware + "/${hostname}.nix")
+     ./services/xserver.nix
+  ];
 
-  # Enable the Plasma 5 Desktop Environment.
-  #services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;
-
-  imports = [ (./hardware + "/${hostname}.nix") ]; # <home-manager/nixos>
-
-  #home-manager.users.theocodes = import ./home.nix args;
-
+  home-manager.users.theocodes = import ./home.nix args;
   system.stateVersion = "20.09"; # dont change this
 }
