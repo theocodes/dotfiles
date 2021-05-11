@@ -32,7 +32,8 @@
     ./services/gpg.nix
     ./programs/git.nix
     ./programs/alacritty.nix
-    ./development/dev.nix
+    ./development/env.nix
+    ./development/go.nix
   ];
 
   home.stateVersion = "20.09";
