@@ -19,7 +19,7 @@ in {
     isNormalUser = true;
     hashedPassword =
       "$6$nCMdQaHrRiC0W$KTsvDnO7.bu6MBKR9Nl4wabZkH5AdwFBLCrmY7Cmn88g3gpO7X9qEDFPLJQlbU.qPTHiTt196/IeZdtJdSlMz0";
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
   };
 
@@ -39,24 +39,32 @@ in {
     dmenu
 
     xorg.xsetroot
+
+    # work vpn
+    xl2tpd
+    networkmanager-l2tp
+    networkmanagerapplet
   ];
+
+  # work vpn
+  services.strongswan = {
+    enable = true;
+    secrets = [
+      "ipsec.d/ipsec.nm-l2tp.secrets"
+    ];
+  };
 
   networking = {
     hostName = hostname;
     enableIPv6 = false;
 
+    # TODO will fail on a new machine
     useDHCP = false;
     interfaces.eno2.useDHCP = true;
     interfaces.wlo1.useDHCP = true;
 
     networkmanager = {
       enable = true;
-      enableStrongSwan = true;
-      packages = with pkgs; [
-        xl2tpd
-        networkmanager-l2tp
-        networkmanagerapplet
-      ];
     };
   };
 
