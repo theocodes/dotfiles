@@ -20,16 +20,18 @@
   # system level packages
   environment.systemPackages = with pkgs; [
     # Core applications
-    wget vim firefox
+    firefox
 
     # Editors
-    neovim
+    vim neovim
     # neovim-nightly
 
     ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
       epkgs.vterm
     ]))
 
+    # Core tools
+    gnumake wget
 
     # Window manager support
     dunst picom nitrogen

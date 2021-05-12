@@ -39,6 +39,7 @@
             home-manager.users.theocodes = {
               imports = [
                 ./modules/common/homebase.nix
+                ./modules/terminal/cli.nix
                 ./modules/services/gpg.nix
                 ./modules/programs/git.nix
                 ./modules/programs/alacritty.nix
