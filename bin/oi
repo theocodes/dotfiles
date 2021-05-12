@@ -20,5 +20,13 @@ if [[ "$CMD" = "sync" ]]; then
 fi
 
 if [[ "$CMD" = "apply" ]]; then
-  sudo nixos-rebuild switch
+  pushd $DOTFILES
+  sudo nixos-rebuild switch --flake .#
+  pushd
+fi
+
+if [[ "$CMD" = "update" ]]; then
+  pushd $DOTFILES
+  nix flake update
+  pushd
 fi
