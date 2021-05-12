@@ -29,14 +29,25 @@ in {
 
   # system level packages
   environment.systemPackages = with pkgs; [
-    wget vim neovim-nightly firefox
+    # Core applications
+    wget vim firefox
 
+    # Editors
+    neovim-nightly
+
+    ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
+      epkgs.vterm
+    ]))
+
+
+    # Window manager support
     dunst picom nitrogen
     dmenu
 
+    # Needed for DWM
     xorg.xsetroot
 
-    # work vpn
+    # Work VPN
     xl2tpd
     networkmanager-l2tp
     networkmanagerapplet

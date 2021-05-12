@@ -14,7 +14,8 @@ in
 
   home.packages = with pkgs; [
     # Core Apps
-    firefox slack emacs vscode
+    firefox slack vscode
+    libvterm
 
     # Development
     awscli github-cli kubectl
