@@ -20,21 +20,18 @@ in {
   hardware.pulseaudio.enable = true;
 
   # use nvim overlay until 0.5.0 is out
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url =
-        "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-    }))
-  ];
+  # nixpkgs.# Tarball {
+  #     url =
+  #       "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+  #   }))
+  # ];
 
   # system level packages
   environment.systemPackages = with pkgs; [
     # Core applications
-    wget vim firefox
+    wget vim neovim firefox
 
     # Editors
-    neovim-nightly
-
     ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
       epkgs.vterm
     ]))
@@ -54,7 +51,9 @@ in {
   ];
 
   imports =
-    [ <home-manager/nixos> ]
+    [
+      #<home-manager/nixos>
+    ]
     ++ map extendArguments [
       ./common/hardware.nix
       ./common/networking.nix
@@ -62,6 +61,6 @@ in {
       ./services/xserver.nix
     ];
 
-  home-manager.users.theocodes = import ./home.nix args;
+  #home-manager.users.theocodes = import ./home.nix args;
   system.stateVersion = "20.09"; # dont change this
 }

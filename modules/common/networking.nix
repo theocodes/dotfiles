@@ -1,8 +1,8 @@
-args@{ config, lib, pkgs, hostname, ... }:
+args@{ config, lib, pkgs, ... }:
 
 {
   networking = {
-    hostName = hostname;
+    hostName = "nebula";
     enableIPv6 = false;
 
     # TODO will fail on a new machine

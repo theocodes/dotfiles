@@ -1,16 +1,10 @@
 args@{ config, pkgs, lib, ... }:
-let
-  extendArguments = module: import module args;
-in
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   home.username = "theocodes";
   home.homeDirectory = "/home/theocodes";
-
-  # Allow proprietary stuff
-  nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
     # Core Apps
@@ -30,8 +24,8 @@ in
     jq yq xsel xclip nixfmt gnupg
   ];
 
-  imports = map extendArguments [
-    ./terminal/shell.nix
+  imports = [
+    ./terminal/cli.nix
     ./services/gpg.nix
     ./programs/git.nix
     ./programs/alacritty.nix

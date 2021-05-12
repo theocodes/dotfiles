@@ -1,3 +1,3 @@
-args@{ config, lib, pkgs, hostname, ... }:
+args@{ config, lib, pkgs, ... }:
 
-import (../hardware + "/${hostname}.nix")
+import (../hardware + "/nebula.nix")
