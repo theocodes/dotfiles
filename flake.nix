@@ -28,7 +28,7 @@
         modules = [
           ./modules/hardware/nebula.nix
           ./modules/common/boot.nix
-          ./modules/common/base.nix
+          ./modules/common/systembase.nix
           ./modules/common/networking.nix
           ./modules/common/users.nix
           ./modules/services/xserver.nix
@@ -36,8 +36,18 @@
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.theocodes = import ./modules/home.nix;
+            home-manager.users.theocodes = {
+              imports = [
+                ./modules/common/homebase.nix
+                ./modules/services/gpg.nix
+                ./modules/programs/git.nix
+                ./modules/programs/alacritty.nix
+                ./modules/development/env.nix
+                ./modules/development/go.nix
+              ];
+            };
           }
+
         ];
       };
 

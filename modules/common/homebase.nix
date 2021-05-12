@@ -24,14 +24,5 @@ args@{ config, pkgs, lib, ... }:
     jq yq xsel xclip nixfmt gnupg
   ];
 
-  imports = [
-    ./terminal/cli.nix
-    ./services/gpg.nix
-    ./programs/git.nix
-    ./programs/alacritty.nix
-    ./development/env.nix
-    ./development/go.nix
-  ];
-
   home.stateVersion = "20.09"; # don't change this!
 }
