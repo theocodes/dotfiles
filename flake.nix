@@ -18,7 +18,6 @@
     };
 
     lib = nixpkgs.lib;
-
   in {
     nixosConfigurations = {
 
@@ -27,24 +26,18 @@
 
         modules = [
           ./modules/hardware/nebula.nix
-          ./modules/common/boot.nix
-          ./modules/common/systembase.nix
-          ./modules/common/networking.nix
-          ./modules/common/users.nix
-          ./modules/services/xserver.nix
+          ./modules/system.nix
 
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.theocodes = {
               imports = [
-                ./modules/common/homebase.nix
-                ./modules/terminal/cli.nix
-                ./modules/services/gpg.nix
-                ./modules/programs/git.nix
-                ./modules/programs/alacritty.nix
-                ./modules/development/env.nix
-                ./modules/development/go.nix
+                ./modules/home.nix
+                ./modules/config.nix
+                ./modules/wmanager.nix
+                ./modules/cli.nix
+                ./modules/dev.nix
               ];
             };
           }

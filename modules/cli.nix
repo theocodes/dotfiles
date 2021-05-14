@@ -1,10 +1,14 @@
 { config, pkgs, lib, ... }:
 {
-  home.sessionPath = [ "$HOME/.dotfiles/bin" ];
+  home.sessionPath = [
+    "$HOME/.dotfiles/bin"
+    "$HOME/.emacs.d/bin"
+  ];
 
   home.sessionVariables = {
     ALTERNATE_EDITOR = "";
     EDITOR = "emacsclient -c";
+    GOSUMDB = "off";
   };
 
   programs.zsh = {

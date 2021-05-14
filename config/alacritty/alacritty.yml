@@ -1,0 +1,20 @@
+background_opacity: 0.94
+
+selection:
+  save_to_clipboard: true
+
+font:
+  size: 9
+  normal:
+    family: "Cascadia Mono"
+       
+  offset:
+    x: 0
+
+window:
+  padding:
+    x: 10
+    y: 10
+
+import:
+  - /home/theocodes/.config/alacritty/dracula.yml
