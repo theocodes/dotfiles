@@ -9,6 +9,7 @@
     ALTERNATE_EDITOR = "";
     EDITOR = "emacsclient -c";
     GOSUMDB = "off";
+    DOOMDIR = "$HOME/.dotfiles/config/doom";
   };
 
   programs.zsh = {

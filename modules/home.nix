@@ -43,7 +43,8 @@ args@{ config, pkgs, lib, ... }:
     jetbrains-mono cascadia-code
 
     # systray
-    trayer
+    trayer haskellPackages.xmobar
+    picom
 
     # Window manager support
     nitrogen

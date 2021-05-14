@@ -9,14 +9,11 @@
       enable = true;
       enableContribAndExtras = true;
       config = ../config/xmonad/xmonad.hs;
-      extraPackages = haskellPackages : [
-        haskellPackages.xmobar
-      ];
     };
   };
 
   # compositor for transparency
-  services.picom.enable = true;
+  #services.picom.enable = true;
 
   # notifications
   services.dunst.enable = true;

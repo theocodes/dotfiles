@@ -97,7 +97,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask,   xK_q), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm  .|. shiftMask,  xK_u), spawn "xmonad --recompile; pkill xmobar; xmonad --restart")
+    --, ((modm  .|. shiftMask,  xK_u), spawn "xmonad --recompile; pkill xmobar; xmonad --restart")
+    , ((modm  .|. shiftMask,  xK_u), spawn "pkill xmobar; xmonad --restart")
     ]
     ++
 
@@ -135,7 +136,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
-myLayout = avoidStruts $ spacing 10 $ (tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts $ spacing 5 $ (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -195,6 +196,7 @@ myStartupHook = do
   spawnOnce "nitrogen --restore &"
   spawnOnce "/home/theocodes/.dotfiles/bin/layout &"
   spawnOnce "nm-applet &"
+  spawnOnce "picom &"
   spawnOnce "trayer --edge bottom --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x000000  --height 21"
 
 ------------------------------------------------------------------------
