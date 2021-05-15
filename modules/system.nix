@@ -76,7 +76,6 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    #dpi = 100;
   };
 
   # Enable touchpad support.

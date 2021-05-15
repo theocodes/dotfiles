@@ -12,8 +12,11 @@
     };
   };
 
-  # compositor for transparency
-  #services.picom.enable = true;
+  home.packages = with pkgs; [
+    nitrogen trayer picom
+    dmenu rofi arandr xlockmore
+    haskellPackages.xmobar
+  ];
 
   # notifications
   services.dunst.enable = true;

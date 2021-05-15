@@ -9,4 +9,7 @@
 
   # alacritty config
   home.file.".config/alacritty".source = ../config/alacritty;
+
+  # rofi
+  home.file.".config/rofi/config.rasi".source = ../config/rofi/config.rasi;
 }

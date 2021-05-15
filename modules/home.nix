@@ -33,22 +33,11 @@ args@{ config, pkgs, lib, ... }:
     firefox slack vscode
     libvterm alacritty
 
-    # Development
-    awscli github-cli kubectl
-    rust-analyzer #neovim-nightly
     sqlite  # for org-roam
-    goimports gopls
 
     # Fonts
     jetbrains-mono cascadia-code
-
-    # systray
-    trayer haskellPackages.xmobar
-    picom
-
-    # Window manager support
-    nitrogen
-    dmenu arandr xlockmore
+    font-awesome
 
     # Core Tools
     jq yq xsel xclip nixfmt gnupg ripgrep

@@ -8,10 +8,17 @@
     enableZshIntegration = true;
   };
 
-  # default go for tooling etc
-  programs.go = {
-    enable = true;
-    package = pkgs.go_1_16;
-    packages = {};
-  };
+  home.packages = with pkgs; [
+    # tools
+    awscli github-cli kubectl
+    rust-analyzer #neovim-nightly
+    exercism
+
+    # golang
+    go_1_16
+    goimports gopls
+
+    # haskell
+    ghc cabal-install stack gmp
+  ];
 }

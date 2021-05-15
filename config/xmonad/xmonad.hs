@@ -34,7 +34,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm,               xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_d     ), spawn "dmenu_run -b -fn CascadiaMono:size=10 -nb black -nf white -sb '#bd93f9'")
+    -- , ((modm,               xK_d     ), spawn "dmenu_run -b -fn CascadiaMono:size=10 -nb black -nf white -sb '#bd93f9'")
+    , ((modm,               xK_d     ), spawn "rofi -show drun -modi drun,run -show-icons -theme config.rasi")
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -94,7 +95,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
-    , ((modm .|. shiftMask,   xK_q), io (exitWith ExitSuccess))
+    -- , ((modm .|. shiftMask,   xK_q), io (exitWith ExitSuccess))
+    , ((modm .|. shiftMask,   xK_q), spawn "powermenu")
 
     -- Restart xmonad
     --, ((modm  .|. shiftMask,  xK_u), spawn "xmonad --recompile; pkill xmobar; xmonad --restart")
