@@ -27,15 +27,14 @@
     firefox xterm
 
     # Editors
-    vim neovim
-    # neovim-nightly
+    vim neovim-nightly
 
-    ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
-      epkgs.vterm
-    ]))
+    #((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
+    #  epkgs.vterm
+    #]))
 
     # Core tools
-    gnumake wget
+    gnumake wget killall
 
     # Work VPN
     xl2tpd
@@ -74,9 +73,7 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-  };
+  services.xserver.enable = true;
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
@@ -86,6 +83,15 @@
 
   # Graphic drivers.
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  #services.xserver.windowManager.bspwm = {
+  #  enable = true;
+  #  configFile = ../config/bspwm/bspwmrc;
+
+  #  sxhkd = {
+  #    configFile = ../config/bspwm/sxhkdrc;
+  #  };
+  #};
 
   # Session to delegate starting xsession to home-manager.
   services.xserver.desktopManager.session = [

@@ -33,6 +33,7 @@ args@{ config, pkgs, lib, ... }:
     firefox slack vscode
     libvterm alacritty
 
+    emacs
     sqlite  # for org-roam
 
     # Fonts

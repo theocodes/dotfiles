@@ -12,4 +12,10 @@
 
   # rofi
   home.file.".config/rofi/config.rasi".source = ../config/rofi/config.rasi;
+
+  # polybar
+  home.file.".config/polybar/config".source = ../config/polybar/config;
+
+  # neovim
+  #home.file.".config/nvim".source = ../config/nvim;
 }

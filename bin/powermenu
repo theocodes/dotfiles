@@ -28,7 +28,6 @@ case "$res" in
         systemctl suspend
         ;;
     $log_out)
-        echo "boom"
-        # pkill xmonad
+        pkill xmonad
         ;;
 esac

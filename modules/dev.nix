@@ -11,14 +11,16 @@
   home.packages = with pkgs; [
     # tools
     awscli github-cli kubectl
-    rust-analyzer #neovim-nightly
-    exercism
+    rust-analyzer exercism
 
     # golang
     go_1_16
     goimports gopls
 
+    # rust
+    rustup
+
     # haskell
-    ghc cabal-install stack gmp
+    # ghc cabal-install stack
   ];
 }

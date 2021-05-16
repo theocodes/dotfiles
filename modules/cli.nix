@@ -20,6 +20,7 @@
     shellAliases = {
       ll = "ls -lahG --color=auto";
       e = "emacsclient -c -n";
+      vim = "nvim";
     };
   };
 
