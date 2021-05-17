@@ -145,15 +145,20 @@
     "pp"  '(counsel-projectile-switch-project :which-key "switch to project")
     "pa"  '(projectile-add-known-project :which-key "add project")
     "pf"  '(counsel-projectile-find-file :which-key "find file in project")
+    "pk"  '(projectile-kill-buffers :which-key "kill all project buffers")
 
     "g"  '(:ignore t :which-key "git")
     "gg" '(magit-status :which-key "git status")
 
     "o"  '(:ignore t :which-key "open")
     "op" '(neotree-toggle :which-key "open project view")
-    ;"ot" '(vterm :which-key "open terminal")
     "ot" '(shell-pop :which-key "toggle terminal popup")
-    "ob" '(bookmark-jump :which-key "open bookmaked file")
+
+    "l"  '(:ignore t :which-key "lsp")
+    "ld" '(lsp-describe-thing-at-point :which-key "describe thing at point")
+
+    "f"  '(:ignore t :which-key "bookmaked files")
+    "fp" '(bookmark-jump :which-key "emacs config")
     
     "t"  '(:ignore t :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme")))
@@ -237,6 +242,10 @@
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
   :config
   (lsp-enable-which-key-integration t))
+
+(use-package lsp-ui)
+
+(use-package lsp-ivy)
 
 (use-package go-mode
   :mode "\\.go\\'"
