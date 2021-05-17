@@ -15,7 +15,7 @@
 
     # golang
     go_1_16
-    goimports gopls
+    goimports gopls godef
 
     # rust
     rustup

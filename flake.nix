@@ -42,7 +42,7 @@
               imports = [
                 ./modules/home.nix
                 ./modules/config.nix
-                ./modules/wmanager.nix
+                ./modules/desktop.nix
                 ./modules/cli.nix
                 ./modules/dev.nix
               ];
@@ -51,7 +51,6 @@
 
         ];
       };
-
     };
   };
 }

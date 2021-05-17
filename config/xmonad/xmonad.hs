@@ -198,7 +198,7 @@ myStartupHook = do
   spawnOnce "nitrogen --restore &"
   spawnOnce "/home/theocodes/.dotfiles/bin/layout &"
   spawnOnce "nm-applet &"
-  spawnOnce "picom &"
+  -- spawnOnce "picom &"
   spawnOnce "trayer --edge bottom --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x000000  --height 21"
 
 ------------------------------------------------------------------------

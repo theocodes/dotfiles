@@ -4,6 +4,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = ["ipv6.disable=1"];
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -29,9 +30,9 @@
     # Editors
     vim neovim-nightly
 
-    #((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
-    #  epkgs.vterm
-    #]))
+    ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
+      epkgs.vterm
+    ]))
 
     # Core tools
     gnumake wget killall

@@ -18,4 +18,7 @@
 
   # neovim
   #home.file.".config/nvim".source = ../config/nvim;
+
+  # emacs
+  home.file.".emacs.d/init.el".source = ../config/emacs/init.el;
 }
