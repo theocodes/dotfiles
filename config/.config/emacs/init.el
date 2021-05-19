@@ -33,7 +33,6 @@
 
 (set-face-attribute 'default nil :font "Cascadia Mono" :height 93)
 
-(load-theme 'doom-dracula t)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -76,7 +75,10 @@
   :config
   (ivy-mode 1))
 
-(use-package doom-themes)
+(use-package doom-themes
+             :init
+(load-theme 'doom-dracula t))
+
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
@@ -146,6 +148,8 @@
     "pa"  '(projectile-add-known-project :which-key "add project")
     "pf"  '(counsel-projectile-find-file :which-key "find file in project")
     "pk"  '(projectile-kill-buffers :which-key "kill all project buffers")
+    "pi"  '(projectile-invalidate-cache :which-key "invalidate project cache")
+    "pr"  '(projectile-remove-known-project :which-key "remove project from known list")
 
     "g"  '(:ignore t :which-key "git")
     "gg" '(magit-status :which-key "git status")
@@ -212,8 +216,8 @@
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
-  (when (file-directory-p "~/repos")
-    (setq projectile-project-search-path '("~/repos")))
+  ;; (when (file-directory-p "~/repos")
+  ;;   (setq projectile-project-search-path '("~/repos")))
   (setq projectile-switch-project-action #'projectile-dired
 	projectile-globally-ignored-directories '("")
 	projectile-globally-ignored-files '("flake.lock")))

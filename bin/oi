@@ -1,0 +1,7 @@
+#!/bin/sh
+
+dotfiles=$HOME/.dotfiles
+
+pushd $dotfiles
+make $1
+popd

@@ -9,19 +9,9 @@
   };
 
   home.packages = with pkgs; [
-    # tools
-    awscli github-cli kubectl
-    rust-analyzer exercism
-
-    # golang
-    go_1_16
-    goimports gopls godef
-
-    # rust
-    rustup
 
     # ruby
-    ruby_3_0
+    # ruby_3_0
 
     # haskell
     # ghc cabal-install stack

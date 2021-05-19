@@ -3,18 +3,12 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, ... }@inputs:
   let
     system = "x86_64-linux";
-
-    overlays = [
-      inputs.neovim-nightly-overlay.overlay
-    ];
 
     pkgs = import nixpkgs {
       inherit system;
@@ -22,35 +16,37 @@
       config = { allowUnfree = true; };
     };
 
+    overlays = ({ pkgs, ... }: {
+      nixpkgs.overlays = with inputs; [
+        neovim-nightly-overlay.overlay
+      ];
+    });
+
     lib = nixpkgs.lib;
   in {
 
     nixosConfigurations = {
 
+      # desktop
       nebula = lib.nixosSystem {
         inherit system;
 
-        modules = [
+        modules = [overlays] ++ [
           ./modules/hardware/nebula.nix
           ./modules/system.nix
-
-          home-manager.nixosModules.home-manager {
-            nixpkgs.overlays = overlays;
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.theocodes = {
-              imports = [
-                ./modules/home.nix
-                ./modules/config.nix
-                ./modules/desktop.nix
-                ./modules/cli.nix
-                ./modules/dev.nix
-              ];
-            };
-          }
-
         ];
       };
+
+      # laptop
+      redawn = lib.nixosSystem {
+        inherit system;
+
+        modules = [overlays] ++ [
+          ./modules/hardware/redawn.nix
+          ./modules/system.nix
+        ];
+      };
+
     };
   };
 }

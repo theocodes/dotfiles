@@ -25,22 +25,52 @@
   # system level packages
   environment.systemPackages = with pkgs; [
     # Core applications
-    firefox xterm  
+    firefox slack vscode
+    alacritty terminator
 
     # Editors
     vim neovim-nightly
 
+    sqlite  # for org-roam
     ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
       epkgs.vterm
     ]))
 
     # Core tools
-    gnumake wget killall
+    gnumake wget killall stow git
+    jq yq xsel xclip nixfmt gnupg ripgrep
+    _1password pinentry_gtk2
 
     # Work VPN
     xl2tpd
     networkmanager-l2tp
     networkmanagerapplet
+
+    # desktop
+    dunst nitrogen dmenu arandr
+    xlockmore polybar picom
+
+    # cli
+    zsh starship
+
+    # dev
+    direnv
+
+    # tools
+    awscli github-cli kubectl
+    rust-analyzer exercism
+
+    # golang
+    go_1_16
+    goimports gopls godef
+
+    # rust
+    rustup
+  ];
+
+  fonts.fonts = with pkgs; [
+    jetbrains-mono cascadia-code
+    font-awesome
   ];
 
   users.users.theocodes = {
@@ -85,18 +115,16 @@
   # Graphic drivers.
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  # window manager
   services.xserver.windowManager.herbstluftwm.enable = true;
 
-  # Session to delegate starting xsession to home-manager.
-  # services.xserver.desktopManager.session = [
-  #   {
-  #     name = "home-manager";
-  #     start = ''
-  #       ${pkgs.runtimeShell} $HOME/.hm-xsession &
-  #       waitPID=$!
-  #     '';
-  #   }
-  # ];
+  # gpg
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+  };
+
+  services.lorri.enable = true;
 
   system.stateVersion = "20.09"; # dont change this
 }

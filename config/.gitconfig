@@ -1,0 +1,12 @@
+[commit]
+	gpgSign = false
+
+[url "git@github.com:"]
+	insteadOf = "https://github.com/"
+
+[user]
+	email = "public@theocodes.com"
+	name = "Theo Felippe"
+	signingKey = "E05424AC8FC7FB3D12DD"
+[core]
+	excludesfile = /home/theocodes/.gitignore_global

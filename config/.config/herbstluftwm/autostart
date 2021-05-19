@@ -35,7 +35,7 @@ hc set_monitors 860x1440+0+0 1720x1440+860+0 860x1440+2580+0
 # keybindings
 
 # hc keybind $Mod-Shift-q quit
-hc keybind $Mod-Shift-q spawn powermenu -fn $Font -nb '#000000' -nf '#ffffff' -sb $PrimaryColor
+hc keybind $Mod-Shift-q spawn /home/theocodes/.dotfiles/bin/powermenu -fn $Font -nb '#000000' -nf '#ffffff' -sb $PrimaryColor
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-q close
 hc keybind $Mod-Return spawn $Terminal
