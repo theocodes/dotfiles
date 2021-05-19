@@ -156,6 +156,8 @@
 
     "l"  '(:ignore t :which-key "lsp")
     "ld" '(lsp-describe-thing-at-point :which-key "describe thing at point")
+    "lg" '(lsp-find-definition :which-key "find definition")
+    "lr" '(lsp-find-references :which-key "find references")
 
     "f"  '(:ignore t :which-key "bookmaked files")
     "fp" '(bookmark-jump :which-key "emacs config")
@@ -173,6 +175,7 @@
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (define-key evil-insert-state-map (kbd "C-V") 'clipboard-yank)
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
@@ -261,3 +264,4 @@
 	shell-pop-universal-key "C-`"
 	shell-pop-autocd-to-working-dir t))
 
+(use-package lua-mode)

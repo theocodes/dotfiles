@@ -16,6 +16,9 @@
   # polybar
   home.file.".config/polybar/config".source = ../config/polybar/config;
 
+  # herbstluftwm
+  home.file.".config/herbstluftwm/autostart".source = ../config/herbstluftwm/autostart;
+
   # neovim
   #home.file.".config/nvim".source = ../config/nvim;
 

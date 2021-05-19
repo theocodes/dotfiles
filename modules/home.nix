@@ -30,8 +30,12 @@ args@{ config, pkgs, lib, ... }:
 
   home.packages = with pkgs; [
     # Core Apps
-    firefox slack vscode
-    libvterm alacritty
+    slack vscode
+    alacritty terminator
+
+    # window manager support
+    nitrogen dmenu arandr
+    xlockmore polybar picom
 
     sqlite  # for org-roam
 
@@ -41,6 +45,7 @@ args@{ config, pkgs, lib, ... }:
 
     # Core Tools
     jq yq xsel xclip nixfmt gnupg ripgrep
+    _1password
   ];
 
   home.stateVersion = "20.09"; # don't change this!

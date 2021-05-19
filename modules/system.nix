@@ -25,7 +25,7 @@
   # system level packages
   environment.systemPackages = with pkgs; [
     # Core applications
-    firefox xterm
+    firefox xterm  
 
     # Editors
     vim neovim-nightly
@@ -85,25 +85,18 @@
   # Graphic drivers.
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  #services.xserver.windowManager.bspwm = {
-  #  enable = true;
-  #  configFile = ../config/bspwm/bspwmrc;
-
-  #  sxhkd = {
-  #    configFile = ../config/bspwm/sxhkdrc;
-  #  };
-  #};
+  services.xserver.windowManager.herbstluftwm.enable = true;
 
   # Session to delegate starting xsession to home-manager.
-  services.xserver.desktopManager.session = [
-    {
-      name = "home-manager";
-      start = ''
-        ${pkgs.runtimeShell} $HOME/.hm-xsession &
-        waitPID=$!
-      '';
-    }
-  ];
+  # services.xserver.desktopManager.session = [
+  #   {
+  #     name = "home-manager";
+  #     start = ''
+  #       ${pkgs.runtimeShell} $HOME/.hm-xsession &
+  #       waitPID=$!
+  #     '';
+  #   }
+  # ];
 
   system.stateVersion = "20.09"; # dont change this
 }

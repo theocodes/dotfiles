@@ -20,6 +20,9 @@
     # rust
     rustup
 
+    # ruby
+    ruby_3_0
+
     # haskell
     # ghc cabal-install stack
   ];

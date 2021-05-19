@@ -1,18 +1,16 @@
 #!/bin/sh
 
-rofi_command="rofi -theme config.rasi -width 100 -p Choose:"
+command="dmenu $@"
 
-### Options ###
-power_off=" Shutdown"
-reboot=" Reboot"
-lock=" Lock"
-suspend=" Sleep"
-log_out=" Logout"
-# Variable passed to rofi
-options="$power_off\n$reboot\n$lock\n$suspend\n$log_out"
+power_off="Shutdown"
+reboot="Reboot"
+lock="Lock"
+suspend="Sleep"
+log_out="Logout"
 
-res="$(echo -e "$options" | $rofi_command -dmenu -selected-row 2)"
-echo $res
+options="$lock\n$reboot\n$power_off\n$suspend\n$log_out"
+
+res="$(echo -e "$options" | $command)"
 case "$res" in
     $power_off)
         systemctl poweroff
@@ -24,10 +22,9 @@ case "$res" in
         xlock
         ;;
     $suspend)
-        dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
         systemctl suspend
         ;;
     $log_out)
-        pkill xmonad
+        herbstclient quit
         ;;
 esac
