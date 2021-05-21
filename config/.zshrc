@@ -13,7 +13,7 @@ alias vim='nvim'
 
 # path
 
-export PATH=$HOME/.dotfiles/bin:$PATH
+export PATH=$HOME/dotfiles/bin:$PATH
 export PATH=$HOME/.emacs.d/bin:$PATH
 export PATH=$HOME/repos/github.com/zencoder/bolt-utils/bin:$PATH
 
@@ -22,7 +22,7 @@ export PATH=$HOME/repos/github.com/zencoder/bolt-utils/bin:$PATH
 export ALTERNATE_EDITOR="";
 export EDITOR="emacsclient -c";
 export GOSUMDB="off";
-export DOOMDIR="$HOME/.dotfiles/config/doom";
+export DOOMDIR="$HOME/dotfiles/config/doom";
 export FABPATH="$HOME/repos/github.com/zencoder";
 
 HISTSIZE="10000"

@@ -8,8 +8,8 @@ bspc rule -r "*"
 ## Note: make sure a single instance of these will
 ## run after multiple restarts
 
-/home/theocodes/.dotfiles/bin/launchpolybar &
-/home/theocodes/.dotfiles/bin/fixmonitors &
+/home/theocodes/dotfiles/bin/launchpolybar &
+/home/theocodes/dotfiles/bin/fixmonitors &
 nitrogen --restore
 nm-applet &
 picom &

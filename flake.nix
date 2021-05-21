@@ -45,6 +45,11 @@
           ./modules/hardware/nebula.nix
           ./modules/system.nix
           ./modules/network.nix
+          ./modules/desktop.nix
+          ./modules/cli.nix
+          ./modules/dev.nix
+          ./modules/editors.nix
+          ./modules/gaming.nix
         ];
       };
 

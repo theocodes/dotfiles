@@ -24,48 +24,12 @@
   # system level packages
   environment.systemPackages = with pkgs; [
     # Core applications
-    firefox slack vscode
+    firefox slack 
     alacritty terminator
 
-    # Editors
-    vim neovim-nightly
-
-    sqlite  # for org-roam
-    ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
-      epkgs.vterm
-    ]))
-
-    # Core tools
+    # core tools
     gnumake wget killall stow git
-    jq yq xsel xclip nixfmt gnupg ripgrep
-    _1password pinentry_gtk2 libnotify
-
-    # desktop
-    dunst nitrogen dmenu arandr
-    xlockmore polybar picom rofi
-
-    # cli
-    fish zsh starship
-    exa peco
-
-    # dev
-    direnv
-
-    # tools
-    awscli github-cli kubectl
-    rust-analyzer exercism
-
-    # golang
-    go_1_16
-    goimports gopls godef
-
-    # rust
-    rustup
-  ];
-
-  fonts.fonts = with pkgs; [
-    jetbrains-mono cascadia-code
-    font-awesome
+    xsel xclip gnupg ripgrep
   ];
 
   users.users.theocodes = {
@@ -75,29 +39,6 @@
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.fish;
   };
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
-
-  # Swap alt and super, caps is an additional escape.
-  services.xserver.xkbOptions = "altwin:swap_alt_win,caps:escape";
-
-  # Graphic drivers.
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  # window manager
-  services.xserver.windowManager.herbstluftwm.enable = true;
-
-  # gpg
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "gtk2";
-  };
-
-  services.lorri.enable = true;
 
   system.stateVersion = "20.09"; # dont change this
 }

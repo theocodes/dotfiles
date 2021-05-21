@@ -59,7 +59,7 @@ format-background = ${colors.background}
 
 [module/ip]
 type = custom/script
-exec = /home/theocodes/.dotfiles/bin/polybarscripts ip
+exec = /home/theocodes/dotfiles/bin/polybarscripts ip
 interval = 30
 
 [module/xwindow]

@@ -1,26 +1,30 @@
+# no greeting
+function fish_greeting; end
+
 # prompt
 starship init fish | source
 
 # virtual per-project environment
 direnv hook fish | source
 
-# vars
+# local vars
 set EDITOR "emacsclient -t"
-set FAB $HOME/repos/github.com/zencoder
 set ALTERNATE_EDITOR ""
 set EDITOR "emacsclient -c"
 set GOSUMDB "off"
 
+# global
+set -gx FABPATH $HOME/repos/github.com/zencoder
+
 # path
-set -gx PATH $HOME/.dotfiles/bin $PATH
+set -gx PATH $HOME/dotfiles/bin $PATH
+set -gx PATH $HOME/repos/github.com/zencoder/bolt-utils/bin $PATH
 
 # aliases
-if type -q exa
-    alias ll="exa -l -g --icons"
-    alias l="ll"
-    alias lla="ll -a"
-end
+
+alias ll="exa -la"
 
 # abbr
 
+abbr tree exa -la -T
 abbr rel 'exec $SHELL -l'

@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# autostart stuff
+/home/theocodes/dotfiles/bin/fixmonitors &
+/home/theocodes/dotfiles/bin/launchpolybar &
+nitrogen --restore &
+nm-applet &
+picom &
+
 BackgroundColor='#282a36'
 GreenColor='#50fa7b'
 GrayColor='#6272a4'
@@ -38,7 +45,7 @@ hc pad 1 30 0 0 0
 # keybindings
 
 # hc keybind $Mod-Shift-q quit
-hc keybind $Mod-Shift-q spawn /home/theocodes/.dotfiles/bin/powermenu -fn $Font -nb $BackgroundColor -nf '#ffffff' -sb $PrimaryColor
+hc keybind $Mod-Shift-q spawn /home/theocodes/dotfiles/bin/powermenu -fn $Font -nb $BackgroundColor -nf '#ffffff' -sb $PrimaryColor
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-q close
 hc keybind $Mod-Return spawn $Terminal
@@ -130,13 +137,7 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
 hc rule class~'[Ww]bar' manage=off
 hc rule class~'[Cc]onky' manage=off
 hc rule class~'[Ff]brun' pseudotile=on
-
-# autostart stuff
-/home/theocodes/.dotfiles/bin/fixmonitors &
-/home/theocodes/.dotfiles/bin/launchpolybar &
-nitrogen --restore &
-nm-applet &
-picom &
+hc rule class~'[Ss]team' floating=on
 
 # unlock, just to be sure
 hc unlock
