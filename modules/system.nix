@@ -4,7 +4,6 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = ["ipv6.disable=1"];
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -39,19 +38,15 @@
     # Core tools
     gnumake wget killall stow git
     jq yq xsel xclip nixfmt gnupg ripgrep
-    _1password pinentry_gtk2
-
-    # Work VPN
-    xl2tpd
-    networkmanager-l2tp
-    networkmanagerapplet
+    _1password pinentry_gtk2 libnotify
 
     # desktop
     dunst nitrogen dmenu arandr
-    xlockmore polybar picom
+    xlockmore polybar picom rofi
 
     # cli
-    zsh starship
+    fish zsh starship
+    exa peco
 
     # dev
     direnv
@@ -78,29 +73,7 @@
     hashedPassword =
       "$6$nCMdQaHrRiC0W$KTsvDnO7.bu6MBKR9Nl4wabZkH5AdwFBLCrmY7Cmn88g3gpO7X9qEDFPLJQlbU.qPTHiTt196/IeZdtJdSlMz0";
     extraGroups = [ "wheel" "networkmanager" ];
-    shell = pkgs.zsh;
-  };
-
-  networking = {
-    hostName = "nebula";
-    enableIPv6 = false;
-
-    # TODO will fail on a new machine
-    useDHCP = false;
-    interfaces.eno2.useDHCP = true;
-    interfaces.wlo1.useDHCP = true;
-
-    networkmanager = {
-      enable = true;
-    };
-  };
-
-  # work vpn
-  services.strongswan = {
-    enable = true;
-    secrets = [
-      "ipsec.d/ipsec.nm-l2tp.secrets"
-    ];
+    shell = pkgs.fish;
   };
 
   # Enable the X11 windowing system.

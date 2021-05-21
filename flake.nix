@@ -16,6 +16,16 @@
       config = { allowUnfree = true; };
     };
 
+    # dwm-overlay = (self: super: {
+    #   dwm = super.dwm.overrideAttrs(_: {
+    #     src = builtins.fetchGit {
+    #       url = "https://github.com/theocodes/dwm";
+    #       rev = "19f6a8278ad261dd04f634508929535978915f23";
+    #       ref = "master";
+    #     };
+    #   });
+    # });
+
     overlays = ({ pkgs, ... }: {
       nixpkgs.overlays = with inputs; [
         neovim-nightly-overlay.overlay
@@ -34,6 +44,7 @@
         modules = [overlays] ++ [
           ./modules/hardware/nebula.nix
           ./modules/system.nix
+          ./modules/network.nix
         ];
       };
 

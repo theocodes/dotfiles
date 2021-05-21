@@ -1,0 +1,12 @@
+#!/bin/sh
+
+cmd=$1
+
+if [[ $cmd = "ip" ]]; then
+    ip="$(curl -s canhazip.com)"
+    if [ $? -eq 0 ]; then
+	echo $ip
+    else
+	echo "offline"
+    fi
+fi

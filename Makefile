@@ -7,5 +7,5 @@ update:
 build:
 	nixos-rebuild build --flake .#
 
-symlink:
+stow:
 	stow -v -R config

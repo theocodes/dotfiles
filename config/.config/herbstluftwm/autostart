@@ -1,15 +1,17 @@
 #!/bin/sh
 
-Mod=Super
-PrimaryColor='#bd93f9'
-SecondaryColor='#ff79c6'
 BackgroundColor='#282a36'
 GreenColor='#50fa7b'
 GrayColor='#6272a4'
+blue='#6272a4'
+PrimaryColor=$blue
+SecondaryColor='#ff79c6'
+
 Font='CascadiaMono:size=10'
 Browser='firefox'
 Editor='emacsclient -c -n'
 Terminal='alacritty'
+Mod=Super
 
 function hc() {
     herbstclient "$@"
@@ -27,20 +29,21 @@ hc set default_frame_layout 0
 hc set focus_follows_mouse true
 
 # monitors
-hc set_monitors 860x1440+0+0 1720x1440+860+0 860x1440+2580+0
-# hc add_monitor 860x1440+0+0 8 left 
-# hc add_monitor 1720x1440+860+0 main 
-# hc add_monitor 860x1440+2580+0 9 right 
+hc set_monitors 2000x1440+0+0 1440x1440+2000+0
+
+# padding for polybar
+hc pad 0 30 0 0 0
+hc pad 1 30 0 0 0
 
 # keybindings
 
 # hc keybind $Mod-Shift-q quit
-hc keybind $Mod-Shift-q spawn /home/theocodes/.dotfiles/bin/powermenu -fn $Font -nb '#000000' -nf '#ffffff' -sb $PrimaryColor
+hc keybind $Mod-Shift-q spawn /home/theocodes/.dotfiles/bin/powermenu -fn $Font -nb $BackgroundColor -nf '#ffffff' -sb $PrimaryColor
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-q close
 hc keybind $Mod-Return spawn $Terminal
 hc keybind $Mod-Shift-Return spawn $Browser
-hc keybind $Mod-d spawn dmenu_run -fn $Font -nb '#000000' -nf '#ffffff' -sb $PrimaryColor
+hc keybind $Mod-d spawn dmenu_run -fn $Font -nb $BackgroundColor -nf '#ffffff' -sb $PrimaryColor
 
 hc sethc se
 
@@ -109,8 +112,9 @@ hc set window_border_width 1
 hc set window_border_normal_color $BackgroundColor
 hc set window_border_active_color $PrimaryColor
 hc set always_show_frame 0
-hc set window_gap 4
+hc set window_gap 0
 hc set frame_gap 0
+hc set frame_padding 0
 hc set snap_distance 2
 hc set snap_gap 2
 
@@ -126,9 +130,6 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
 hc rule class~'[Ww]bar' manage=off
 hc rule class~'[Cc]onky' manage=off
 hc rule class~'[Ff]brun' pseudotile=on
-
-# padding for polybar
-hc pad 0 26 0 0 0
 
 # autostart stuff
 /home/theocodes/.dotfiles/bin/fixmonitors &

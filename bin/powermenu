@@ -25,6 +25,6 @@ case "$res" in
         systemctl suspend
         ;;
     $log_out)
-        herbstclient quit
+        pkill xinit
         ;;
 esac

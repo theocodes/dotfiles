@@ -1,9 +1,9 @@
 [colors]
 alert=#bd2c40
-primary=#bd93f9
+primary=#6272a4
 foreground=#ffffff
 foreground-alt=#44475a
-background=#000000
+background=#282a36
 
 [bar/main]
 cursor-click=pointer
@@ -15,15 +15,16 @@ line-color=#f00
 line-size=3
 module-margin-left=0
 module-margin-right=2
-modules-center=ewmh 
-modules-left=xwindow
-modules-right=date
-padding-left=0
-padding-right=2
-tray-padding=1
+modules-center = 
+modules-left = ewmh xwindow
+modules-right = ip date
+padding-left = 0
+padding-right = 2
+tray-padding = 1
 tray-position=right
-width=100%
+width = 100%
 enable-ipc = true
+background = ${colors.background}
 
 [module/ewmh]
 type = internal/xworkspaces
@@ -33,17 +34,6 @@ enable-click = true
 enable-scroll = true
 reverse-scroll = true
 
-icon-0 = 1;
-icon-1 = 2;
-icon-2 = 3;
-icon-3 = 4;
-icon-4 = 5;
-icon-5 = 6;
-icon-6 = 7;
-icon-7 = 8;
-#icon-8 = 9;
-#icon-9 = 10;
-#icon-default = " "
 format = <label-state>
 label-monitor = %name%
 
@@ -59,7 +49,6 @@ label-occupied-padding = 1
 label-urgent = %name%
 label-urgent-foreground = ${colors.foreground}
 label-urgent-background = ${colors.alert}
-label-urgent-underline = ${colors.alert}
 label-urgent-padding = 1
 
 label-empty =
@@ -68,24 +57,10 @@ label-empty-padding = 1
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
-
-[module/bspwm]
-format=<label-state> <label-mode>
-label-empty-foreground=#555
-label-empty-padding=1
-#label-empty = %name%
-label-empty =
-label-focused=%name%
-label-focused-foreground=${colors.primary}
-label-focused-padding=1
-label-monitor=%name%
-label-occupied=%name%
-label-occupied-padding=1
-label-urgent=%name%!
-label-urgent-background=${colors.alert}
-label-urgent-padding=1
-pin-workspaces=true
-type=internal/bspwm
+[module/ip]
+type = custom/script
+exec = /home/theocodes/.dotfiles/bin/polybarscripts ip
+interval = 30
 
 [module/xwindow]
 label=" %title:0:80:...%"

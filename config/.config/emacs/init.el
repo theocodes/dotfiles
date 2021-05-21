@@ -1,3 +1,4 @@
+
 (setq inhibit-startup-message t)
 
 (scroll-bar-mode -1)        ; Disable visible scrollbar
@@ -25,8 +26,16 @@
 
 ;; no files that I didn't create please!
 (setq custom-file (concat user-emacs-directory "/custom.el"))
-(setq make-backup-files nil)
 (setq create-lockfiles nil)
+(setq auto-save-default nil)
+(setq make-backup-files nil)
+
+;; transparency
+(defvar efs/frame-transparency '(90 . 90))
+(set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
+(add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
+(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; disable visible bell - was causing issues
 (setq visible-bell nil)
@@ -55,7 +64,14 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(use-package command-log-mode)
+(defun efs/display-startup-time ()
+  (message "Emacs loaded in %s with %d garbage collections."
+           (format "%.2f seconds"
+                   (float-time
+                     (time-subtract after-init-time before-init-time)))
+           gcs-done))
+
+(add-hook 'emacs-startup-hook #'efs/display-startup-time)
 
 (use-package ivy
   :diminish
@@ -236,6 +252,7 @@
 (use-package neotree
   :init
   (setq neo-smart-open t
+	neo-show-hidden-files t
 	neo-window-width 50))
 
 ;; autocomplete
@@ -269,3 +286,7 @@
 	shell-pop-autocd-to-working-dir t))
 
 (use-package lua-mode)
+
+(use-package haskell-mode)
+
+(use-package fish-mode)
