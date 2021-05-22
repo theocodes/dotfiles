@@ -26,10 +26,14 @@
     # Core applications
     firefox slack 
     alacritty terminator
+    caffeine-ng
 
     # core tools
     gnumake wget killall stow git
     xsel xclip gnupg ripgrep
+
+    # audio
+    pamixer pavucontrol
   ];
 
   users.users.theocodes = {

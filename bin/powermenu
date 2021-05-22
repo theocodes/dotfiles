@@ -1,6 +1,7 @@
 #!/bin/sh
 
-command="dmenu $@"
+# command="dmenu $@"
+command="rofi -i -dmenu"
 
 power_off="Shutdown"
 reboot="Reboot"
@@ -25,6 +26,6 @@ case "$res" in
         systemctl suspend
         ;;
     $log_out)
-        pkill xinit
+        herbstclient quit
         ;;
 esac

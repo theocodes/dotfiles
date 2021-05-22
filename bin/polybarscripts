@@ -10,3 +10,13 @@ if [[ $cmd = "ip" ]]; then
 	echo "offline"
     fi
 fi
+
+if [[ $cmd = "volume" ]]; then
+    muted=$(pamixer --get-mute)
+    if [ $muted = "false" ]; then
+	pamixer --get-volume
+	exit 0
+    fi
+
+    echo "muted"
+fi

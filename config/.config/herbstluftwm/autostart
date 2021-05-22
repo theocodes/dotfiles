@@ -4,7 +4,7 @@
 /home/theocodes/dotfiles/bin/fixmonitors &
 /home/theocodes/dotfiles/bin/launchpolybar &
 nitrogen --restore &
-nm-applet &
+caffeine &
 picom &
 
 BackgroundColor='#282a36'
@@ -35,22 +35,20 @@ hc keyunbind --all
 hc set default_frame_layout 0
 hc set focus_follows_mouse true
 
-# monitors
-hc set_monitors 2000x1440+0+0 1440x1440+2000+0
-
 # padding for polybar
-hc pad 0 30 0 0 0
-hc pad 1 30 0 0 0
+# hc pad 0 30 0 0 0
+# hc pad 1 30 0 0 0
 
 # keybindings
 
 # hc keybind $Mod-Shift-q quit
-hc keybind $Mod-Shift-q spawn /home/theocodes/dotfiles/bin/powermenu -fn $Font -nb $BackgroundColor -nf '#ffffff' -sb $PrimaryColor
+hc keybind $Mod-Shift-q spawn /home/theocodes/dotfiles/bin/powermenu 
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-q close
 hc keybind $Mod-Return spawn $Terminal
 hc keybind $Mod-Shift-Return spawn $Browser
-hc keybind $Mod-d spawn dmenu_run -fn $Font -nb $BackgroundColor -nf '#ffffff' -sb $PrimaryColor
+hc keybind $Mod-d spawn rofi -modi drun -show
+# hc keybind $Mod-d spawn dmenu_run -fn $Font -nb $BackgroundColor -nf '#ffffff' -sb $PrimaryColor
 
 hc sethc se
 
@@ -69,10 +67,19 @@ for i in ${!TAG_NAMES[@]} ; do
 done
 
 # cycle through tags
-hc keybind $Mod-period use_index +1
-hc keybind $Mod-comma  use_index -1
-hc keybind $Mod-Right use_index +1
-hc keybind $Mod-Left  use_index -1
+# hc keybind $Mod-period use_index +1
+# hc keybind $Mod-comma  use_index -1
+# hc keybind $Mod-Right use_index +1
+# hc keybind $Mod-Left  use_index -1
+
+# monitors
+hc keybind $Mod-Left set_monitors 2000x1440+0+0 1440x1440+2000+0
+hc keybind $Mod-Right set_monitors 3440x1440+0+0 
+
+# sound
+hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume @DEFAULT_SINK@ +5%
+hc keybind XF86AudioLowerVolume spawn pactl set-sink-volume @DEFAULT_SINK@ -5% 
+hc keybind XF86AudioMute        spawn pactl set-sink-mute 1 toggle
 
 # layouting
 hc keybind $Mod-r remove
