@@ -1,6 +1,6 @@
 #+TITLE: My system configuration
 
-- *OS*: [[NixOS]]
+- *OS*: [[https://github.com/theocodes/dotfiles#nixos][NixOS]]
 - *Window Manager*: herbstluftwm
 - *Panel*: polybar
 - *Launcher*: rofi
