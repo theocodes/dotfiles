@@ -59,13 +59,13 @@ format-background = ${colors.background}
 
 [module/ip]
 type = custom/script
-exec = /home/theocodes/dotfiles/bin/polybarscripts ip
+exec = /home/theocodes/dotfiles/scripts/polybarscripts ip
 format = IP <label>
 interval = 30
 
 [module/volume]
 type = custom/script
-exec = /home/theocodes/dotfiles/bin/polybarscripts volume
+exec = /home/theocodes/dotfiles/scripts/polybarscripts volume
 format = VOL <label>
 interval = 5
 

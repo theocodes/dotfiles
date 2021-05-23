@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# command="dmenu $@"
+command="rofi -i -dmenu"
+
+google="Google"
+nixos_packages="NixOS Packages"
+nixos_options="NixOS Options"
+
+google_cache="$HOME/.cache/search_script_google"
+packages_cache="$HOME/.cache/search_script_packages"
+options_cache="$HOME/.cache/search_script_options"
+
+options="$google\n$nixos_packages\n$nixos_options"
+type="$(echo -e "$options" | $command)"
+echo "$type"
+
+case "$type" in
+    $google)
+	touch $google_cache
+
+	recent="$(cat $google_cache)"
+	term="$(tail -n 5 $google_cache | $command)"
+
+	[[ "$term" = "" ]] && exit 1
+
+	firefox --new-tab "https://google.com/search?q=$term"
+	echo -e "$term" >> $google_cache
+        ;;
+    $nixos_packages)
+	touch $packages_cache
+
+	recent="$(cat $packages_cache)"
+	term="$(tail -n 5 $packages_cache | $command)"
+
+	[[ "$term" = "" ]] && exit 1
+
+	firefox --new-tab "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&query=$term"
+	echo -e "$term" >> $packages_cache
+        ;;
+    $nixos_options)
+	touch $options_cache
+
+	recent="$(cat $options_cache)"
+	term="$(tail -n 5 $options_cache | $command)"
+
+	echo $term
+	[[ "$term" = "" ]] && exit 1
+
+	firefox --new-tab "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&query=$term"
+	echo -e "$term" >> $options_cache
+        ;;
+esac

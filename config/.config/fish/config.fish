@@ -17,7 +17,7 @@ set GOSUMDB "off"
 set -gx FABPATH $HOME/repos/github.com/zencoder
 
 # path
-set -gx PATH $HOME/dotfiles/bin $PATH
+set -gx PATH $HOME/dotfiles/scripts $PATH
 set -gx PATH $HOME/repos/github.com/zencoder/bolt-utils/bin $PATH
 
 # aliases
