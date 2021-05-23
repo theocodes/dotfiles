@@ -1,9 +1,123 @@
 #+TITLE: My system configuration
 
-- *OS*: NixOS
+- *OS*: [[NixOS]]
 - *Window Manager*: herbstluftwm
 - *Panel*: polybar
 - *Launcher*: rofi
 - *Shell*: fish/zsh
 - *Terminal*: alacritty
 - *Editor*: emacs/neovim
+
+
+* NixOS
+
+   NixOs gives me near 100% reproducible builds of my configured system, which is great since I like to experiment a lot.
+
+** flake.nix
+
+   At the heart of the system configuration is the flake.nix file, which allows me to determine the inputs and outputs of my system configuration in a pure functional style - thus making the system build reproducible.
+
+   #+begin_src nix :tangle flake.nix
+{
+  description = "theocodes system configuration";
+
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+  };
+
+   #+end_src
+
+   Here I'm saying that I want to depend on the unstable* branch nixpkgs (NixOS package repository) which is locked to a specific version to ensure I always get the same versions of packages, until I decide to update the system.
+   I'm also declaring that I depend on an overlay* of neovim which allows me to get the nightly 0.5.x version rather than the stable release present on nixpkgs.
+
+   * Overlays are a mechanism whereby you can inject/override a dependency from nixpkgs.
+   * The unstable branch gives me more of a rolling release style distro where updates come often and quickly, as opposed to the stable where there are usually 2 updates per calendar year.
+
+  Then with my inputs declared, I then proceed to preparing the components of the output:
+
+  #+begin_src nix :tangle flake.nix
+outputs = { nixpkgs, ... }@inputs:
+  let
+    system = "x86_64-linux";
+
+    pkgs = import nixpkgs {
+      inherit system;
+
+      config = { allowUnfree = true; };
+    };
+
+    overlays = ({ pkgs, ... }: {
+      nixpkgs.overlays = with inputs; [
+        neovim-nightly-overlay.overlay
+      ];
+    });
+
+    lib = nixpkgs.lib;
+  in {
+
+  #+end_src
+
+ The `let` statement above is a place to set up variables to be used in the `in` block:
+
+  - `system` refers to the version of NixOS bundled with the x86_64 version of the linux kernel.
+  - `pkgs` is the package repository and we import `nixpkgs` into it (unstable branch from inputs).
+  - `overlays` is where you inject our package overlays.
+  - `lib` exposes a set of helpers for handling NixOS configuration and is provided by nixpkgs itself.
+
+  #+begin_src nix :tangle flake.nix
+nixosConfigurations = {
+
+      nebula = lib.nixosSystem {
+        inherit system;
+
+        modules = [overlays] ++ [
+          ./modules/hardware/nebula.nix
+          ./modules/system.nix
+          ./modules/network.nix
+          ./modules/desktop.nix
+          ./modules/cli.nix
+          ./modules/dev.nix
+          ./modules/editors.nix
+          ./modules/gaming.nix
+        ];
+      };
+
+      redawn = lib.nixosSystem {
+        inherit system;
+
+        modules = [overlays] ++ [
+          ./modules/hardware/redawn.nix
+          ./modules/system.nix
+          ./modules/network.nix
+          ./modules/desktop.nix
+          ./modules/cli.nix
+          ./modules/dev.nix
+          ./modules/editors.nix
+        ];
+      };
+
+    };
+  };
+}
+  #+end_src
+
+The `nixosConfigurations` field above is the output describing my different machines. `nebula` refers to my main desktop machine while `redawn` is my laptop. They are almost the same with a few differences. Any hardware specific configuration gets separated into their own
+files and the gaming module is only applied to the desktop configuration.
+
+When I apply a configuration on a given system, nix's flakes feature uses the current system's `hostname` to determine which of the configurations within nixosConfigurations to use.
+
+** nebula
+** redawn
+** system
+** network
+** desktop
+** cli
+** dev
+** editors
+** gaming
+
+* Local Variables
+# Local Variables:
+# eval: (add-hook 'after-save-hook (lambda ()(org-babel-tangle)) nil t)
+# End:

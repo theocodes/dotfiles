@@ -288,3 +288,18 @@
 (use-package lua-mode)
 (use-package haskell-mode)
 (use-package fish-mode)
+
+(require 'org-tempo)
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-list"))
+(add-to-list 'org-structure-template-alist '("nix" . "src nix"))
+
+;; automatically tangle the system config file on save
+;; (defun efs/org-babel-tangle-config ()
+;;   (when (string-equal (buffer-file-name)
+;;                       (expand-file-name "~/dotfiles/README.org"))
+;;     ;; Dynamic scoping to the rescue
+;;     (let ((org-confirm-babel-evaluate nil))
+;;       (org-babel-tangle)))
+
+;; (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
