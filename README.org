@@ -1,3 +1,9 @@
 #+TITLE: My system configuration
 
-WIP
+*OS*: NixOS
+*Window Manager*: herbstluftwm
+*Panel*: polybar
+*Launcher*: rofi
+*Shell*: fish/zsh
+*Terminal*: alacritty
+*Editor*: emacs/neovim

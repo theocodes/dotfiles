@@ -286,7 +286,5 @@
 	shell-pop-autocd-to-working-dir t))
 
 (use-package lua-mode)
-
 (use-package haskell-mode)
-
 (use-package fish-mode)
