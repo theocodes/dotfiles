@@ -21,20 +21,30 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  # https://github.com/NixOS/nixpkgs/issues/124215
+  documentation.info.enable = false;
+
   # system level packages
   environment.systemPackages = with pkgs; [
     # Core applications
-    firefox slack 
-    alacritty terminator
-    caffeine-ng
+    firefox slack alacritty
+    terminator caffeine-ng
 
     # core tools
     gnumake wget killall stow git
-    xsel xclip gnupg ripgrep
+    xsel xclip gnupg ripgrep telnet
+    gparted woeusb winusb ntfs3g
 
     # audio
     pamixer pavucontrol
+
+    # email
+    protonmail-bridge
   ];
+
+  programs.ssh.startAgent = true;
+
+  services.gnome.gnome-keyring.enable = true;
 
   users.users.theocodes = {
     isNormalUser = true;

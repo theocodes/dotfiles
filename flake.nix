@@ -32,6 +32,7 @@ nixosConfigurations = {
 
         modules = [overlays] ++ [
           ./modules/hardware/nebula.nix
+          ./modules/hardware/keyboards.nix
           ./modules/system.nix
           ./modules/network.nix
           ./modules/desktop.nix

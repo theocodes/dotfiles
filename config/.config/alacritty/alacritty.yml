@@ -17,4 +17,4 @@ window:
     y: 10
 
 import:
-  - /home/theocodes/.config/alacritty/dracula.yml
+  - /home/theocodes/.config/alacritty/molokai.yml

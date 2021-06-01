@@ -9,3 +9,6 @@ build:
 
 stow:
 	stow -v -R config
+
+gc:
+	nix-collect-garbage -d

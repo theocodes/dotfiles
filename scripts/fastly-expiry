@@ -1,0 +1,4 @@
+#!/bin/sh
+
+ts="$(echo $1 | python -c "import sys, urllib.parse; print(urllib.parse.unquote(sys.stdin.read()))" | sed -nE 's/.+fastly_token=([^&]+)/\1/p' | base64 --decode | cut -d _ -f1 | xargs -I{} printf "%d\n" 0x{})"
+date -d "@$ts"

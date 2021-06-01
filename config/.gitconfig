@@ -10,3 +10,5 @@
 	signingKey = "E05424AC8FC7FB3D12DD"
 [core]
 	excludesfile = /home/theocodes/.gitignore_global
+[init]
+	defaultBranch = master

@@ -24,7 +24,7 @@ vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope fd<CR>', { noremap = true, sil
 vim.api.nvim_set_keymap('n', '<C-x>', ':Telescope commands<CR>', { noremap = true, silent = true})
 
 -- search in buffer
-vim.api.nvim_set_keymap('n', '<C-s>', ':Telescope live_grep<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-s>', ':Telescope current_buffer_fuzzy_find<CR>', { noremap = true, silent = true})
 
 -- close buffers with 'q'
 vim.api.nvim_set_keymap('n', 'q', ':q!<CR>', { noremap = true, silent = true})

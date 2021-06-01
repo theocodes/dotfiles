@@ -28,3 +28,5 @@ alias ll="exa -la"
 
 abbr tree exa -la -T
 abbr rel 'exec $SHELL -l'
+abbr vim nvim
+

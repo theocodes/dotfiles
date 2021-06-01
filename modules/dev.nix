@@ -9,7 +9,7 @@
 
     # tools
     awscli github-cli kubectl
-    exercism
+    exercism insomnia
 
     # golang
     go_1_16
@@ -17,6 +17,14 @@
 
     # rust
     rustup rust-analyzer
-  ];
 
+    # crystal
+    crystal shards ameba
+
+    # elixir
+    elixir
+
+    # python
+    python39
+  ];
 }

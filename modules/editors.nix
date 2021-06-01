@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    vim neovim-nightly vscode
+    vim vscode
+    neovim-nightly
 
     ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
       epkgs.vterm
