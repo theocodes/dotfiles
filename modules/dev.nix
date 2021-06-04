@@ -1,5 +1,4 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, ... }: {
   # daemon to manage per-project env dependencies
   services.lorri.enable = true;
 
@@ -8,23 +7,37 @@
     direnv
 
     # tools
-    awscli github-cli kubectl
-    exercism insomnia
+    awscli
+    github-cli
+    kubectl
+    exercism
+    insomnia
 
     # golang
     go_1_16
-    goimports gopls godef
+    goimports
+    gopls
+    godef
 
     # rust
-    rustup rust-analyzer
+    rustup
+    rust-analyzer
 
     # crystal
-    crystal shards ameba
+    crystal
+    shards
+    ameba
 
     # elixir
     elixir
 
     # python
     python39
+
+    # nix
+    nixfmt
+
+    # sh
+    shfmt
   ];
 }

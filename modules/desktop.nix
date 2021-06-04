@@ -1,5 +1,4 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, ... }: {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -13,31 +12,31 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   # window manager
-  services.xserver.windowManager.herbstluftwm.enable = true;
+  # services.xserver.windowManager.herbstluftwm.enable = true;
+  # services.xserver.windowManager.qtile.enable = true;
+  services.xserver.displayManager.startx.enable = true;
 
   environment.systemPackages = with pkgs; [
     # notifications
-    libnotify dunst 
+    libnotify
+    dunst
 
     # background
     nitrogen
 
     # launchers
-    dmenu rofi
+    dmenu
+    rofi
 
     # panel
     polybar
-    
+
     # compositor
     picom
 
     # session lock
-    xlockmore 
+    xlockmore
   ];
 
-  fonts.fonts = with pkgs; [
-    jetbrains-mono cascadia-code
-    font-awesome
-  ];
-
+  fonts.fonts = with pkgs; [ jetbrains-mono cascadia-code font-awesome ];
 }

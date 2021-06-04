@@ -13,19 +13,20 @@ options="$lock\n$reboot\n$power_off\n$suspend\n$log_out"
 
 res="$(echo -e "$options" | $command)"
 case "$res" in
-    $power_off)
-        systemctl poweroff
-        ;;
-    $reboot)
-        systemctl reboot
-        ;;
-    $lock)
-        xlock
-        ;;
-    $suspend)
-        systemctl suspend
-        ;;
-    $log_out)
-        herbstclient quit
-        ;;
+$power_off)
+	systemctl poweroff
+	;;
+$reboot)
+	systemctl reboot
+	;;
+$lock)
+	xlock
+	;;
+$suspend)
+	systemctl suspend
+	;;
+$log_out)
+	# herbstclient quit
+	pkill qtile
+	;;
 esac

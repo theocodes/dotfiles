@@ -6,10 +6,10 @@ selection:
 font:
   size: 9
   normal:
-    family: "Cascadia Mono"
+    family: "JetBrains Mono"
        
   offset:
-    x: 0
+    y: -4
 
 window:
   padding:

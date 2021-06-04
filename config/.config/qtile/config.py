@@ -1,6 +1,9 @@
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget
+import os
+import subprocess
+
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -42,9 +45,9 @@ keys = [
     Key([mod], "f", lazy.window.toggle_floating(), desc="toggle floating"),
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "shift"], "q", lazy.spawn("powermenu"), desc="Shutdown Qtile"),
+    Key([mod, "shift"], "q", lazy.spawn("/home/theocodes/dotfiles/scripts/powermenu"), desc="Powermenu"),
     # Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-    Key([mod], "d", lazy.spawn("dmenu_run -b"), desc="run dmenu"),
+    Key([mod], "d", lazy.spawn("rofi -show drun"), desc="application launcher"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -72,7 +75,10 @@ layouts = [
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
-    layout.Tile(),
+    layout.Tile(
+        margin=0,
+        border_focus='#6272a4'
+    ),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
@@ -156,3 +162,8 @@ auto_minimize = True
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+@hook.subscribe.startup
+def autostart():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/autostart.sh'])

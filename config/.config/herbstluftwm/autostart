@@ -6,6 +6,7 @@
 nitrogen --restore &
 caffeine &
 picom &
+flameshot &
 
 BackgroundColor='#282a36'
 GreenColor='#50fa7b'

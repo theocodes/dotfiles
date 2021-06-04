@@ -26,20 +26,34 @@
 
   # system level packages
   environment.systemPackages = with pkgs; [
-    # Core applications
-    firefox slack alacritty
-    terminator caffeine-ng
+    # core applications
+    firefox
+    slack
+    alacritty
+    terminator
+    caffeine-ng
 
-    # core tools
-    gnumake wget killall stow git
-    xsel xclip gnupg ripgrep telnet
-    gparted woeusb winusb ntfs3g
+    # utils
+    gnumake
+    wget
+    killall
+    stow
+    git
+    xsel
+    xclip
+    gnupg
+    ripgrep
+    telnet
+    gparted
+    woeusb
+    ntfs3g
+
+    # screenshots
+    flameshot
 
     # audio
-    pamixer pavucontrol
-
-    # email
-    protonmail-bridge
+    pamixer
+    pavucontrol
   ];
 
   programs.ssh.startAgent = true;

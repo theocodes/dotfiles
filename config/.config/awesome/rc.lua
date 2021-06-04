@@ -312,7 +312,7 @@ globalkeys = gears.table.join(
     -- Menubar
     -- awful.key({ modkey }, "d", function() menubar.show() end,
     --           {description = "show the menubar", group = "launcher"})
-    awful.key({ modkey }, "d", function() awful.util.spawn("dmenu_run -b") end,
+    awful.key({ modkey }, "d", function() awful.util.spawn("rofi -show drun") end,
               {description = "show the menubar", group = "launcher"})
 )
 
@@ -419,6 +419,8 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
+    { rule = { class = "Emacs" },
+     properties = { size_hints_honor = false } },
 
     -- Floating clients.
     { rule_any = {
@@ -451,7 +453,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
+      }, properties = { titlebars_enabled = true }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
