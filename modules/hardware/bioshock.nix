@@ -8,29 +8,27 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/0d67ac92-b15e-4956-a9a1-33ba18f9fd6c";
+    { device = "/dev/disk/by-uuid/45e82eaa-7d07-4cc0-9789-2f20e3e4389d";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/09B9-EAFF";
+    { device = "/dev/disk/by-uuid/B680-DD5B";
       fsType = "vfat";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/67c12527-e258-4874-a1d9-bfaad6c6299a"; }
-    ];
+  swapDevices = [ ];
 
   # machine-specific network settings
-  networking.hostName = "nebula";
-  networking.interfaces.eno2.useDHCP = true;
-  networking.interfaces.wlo1.useDHCP = true;
+  networking.hostName = "bioshock";
+  networking.interfaces.enp0s31f6.useDHCP = true;
+  networking.interfaces.wlp0s20f3.useDHCP = true;
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

@@ -12,9 +12,11 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   # window manager
-  # services.xserver.windowManager.herbstluftwm.enable = true;
+  services.xserver.windowManager.herbstluftwm.enable = true;
   # services.xserver.windowManager.qtile.enable = true;
-  services.xserver.displayManager.startx.enable = true;
+  # services.xserver.displayManager.startx.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   environment.systemPackages = with pkgs; [
     # notifications

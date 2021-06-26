@@ -8,15 +8,9 @@
     networkmanagerapplet
   ];
 
-  # TODO pass in the hostname
-  # TODO handle different interfaces
   networking = {
-    hostName = "nebula";
     enableIPv6 = false;
-
     useDHCP = false;
-    interfaces.eno2.useDHCP = true;
-    interfaces.wlo1.useDHCP = true;
 
     networkmanager = {
       enable = true;

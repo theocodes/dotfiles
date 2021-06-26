@@ -4,13 +4,10 @@ selection:
   save_to_clipboard: true
 
 font:
-  size: 9
+  size: 8
   normal:
-    family: "JetBrains Mono"
+    family: "Cascadia Mono"
        
-  offset:
-    y: -4
-
 window:
   padding:
     x: 10

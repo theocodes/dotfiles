@@ -55,11 +55,11 @@
           ];
         };
 
-        redawn = lib.nixosSystem {
+        bioshock = lib.nixosSystem {
           inherit system;
 
           modules = [ overlays ] ++ [
-            ./modules/hardware/redawn.nix
+            ./modules/hardware/bioshock.nix
             ./modules/system.nix
             ./modules/network.nix
             ./modules/desktop.nix
