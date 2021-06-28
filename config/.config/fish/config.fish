@@ -12,6 +12,7 @@ set EDITOR "emacsclient -t"
 set ALTERNATE_EDITOR ""
 set EDITOR "emacsclient -c"
 set GOSUMDB "off"
+set GOPATH $HOME/go
 
 # global
 set -gx FABPATH $HOME/repos/github.com/zencoder
@@ -19,6 +20,7 @@ set -gx FABPATH $HOME/repos/github.com/zencoder
 # path
 set -gx PATH $HOME/dotfiles/scripts $PATH
 set -gx PATH $HOME/repos/github.com/zencoder/bolt-utils/bin $PATH
+set -gx PATH $GOPATH/bin $PATH
 
 # aliases
 

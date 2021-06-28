@@ -45,6 +45,8 @@
     ripgrep
     telnet
     gparted
+
+    # build windows usb
     woeusb
     ntfs3g
 

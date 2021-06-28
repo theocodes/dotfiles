@@ -73,8 +73,8 @@ done
 # hc keybind $Mod-Left  use_index -1
 
 # monitors
-hc keybind $Mod-Left set_monitors 2000x1440+0+0 1440x1440+2000+0
-hc keybind $Mod-Right set_monitors 3440x1440+0+0 
+# hc keybind $Mod-Left set_monitors 2000x1440+0+0 1440x1440+2000+0
+# hc keybind $Mod-Right set_monitors 3440x1440+0+0
 
 # sound
 hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume @DEFAULT_SINK@ +5%

@@ -26,7 +26,7 @@ $suspend)
 	systemctl suspend
 	;;
 $log_out)
-	# herbstclient quit
-	pkill qtile
+	herbstclient quit
+	# pkill qtile
 	;;
 esac
