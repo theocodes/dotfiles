@@ -4,9 +4,12 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    darwin.url = "github:lnl7/nix-darwin/master";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, darwin, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -16,36 +19,36 @@
         config = { allowUnfree = true; };
       };
 
-      # dwm-overlay = (self: super: {
-      #   dwm = super.dwm.overrideAttrs (_: {
-      #     src = builtins.fetchGit {
-      #       url = "https://github.com/theocodes/dwm";
-      #       rev = "19f6a8278ad261dd04f634508929535978915f23";
-      #       ref = "master";
-      #     };
-      #   });
-      # });
-
       overlays = ({ pkgs, ... }: {
         nixpkgs.overlays = with inputs;
           [
             neovim-nightly-overlay.overlay
-            # dwm-overlay
           ];
       });
 
       lib = nixpkgs.lib;
+      dlib = darwin.lib;
     in {
 
-      nixosConfigurations = {
+      darwinConfigurations = {
+        rapture = dlib.darwinSystem {
+          modules = [ overlays ] ++ [ 
+            ./modules/darwin.nix
+            ./modules/cli.nix
+            ./modules/editors.nix
+	          ./modules/dev.nix
+          ];
+        };
+      };
 
+      nixosConfigurations = {
         nebula = lib.nixosSystem {
           inherit system;
 
           modules = [ overlays ] ++ [
             ./modules/hardware/nebula.nix
             ./modules/hardware/keyboards.nix
-            ./modules/system.nix
+            ./modules/nixos.nix
             ./modules/network.nix
             ./modules/desktop.nix
             ./modules/cli.nix
@@ -60,7 +63,7 @@
 
           modules = [ overlays ] ++ [
             ./modules/hardware/bioshock.nix
-            ./modules/system.nix
+            ./modules/nixos.nix
             ./modules/network.nix
             ./modules/desktop.nix
             ./modules/cli.nix
@@ -68,7 +71,6 @@
             ./modules/editors.nix
           ];
         };
-
       };
     };
 }

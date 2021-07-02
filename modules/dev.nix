@@ -11,7 +11,6 @@
     github-cli
     kubectl
     exercism
-    insomnia
 
     # golang
     go_1_16
@@ -22,11 +21,6 @@
     # rust
     rustup
     rust-analyzer
-
-    # crystal
-    crystal
-    shards
-    ameba
 
     # elixir
     elixir

@@ -1,5 +1,8 @@
-install:
+nixos:
 	sudo nixos-rebuild switch --flake .#
+
+darwin:
+	darwin-rebuild switch --flake .#
 
 update:
 	nix flake update
