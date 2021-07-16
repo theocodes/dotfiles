@@ -8,7 +8,7 @@ zle_highlight=('paste:none')
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-# compinit
+compinit
 _comp_options+=(globdots) # Include hidden files.
 
 autoload -U up-line-or-beginning-search
@@ -50,6 +50,8 @@ autoload -Uz colors && colors
 # Useful Functions
 source "$ZDOTDIR/functions.zsh"
 
+source "$ZDOTDIR/z.sh"
+
 # Normal files to source
 zsh_add_file "zsh-exports"
 zsh_add_file "aliases.zsh"
@@ -60,7 +62,6 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 
 # Key-bindings
-bindkey -s '^f' 'zi^M'
 bindkey -s '^s' 'ncdu^M'
 # bindkey -s '^n' 'nvim $(fzf)^M'
 # bindkey -s '^v' 'nvim\n'

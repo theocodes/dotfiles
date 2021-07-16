@@ -14,8 +14,8 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    # apps
-    slack
+    # data
+    jq yq
 
     # core tools
     stow
