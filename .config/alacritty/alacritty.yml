@@ -1,0 +1,17 @@
+background_opacity: 0.98
+
+selection:
+  save_to_clipboard: true
+
+font:
+  size: 10
+  normal:
+    family: "JetBrains Mono"
+       
+window:
+  padding:
+    x: 10
+    y: 10
+
+import:
+  - /home/theocodes/.config/alacritty/dracula.yml
