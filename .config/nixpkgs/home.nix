@@ -18,7 +18,7 @@
     jq yq
 
     # core tools
-    stow ripgrep
+    stow ripgrep xclip
 
     # password manager
     _1password

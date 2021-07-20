@@ -1,6 +1,6 @@
+require('plugins')
 require('options')
 require('keybindings')
-require('plugins')
 
 require('_gitsigns')
 require('_whichkey')
