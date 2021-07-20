@@ -13,6 +13,8 @@
     
     shellAbbrs = {
       vim = "nvim";
+      e = "nvim";
+      rel = "exec $SHELL";
     };
 
     interactiveShellInit = ''

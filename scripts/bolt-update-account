@@ -1,0 +1,51 @@
+#!/bin/bash
+set -euo pipefail
+
+while getopts "e:i:" opt; do
+  case $opt in
+    e) E=$OPTARG ;;
+    i) I=$OPTARG ;;
+    *)
+      echo 'Invalid arguments'
+      exit 1
+      ;;
+  esac
+done
+
+JSON=$(
+  curl \
+    --silent \
+    --show-error \
+    --location \
+    --fail \
+    --request GET \
+    --header "X-Fabric-Token: $FABRIC_TOKEN" \
+    "https://delivery-management-api.playback.us-east-1.$E.deploys.brightcove.com/management/v1/account/$I" 2>&1
+) || (
+  echo "$JSON"
+  exit 1
+)
+
+T=$(mktemp "/tmp/account_edit_${I}_$(date +%s)_XXXX.json")
+echo "$JSON" | jq . > "$T"
+
+EDIT=$EDITOR
+EDIT=$VISUAL
+test -z "$EDIT" && EDIT=vim
+
+eval "$EDIT" "$T"
+
+JSON_UPDATED=$(jq 'del(.created_at) | del(.updated_at)' "$T")
+
+curl \
+  --silent \
+  --show-error \
+  --location \
+  --fail \
+  -D /dev/fd/2 \
+  --request PUT \
+  --data "$JSON_UPDATED" \
+  --header "X-Fabric-Token: $FABRIC_TOKEN" \
+  "https://delivery-management-api.playback.us-east-1.$E.deploys.brightcove.com/management/v1/account/$I"
+
+echo "OK"

@@ -54,6 +54,9 @@ return require('packer').startup(function()
   -- autocompletion
   use 'hrsh7th/nvim-compe'
 
+  -- nix support
+  use 'LnL7/vim-nix'
+
   -- theme
   use {'dracula/vim', as = 'dracula'}
 end)

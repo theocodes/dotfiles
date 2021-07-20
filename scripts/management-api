@@ -1,0 +1,15 @@
+#!/bin/sh
+
+ENV=$1; shift
+
+exec curl \
+  --silent \
+  --show-error \
+  --location \
+  --fail \
+  --dump-header /dev/fd/2 \
+  --request GET \
+  --header "X-Fabric-Token: $(secrets get fabric_token)" \
+  --header "X-Bolt-Token: $(secrets get bolt_token)" \
+  "https://management.$ENV.boltdns.net/management/v1/$*" \
+  | jq .

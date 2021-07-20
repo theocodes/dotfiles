@@ -3,3 +3,7 @@
 [user]
 	email = public@theocodes.com
 	name = Theo Felippe
+[core]
+	excludesfile = /home/theocodes/.gitignore_global
+[url "git@github.com:"]
+  insteadOf = https://github.com/
