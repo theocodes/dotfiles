@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     neovim
+    vscode
 
     # emacs with vterm
     ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [

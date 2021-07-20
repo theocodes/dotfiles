@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+username="$(op get item "p36il57kka7r5vb3c2cvggrdmq" | jq '.details.fields[0].value' -r)"
+password="$(op get item "p36il57kka7r5vb3c2cvggrdmq" | jq '.details.fields[1].value' -r)"
+account="$(op get item "p36il57kka7r5vb3c2cvggrdmq" | jq '.details.sections[].fields[1].v' -r)"
+
+sudo ~/cato/client start --account $account --user $username --password="$password"

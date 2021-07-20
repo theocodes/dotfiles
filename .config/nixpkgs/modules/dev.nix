@@ -6,9 +6,6 @@
     github-cli
     kubectl
 
-    # per-project environments
-    # direnv lorri
-
     # golang
     go go-tools gopls
   ];
@@ -19,6 +16,6 @@
   # load per-project nix-shell env
   programs.direnv = {
     enable = true;
-    enableZshIntegration = true;
+    enableFishIntegration = true;
   };
 }
