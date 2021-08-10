@@ -22,7 +22,6 @@ export PATH=$HOME/repos/github.com/zencoder/bolt-utils/bin:$PATH
 export ALTERNATE_EDITOR="";
 export EDITOR="emacsclient -c";
 export GOSUMDB="off";
-export DOOMDIR="$HOME/dotfiles/config/doom";
 export FABPATH="$HOME/repos/github.com/zencoder";
 
 HISTSIZE="10000"

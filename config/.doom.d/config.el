@@ -5,7 +5,7 @@
       user-mail-address "public@theocodes.com")
 
 ;; fonts
-(setq doom-font (font-spec :family "Cascadia Mono" :size 14)
+(setq doom-font (font-spec :family "JetBrains Mono" :size 14)
       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 ;; theme
