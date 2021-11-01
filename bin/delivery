@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+
+import argparse
+from pprint import pformat, pprint
+from urllib.request import urlopen, Request
+from urllib.error import HTTPError
+import json
+import base64
+import os
+import sys
+
+
+parser = argparse.ArgumentParser()
+commands = parser.add_subparsers()
+
+# shared parser for global flags
+shared = argparse.ArgumentParser(add_help=False)
+shared.add_argument('-e', choices=['qa', 'stage', 'prod'], help='environment to use', default='qa')
+
+# helper functions
+def get_environ(key):
+    value = os.environ.get(key)
+
+    if value == None:
+        print("error: {} is not set.".format(key))
+        sys.exit(1)
+
+    return value
+
+class Account:
+    def __init__(self, data):
+        self.data = data
+
+    def decode_crt(self):
+       decoded_crt = base64.b64decode(self.data['config']['drm']['crt_config'])
+       self.data['config']['drm']['crt_config'] = json.loads(decoded_crt)
+
+    def __repr__(self):
+        return pformat(self.data, indent=2)
+
+    def to_json(self):
+        return json.dumps(self.data)
+
+def get_account(env, id):
+    token = get_environ('FABRIC_TOKEN')
+    url = "https://management.{}.boltdns.net/management/v1/account/{}".format(env, id)
+    custom_headers = { "X-Fabric-Token": token }
+    req = Request(url, data=None, headers=custom_headers)
+    response = urlopen(req).read()
+    parsed = json.loads(response)
+
+    return Account(parsed)
+
+# commands
+def account_command(args):
+    try:
+        acc = get_account(args.e, args.id)
+
+        if args.crt:
+            acc.decode_crt()
+
+        print(acc.to_json())
+    except HTTPError as error:
+        print(error)
+
+account = commands.add_parser('account', parents=[shared])
+account.add_argument('id', help='account id')
+account.add_argument('--crt', default=False, action=argparse.BooleanOptionalAction, help='decode crt config')
+account.set_defaults(func=account_command)
+
+def console_command(args):
+    env = args.e
+
+    def account(id):
+        return get_account(env, id)
+
+    import code; code.interact(local=locals())
+
+console = commands.add_parser('console', parents=[shared])
+console.set_defaults(func=console_command)
+
+# run
+args = parser.parse_args()
+args.func(args)
