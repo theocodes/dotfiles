@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+
+LOGO=iVBORw0KGgoAAAANSUhEUgAAABEAAAAQCAYAAADwMZRfAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAADwklEQVQ4EU1UXWhcRRT+Zu7v7t2/7rZdTdJujbQLhtaarWlEaYLFBI3E0BBQi1atpA2NtaAPKgqxiD74UEpqoqHmQaRII1J/SDRRLEKFbWJjbVNaUluVGBOb7CZ793funXudXRE8L2fmMOc7h+87Zwj+sz6XYgYEI4SXQ1Xd896o7PTIMm23OT6/pfLBuWMbCpXnXa6EOrjoI075TipBuMITt3ze/eJidNGyD/oV9KhaMHojx1Hrk1AqrC7mbQyuU0rvf3e8dvH/eSL5X4B7e36vzbvSYZ9Kn4sEw/6LtzIo2IwP7DHwxKc5xD2atDHkR8ZczqYtcjKgS/2Tx6I34Lqk0sm2Q/P1uoTJNI3Q2ZVlUYQzMCIfSSj0QEcAA5+tov9n24Hk2iBU3RK5DSFroZQtOU1XhjYk5XJbHsnpSPIqerwhldYULTQ6zdQ39vqx8XYVhofitX1hPNXC6JunTPXRepVzvpLr/XZd4OG1S21XgCQtgxDQRFzKYvI6M+KbVHLm7SgKBRdHP0zBzDk4OpyCzV18IeLxmCqdn2Vq3G8hy7C1nE9ru38NCk53hCjDx9OcOo4LLvQJ+ika4ipCAQmJzQoiIRnFkgNVIfhonJE7fRym5d6z7eD19VQl2l2G5lmfnC/y53cqUm2NitZX/sLV3xiefmwN5v+2sH9PGJdmi0i8tIA7qlV0Niny6B8mwh45VqTeLVST0AjZC0Eaj62ViFdw8O6zIexKGCgUHXx/PlfxD9QbONW7BooC3B2TJXCHyVoQOkE9FfbQ5VULA+1etDZ6oWu0QuZ7I2nkCg72d4aF5zhxOg1FJvB5JXf3DgPDnV5rPAUYkttMXde9vMnQ8fXFktPw8jImfjTBLAcRwcVKxsaBdxaRywsuBICoj9EfTHL/kSV3bLok1RsUotlrlTnZ3vvnN7IebmH5VH7JhnfoSZ/b1hQgcwsMp8czeLw1gKqoiolzGbScNHFfkBTyUtgjseWxCydqHqnMiUb0LlZMTcXCgc2/zKwUJqZKnppoHpmsg5ZGA9dussr5k7NidSwU/d6Ap2Smrlqc761IXNc1oyb7IxkxiR3prJmDkKouJmXHzhXsXa+mrK1vLVsPvp6yzpzN2jvjch7QdFYyzVWbd10ajKWbn7kpuBVWBpoZqWPbX5hrU2XjK4vqcOwifKosZgEICEVWGIeu6ICdg8OL7Rf6q79s7nP1s32kWAFB+Rsom1jthsNz+7IWDgmRckJ+QgkhjmCfORR57uhBmQwl+6uHE91Tyk8fJMQuEfcfhtee61t0aZwAAAAASUVORK5CYII=
+
+export PATH="/usr/local/bin:/usr/bin:/usr/sbin:/bin/sbin:$PATH"
+export USER=tfelippe
+
+ENV=${1:-}
+REGION=${2:-}
+
+QA=(
+  eu-west-1
+  us-east-1
+  us-west-2
+)
+
+STAGE=(
+  eu-west-1
+  us-east-1
+  us-west-2
+)
+
+PROD=(
+  ap-northeast-1
+  ap-south-1
+  ap-southeast-1
+  ap-southeast-2
+  eu-central-1
+  eu-west-1
+  us-east-1
+  us-west-2
+)
+
+new_context() {
+  FILE=$HOME/.netrc
+
+  kubectl config set-cluster "gantry-$environment-$region" \
+    --server "https://api.kube.$region.$environment.deploys.brightcove.com"
+
+  kubectl config set-context "gantry-$environment-$region-$USER" \
+    --cluster "gantry-$environment-$region" \
+    --user "$USER-$region-$environment"
+
+  if [ -f "$FILE" ]; then
+    sed -i '' "/^machine login.$region.$environment.deploys.brightcove.com$/{N;N;d;}" "$FILE"
+  fi
+
+  cat <<-EOF >> "$FILE"
+	machine login.$region.$environment.deploys.brightcove.com
+	  login $USER
+	  password $password
+EOF
+}
+
+init() {
+  echo 'Please enter your LDAP credentials (just this once)'
+  read -rp 'Username: ' username
+  read -rsp 'Password: ' password
+  printf "\n\n"
+
+  # Delete any previous "gantry-" clusters and contexts created by this script. Allows you to re-run
+  # it any time to re-create everything (eg, if updating the envs/regions below when new gantrys spin up)
+  (
+    set +eu
+    contexts=$(kubectl config get-contexts -o name | grep '^gantry-')
+    if [ -n "$contexts" ]; then
+      echo "$contexts" | xargs -L1 -I{} kubectl config delete-context "{}"
+    fi
+
+    clusters=$(kubectl config get-clusters | sed 1d | grep '^gantry-')
+    if [ -n "$clusters" ]; then
+     echo "$clusters" | xargs -L1 -I{} kubectl config delete-cluster "{}"
+    fi
+  )
+  printf "\n"
+  for env in qa stage prod; do
+    case $env in
+      qa)    REGIONS=${QA[*]}    ;;
+      stage) REGIONS=${STAGE[*]} ;;
+      prod)  REGIONS=${PROD[*]}  ;;
+    esac
+
+    for r in $REGIONS; do
+      environment=$env region=$r username=$USER new_context 2>&1
+    done
+  done
+}
+
+
+if [ "${1:-}" = "init" ]; then
+  init
+  exit 0
+fi
+
+if [ "${ENV:-}" != "" ] && [ "${REGION:-}" != "" ]; then
+  eval "$(curl -sSLf --netrc -X POST "https://login.${REGION}.${ENV}.deploys.brightcove.com/cli")"
+  kubectl config use-context "gantry-${ENV}-${REGION}-$USER"
+  exit 0
+fi
+
+ACTIVE=$(kubectl config current-context)
+
+echo "| image=$LOGO"
+echo "---"
+
+echo 'Gantry Documentation | href="https://bithub.brightcove.com/gantry/docs"'
+echo 'Kubernetes Documentation | href="https://kubernetes.io/docs/home"'
+echo '---'
+
+echo "Setup gantry contexts | bash='$0' param1=init terminal=true refresh=true"
+echo '---'
+
+for env in qa stage prod; do
+  case $env in
+    qa)    REGIONS=${QA[*]}    ;;
+    stage) REGIONS=${STAGE[*]} ;;
+    prod)  REGIONS=${PROD[*]}  ;;
+  esac
+
+  for r in $REGIONS; do
+    context="gantry-$env-$r-$USER"
+    C=''; if [ "$context" = "$ACTIVE" ]; then C='color=red'; fi
+    echo "$env $r | bash='$0' param1='$env' param2='$r' terminal='false' refresh='true' ${C:-}"
+    echo "dashboard.kube.$r.$env.deploys.brightcove.com | href='https://dashboard.kube.$r.$env.deploys.brightcove.com/#!/deployment?namespace=playback' alternate=true"
+  done
+  echo '---'
+done
+
+# vi: set nowrap :

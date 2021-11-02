@@ -29,6 +29,7 @@
 
     initExtraFirst = "
       if [ -e /Users/theocodes/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/theocodes/.nix-profile/etc/profile.d/nix.sh; fi
+      source /usr/local/opt/asdf/libexec/asdf.fish
     ";
 
     initExtra = builtins.readFile ../../zsh/functions.zsh;

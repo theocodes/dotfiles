@@ -12,8 +12,9 @@
     # dev
     lorri direnv
     aws
+    kubectl
 
-    go gopls
+    # go gopls
 
     # editors
     neovim
