@@ -6,10 +6,6 @@ link:
 install:
 	brew bundle install
 
-.PHONY: switch
-switch:
-	home-manager switch
-
 .PHONY: dump
 dump:
 	brew bundle dump -f

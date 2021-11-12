@@ -1,6 +1,4 @@
 function setenv -a item
-    signin
-
     eval "_setenv_$item $argv"
 end
 

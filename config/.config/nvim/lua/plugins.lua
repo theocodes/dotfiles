@@ -14,6 +14,8 @@ return require('packer').startup(function()
   -- collection of lsp configurations
   use 'neovim/nvim-lspconfig'
 
+  use 'ChrisWellsWood/roc.vim'
+
   -- fish syntax highlighting
   use 'dag/vim-fish'
 
