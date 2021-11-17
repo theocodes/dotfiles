@@ -22,6 +22,7 @@ alias lg="lazygit"
 alias j="z"
 alias work="tmux new-session -A -s work"
 alias a='asdf'
+alias b='bat'
 
 # move with alt-[Left/Right]Arrow
 bindkey "^[[1;3C" forward-word

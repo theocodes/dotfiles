@@ -2,7 +2,10 @@
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
+    # shells
+    zsh fish
+
     # per-project env
     lorri direnv
 

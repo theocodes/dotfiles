@@ -17,8 +17,4 @@ nix-darwin:
 .PHONY: brew
 brew:
 	brew bundle install
-
-.PHONY: brew-dump
-brew-dump:
 	brew bundle dump -f
-
