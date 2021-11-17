@@ -1,6 +1,9 @@
 # prompt
 eval "$(starship init zsh)"
 
+# load direnv
+eval "$(direnv hook zsh)"
+
 # proper colors
 export TERM=xterm-256color
 
@@ -26,6 +29,7 @@ bindkey "^[[1;3D" backward-word
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/dotfiles/bin
+export PATH=$PATH:/usr/local/go/bin
 
 export PATH=$PATH:$HOME/.asdf/installs/rust/nightly/bin
 export PATH=$PATH:/usr/local/opt/llvm@12/bin

@@ -2,15 +2,6 @@
 
 set -e
 
-sync () {
-    echo -e "\n==== Pushing changes ====\n"
-    git add .
-    git commit -m "$(date)"
-    git push -u origin master
-    echo
-}
-
 pushd ~/dotfiles
-make $1
-#sync
+BUILD_ENV=$(uname) make $1
 popd
