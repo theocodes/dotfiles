@@ -16,6 +16,8 @@ return require('packer').startup(function()
 
   use 'ChrisWellsWood/roc.vim'
 
+  use 'elmcast/elm-vim'
+
   -- fish syntax highlighting
   use 'dag/vim-fish'
 
