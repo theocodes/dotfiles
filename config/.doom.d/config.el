@@ -64,3 +64,5 @@
 
 ;; zig formatting isn't quite right...
 ;; (add-hook 'rust-mode-hook #'format-all-mode)
+
+(define-key evil-visual-state-map "R" 'evil-multiedit-match-all)
