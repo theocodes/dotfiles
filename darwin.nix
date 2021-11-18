@@ -1,34 +1,13 @@
 { config, pkgs, ... }:
 {
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    # shells
-    # zsh fish nushell
-
-    # per-project env
-    lorri direnv
-
-    # better cat
-    bat
-
-    # better ls
-    exa
-
-    # multiplexer
-    tmux
-
-    # data query
+    # cli tools
+    bat exa gh tmux
     jq yq peco ripgrep
+    httpie lazygit
 
     # shell prompt
     starship
-
-    # better curl
-    httpie
-
-    # git gui
-    lazygit
 
     # 1password cli
     _1password
@@ -36,13 +15,21 @@
     # editor
     neovim
 
-    # crypto
-    gnupg
+    # general tools
+    gnupg cmake stow
 
-    # config linking
-    stow
+    # dev
+    lorri direnv
+    rustup
   ];
 
+  fonts.enableFontDir = true;
+
+  fonts.fonts = with pkgs; [
+    jetbrains-mono
+  ];
+
+  nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.allowUnfree = true;
 
   # Use a custom configuration.nix location.
@@ -52,11 +39,8 @@
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
-  # Create /etc/bashrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
-  # programs.fish.enable = true;
+  # create /etc/zshrc that loads the nix-darwin environment.
+  programs.zsh.enable = true;
 
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
+  system.stateVersion = 4; # dont change this
 }

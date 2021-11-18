@@ -10,7 +10,7 @@ selection:
   save_to_clipboard: true
 
 font:
-  size: 14
+  size: 15
   normal:
     family: "JetBrains Mono"
        

@@ -6,7 +6,7 @@ github_plugins=(
   rupa/z
 
   # must be last
-  zdharma/fast-syntax-highlighting
+  zsh-users/zsh-syntax-highlighting
 )
 
 for plugin in $github_plugins; do

@@ -34,15 +34,16 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/dotfiles/bin
 export PATH=$PATH:/usr/local/go/bin
 
-export PATH=$PATH:$HOME/.asdf/installs/rust/nightly/bin
-export PATH=$PATH:/usr/local/opt/llvm@12/bin
+# export PATH=$PATH:/usr/local/opt/llvm@12/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=/usr/local/sbin:$PATH
-export PATH=$PATH:/opt/homebrew/bin
+# export PATH=$PATH:/opt/homebrew/bin
 # export LLVM_SYS_120_PREFIX=/usr/local/opt/llvm@12
 
-source $HOME/.config/zsh/functions.zsh
-source $HOME/.config/zsh/plugins.zsh
+export PATH=/opt/homebrew/bin:$PATH
+
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+# eval "$(rbenv init - zsh)"
 
 # history setup
 HISTFILE=~/.histfile
@@ -51,18 +52,10 @@ SAVEHIST=10000
 setopt appendhistory
 
 # append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
+# fpath=(${ASDF_DIR}/completions $fpath)
 
 # enable autocomplete
 autoload -Uz compinit && compinit
 
-# pulling the hair out
-# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOME/openssl --with-libyaml-dir=$(brew --prefix libyaml)"
-#export LDFLAGS="-L/usr/local/opt/readline/lib"
-#export CPPFLAGS="-I/usr/local/opt/readline/include"
-#export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
-#export RUBY_CFLAGS="-Wno-error=implicit-function-declaration"
-#export LDFLAGS="-L/usr/local/opt/libffi/lib"
-#export CPPFLAGS="-I/usr/local/opt/libffi/include"
-#export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+source $HOME/.config/zsh/functions.zsh
+source $HOME/.config/zsh/plugins.zsh
