@@ -4,7 +4,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     # shells
-    zsh fish
+    # zsh fish nushell
 
     # per-project env
     lorri direnv

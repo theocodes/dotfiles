@@ -3,13 +3,14 @@ shell:
   args:
     - --login
 
-background_opacity: 0.98
+window:
+  opacity: 0.98
 
 selection:
   save_to_clipboard: true
 
 font:
-  size: 13
+  size: 14
   normal:
     family: "JetBrains Mono"
        

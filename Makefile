@@ -14,7 +14,10 @@ link:
 nix-darwin:
 	darwin-rebuild switch -I darwin-config=/Users/theocodes/dotfiles/darwin.nix
 
-.PHONY: brew
+.PHONY: brew dump
 brew:
 	brew bundle install
+
+.PHONY: dump
+dump:
 	brew bundle dump -f
