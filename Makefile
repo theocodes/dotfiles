@@ -8,7 +8,7 @@ endif
 
 .PHONY: link
 link:
-	stow -R -v config --ignore "Makefile"
+	stow -R -v config/linked
 
 .PHONY: nix
 nix:

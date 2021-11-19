@@ -39,6 +39,7 @@
 
     home.packages = [];
     imports = [
+      ./modules/general.nix
       ./modules/cli.nix
       ./modules/dev.nix
     ];

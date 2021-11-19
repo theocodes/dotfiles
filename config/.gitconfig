@@ -1,7 +1,0 @@
-[url "git@github.com:"]
-  insteadOf = https://github.com/
-[core]
-	excludesFile = ~/.gitignore_global
-[user]
-	name = Theo Felippe
-	email = public@theocodes.com
