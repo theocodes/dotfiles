@@ -1,7 +1,7 @@
 all:
 
 ifeq ($(BUILD_ENV),Darwin)
-all: brew nix-darwin link
+all: brew nix link
 else
 all: link
 endif
@@ -10,8 +10,8 @@ endif
 link:
 	stow -R -v config --ignore "Makefile"
 
-.PHONY: nix-darwin
-nix-darwin:
+.PHONY: nix
+nix:
 	darwin-rebuild switch -I darwin-config=/Users/theocodes/dotfiles/darwin.nix
 
 .PHONY: brew dump
