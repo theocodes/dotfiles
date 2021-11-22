@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, home, ... }:
+let
+  home = builtins.getEnv "HOME";
+in {
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
 
@@ -10,9 +11,8 @@
     ./modules/dev.nix
   ];
 
-  # TODO handle cros-platform $HOME
   home.username = "theocodes";
-  home.homeDirectory = "/Users/theocodes";
+  home.homeDirectory = "${home}";
 
   programs.home-manager.enable = true;
   home.stateVersion = "21.11"; # do not change me!

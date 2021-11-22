@@ -2,7 +2,7 @@ all: home-manager
 
 .PHONY: home-manager
 home-manager:
-	home-manager switch -f ${DOTFILES}/home.nix
+	home-manager switch -f ${HOME}/dotfiles/home.nix
 
 .PHONY: brew dump
 brew:

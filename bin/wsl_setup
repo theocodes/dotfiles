@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# Update system
-sudo dnf update -y && \
-
-# Install base dependencies
-sudo dnf -y install util-linux-user \
-  zsh git neovim make stow starship tmux exa
-
-# Install asdf
-[ ! -d "$HOME/.asdf" ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
-
+# basic necessary dependencies to be able to install nix/home-manager,
+# clone dotfiles and set it up
+sudo dnf update -y && sudo dnf install -y git make util-linux-user
