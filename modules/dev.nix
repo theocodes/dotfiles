@@ -18,5 +18,8 @@
 
     # clang
     cmake
+
+    # elixir
+    elixir
   ];
 }

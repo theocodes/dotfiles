@@ -1,18 +1,8 @@
-all:
+all: home-manager
 
-ifeq ($(BUILD_ENV),Darwin)
-all: brew nix link
-else
-all: link
-endif
-
-.PHONY: link
-link:
-	stow -R -v config/linked
-
-.PHONY: nix
-nix:
-	darwin-rebuild switch -I darwin-config=/Users/theocodes/dotfiles/darwin.nix
+.PHONY: home-manager
+home-manager:
+	home-manager switch -f ${DOTFILES}/home.nix
 
 .PHONY: brew dump
 brew:

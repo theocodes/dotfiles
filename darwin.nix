@@ -1,10 +1,12 @@
 { config, pkgs, ... }:
 {
-  imports = [ <home-manager/nix-darwin> ];
+  # imports = [ <home-manager/nix-darwin> ];
 
   environment.systemPackages = with pkgs; [
     # editors
     neovim
+
+    alacritty
   ];
 
   fonts.enableFontDir = true;
@@ -28,21 +30,6 @@
   users.users.theocodes = {
     name = "theocodes";
     home = "/Users/theocodes";
-  };
-
-  home-manager.users.theocodes = { pkgs, ... }: {
-    nixpkgs.config.allowUnfree = true;
-
-    # used to install 1password cli which doesn't
-    # have aarch64-darwin on nix
-    nixpkgs.config.allowUnsupportedSystem = true;
-
-    home.packages = [];
-    imports = [
-      ./modules/general.nix
-      ./modules/cli.nix
-      ./modules/dev.nix
-    ];
   };
 
   system.stateVersion = 4; # dont change this

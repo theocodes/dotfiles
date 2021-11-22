@@ -1,20 +1,15 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    bat exa lazygit
-    httpie gnupg tmux
-    jq yq peco ripgrep
-    gh _1password
-  ];
-
   home.sessionVariables = {
+    DOTFILES = "$HOME/dotfiles";
     GOPATH = "$HOME/go";
     FABPATH = "$HOME/repos/github.com/zencoder";
   };
 
   home.sessionPath = [
     "$HOME/dotfiles/bin"
+    "/opt/homebrew/bin"
   ];
 
   programs.zsh = {
@@ -34,6 +29,11 @@
     };
 
     initExtra = builtins.readFile ../config/zsh/functions.zsh;
+
+    initExtraFirst = ''
+      bindkey "^[[1;3C" forward-word
+      bindkey "^[[1;3D" backward-word
+    '';
   };
 
   programs.autojump = {
@@ -57,6 +57,10 @@
       user = {
         name = "Theo Felippe";
         email = "public@theocodes.com";
+      };
+
+      init = {
+        defaultBranch = "master";
       };
 
       url = {

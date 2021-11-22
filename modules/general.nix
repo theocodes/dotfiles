@@ -1,6 +1,15 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    neovim
+
+    bat exa lazygit
+    httpie gnupg tmux
+    jq yq peco ripgrep
+    gh _1password
+  ];
+
   # symlink non-nix configuration
   home.file.".doom.d".source = config.lib.file.mkOutOfStoreSymlink ../config/doom;
   home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ../config/nvim;
