@@ -6,22 +6,22 @@ vim.b.mapleader = ' '
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope git_files<CR>', { noremap = true, silent = true })
 
 -- list buffers
-vim.api.nvim_set_keymap('n', '<Leader>bb', ':Telescope buffers<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<Leader>bb', ':Telescope buffers theme=get_ivy<CR>', { noremap = true, silent = true })
 
 -- fuzzy find in buffer
-vim.api.nvim_set_keymap('n', '<C-s>', ':Telescope current_buffer_fuzzy_find<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-s>', ':Telescope current_buffer_fuzzy_find theme=get_ivy<CR>', { noremap = true, silent = true })
 
 -- live search project
-vim.api.nvim_set_keymap('n', '<Leader>*', ':Telescope live_grep<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<Leader>*', ':Telescope live_grep<CR> theme=get_ivy<CR>', { noremap = true, silent = true })
 
 -- list colorschemes
-vim.api.nvim_set_keymap('n', '<Leader>lc', ':Telescope colorscheme<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<Leader>lc', ':Telescope colorscheme theme=get_ivy<CR>', { noremap = true, silent = true })
 
 -- toggle file explorer
 vim.api.nvim_set_keymap('n', '<C-o>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
 
 -- explore commands
-vim.api.nvim_set_keymap('n', '<C-x>', ':Telescope commands<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-x>', ':Telescope commands theme=get_ivy<CR>', { noremap = true, silent = true})
 
 -- move selection
 vim.api.nvim_set_keymap('v', '<S-LEFT>',  '<gv', { noremap = true, silent = true})
@@ -59,25 +59,25 @@ vim.api.nvim_set_keymap("i", "<C-k>", "pumvisible() ? \"\\<C-p>\" : \"<C-p>\" ",
 local wk = require('whichkey_setup')
 local keymap = {
     ['<TAB>'] = {'<C-^>', 'Previous buffer'},
-    ['.'] = {'<Cmd>Telescope fd<CR>', 'Find file in directory'},
-    ['/'] = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'Fuzzy find in buffer'},
-    ['*'] = {'<Cmd>Telescope live_grep<CR>', 'Search in project'},
-    [':'] = {'<Cmd>Telescope commands<CR>', 'Explore commands'},
+    ['.'] = {'<Cmd>Telescope fd theme=get_ivy<CR>', 'Find file in directory'},
+    ['/'] = {'<Cmd>Telescope current_buffer_fuzzy_find theme=get_ivy<CR>', 'Fuzzy find in buffer'},
+    ['*'] = {'<Cmd>Telescope live_grep theme=get_ivy<CR>', 'Search in project'},
+    [':'] = {'<Cmd>Telescope commands theme=get_ivy<CR>', 'Explore commands'},
     f = {
         name = '+files',
-        f = {'<Cmd>Telescope find_files<CR>', 'find files in directory'},
-    	  b = {'<Cmd>Telescope file_browser<CR>', 'File browser'},
+        f = {'<Cmd>Telescope find_files theme=get_ivy<CR>', 'find files in directory'},
+    	  b = {'<Cmd>Telescope file_browser theme=get_ivy<CR>', 'File browser'},
     },
     b = {
         name = '+buffers',
-        b = {'<Cmd>Telescope buffers show_all_buffers=true<CR>', 'list open buffers'},
+        b = {'<Cmd>Telescope buffers show_all_buffers=true theme=get_ivy<CR>', 'list open buffers'},
         d = {':bd<CR> :bprevious<CR>', 'list open buffers'},
-        s = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'Search buffer'},
+        s = {'<Cmd>Telescope current_buffer_fuzzy_find theme=get_ivy<CR>', 'Search buffer'},
     },
     p = {
         name = '+projects',
-        f = {'<Cmd>Telescope git_files<CR>', 'find file in project'},
-        s = {'<Cmd>Telescope grep_string<CR>', 'Search string in project'},
+        f = {'<Cmd>Telescope git_files theme=get_ivy<CR>', 'find file in project'},
+        s = {'<Cmd>Telescope grep_string theme=get_ivy<CR>', 'Search string in project'},
     },
     w = {
         name = '+window',
@@ -87,14 +87,18 @@ local keymap = {
     o = {
         name = '+open',
         p = {':NERDTreeToggle<CR>', 'Toggle project sidebar'},
-        m = {'<Cmd>Telescope man_pages<CR>', 'Open man pages explorer'},
+        m = {'<Cmd>Telescope man_pages theme=get_ivy<CR>', 'Open man pages explorer'},
     },
     g = {
         name = '+git',
-        g = {'<Cmd>Telescope git_commits<CR>', 'View commits'},
-        c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
-        b = {'<Cmd>Telescope git_branches<CR>', 'Change branches'},
-        s = {'<Cmd>Telescope git_status<CR>', 'get status'},
+        g = {'<Cmd>Telescope git_commits theme=get_ivy<CR>', 'View commits'},
+        c = {'<Cmd>Telescope git_bcommits theme=get_ivy<CR>', 'bcommits'},
+        b = {'<Cmd>Telescope git_branches theme=get_ivy<CR>', 'Change branches'},
+        s = {'<Cmd>Telescope git_status theme=get_ivy<CR>', 'get status'},
+    },
+    c = {
+      name = '+config',
+      c = {'<Cmd>Telescope colorscheme theme=get_ivy<CR>', 'Change colorscheme'},
     },
 }
 

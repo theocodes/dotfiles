@@ -14,15 +14,13 @@ return require('packer').startup(function()
   -- collection of lsp configurations
   use 'neovim/nvim-lspconfig'
 
-  use 'ChrisWellsWood/roc.vim'
+  -- extensions for built-in lsp
+  use 'nvim-lua/lsp_extensions.nvim'
 
-  use 'elmcast/elm-vim'
+  use 'ChrisWellsWood/roc.vim'
 
   -- fish syntax highlighting
   use 'dag/vim-fish'
-
-  -- extensions for built-in lsp
-  use 'nvim-lua/lsp_extensions.nvim'
 
   -- autocompletion
   -- use 'nvim-lua/completion-nvim'
