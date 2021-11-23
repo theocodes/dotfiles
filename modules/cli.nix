@@ -12,6 +12,7 @@
     "$HOME/dotfiles/bin"
     "$HOME/.elixir-ls/release"
     "$HOME/.emacs.d/bin"
+    "$HOME/.cargo/bin"
     "/opt/homebrew/bin"
   ];
 

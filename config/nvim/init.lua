@@ -21,7 +21,7 @@ local nvim_lsp = require'lspconfig'
 -- vim.api.nvim_command("autocmd BufEnter * lua require'completion'.on_attach()")
 
 -- Enable rust_analyzer
--- nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
+nvim_lsp.rust_analyzer.setup{}
 
 -- golang
 nvim_lsp.gopls.setup{}

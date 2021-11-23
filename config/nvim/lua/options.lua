@@ -42,6 +42,9 @@ vim.cmd('set history=2000')
 vim.cmd('set clipboard+=unnamedplus')
 vim.cmd('set completeopt=menuone,noinsert,noselect')
 
+-- auto-format on save for rust
+vim.cmd('let g:rustfmt_autosave = 1')
+
 -- TODO make this cross-platform
 -- vim.g.clipboard = {
 --     name = "win32yank-wsl",

@@ -66,4 +66,10 @@ return require('packer').startup(function()
 
   -- theme
   use {'dracula/vim', as = 'dracula'}
+
+  -- rust
+  use 'rust-lang/rust.vim'
+
+  -- floating term
+  use 'voldikss/vim-floaterm'
 end)

@@ -17,7 +17,7 @@
     rustup
 
     # clang
-    cmake
+    cmake gcc
 
     # elixir
     elixir
