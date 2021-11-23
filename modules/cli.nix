@@ -4,11 +4,14 @@
   home.sessionVariables = {
     DOTFILES = "$HOME/dotfiles";
     GOPATH = "$HOME/go";
+    TERM = "xterm-256color";
     FABPATH = "$HOME/repos/github.com/zencoder";
   };
 
   home.sessionPath = [
     "$HOME/dotfiles/bin"
+    "$HOME/.elixir-ls/release"
+    "$HOME/.emacs.d/bin"
     "/opt/homebrew/bin"
   ];
 
