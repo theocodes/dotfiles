@@ -63,6 +63,10 @@
         email = "public@theocodes.com";
       };
 
+      pull = {
+        rebase = "false";
+      };
+
       init = {
         defaultBranch = "master";
       };
