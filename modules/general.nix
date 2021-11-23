@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     neovim
+    emacs
 
     bat exa lazygit
     httpie gnupg tmux
