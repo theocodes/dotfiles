@@ -22,9 +22,16 @@ local nvim_lsp = require'lspconfig'
 
 -- Enable rust_analyzer
 nvim_lsp.rust_analyzer.setup{}
+require('rust-tools').setup({})
+
 
 -- golang
 nvim_lsp.gopls.setup{}
 
 -- ruby
 nvim_lsp.solargraph.setup{}
+
+-- elixir
+require'lspconfig'.elixirls.setup{
+  cmd = { vim.env.HOME .. "/.elixir-ls/release/language_server.sh" };
+}

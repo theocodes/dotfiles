@@ -14,6 +14,7 @@ return require('packer').startup(function()
   -- collection of lsp configurations
   use 'neovim/nvim-lspconfig'
 
+
   -- horizon colorscheme
   use 'ntk148v/vim-horizon'
 
@@ -69,7 +70,18 @@ return require('packer').startup(function()
 
   -- rust
   use 'rust-lang/rust.vim'
+  use 'simrat39/rust-tools.nvim'
 
   -- floating term
   use 'voldikss/vim-floaterm'
+
+  -- better syntax highlighting
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ":TSUpdate"
+  }
+
+  -- elixir
+  use 'elixir-editors/vim-elixir'
+  use 'mhinz/vim-mix-format'
 end)

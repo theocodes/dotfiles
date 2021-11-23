@@ -45,6 +45,9 @@ vim.cmd('set completeopt=menuone,noinsert,noselect')
 -- auto-format on save for rust
 vim.cmd('let g:rustfmt_autosave = 1')
 
+-- auto-format on save for elixir
+vim.cmd('let g:mix_format_on_save = 1')
+
 -- TODO make this cross-platform
 -- vim.g.clipboard = {
 --     name = "win32yank-wsl",

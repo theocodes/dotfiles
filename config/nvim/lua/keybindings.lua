@@ -68,7 +68,7 @@ local keymap = {
     ['.'] = {'<Cmd>Telescope fd theme=get_ivy<CR>', 'Find file in directory'},
     ['/'] = {'<Cmd>Telescope current_buffer_fuzzy_find theme=get_ivy<CR>', 'Fuzzy find in buffer'},
     ['*'] = {'<Cmd>Telescope live_grep theme=get_ivy<CR>', 'Search in project'},
-    [':'] = {'<Cmd>Telescope commands theme=get_ivy<CR>', 'Explore commands'},
+    [';'] = {'<Cmd>Telescope commands theme=get_ivy<CR>', 'Explore commands'},
     f = {
         name = '+files',
         f = {'<Cmd>Telescope find_files theme=get_ivy<CR>', 'find files in directory'},
