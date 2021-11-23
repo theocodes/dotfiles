@@ -14,29 +14,28 @@ return require('packer').startup(function()
   -- collection of lsp configurations
   use 'neovim/nvim-lspconfig'
 
+  -- horizon colorscheme
+  use 'ntk148v/vim-horizon'
+
   -- extensions for built-in lsp
   use 'nvim-lua/lsp_extensions.nvim'
 
   use 'ChrisWellsWood/roc.vim'
 
-  -- fish syntax highlighting
-  use 'dag/vim-fish'
-
-  -- autocompletion
-  -- use 'nvim-lua/completion-nvim'
-
   -- like ivy but different
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = {
+      {'nvim-lua/popup.nvim'}, 
+      {'nvim-lua/plenary.nvim'}, 
+      {'kyazdani42/nvim-web-devicons'}
+    }
   }
 
   -- git things
   use {
     'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    }
+    requires = {'nvim-lua/plenary.nvim'}
   }
 
   -- because I can't remember my own keybindings
@@ -68,4 +67,3 @@ return require('packer').startup(function()
   -- theme
   use {'dracula/vim', as = 'dracula'}
 end)
-

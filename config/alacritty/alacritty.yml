@@ -10,9 +10,10 @@ selection:
   save_to_clipboard: true
 
 font:
-  size: 14
+  size: 15
   normal:
-    family: "JetBrains Mono"
+    # family: "JetBrains Mono"
+    family: "JetBrainsMono Nerd Font"
        
 window:
   padding:
@@ -44,4 +45,4 @@ key_bindings:
   - { key: L,                       mods: Command,              chars: "\x60\x6c"          }
 
 import:
-  - ~/.config/alacritty/dracula.yml
+  - ~/.config/alacritty/themes/horizon.yml

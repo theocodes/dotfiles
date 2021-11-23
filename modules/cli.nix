@@ -53,6 +53,7 @@
     enable = true;
     aliases = {
       co = "checkout";
+      s = "status";
     };
 
     ignores = [ ".envrc" ];
