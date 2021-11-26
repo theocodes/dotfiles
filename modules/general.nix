@@ -8,7 +8,10 @@
     bat exa lazygit
     httpie gnupg tmux
     jq yq peco ripgrep
-    gh _1password
+    gh _1password tldr
+
+    # for gdate
+    coreutils-prefixed
   ];
 
   # symlink non-nix configuration

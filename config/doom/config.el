@@ -67,3 +67,6 @@
 
 ;; start multiedit on selected text
 (define-key evil-visual-state-map "R" 'evil-multiedit-match-all)
+
+(add-hook 'python-mode-hook '(lambda ()
+ (setq python-indent 2)))

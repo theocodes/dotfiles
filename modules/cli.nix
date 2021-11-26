@@ -30,6 +30,8 @@
       config = "cd ~/dotfiles && nvim ~/dotfiles";
       work = "tmux new-session -A -s work";
       lg = "lazygit";
+      be = "bundle exec";
+      b = "bat";
     };
 
     initExtra = builtins.readFile ../config/zsh/functions.zsh;
