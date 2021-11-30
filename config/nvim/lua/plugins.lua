@@ -73,7 +73,7 @@ return require('packer').startup(function()
   use 'simrat39/rust-tools.nvim'
 
   -- floating term
-  use 'voldikss/vim-floaterm'
+  -- use 'voldikss/vim-floaterm'
 
   -- better syntax highlighting
   use {

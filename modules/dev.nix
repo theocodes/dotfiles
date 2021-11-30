@@ -11,7 +11,7 @@
     lorri
 
     # general tools
-    aws kubectl
+    awscli kubectl
 
     # rust
     rustup
