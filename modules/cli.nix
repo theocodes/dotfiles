@@ -14,6 +14,7 @@
     "$HOME/.emacs.d/bin"
     "$HOME/.cargo/bin"
     "/opt/homebrew/bin"
+    "$HOME/Code/github.com/zencoder/bolt-utils/bin"
   ];
 
   programs.zsh = {

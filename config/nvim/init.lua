@@ -29,7 +29,7 @@ require('rust-tools').setup({})
 nvim_lsp.gopls.setup{}
 
 -- ruby
-nvim_lsp.solargraph.setup{}
+-- nvim_lsp.solargraph.setup{}
 
 -- elixir
 require'lspconfig'.elixirls.setup{
