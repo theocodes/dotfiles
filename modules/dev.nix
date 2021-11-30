@@ -21,5 +21,8 @@
 
     # elixir
     elixir
+
+    # ruby
+    ruby
   ];
 }
