@@ -11,7 +11,8 @@
     gh _1password tldr
 
     # for gdate
-    coreutils-prefixed
+    # TODO: Add this for macos only
+    # coreutils-prefixed
   ];
 
   # symlink non-nix configuration

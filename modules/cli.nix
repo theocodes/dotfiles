@@ -5,7 +5,7 @@
     DOTFILES = "$HOME/dotfiles";
     GOPATH = "$HOME/go";
     TERM = "xterm-256color";
-    FABPATH = "$HOME/repos/github.com/zencoder";
+    FABPATH = "$HOME/Code/github.com/zencoder";
   };
 
   home.sessionPath = [
@@ -30,6 +30,7 @@
       rel = "exec $SHELL";
       config = "cd ~/dotfiles && nvim ~/dotfiles";
       work = "tmux new-session -A -s work";
+      play = "tmux new-session -A -s play";
       lg = "lazygit";
       be = "bundle exec";
       b = "bat";
