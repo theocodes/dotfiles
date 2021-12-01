@@ -5,7 +5,7 @@
     DOTFILES = "$HOME/dotfiles";
     GOPATH = "$HOME/go";
     TERM = "xterm-256color";
-    FABPATH = "$HOME/repos/github.com/zencoder";
+    FABPATH = "$HOME/Code/github.com/zencoder";
   };
 
   home.sessionPath = [
@@ -60,7 +60,7 @@
       s = "status";
     };
 
-    ignores = [ ".envrc" ];
+    ignores = [ ".envrc" ".DS_Store" ];
     extraConfig = {
       user = {
         name = "Theo Felippe";

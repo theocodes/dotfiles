@@ -47,6 +47,8 @@ vim.api.nvim_set_keymap('n', '<C-c>', ':set hlsearch!<CR>', { noremap = true, si
 -- close buffers with 'q'
 vim.api.nvim_set_keymap('n', 'q', ':q!<CR>', { noremap = true, silent = true})
 
+vim.api.nvim_set_keymap('n', ';', ':! ', { noremap = true, silent = true})
+
 -- describe symbol
 vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true})
 

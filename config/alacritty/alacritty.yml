@@ -13,7 +13,8 @@ font:
   size: 15
   normal:
     # family: "JetBrains Mono"
-    family: "JetBrainsMono Nerd Font"
+    family: "CaskaydiaCove Nerd Font"
+    # family: "JetBrainsMono Nerd Font"
        
 window:
   padding:
@@ -45,4 +46,4 @@ key_bindings:
   - { key: L,                       mods: Command,              chars: "\x60\x6c"          }
 
 import:
-  - ~/.config/alacritty/themes/horizon.yml
+  - ~/.config/alacritty/themes/dracula.yml

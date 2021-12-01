@@ -36,8 +36,8 @@ vim.o.showmode = false
 -- persistent undo history
 vim.bo.undofile=true
 
-vim.cmd('colorscheme horizon')
--- vim.cmd("colorscheme dracula")
+-- vim.cmd('colorscheme horizon')
+vim.cmd("colorscheme dracula")
 vim.cmd('set history=2000')
 vim.cmd('set clipboard+=unnamedplus')
 vim.cmd('set completeopt=menuone,noinsert,noselect')
