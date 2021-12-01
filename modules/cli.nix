@@ -6,6 +6,7 @@
     GOPATH = "$HOME/go";
     TERM = "xterm-256color";
     FABPATH = "$HOME/Code/github.com/zencoder";
+    EDITOR = "nvim";
   };
 
   home.sessionPath = [
@@ -30,9 +31,11 @@
       rel = "exec $SHELL";
       config = "cd ~/dotfiles && nvim ~/dotfiles";
       work = "tmux new-session -A -s work";
+      play = "tmux new-session -A -s play";
       lg = "lazygit";
       be = "bundle exec";
       b = "bat";
+      e = "$EDITOR";
     };
 
     initExtra = builtins.readFile ../config/zsh/functions.zsh;

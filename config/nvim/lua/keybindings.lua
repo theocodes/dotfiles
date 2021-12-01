@@ -3,7 +3,7 @@ vim.g.mapleader = ' '
 vim.b.mapleader = ' '
 
 -- fuzzy find files
-vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope git_files theme=get_ivy<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope fd theme=get_ivy<CR>', { noremap = true, silent = true })
 
 -- floating term toggle
 -- vim.cmd("let g:floaterm_keymap_toggle = '<C-i>'")
