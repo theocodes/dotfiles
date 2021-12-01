@@ -29,9 +29,26 @@ require('rust-tools').setup({})
 nvim_lsp.gopls.setup{}
 
 -- ruby
--- nvim_lsp.solargraph.setup{}
+nvim_lsp.solargraph.setup{
+  settings = {
+    solargraph = {
+      diagnostics = false
+    }
+  }
+}
 
 -- elixir
 require'lspconfig'.elixirls.setup{
   cmd = { vim.env.HOME .. "/.elixir-ls/release/language_server.sh" };
 }
+
+-- on wsl add the following to bring vim back to forground with
+-- ctrl-x
+-- {
+--     "command":
+--     {
+--         "action": "sendInput",
+--         "input": "\u0066\u0067\u000D"
+--     },
+--     "keys": "ctrl+x"
+-- }
