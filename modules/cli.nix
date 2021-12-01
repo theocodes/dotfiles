@@ -6,6 +6,7 @@
     GOPATH = "$HOME/go";
     TERM = "xterm-256color";
     FABPATH = "$HOME/Code/github.com/zencoder";
+    EDITOR = "nvim";
   };
 
   home.sessionPath = [
@@ -34,6 +35,7 @@
       lg = "lazygit";
       be = "bundle exec";
       b = "bat";
+      e = "$EDITOR";
     };
 
     initExtra = builtins.readFile ../config/zsh/functions.zsh;
