@@ -10,37 +10,21 @@ require('_compe')
 -- comment with gc/gcc
 require('nvim_comment').setup()
 
--- nvim_lsp object
-local nvim_lsp = require'lspconfig'
+local lsp_installer = require("nvim-lsp-installer")
 
--- function to attach completion when setting up lsp
--- local on_attach = function(client)
---     require'completion'.on_attach(client)
--- end
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
 
--- vim.api.nvim_command("autocmd BufEnter * lua require'completion'.on_attach()")
+    if server.name == "solargraph" then
+      opts.settings = {
+        solargraph = {
+          diagnostics = true
+        }
+      }
+    end
 
--- Enable rust_analyzer
-nvim_lsp.rust_analyzer.setup{}
-require('rust-tools').setup({})
-
-
--- golang
-nvim_lsp.gopls.setup{}
-
--- ruby
-nvim_lsp.solargraph.setup{
-  settings = {
-    solargraph = {
-      diagnostics = false
-    }
-  }
-}
-
--- elixir
-require'lspconfig'.elixirls.setup{
-  cmd = { vim.env.HOME .. "/.elixir-ls/release/language_server.sh" };
-}
+    server:setup(opts)
+end)
 
 -- on wsl add the following to bring vim back to forground with
 -- ctrl-x

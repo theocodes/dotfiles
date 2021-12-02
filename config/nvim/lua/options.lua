@@ -36,8 +36,8 @@ vim.o.showmode = false
 -- persistent undo history
 vim.bo.undofile=true
 
--- vim.cmd('colorscheme horizon')
-vim.cmd("colorscheme dracula")
+require('nightfox').load('duskfox')
+-- vim.cmd("colorscheme dracula")
 vim.cmd('set history=2000')
 vim.cmd('set clipboard+=unnamedplus')
 vim.cmd('set completeopt=menuone,noinsert,noselect')
@@ -47,6 +47,30 @@ vim.cmd('let g:rustfmt_autosave = 1')
 
 -- auto-format on save for elixir
 vim.cmd('let g:mix_format_on_save = 1')
+
+-- gutter icons for diagnostics
+vim.fn.sign_define(
+  "LspDiagnosticsSignError",
+  { texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError" }
+)
+vim.fn.sign_define(
+  "LspDiagnosticsSignWarning",
+  { texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning" }
+)
+vim.fn.sign_define(
+  "LspDiagnosticsSignHint",
+  { texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint" }
+)
+vim.fn.sign_define(
+  "LspDiagnosticsSignInformation",
+  { texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation" }
+)
+
+-- disable inline lsp diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = false,
+  underline = false
+})
 
 -- TODO make this cross-platform
 -- vim.g.clipboard = {

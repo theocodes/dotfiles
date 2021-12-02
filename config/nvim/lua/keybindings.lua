@@ -5,15 +5,6 @@ vim.b.mapleader = ' '
 -- fuzzy find files
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope fd theme=get_ivy<CR>', { noremap = true, silent = true })
 
--- floating term toggle
--- vim.cmd("let g:floaterm_keymap_toggle = '<C-i>'")
-
--- toggle floating terminal
--- vim.api.nvim_set_keymap('n', '<C-i>', ':FloatermToggle<CR>', { noremap = true, silent = true })
-
--- list buffers
--- vim.api.nvim_set_keymap('n', '<Leader>bb', ':Telescope buffers theme=get_ivy<CR>', { noremap = true, silent = true })
-
 -- fuzzy find in buffer
 vim.api.nvim_set_keymap('n', '<C-s>', ':Telescope current_buffer_fuzzy_find theme=get_ivy<CR>', { noremap = true, silent = true })
 
@@ -47,7 +38,8 @@ vim.api.nvim_set_keymap('n', '<C-c>', ':set hlsearch!<CR>', { noremap = true, si
 -- close buffers with 'q'
 vim.api.nvim_set_keymap('n', 'q', ':q!<CR>', { noremap = true, silent = true})
 
-vim.api.nvim_set_keymap('n', ';', ':! ', { noremap = true, silent = true})
+-- run shell command
+vim.api.nvim_set_keymap('n', ';', ':! ', { noremap = true})
 
 -- describe symbol
 vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true})
@@ -57,6 +49,9 @@ vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { no
 
 -- show refenrences
 vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true})
+
+-- show lsp diagnostics
+vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', { noremap = true, silent = true })
 
 -- autocomplete
 vim.api.nvim_set_keymap("i", "<Tab>", "pumvisible() ? \"\\<C-n>\" : \"<TAB>\" ", {expr = true})
@@ -97,16 +92,35 @@ local keymap = {
         p = {':NERDTreeToggle<CR>', 'Toggle project sidebar'},
         m = {'<Cmd>Telescope man_pages theme=get_ivy<CR>', 'Open man pages explorer'},
     },
+    l = {
+      name = "+local",
+      c = {':LspInstallInfo<CR>', 'placeholder'},
+    },
+    t = {
+      name = "+toggle",
+      t = {':TroubleToggle<CR>', 'Toggle diagnostics'},
+    },
     g = {
         name = '+git',
         g = {'<Cmd>Telescope git_commits theme=get_ivy<CR>', 'View commits'},
         c = {'<Cmd>Telescope git_bcommits theme=get_ivy<CR>', 'bcommits'},
         b = {'<Cmd>Telescope git_branches theme=get_ivy<CR>', 'Change branches'},
         s = {'<Cmd>Telescope git_status theme=get_ivy<CR>', 'get status'},
+        h = {
+          name = '+hunk',
+          s = {'<cmd>lua require"gitsigns".stage_hunk()<CR>', 'stage hunk'},
+          u = {'<cmd>lua require"gitsigns".undo_stage_hunk()<CR>', 'undo stage hunk'},
+          r = {'<cmd>lua require"gitsigns".reset_hunk()<CR>', 'reset hunk'},
+          R = {'<cmd>lua require"gitsigns".reset_buffer()<CR>', 'reset buffer'},
+          p = {'<cmd>lua require"gitsigns".preview_hunk()<CR>', 'preview hunk'},
+          S = {'<cmd>lua require"gitsigns".stage_buffer()<CR>', 'stage buffer'},
+          U = {'<cmd>lua require"gitsigns".reset_buffer_index()<CR>', 'reset buffer index'},
+        },
     },
     c = {
       name = '+config',
       c = {'<Cmd>Telescope colorscheme theme=get_ivy<CR>', 'Change colorscheme'},
+      l = {':LspInstallInfo<CR>', 'Manage LSP configurations'},
     },
 }
 

@@ -11,16 +11,22 @@ end
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
+  -- supposed to load direnv when :! commands
+  use 'direnv/direnv.vim'
+
+  -- theme
+  use 'EdenEast/nightfox.nvim'
+
   -- collection of lsp configurations
-  use 'neovim/nvim-lspconfig'
-
-
-  -- horizon colorscheme
-  use 'ntk148v/vim-horizon'
+  use {
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+  }
 
   -- extensions for built-in lsp
   use 'nvim-lua/lsp_extensions.nvim'
 
+  -- roc syntax highlighting
   use 'ChrisWellsWood/roc.vim'
 
   -- like ivy but different
@@ -72,9 +78,6 @@ return require('packer').startup(function()
   use 'rust-lang/rust.vim'
   use 'simrat39/rust-tools.nvim'
 
-  -- floating term
-  -- use 'voldikss/vim-floaterm'
-
   -- better syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -84,4 +87,14 @@ return require('packer').startup(function()
   -- elixir
   use 'elixir-editors/vim-elixir'
   use 'mhinz/vim-mix-format'
+
+  -- diagnostics list
+  use {
+  "folke/trouble.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  config = function()
+    require("trouble").setup {}
+  end
+  }
+
 end)
