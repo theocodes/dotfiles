@@ -28,7 +28,7 @@
     shellAliases = {
       ll = "exa -la";
       vim = "nvim";
-      rel = "exec $SHELL";
+      rel = "unset __HM_SESS_VARS_SOURCED && exec $SHELL";
       config = "cd ~/dotfiles && nvim ~/dotfiles";
       work = "tmux new-session -A -s work";
       play = "tmux new-session -A -s play";
@@ -41,6 +41,9 @@
     initExtra = builtins.readFile ../config/zsh/functions.zsh;
 
     initExtraFirst = ''
+      # enable emacs style keybindings
+      bindkey -e
+
       bindkey "^[[1;3C" forward-word
       bindkey "^[[1;3D" backward-word
     '';

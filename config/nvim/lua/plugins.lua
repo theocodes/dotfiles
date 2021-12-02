@@ -14,6 +14,8 @@ return require('packer').startup(function()
   -- collection of lsp configurations
   use 'neovim/nvim-lspconfig'
 
+  -- multi cursor
+  use 'mg979/vim-visual-multi'
 
   -- horizon colorscheme
   use 'ntk148v/vim-horizon'
