@@ -66,7 +66,7 @@
       s = "status";
     };
 
-    ignores = [ ".envrc" ".DS_Store" ];
+    ignores = [ ".envrc" ".DS_Store" "*.log" ];
     extraConfig = {
       user = {
         name = "Theo Felippe";

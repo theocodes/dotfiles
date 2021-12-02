@@ -18,6 +18,7 @@ return require('packer').startup(function()
   use 'mg979/vim-visual-multi'
 
   -- theme
+  use 'folke/tokyonight.nvim'
   use 'EdenEast/nightfox.nvim'
 
   -- collection of lsp configurations
