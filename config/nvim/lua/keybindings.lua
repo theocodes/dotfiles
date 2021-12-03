@@ -8,14 +8,14 @@ vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope fd theme=get_ivy<CR>', { norem
 -- fuzzy find in buffer
 vim.api.nvim_set_keymap('n', '<C-s>', ':Telescope current_buffer_fuzzy_find theme=get_ivy<CR>', { noremap = true, silent = true })
 
--- live search project
--- vim.api.nvim_set_keymap('n', '<Leader>*', ':Telescope live_grep<CR> theme=get_ivy<CR>', { noremap = true, silent = true })
-
--- list colorschemes
--- vim.api.nvim_set_keymap('n', '<Leader>lc', ':Telescope colorscheme theme=get_ivy<CR>', { noremap = true, silent = true })
+-- working with tabs
+vim.api.nvim_set_keymap('n', 'tn', ':tabnew<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'tk', ':tabnext<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'tj', ':tabprev<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'to', ':tabo<cr>', { noremap = true, silent = true })
 
 -- toggle file explorer
-vim.api.nvim_set_keymap('n', '<C-o>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-o>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- explore commands
 vim.api.nvim_set_keymap('n', '<C-x>', ':Telescope commands theme=get_ivy<CR>', { noremap = true, silent = true})
@@ -65,7 +65,7 @@ local keymap = {
     ['.'] = {'<Cmd>Telescope fd theme=get_ivy<CR>', 'Find file in directory'},
     ['/'] = {'<Cmd>Telescope current_buffer_fuzzy_find theme=get_ivy<CR>', 'Fuzzy find in buffer'},
     ['*'] = {'<Cmd>Telescope live_grep theme=get_ivy<CR>', 'Search in project'},
-    [';'] = {'<Cmd>Telescope commands theme=get_ivy<CR>', 'Explore commands'},
+    [':'] = {'<Cmd>Telescope commands theme=get_ivy<CR>', 'Explore commands'},
     f = {
         name = '+files',
         f = {'<Cmd>Telescope find_files theme=get_ivy<CR>', 'find files in directory'},
@@ -121,6 +121,10 @@ local keymap = {
       name = '+config',
       c = {'<Cmd>Telescope colorscheme theme=get_ivy<CR>', 'Change colorscheme'},
       l = {':LspInstallInfo<CR>', 'Manage LSP configurations'},
+      p = {
+        name = '+plugins',
+        s = {':PackerSync<cr>', 'Sync plugins'},
+      },
     },
 }
 

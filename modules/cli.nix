@@ -7,6 +7,7 @@
     TERM = "xterm-256color";
     FABPATH = "$HOME/Code/github.com/zencoder";
     EDITOR = "nvim";
+    GOSUMDB = "off";
   };
 
   home.sessionPath = [
@@ -29,7 +30,6 @@
       ll = "exa -la";
       vim = "nvim";
       rel = "unset __HM_SESS_VARS_SOURCED && exec $SHELL";
-      config = "cd ~/dotfiles && nvim ~/dotfiles";
       work = "tmux new-session -A -s work";
       play = "tmux new-session -A -s play";
       lg = "lazygit";
@@ -46,6 +46,9 @@
 
       bindkey "^[[1;3C" forward-word
       bindkey "^[[1;3D" backward-word
+      bindkey  "^[[H"   beginning-of-line
+      bindkey  "^[[F"   end-of-line
+      bindkey  "^[[3~"  delete-char
     '';
   };
 
@@ -82,8 +85,8 @@
       };
 
       url = {
-        "git@github.com =" = {
-          insteadOf = "https =//github.com/";
+        "git@github.com:" = {
+          insteadOf = "https://github.com/";
         };
       };
     };

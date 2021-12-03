@@ -18,8 +18,8 @@ return require('packer').startup(function()
   use 'mg979/vim-visual-multi'
 
   -- theme
-  use 'folke/tokyonight.nvim'
-  use 'EdenEast/nightfox.nvim'
+  use 'projekt0n/github-nvim-theme'
+  use 'Mofiqul/dracula.nvim'
 
   -- collection of lsp configurations
   use {
@@ -55,19 +55,47 @@ return require('packer').startup(function()
     requires = {'liuchengxu/vim-which-key'},
   }
 
+  -- lua version of airline
   use {
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+
+  use {
+    "projekt0n/circles.nvim",
+    requires = {{"kyazdani42/nvim-web-devicons"}, {"kyazdani42/nvim-tree.lua", opt = true}},
+    config = function()
+      require("circles").setup({
+        lsp = false
+      })
+    end
   }
 
   -- comments
   use 'terrortylor/nvim-comment'
 
   -- project tree view
-  use 'preservim/nerdtree'
+  -- use 'preservim/nerdtree'
+
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    config = function() require'nvim-tree'.setup {} end
+  }
 
   -- autocompletion
-  use 'hrsh7th/nvim-compe'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+
+  use 'onsails/lspkind-nvim'
 
   -- nix support
   use 'LnL7/vim-nix'
@@ -94,11 +122,19 @@ return require('packer').startup(function()
 
   -- diagnostics list
   use {
-  "folke/trouble.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-    require("trouble").setup {}
-  end
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {}
+    end
   }
 
+  -- show whitespace and indentations
+  use 'lukas-reineke/indent-blankline.nvim'
+
+  -- quake terminal
+  use 'akinsho/toggleterm.nvim'
+
+  use 'ntk148v/vim-horizon'
+  use 'folke/tokyonight.nvim'
 end)
