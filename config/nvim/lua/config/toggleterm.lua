@@ -2,9 +2,9 @@ require'toggleterm'.setup {
   size = 20,
   open_mapping = [[<c-\>]],
   hide_numbers = true,
-  shade_filetypes = { 'lazygit' },
+  shade_filetypes = { 'none', 'lazygit' },
   shade_terminals = true,
-  shading_factor = 1,
+  shading_factor = '1',
   start_in_insert = true,
   direction = 'horizontal', -- 'vertical' | 'horizontal' | 'window' | 'float'
   persist_size = true,

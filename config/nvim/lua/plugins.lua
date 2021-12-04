@@ -18,8 +18,7 @@ return require('packer').startup(function()
   use 'mg979/vim-visual-multi'
 
   -- theme
-  use 'projekt0n/github-nvim-theme'
-  use 'Mofiqul/dracula.nvim'
+  use 'folke/tokyonight.nvim'
 
   -- collection of lsp configurations
   use {
@@ -74,9 +73,6 @@ return require('packer').startup(function()
   -- comments
   use 'terrortylor/nvim-comment'
 
-  -- project tree view
-  -- use 'preservim/nerdtree'
-
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
@@ -102,9 +98,6 @@ return require('packer').startup(function()
 
   -- golang
   use 'fatih/vim-go'
-
-  -- theme
-  use {'dracula/vim', as = 'dracula'}
 
   -- rust
   use 'rust-lang/rust.vim'
@@ -134,7 +127,4 @@ return require('packer').startup(function()
 
   -- quake terminal
   use 'akinsho/toggleterm.nvim'
-
-  use 'ntk148v/vim-horizon'
-  use 'folke/tokyonight.nvim'
 end)
