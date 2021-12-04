@@ -10,7 +10,7 @@ font:
     style: "Regular"
   bold:
     family: "JetBrainsMono Nerd Font"
-    style: "Bold"
+    style: "Medium"
 
 import:
   - ~/dotfiles/config/alacritty/themes/tokyonight.yml

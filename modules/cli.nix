@@ -3,7 +3,7 @@
 {
   home.sessionVariables = {
     DOTFILES = "$HOME/dotfiles";
-    GOPATH = "$HOME/go";
+    GOPATH = "$HOME/Go";
     TERM = "xterm-256color";
     FABPATH = "$HOME/Code/github.com/zencoder";
     EDITOR = "nvim";
