@@ -1,0 +1,6 @@
+Makefile
+Brewfile
+config
+bin
+.git
+.gitignore

@@ -1,8 +1,8 @@
-all: home-manager
+all: link
 
-.PHONY: home-manager
-home-manager:
-	home-manager switch -f ${HOME}/dotfiles/home.nix
+.PHONY: link
+link:
+	stow -R -v .
 
 .PHONY: brew dump
 brew:
