@@ -3,7 +3,7 @@ local theme = 'ivy'
 require('telescope').setup{
   pickers = {
     current_buffer_fuzzy_find = { theme = theme },
-    fd = { theme = theme },
+    fd = { theme = theme, hidden = true },
     file_browser = { theme = theme },
     find_files = { theme = theme },
     live_grep = { theme = theme },

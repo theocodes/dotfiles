@@ -11,9 +11,6 @@ end
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
-  -- supposed to load direnv when :! commands
-  use 'direnv/direnv.vim'
-
   -- multi cursor
   use 'mg979/vim-visual-multi'
 
