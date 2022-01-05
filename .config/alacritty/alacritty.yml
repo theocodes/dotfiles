@@ -1,0 +1,61 @@
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+
+font:
+  size: 14
+  normal:
+    family: "JetBrainsMono Nerd Font"
+    style: "Regular"
+  bold:
+    family: "JetBrainsMono Nerd Font"
+    style: "Medium"
+
+window:
+  opacity: 0.96
+
+selection:
+  save_to_clipboard: true
+
+window:
+  padding:
+    x: 0
+    y: 0
+
+mouse:
+  hide_when_typing: true
+
+key_bindings:
+  - { key: Key1,                    mods: Command,              chars: "\x60\x31"          }
+  - { key: Key2,                    mods: Command,              chars: "\x60\x32"          }
+  - { key: Key3,                    mods: Command,              chars: "\x60\x33"          }
+  - { key: Key4,                    mods: Command,              chars: "\x60\x34"          }
+  - { key: Key5,                    mods: Command,              chars: "\x60\x35"          }
+  - { key: Key6,                    mods: Command,              chars: "\x60\x36"          }
+  - { key: Key7,                    mods: Command,              chars: "\x60\x37"          }
+  - { key: Key8,                    mods: Command,              chars: "\x60\x38"          }
+  - { key: Key9,                    mods: Command,              chars: "\x60\x39"          }
+  - { key: Key0,                    mods: Command,              chars: "\x60\x30"          }
+  - { key: T,                       mods: Command,              chars: "\x60\x63"          }
+  # - { key: W,                       mods: Command,              chars: "\x60\x78"          }
+  - { key: W,                       mods: Command,              chars: "\x60\x71"          }
+  - { key: Return,                  mods: Command,              chars: "\x60\x22"          } 
+  - { key: Return,                  mods: Command|Shift,        chars: "\x60\x25"          } 
+  - { key: H,                       mods: Command,              chars: "\x60\x68"          }
+  - { key: J,                       mods: Command,              chars: "\x60\x6a"          }
+  - { key: K,                       mods: Command,              chars: "\x60\x6b"          }
+  - { key: L,                       mods: Command,              chars: "\x60\x6c"          }
+  - { key: D,                       mods: Command,              chars: "\x60\x64"          }
+  - { key: D,                       mods: Alt,                  chars: "\x60\x64"          }
+  - { key: X,                       mods: Control,              chars: "\x66\x67\x0D"      }
+  - { key: Z,                       mods: Command,              chars: "\x1A"              }
+  # - { key: F,                       mods: Control,              chars: "\x06"      }
+
+# the configs not loaded are ignored which works in my favour
+# when sharing config between mac/linux and windows.
+import:
+  - ~/.config/alacritty/platform/macos.yml
+  - C:\Users\theon\AppData\Roaming\alacritty\platform\wsl.yml
+
+  - ~/.config/alacritty/themes/tokyonight.yml

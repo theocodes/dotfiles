@@ -12,6 +12,7 @@ alias ..="cd .."
 alias lg="lazygit"
 alias j="z"
 alias work="tmux new-session -A -s work"
+alias be="bundle exec"
 
 # history
 HISTFILE=~/.histfile
