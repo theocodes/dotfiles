@@ -20,8 +20,8 @@ selection:
 
 window:
   padding:
-    x: 0
-    y: 0
+    x: 4
+    y: 4
 
 mouse:
   hide_when_typing: true

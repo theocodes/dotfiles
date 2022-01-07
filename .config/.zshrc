@@ -23,6 +23,7 @@ setopt appendhistory
 # move with alt-[Left/Right]Arrow
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
+bindkey "^f" vi-end-of-line
 
 source $HOME/.config/zsh/helpers.zsh
 source $HOME/.config/zsh/plugins.zsh
