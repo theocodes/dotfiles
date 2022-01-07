@@ -17,6 +17,9 @@ return require('packer').startup(function()
   -- theme
   use 'folke/tokyonight.nvim'
 
+  -- fish syntax highlighting
+  use 'dag/vim-fish'
+
   -- collection of lsp configurations
   use {
     'neovim/nvim-lspconfig',
