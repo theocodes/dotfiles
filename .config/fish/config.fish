@@ -11,7 +11,7 @@ abbr work tmux new-session -A -s work
 abbr a asdf
 
 # ALIASES
-alias j="z"
+# ...
 
 # PATH
 fish_add_path /opt/homebrew/bin
@@ -25,3 +25,6 @@ source /opt/homebrew/opt/asdf/libexec/asdf.fish
 
 # NO GREETING
 function fish_greeting; end
+
+# LOAD JUMP
+status --is-interactive; and source (jump shell fish | psub)
