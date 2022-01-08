@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# basic necessary dependencies to be able to install nix/home-manager,
-# clone dotfiles and set it up
-sudo dnf update -y && sudo dnf install -y git make util-linux-user
