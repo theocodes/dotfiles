@@ -15,7 +15,15 @@ return require('packer').startup(function()
   use 'mg979/vim-visual-multi'
 
   -- theme
-  use 'folke/tokyonight.nvim'
+  use 'tanvirtin/monokai.nvim'
+
+  use {
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function()
+      require"telescope".load_extension("frecency")
+    end,
+    requires = {"tami5/sqlite.lua"}
+  }
 
   -- fish syntax highlighting
   use 'dag/vim-fish'
@@ -121,9 +129,6 @@ return require('packer').startup(function()
       require("trouble").setup {}
     end
   }
-
-  -- show whitespace and indentations
-  use 'lukas-reineke/indent-blankline.nvim'
 
   -- quake terminal
   use 'akinsho/toggleterm.nvim'

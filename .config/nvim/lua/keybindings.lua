@@ -69,6 +69,7 @@ local keymap = {
     f = {
         name = '+files',
         f = {'<Cmd>Telescope find_files<CR>', 'find files in directory'},
+        r = {'<Cmd>Telescope frecency<CR>', 'find recently opened files'},
     	  b = {'<Cmd>Telescope file_browser<CR>', 'File browser'},
     },
     b = {
@@ -107,13 +108,13 @@ local keymap = {
         s = {'<Cmd>Telescope git_status<CR>', 'get status'},
         h = {
           name = '+hunk',
-          s = {'<cmd>lua require"gitsigns".stage_hunk()<CR>', 'stage hunk'},
-          u = {'<cmd>lua require"gitsigns".undo_stage_hunk()<CR>', 'undo stage hunk'},
-          r = {'<cmd>lua require"gitsigns".reset_hunk()<CR>', 'reset hunk'},
-          R = {'<cmd>lua require"gitsigns".reset_buffer()<CR>', 'reset buffer'},
-          p = {'<cmd>lua require"gitsigns".preview_hunk()<CR>', 'preview hunk'},
-          S = {'<cmd>lua require"gitsigns".stage_buffer()<CR>', 'stage buffer'},
-          U = {'<cmd>lua require"gitsigns".reset_buffer_index()<CR>', 'reset buffer index'},
+          -- s = {'<cmd>lua require"gitsigns".stage_hunk()<CR>', 'stage hunk'},
+          -- u = {'<cmd>lua require"gitsigns".undo_stage_hunk()<CR>', 'undo stage hunk'},
+          -- r = {'<cmd>lua require"gitsigns".reset_hunk()<CR>', 'reset hunk'},
+          -- R = {'<cmd>lua require"gitsigns".reset_buffer()<CR>', 'reset buffer'},
+          h = {'<cmd>lua require"gitsigns".preview_hunk()<CR>', 'preview hunk'},
+          -- S = {'<cmd>lua require"gitsigns".stage_buffer()<CR>', 'stage buffer'},
+          -- U = {'<cmd>lua require"gitsigns".reset_buffer_index()<CR>', 'reset buffer index'},
         },
     },
     c = {
