@@ -62,7 +62,7 @@ vim.api.nvim_set_keymap("i", "<C-k>", "pumvisible() ? \"\\<C-p>\" : \"<C-p>\" ",
 local wk = require('whichkey_setup')
 local keymap = {
     ['<TAB>'] = {'<C-^>', 'Previous buffer'},
-    ['.'] = {'<Cmd>Telescope fd<CR>', 'Find file in directory'},
+    ['.'] = {'<Cmd>Telescope file_browser<CR>', 'Find file in directory'},
     ['/'] = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'Fuzzy find in buffer'},
     ['*'] = {'<Cmd>Telescope live_grep<CR>', 'Search in project'},
     [':'] = {'<Cmd>Telescope commands<CR>', 'Explore commands'},
