@@ -28,6 +28,9 @@ return require('packer').startup(function()
   -- fish syntax highlighting
   use 'dag/vim-fish'
 
+  -- remove trailing whitespace
+  use 'nestorsalceda/vim-strip-trailing-whitespaces'
+
   -- collection of lsp configurations
   use {
     'neovim/nvim-lspconfig',
