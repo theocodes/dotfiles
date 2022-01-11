@@ -6,6 +6,7 @@ require('telescope').setup{
     fd = { theme = theme, hidden = true },
     file_browser = { theme = theme, hidden = true },
     find_files = { theme = theme },
+    oldfiles = { theme = theme },
     live_grep = { theme = theme },
     commands = { theme = theme },
     git_files = { theme = theme, show_untracked = true },

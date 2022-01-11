@@ -9,6 +9,7 @@ abbr lg lazygit
 abbr ll exa -al
 abbr work tmux new-session -A -s work
 abbr a asdf
+abbr b bat
 
 # ALIASES
 # ...
@@ -16,6 +17,7 @@ abbr a asdf
 # PATH
 fish_add_path /opt/homebrew/bin
 fish_add_path $DOTFILES/bin
+fish_add_path /opt/homebrew/opt/postgresql@12/bin
 
 # PROMPT
 starship init fish | source

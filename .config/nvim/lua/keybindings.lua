@@ -66,10 +66,11 @@ local keymap = {
     ['/'] = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'Fuzzy find in buffer'},
     ['*'] = {'<Cmd>Telescope live_grep<CR>', 'Search in project'},
     [':'] = {'<Cmd>Telescope commands<CR>', 'Explore commands'},
+    [' '] = {'<Cmd>Telescope oldfiles<CR>', 'Fuzzy find recent files'},
     f = {
         name = '+files',
         f = {'<Cmd>Telescope find_files<CR>', 'find files in directory'},
-        r = {'<Cmd>Telescope frecency<CR>', 'find recently opened files'},
+        r = {'<Cmd>Telescope oldfiles<CR>', 'find recently opened files'},
     	  b = {'<Cmd>Telescope file_browser<CR>', 'File browser'},
     },
     b = {

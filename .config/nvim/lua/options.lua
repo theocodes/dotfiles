@@ -49,6 +49,9 @@ vim.cmd('let g:mix_format_on_save = 1')
 -- tree width
 vim.g.nvim_tree_width = 30
 
+vim.cmd[[set list]]
+vim.cmd[[set listchars=trail:~,tab:>-,nbsp:␣]]
+
 -- make vim use system clipboard on WSL
 -- download the following and put it in the $PATH
 -- https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip

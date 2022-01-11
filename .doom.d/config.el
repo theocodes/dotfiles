@@ -4,7 +4,7 @@
       user-mail-address "public@theocodes.com")
 
 ;; general configuration
-(setq ;;doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semi-light)
+(setq doom-font (font-spec :family "FuraMono Nerd Font Mono" :size 16 :weight 'semi-light)
       doom-theme 'doom-molokai
       org-directory "~/org/"
       display-line-numbers-type 'relative)

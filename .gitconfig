@@ -4,3 +4,5 @@ email = git@theocodes.com
 
 [commit]
 verbose = true
+[pull]
+	rebase = false
