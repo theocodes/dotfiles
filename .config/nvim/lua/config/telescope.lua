@@ -1,6 +1,9 @@
 local theme = 'ivy'
 
 require('telescope').setup{
+  defaults = {
+    file_ignore_patterns = { '.git' }
+  },
   pickers = {
     current_buffer_fuzzy_find = { theme = theme },
     fd = { theme = theme, hidden = true },
