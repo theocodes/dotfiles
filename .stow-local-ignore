@@ -5,3 +5,4 @@ config
 bin
 .git
 .gitignore
+.emacs
