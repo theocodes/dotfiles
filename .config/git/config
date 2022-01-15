@@ -1,0 +1,15 @@
+[user]
+name = Theo Felippe
+email = git@theocodes.com
+
+[commit]
+verbose = true
+
+[pull]
+rebase = false
+
+[init]
+defaultBranch = master
+
+[core]
+excludesfile = /Users/theocodes/.config/git/ignore
