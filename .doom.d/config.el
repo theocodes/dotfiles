@@ -4,12 +4,10 @@
       user-mail-address "public@theocodes.com")
 
 ;; general configuration
-(setq doom-font (font-spec :family "FuraMono Nerd Font Mono" :size 16 :weight 'semi-light)
-      doom-theme 'doom-molokai
+(setq doom-font (font-spec :family "FuraMono Nerd Font Mono" :size 14 :weight 'medium)
+      doom-theme 'doom-monokai-pro
       org-directory "~/org/"
       display-line-numbers-type 'relative)
-
-;; override keybindings
 
 ;; fuzzy find in buffer with ctrl-s
 (map! [remap isearch-forward] '+default/search-buffer)
