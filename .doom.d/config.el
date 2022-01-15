@@ -20,6 +20,13 @@
 
 (map! :desc "toggle vterm popup" :nvi "s-i" #'+vterm/toggle)
 
+(after! org
+  (map! :map org-mode-map
+        :n "C-h" 'org-promote-subtree
+        :n "C-l" 'org-demote-subtree
+        :n "C-j" 'org-move-subtree-down
+        :n "C-k" 'org-move-subtree-up))
+
 ;; start multiedit on selected text
 (define-key evil-visual-state-map "R" 'evil-multiedit-match-all)
 
