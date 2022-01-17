@@ -103,8 +103,11 @@ local keymap = {
     },
     g = {
         name = '+git',
-        g = {'<Cmd>Telescope git_commits<CR>', 'View commits'},
-        c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
+        c = {
+          name = '+commits',
+          c = {'<Cmd>Telescope git_commits<CR>', 'Search all commits'},
+          b = {'<Cmd>Telescope git_bcommits<CR>', 'Search commits to current buffer'},
+        },
         b = {'<Cmd>Telescope git_branches<CR>', 'Change branches'},
         s = {'<Cmd>Telescope git_status<CR>', 'get status'},
         h = {
