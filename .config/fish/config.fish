@@ -8,8 +8,10 @@ abbr rel exec $SHELL
 abbr lg lazygit
 abbr ll exa -al
 abbr work tmux new-session -A -s work
+abbr play tmux new-session -A -s play
 abbr a asdf
 abbr b bat
+abbr dev ./scripts/dev
 
 # ALIASES
 # ...
