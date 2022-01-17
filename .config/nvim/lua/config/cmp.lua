@@ -4,7 +4,7 @@ local lspkind = require('lspkind')
 
 cmp.setup({
   experimental = {
-    native_menu = false,
+    native_menu = true,
 
     ghost_text = true,
   },
@@ -65,7 +65,6 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
-
 
 -- Setup lspconfig.
 -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
