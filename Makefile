@@ -1,15 +1,7 @@
-all: bootstrap
-
-.PHONY: brew dump
-brew:
-	brew bundle install
+all: bootstrap link
 
 bootstrap:
-	./bin/bootstrap
-
-.PHONY: dump
-dump:
-	brew bundle dump -f
+	./bin/oi
 
 .PHONY: link
 link:
