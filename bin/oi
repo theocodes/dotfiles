@@ -5,8 +5,8 @@ pushd ~/dotfiles
 if [[ "$(uname)" = "Darwin" ]]; then
   echo "MacOS system detected."
 
-	brew bundle install
-	brew bundle dump -f
+  brew bundle install
+  brew bundle dump -f
 else
   echo "Linux system detected."
 

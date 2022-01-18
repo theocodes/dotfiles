@@ -24,16 +24,25 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+-- solargraph has to be installed/initialized separately.
+-- other ones should try to use lsp-installer below.
+local servers = { 'solargraph' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    settings = {
+      solargraph = {
+        diagnostics = true
+      }
+    }
+  }
+end
+
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
   local opts = {}
 
   if server.name == 'solargraph' then
-    opts.settings = {
-      solargraph = {
-        diagnostics = true
-      }
-    }
+    error("remove lsp-installer's solargraph and use brew")
   end
 
   if server.name == 'sumneko_lua' then
