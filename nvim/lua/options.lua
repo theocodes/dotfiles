@@ -38,7 +38,8 @@ vim.bo.undofile=true
 
 vim.cmd('set history=2000')
 vim.cmd('set clipboard+=unnamedplus')
-vim.cmd('set completeopt=menuone,noinsert,noselect')
+
+vim.opt.completeopt = "menu,menuone,noselect"
 
 -- auto-format on save for rust
 vim.cmd('let g:rustfmt_autosave = 1')
