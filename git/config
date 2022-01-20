@@ -13,3 +13,6 @@ defaultBranch = master
 
 [core]
 excludesfile = /Users/theocodes/.config/git/ignore
+
+[github]
+user = theocodes
