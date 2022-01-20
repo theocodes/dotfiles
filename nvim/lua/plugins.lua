@@ -114,10 +114,7 @@ return require('packer').startup(function()
   use 'simrat39/rust-tools.nvim'
 
   -- better syntax highlighting
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ":TSUpdate"
-  }
+  use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate" }
 
   -- elixir
   use 'elixir-editors/vim-elixir'
@@ -131,6 +128,8 @@ return require('packer').startup(function()
       require("trouble").setup {}
     end
   }
+
+  use 'thoughtbot/vim-rspec'
 
   -- quake terminal
   use 'akinsho/toggleterm.nvim'

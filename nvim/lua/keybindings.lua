@@ -17,6 +17,11 @@ vim.api.nvim_set_keymap('n', 'to', ':tabo<cr>', { noremap = true, silent = true 
 -- toggle file explorer
 vim.api.nvim_set_keymap('n', '<C-o>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
+-- run current spec
+vim.api.nvim_set_keymap('n', '<leader>tt', ':call RunCurrentSpecFile()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>ts', ':call RunNearestSpec()<CR>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<C-t>', ':term rspec %:' .. vim.fn.line(".") .. '<CR>', { noremap = true, silent = true })
+
 -- explore commands
 vim.api.nvim_set_keymap('n', '<C-x>', ':Telescope commands<CR>', { noremap = true, silent = true})
 
@@ -97,10 +102,10 @@ local keymap = {
       name = "+local",
       c = {':LspInstallInfo<CR>', 'placeholder'},
     },
-    t = {
-      name = "+toggle",
-      t = {':TroubleToggle<CR>', 'Toggle diagnostics'},
-    },
+    -- t = {
+    --   name = "+toggle",
+    --   t = {':TroubleToggle<CR>', 'Toggle diagnostics'},
+    -- },
     g = {
         name = '+git',
         c = {
