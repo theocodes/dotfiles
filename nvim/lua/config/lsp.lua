@@ -18,11 +18,11 @@ vim.fn.sign_define(
   { texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation" }
 )
 
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true
-  },
-}
+--require'nvim-treesitter.configs'.setup {
+--  highlight = {
+--    enable = true
+--  },
+--}
 
 -- solargraph has to be installed/initialized separately.
 -- other ones should try to use lsp-installer below.
@@ -49,7 +49,18 @@ lsp_installer.on_server_ready(function(server)
     opts.settings = {
       Lua = {
         diagnostics = {
-          globals = { 'vim' }
+          globals = {
+            -- vim api
+            'vim',
+
+            -- packer
+            'use',
+
+            -- plenary testing
+            'it',
+            'describe',
+            'before_each',
+          }
         }
       }
     }
