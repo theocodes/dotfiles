@@ -1,15 +1,16 @@
--- general config
-require('plugins')
-require('options')
-require('keybindings')
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
 
--- load plugin config
-require('config/toggleterm')
-require('config/cmp')
-require('config/gitsigns')
-require('config/whichkey')
-require('config/lualine')
-require('config/nvim_comment')
-require('config/lsp')
-require('config/theme')
-require('config/telescope')
+require "user.config.cmp"
+require "user.config.lsp"
+require "user.config.telescope"
+require "user.config.comment"
+require "user.config.gitsigns"
+require "user.config.bufferline"
+require "user.config.toggleterm"
+-- require "user.config.treesitter"
+
+-- theme
+vim.cmd [[colorscheme monokai_pro]]
+

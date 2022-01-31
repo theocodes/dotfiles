@@ -19,6 +19,8 @@
 (map! :desc "toggle vterm popup" :nvi "s-i" #'+vterm/toggle)
 
 (after! org
+  (setq org-todo-keywords
+  '((sequence "TODO" "PROGRESS" "BLOCKED" "DONE")))
   (map! :map org-mode-map
         :n "C-h" 'org-promote-subtree
         :n "C-l" 'org-demote-subtree
