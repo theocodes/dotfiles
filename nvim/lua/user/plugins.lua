@@ -42,12 +42,14 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim"                 -- Have packer manage itself
   use "nvim-lua/popup.nvim"                    -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim"                  -- Useful lua functions used by lots of plugins
-  use 'rstacruz/vim-closer'                    -- Automagically close things
+  use "rstacruz/vim-closer"                    -- Automagically close things
   use "akinsho/bufferline.nvim"                -- Display buffers and tabs
   use "terrortylor/nvim-comment"               -- Commeting goodness
   use "lewis6991/gitsigns.nvim"                -- Nice git integrations with buffers
   use "akinsho/toggleterm.nvim"                -- Togglable term used for lazygit etc
-  use 'nvim-lualine/lualine.nvim'              -- Better line
+  use "nvim-lualine/lualine.nvim"              -- Better line
+  use "thoughtbot/vim-rspec"                   -- Quickly run specs
+  use "axelf4/vim-strip-trailing-whitespace"   -- Trim whitespace
 
   -- Colorschemes
   use 'tanvirtin/monokai.nvim'
@@ -70,7 +72,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
-  use 'nvim-telescope/telescope-media-files.nvim'
+  use "nvim-telescope/telescope-media-files.nvim"
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
@@ -78,11 +80,11 @@ return packer.startup(function(use)
 
   -- Sidebar explorer
   use {
-    'kyazdani42/nvim-tree.lua',
+    "kyazdani42/nvim-tree.lua",
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+      "kyazdani42/nvim-web-devicons", -- optional, for file icon
     },
-    config = function() require'nvim-tree'.setup {} end
+    config = function() require"nvim-tree".setup {} end
   }
 
   if PACKER_BOOTSTRAP then

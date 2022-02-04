@@ -56,14 +56,14 @@ normal('tj', ':tabprev<cr>')
 normal('to', ':tabo<cr>')
 
 -- Run shell command
-normal(';', ':!', term_ops)
+normal(';', ':!', term_opts)
 
 -- Clear search highlight
 normal('<C-c>', ':set hlsearch!<CR>')
 
 -- run current spec
---vim.api.nvim_set_keymap('n', '<leader>tt', ':call RunCurrentSpecFile()<CR>', { noremap = true })
---vim.api.nvim_set_keymap('n', '<leader>ts', ':call RunNearestSpec()<CR>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>mtv', ':call RunCurrentSpecFile()<CR>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>mts', ':call RunNearestSpec()<CR>', { noremap = true })
 
 -- Quit buffer with q
 normal("q", ":q!<CR>")
@@ -73,6 +73,7 @@ normal("<leader>lsp", ":LspInstallInfo<CR>")
 
 -- Fuzzy files in current project
 normal("<C-p>", "<cmd>Telescope fd<cr>")
+normal("<leader>pf", "<cmd>Telescope fd<cr>")
 
 -- Fuzzy current buffer
 normal("<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
@@ -101,9 +102,11 @@ normal("H", ":BufferLineCyclePrev<CR>")
 normal("L", ":BufferLineCycleNext<CR>")
 
 -- Toggle terminal
-normal("<C-i>", ":ToggleTerm<CR>")
+normal("<C-o>", ":ToggleTerm<CR>")
 normal("<leader>gg", ":lua _LAZYGIT_TOGGLE()<CR>")
 normal("<leader>irb", ":lua _IRB_TOGGLE()<CR>")
+normal("<leader>node", ":lua _NODE_TOGGLE()<CR>")
+normal("<leader>mtv", ":lua _RSPEC_SPEC()<CR>")
 
 -- Center screen on insert
 vim.cmd("autocmd InsertEnter * norm zz")

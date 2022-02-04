@@ -84,7 +84,7 @@ telescope.setup {
   },
   pickers = {
     current_buffer_fuzzy_find = { theme = theme, previewer = previewer },
-    fd = { theme = theme, hidden = true, previewer = previewer },
+    fd = { theme = theme, hidden = true },
     file_browser = { theme = theme, hidden = true },
     find_files = { theme = theme, previewer = previewer },
     -- oldfiles = { theme = theme, previewer = previewer },
