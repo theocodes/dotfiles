@@ -1,20 +1,20 @@
 #+TITLE: Emacs
-#+PROPERTY: header-args :tangle emacs/.emacs.d/init.el
+#+PROPERTY: header-args :tangle ~/.emacs.d/init.el
 
 * Bootstrap straight.el for dependencies
 
 #+begin_src emacs-lisp
   (defvar bootstrap-version)
   (let ((bootstrap-file
-	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-	(bootstrap-version 5))
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 5))
     (unless (file-exists-p bootstrap-file)
       (with-current-buffer
-	  (url-retrieve-synchronously
-	   "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-	   'silent 'inhibit-cookies)
-	(goto-char (point-max))
-	(eval-print-last-sexp)))
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
     (load bootstrap-file nil 'nomessage))
 
   ;; install use-package
@@ -22,39 +22,15 @@
 
   ;; use straight by default with use-package
   (setq package-enable-at-startup nil
-	straight-use-package-by-default t)
+        straight-use-package-by-default t)
 #+end_src
 
 * Configuration
-
-** UI
+** Set local variables
 
 #+begin_src emacs-lisp
-    ;; disable welcome screen
-    (setq inhibit-startup-message t) 
-
-    ;; disable default ui elements
-    (tool-bar-mode -1)
-    (scroll-bar-mode -1)
-    (menu-bar-mode -1)
-
-    ;; relative line numbers
-    (global-display-line-numbers-mode 1)
-    (setq display-line-numbers-type 'relative)
+  (setq enable-local-variables :all)
 #+end_src
-
-** Backup files
-
-   Move backup files out of current directory.
-
-   #+begin_src emacs-lisp
-     (setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
-   #+end_src
-
-   Disable lock files.
-   #+begin_src emacs-lisp
-     (setq create-lockfiles nil)
-   #+end_src
 
 ** Fonts
 
@@ -64,76 +40,361 @@
 
 #+end_src
 
-** Icons
+** UI
+
+#+begin_src emacs-lisp
+  ;; disable welcome screen
+  (setq inhibit-startup-message t) 
+
+  ;; disable default ui elements
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (menu-bar-mode -1)
+
+  ;; relative line numbers
+  (global-display-line-numbers-mode 1)
+  (setq display-line-numbers-type 'relative)
+
+  ;; Disable line numbers for some modes
+  (dolist (mode '(vterm-mode-hook
+                  term-mode-hook
+                  shell-mode-hook
+                  treemacs-mode-hook
+                  eshell-mode-hook))
+    (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+end_src
+** Backup files
+
+Move backup files out of current directory.
+
+#+begin_src emacs-lisp
+  (setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
+#+end_src
+
+Disable lock files.
+
+#+begin_src emacs-lisp
+  (setq create-lockfiles nil)
+#+end_src
+
+** Keybindings
+
+#+begin_src emacs-lisp
+  ;; make ESC quit some prompts
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+  ;; find in file
+  (global-set-key (kbd "C-s") 'consult-line)
+
+  ;; paste with CMD-v
+  (global-set-key (kbd "M-v") 'yank)
+
+  ;; find file the old way
+  (global-set-key (kbd "C-p") 'projectile-find-file)
+#+end_src
+
+** Window Management
+
+#+begin_src emacs-lisp
+  (defun theof/active-side-window (buffer alist) 
+    (select-window  (display-buffer-in-side-window buffer alist)))
+
+  (add-to-list 'display-buffer-alist
+               '("\\*rspec-compilation\\*"
+                 (theof/active-side-window)
+                 (side . right)
+                 (window-width . 0.5)))
+
+  ;; (add-to-list 'display-buffer-alist
+  ;;              '("\\*\\(e?shell\\|v?term\\|overmind\\)\\*"
+  ;;                (theof/active-side-window)
+  ;;                (side . bottom)
+  ;;                (slot . -1)
+  ;;                (window-height . 0.25)))
+
+  (add-to-list 'display-buffer-alist
+               '("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\)\\*"
+                 (theof/active-side-window)
+                 (side . bottom)
+                 (slot . 0)
+                 (window-height . 0.25)))
+#+end_src
+
+** Custom
+
+#+begin_src emacs-lisp
+  (defun theof/overmind ()
+    (interactive)
+    (if (get-buffer "*overmind*")
+        (message "Overmind buffer already exists. Skipping...")
+      (print "Does not exist")))
+#+end_src
+
+* Packages
+** org-mode
+
+Requiring org-tempo makes the template expanding (=<s=) available. 
+
+*Warning*: Keep this config close to the top. If another package tries to load
+org before straight.el has a chance to, it will load the version shipped with
+Emacs and cause issues.
+
+#+begin_src emacs-lisp
+  (use-package org
+    :config
+    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+    (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
+    (add-to-list 'org-structure-template-alist '("rb" . "src ruby"))
+    (add-to-list 'org-structure-template-alist '("py" . "src python"))
+    (add-to-list 'org-structure-template-alist '("go" . "src go"))
+    (add-to-list 'org-structure-template-alist '("js" . "src javascript"))
+    (setq org-startup-folded t)
+    (setq org-ellipsis " ▾"
+	    org-startup-indented t
+	    org-hide-emphasis-markers t
+	    org-todo-keywords
+	    '((sequence "TODO" "PROGRESS" "BLOCKED" "DONE"))
+	    org-todo-keyword-faces
+	    '(("TODO" . org-warning)
+	      ("PROGRESS" . "yellow")
+	      ("BLOCKED" . (:foreground "red" :weight bold))
+	      ("DONE" . org-done)))
+    (require 'org-tempo))
+#+end_src
+
+*** org-bullets
+
+Customization for org headings.
+
+#+begin_src emacs-lisp
+  (use-package org-bullets
+    :after org
+    :hook (org-mode . org-bullets-mode)
+    :custom
+    (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+#+end_src
+
+*** org-roam
+
+Take notes in the roam style with org files.
+
+#+begin_src emacs-lisp
+ (use-package org-roam
+   :init
+   (setq org-roam-v2-ack t
+         org-roam-dailies-directory "journal/")
+   :custom
+   (org-roam-directory "~/RoamNotes")
+   (org-roam-completion-everywhere t)
+   :config
+   (require 'org-roam-dailies)
+   (org-roam-db-autosync-mode))
+#+end_src
+
+** exec-path-from-shell
+
+Make Emacs load system PATH when launching via GUI.
+
+#+begin_src emacs-lisp
+  (use-package exec-path-from-shell
+    :config
+    (when (memq window-system '(mac ns x))
+      (exec-path-from-shell-initialize)))
+#+end_src
+
+** dashboard
+
+#+begin_src emacs-lisp
+  (use-package dashboard
+    :init
+    (setq dashboard-items '((recents  . 5)
+                            (bookmarks . 5)
+                            (projects . 5)
+                            (agenda . 5)
+                            (registers . 5)))
+    :config
+    (dashboard-setup-startup-hook))
+#+end_src
+
+** all-the-icons
 
 Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 
 #+begin_src emacs-lisp
-(use-package all-the-icons)
+  (use-package all-the-icons)
 #+end_src
-
-** Theme
+** mu4e
 
 #+begin_src emacs-lisp
-(use-package modus-themes
-  :init
-  ;; Add all your customizations prior to loading the themes
-  (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs nil
-        modus-themes-region '(bg-only no-extend))
-
-  ;; Load the theme files before enabling a theme
-  (modus-themes-load-themes)
-  :config
-  ;; Load the theme of your choice:
-  (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
-  :bind ("<f5>" . modus-themes-toggle))
+     (setq user-mail-address "iam@theocodes.com")
+     (use-package mu4e
+       :straight nil
+       :config
+       (setq mu4e-maildir "~/Mail"
+             mu4e-get-mail-command "mbsync -a"
+             mu4e-update-interval (* 3 60)
+             mu4e-change-filenames-when-moving t
+             mu4e-drafts-folder "/Drafts"
+             mu4e-sent-folder "/Sent"
+             mu4e-attachments-dir "~/Downloads"
+             mu4e-trash-folder "/Trash"
+             message-send-mail-function   'smtpmail-send-it
+             smtpmail-default-smtp-server "smtp.fastmail.com"
+             smtpmail-smtp-server         "smtp.fastmail.com")
+       (setq mu4e-maildir-shortcuts
+             '(("/INBOX" . ?i)
+               ("/Sent" . ?s)
+               ("/Drafts" . ?d)
+               ("/INBOX/notifications" . ?n)
+               ("/INBOX/theonotdore" . ?g)
+               ("/INBOX/theocodes" . ?t)
+               ("/INBOX/easol" . ?e))))
 #+end_src
 
-** Movement
-*** evil
+Make it use macos keychain or smpt connection will fail.
 
 #+begin_src emacs-lisp
-(use-package evil
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
-  :config
-  (evil-mode 1)
-  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (setq auth-sources (quote (macos-keychain-internet macos-keychain-generic)))
+#+end_src
+    
+** doom-modeline
 
-  ;; Use visual line motions even outside of visual-line-mode buffers
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-
-  (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal))
-
-(use-package evil-collection
-  :after evil
-  :config
- (evil-collection-init))
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+    :init (doom-modeline-mode 1))
 #+end_src
 
-** Completion
+** modus-themes
+
+#+begin_src emacs-lisp
+  (use-package modus-themes
+    :init
+    ;; Add all your customizations prior to loading the themes
+    (setq modus-themes-italic-constructs t
+          modus-themes-bold-constructs nil
+          modus-themes-region '(bg-only no-extend))
+
+    ;; Load the theme files before enabling a theme
+    (modus-themes-load-themes)
+    :config
+    ;; Load the theme of your choice:
+    (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
+    :bind ("<f5>" . modus-themes-toggle))
+#+end_src
+
+** centaur-tabs
+
+#+begin_src emacs-lisp
+
+  (defun theof/centaur-tabs-hide-tab (x)
+    "Do no to show buffer X in tabs."
+    (let ((name (format "%s" x)))
+      (or
+       ;; Current window is not dedicated window.
+       (window-dedicated-p (selected-window))
+
+       ;; Buffer name not match below blacklist.
+       (string-prefix-p "*ruby-ls" name)
+       (string-prefix-p "*straight" name)
+       (string-prefix-p "*Messages" name)
+       (string-prefix-p "*lsp" name)
+
+       ;; Is not magit buffer.
+       (and (string-prefix-p "magit" name)
+            (not (file-name-extension name))))))
+
+  (use-package centaur-tabs
+    :config
+    (setq centaur-tabs-gray-out-icons 'buffer
+          centaur-tabs-height 24
+          centaur-tabs-hide-tab-function 'theof/centaur-tabs-hide-tab
+          centaur-tabs-cycle-scope 'tabs
+          centaur-tabs-set-modified-marker t
+          centaur-tabs-modified-marker "*"
+          centaur-tabs-set-bar 'left
+          centaur-tabs-set-icons nil
+          centaur-tabs-set-close-button nil
+          centaur-tabs-plain-icons t)
+    (centaur-tabs-group-by-projectile-project)
+    :init
+    (centaur-tabs-mode t))
+#+end_src
+
+** evil
+
+#+begin_src emacs-lisp
+  (use-package evil
+    :init
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump nil)
+    :config
+    (evil-mode 1)
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+    ;; Use visual line motions even outside of visual-line-mode buffers
+    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+    ;; Disable so I can set centaur-tabs-forward/backward to it
+    (define-key evil-normal-state-map (kbd "C-n") nil)
+    (define-key evil-motion-state-map (kbd "C-e") nil)
+
+    (define-key evil-normal-state-map (kbd "H") 'centaur-tabs-backward)
+    (define-key evil-normal-state-map (kbd "L") 'centaur-tabs-forward)
+
+    ;; Disable so so it doesn't conflict with embark
+    (define-key evil-normal-state-map (kbd "C-.") nil)
+
+    ;; Ctrl-p is for finding files...
+    (define-key evil-normal-state-map (kbd "C-p") nil)
+
+    ;; No more accidentally going to the top of the file
+    (evil-global-set-key 'motion "H" nil) 
+
+    (evil-set-initial-state 'messages-buffer-mode 'normal)
+    (evil-set-initial-state 'dashboard-mode 'normal))
+
+  (use-package evil-collection
+    :after evil
+    :config
+    (evil-collection-init))
+#+end_src
+
+** evil-multiedit
+
+#+begin_src emacs-lisp
+  (use-package evil-multiedit
+    :config
+    (evil-multiedit-default-keybinds))
+#+end_src
+
+** evil-commentary
+
+#+begin_src emacs-lisp
+  (use-package evil-commentary
+    :config
+    (evil-commentary-mode))
+#+end_src
+
+** vertico
 
 The completion engine.
 
 #+begin_src emacs-lisp
   (use-package vertico
     :bind (:map vertico-map
-		  ("C-j" . vertico-next)
-		  ("C-k" . vertico-previous)
-		  ("C-f" . vertico-exit)
-		  :map minibuffer-local-map
-		  ("M-h" . backward-kill-word))
-      :custom
-      (vertico-cycle t)
-      :init
-      (vertico-mode))
+                ("C-j" . vertico-next)
+                ("C-k" . vertico-previous)
+                ("C-f" . vertico-exit)
+                :map minibuffer-local-map
+                ("M-h" . backward-kill-word))
+    :custom
+    (vertico-cycle t)
+    :init
+    (vertico-mode))
 #+end_src
 
 Save completion history.
@@ -158,44 +419,41 @@ Extra context for completions.
 Fuzzy finding package that doesn't care about order.
 
 #+begin_src emacs-lisp
-    (use-package orderless
-      :init
-      (setq completion-styles '(orderless)
-	    completion-category-defaults nil
-	    completion-category-overrides '((file (styles partial-completion)))))
+  (use-package orderless
+    :init
+    (setq completion-styles '(orderless)
+          completion-category-defaults nil
+          completion-category-overrides '((file (styles partial-completion)))))
 #+end_src
 
 *** Practical commands
 
 #+begin_src emacs-lisp
-(use-package consult)
+  (use-package consult)
 #+end_src
 
-** Syntax highlighting
-
-*** rainbow-delimeters
+** rainbow-delimieters
 
 Show matching colors for delimeters to make it easier to spot open/close pairs.
 
 #+begin_src emacs-lisp
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+  (use-package rainbow-delimiters
+    :hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
 
-** Keybindings
-*** which-key
+** which-key
 
 Useful tool to remind me of keymaps.
 
 #+begin_src emacs-lisp
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 1))
+  (use-package which-key
+    :init (which-key-mode)
+    :diminish which-key-mode
+    :config
+    (setq which-key-idle-delay 1))
 #+end_src
 
-*** general
+** general
 
 #+begin_src emacs-lisp
   (use-package general
@@ -206,6 +464,18 @@ Useful tool to remind me of keymaps.
       :global-prefix "C-SPC")
 
     (rune/leader-keys
+      "n"  '(:ignore t :which-key "notes")
+      "nf"  '(org-roam-node-find :which-key "find or create node")
+      "nc" '(org-roam-dailies-capture-today :which-key "capture note")
+      "nd" '(org-roam-dailies-goto-date :which-key "go to date")
+      "nt" '(org-roam-dailies-goto-today :which-key "go to today")
+
+      "m"  '(:ignore t :which-key "local")
+      "mt"  '(:ignore t :which-key "tests")
+      "mts"  '(rspec-verify-single :which-key "run spec near cursor")
+      "mtv"  '(rspec-verify :which-key "run current spec buffer")
+      "mta"  '(rspec-verify-all :which-key "run all specs")
+
       "b"  '(:ignore t :which-key "buffers")
       "bb" '(consult-buffer :which-key "list and find buffer")
       "bd" '(kill-current-buffer :which-key "kill current buffer")
@@ -222,175 +492,227 @@ Useful tool to remind me of keymaps.
       "gg" '(magit :which-key "magit status")
 
       "TAB" '(evil-switch-to-windows-last-buffer :which-key "switch to last buffer")
+      "SPC" '(dired-jump :which-key "dired on current directory")
       "."  '(find-file :which-key "find file")))
 #+end_src
 
-*** Other
-
-**** Make ESC quit some prompts
+** magit
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-#+end_src
-
-**** Find in file
-
-#+begin_src emacs-lisp
-  (global-set-key (kbd "C-s") 'consult-line)
-#+end_src
-
-**** Paste with CMD-v
-
-#+begin_src emacs-lisp
-  (global-set-key (kbd "M-v") 'yank)
-#+end_src
-
-** Note taking
-*** org-mode
-
-  Requiring org-tempo makes the template expanding (`<s`) available. 
-
-#+begin_src emacs-lisp
-
-  (use-package org
-    :config
-    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-    (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
-    (require 'org-tempo))
-
-#+end_src
-
-** Version control
-
-   #+begin_src emacs-lisp
-     (use-package magit
-       :init
-       (setq-default with-editor-emacsclient-executable "emacsclient")
-       (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
-   #+end_src
-   
-** Projects
-
-#+begin_src emacs-lisp
-      (use-package projectile
-	:diminish projectile-mode
-	:init
-	(when (file-directory-p "~/Code")
-	  (setq projectile-project-search-path '("~/Code")))
-	:config
-	(projectile-global-mode +1))
-#+end_src
-
-** Terminal
-
-#+begin_src emacs-lisp
-    (use-package vterm
-      :load-path  "~/Code/emacs-libvterm/")
-#+end_src
-
-** Popup windows
-
-#+begin_src emacs-lisp
-  (use-package popper
-    :ensure t ; or :straight t
-    :bind (("C-`"   . popper-toggle-latest)
-	   ("M-`"   . popper-cycle)
-	   ("C-M-`" . popper-toggle-type))
+  (use-package magit
     :init
-    (setq popper-reference-buffers
-	  '("\\*Messages\\*"
-	    "Output\\*$"
-	    "\\*Async Shell Command\\*"
-	    help-mode
-	    vterm-mode
-	    compilation-mode))
-    (popper-mode +1)
-    (popper-echo-mode +1))
+    (setq-default with-editor-emacsclient-executable "emacsclient")
+    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 #+end_src
-
-** Snippets
+   
+** projectile
 
 #+begin_src emacs-lisp
-  (use-package yasnippet)
+  (use-package projectile
+    :diminish projectile-mode
+    :init
+    (when (file-directory-p "~/Code")
+      (setq projectile-project-search-path '("~/Code")))
+    :config
+    (projectile-global-mode +1))
 #+end_src
 
-** Commenting
+** vterm
 
 #+begin_src emacs-lisp
-  (use-package evil-nerd-commenter
-    :bind ("M-/" . evilnc-comment-or-uncomment-lines))
+  (use-package vterm
+    :config
+    ;; Disable so it doesn't conflict with centaur-tabs
+    ;; buffer switching
+    (define-key vterm-mode-map (kbd "C-e") nil)
+    (define-key vterm-mode-map (kbd "C-n") nil)
+    :load-path  "~/Code/emacs-libvterm/")
 #+end_src
 
-** Autocomplete
+** popper
 
 #+begin_src emacs-lisp
-  (use-package company
-    :after lsp-mode
-    :hook (lsp-mode . company-mode)
-    :bind
-    (:map company-active-map
-	  ("<tab>" . company-complete-selection))
-    (:map lsp-mode-map
-	  ("<tab>" . company-indent-or-complete-common))
+    (use-package popper
+      :ensure t ; or :straight t
+      :bind (("C-`"   . popper-toggle-latest)
+             ("M-`"   . popper-cycle)
+             ("C-M-`" . popper-toggle-type))
+      :init
+      (setq popper-mode-line t
+            popper-display-control 'user
+            popper-reference-buffers
+            '("\\*vterm\\*"
+              "Output\\*$"
+              "*rspec-compilation*"
+              "\\*Async Shell Command\\*"
+              help-mode
+              term-mode
+              vterm-mode
+              eshell-mode
+              shell-mode
+              compilation-mode))
+      (popper-mode +1)
+      (popper-echo-mode +1))
+
+#+end_src
+
+** yasnippet
+
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :config
+    (yas-global-mode 1))
+#+end_src
+
+** eshell
+
+#+begin_src emacs-lisp
+  (defun theof/configure-eshell ()
+    (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
+
+    ;; truncate the buffer for performance
+    (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
+
+    (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'counsel-esh-history)
+    (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
+    (evil-normalize-keymaps)
+
+    (setq eshell-history-size 10000
+          eshell-buffer-maximum-lines 10000
+          eshell-hist-ignoredups t
+          eshell-scroll-to-bottom-on-input t))
+
+  (use-package eshell-git-prompt)
+
+  (use-package eshell
+    :hook (eshell-first-time-mode . theof/configure-eshell))
+#+end_src
+
+** corfu
+
+A small completion package that leverages Emacs' completion facilities and concentrates
+on providing a polished completion UI.
+
+#+begin_src emacs-lisp
+  (use-package corfu
     :custom
-    (company-minimum-prefix-length 1)
-    (company-idle-delay 0.0))
+    (corfu-auto t)
+    (corfu-preselect-first nil)
+    (corfu-quit-at-boundary t) 
+    ;; (corfu-commit-predicate t)
+    (corfu-quit-no-match t)
+    (corfu-auto-delay 0)
+    :hook ((prog-mode . corfu-mode)
+           (shell-mode . corfu-mode)
+           (eshell-mode . corfu-mode))
+    :bind
+    (:map corfu-map
+          ("TAB" . corfu-next)
+          ([tab] . corfu-next)
+          ("S-TAB" . corfu-previous)
+          ([backtab] . corfu-previous))
 
-  (use-package company-box
-    :hook (company-mode . company-box-mode))
+    :init
+    (corfu-global-mode))
 #+end_src
 
-** LSP
+*** cape
+
+Cape provides a bunch of Completion At Point Functions (CAPFs) which is be
+used by Corfu to offer completions.
+
+#+begin_src emacs-lisp
+  (use-package cape
+    :init
+    (add-to-list 'completion-at-point-functions #'cape-file)
+    (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+    (add-to-list 'completion-at-point-functions #'cape-keyword)
+    (add-to-list 'completion-at-point-functions #'cape-abbrev)
+    (add-to-list 'completion-at-point-functions #'cape-symbol))
+#+end_src
+
+*** kind-icon
+
+This emacs package adds configurable icon or text-based completion prefixes based
+on the :company-kind property that many completion backends (such as lsp-mode and
+Emacs 28's elisp-mode) provide.
+
+#+begin_src emacs-lisp
+  (use-package kind-icon
+    :after corfu
+    :custom
+    (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+    :config
+    (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+#+end_src
+
+** embark
+
+Typically if you want to perform an action, you'd call a function associated
+with said action and then proceed to pick a target (when there is one).
+
+Embark flips this on its head and lets you perform an action that is associated
+with the thing on have your cursor on.
+
+For instance, I can use =find-file= to pick a file as normal, but then instead of
+pressing =RET= to open the file, I can press =C-.= which will give me some options
+of actions associated with a =filename= type, such as =delete=, =chown= etc.
+
+[[https://karthinks.com/software/fifteen-ways-to-use-embark/][Here]] are some great ways to use embark.
+
+#+begin_src emacs-lisp
+  (use-package embark
+    :bind
+    (("C-." . embark-act)
+     ("C-;" . embark-become)
+     ("C-h B" . embark-bindings))
+    :init
+    (setq prefix-help-command #'embark-prefix-help-command)
+    :config
+
+    (add-to-list 'display-buffer-alist
+                 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                   nil
+                   (window-parameters (mode-line-format . none)))))
+
+  (use-package embark-consult
+    :after (embark consult)
+    :demand t
+    :hook
+    (embark-collect-mode . consult-preview-at-point-mode))
+#+end_src
+
+** lsp
 
 #+begin_src emacs-lisp
   (use-package lsp-mode
-    :commands (lsp lsp-deferred)
-    :init
-    (setq lsp-keymap-prefix "C-c l")
-    :config
-    (lsp-enable-which-key-integration t))
+    :hook
+    (go-mode . lsp)
+    (ruby-mode . lsp)
+    (lsp-mode . lsp-enable-which-key-integration)
+    :commands lsp)
 
   (use-package lsp-ui
-    :hook (lsp-mode . lsp-ui-mode)
-    :custom
-    (lsp-ui-doc-position 'bottom))
+    :commands lsp-ui-mode)
 #+end_src
 
-** Ruby
+** ruby
 
 #+begin_src emacs-lisp
-  (use-package ruby-mode
-  :mode "\\.rb\\'"
-  :mode "Rakefile\\'"
-  :mode "Gemfile\\'"
-  :mode "Berksfile\\'"
-  :mode "Vagrantfile\\'"
-  :interpreter "ruby"
+  (use-package inf-ruby)
+  (use-package ruby-mode)
 
-  :init
-  (setq ruby-indent-level 2
-	ruby-indent-tabs-mode nil)
-  (add-hook 'ruby-mode 'superword-mode)
+  (use-package rspec-mode
+    :config
+    (eval-after-load 'rspec-mode
+      '(rspec-install-snippets))
 
-  :bind
-  (([(meta down)] . ruby-forward-sexp)
-   ([(meta up)]   . ruby-backward-sexp)
-   (("C-c C-e"    . ruby-send-region))))
-
-  (use-package web-mode
-  :mode "\\.erb\\'")
-
-  (use-package yari
-  :init
-  (add-hook 'ruby-mode-hook
-	    (lambda ()
-	      (local-set-key [f1] 'yari))))
-
-  (use-package inf-ruby
-  :init
-  (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode))
+    ;; switch to inf-ruby when a binding.pry is found
+    (add-hook 'after-init-hook 'inf-ruby-switch-setup))
 #+end_src
 
-# Local Variables:
-# eval: (add-hook 'after-save-hook (lambda ()(org-babel-tangle)) nil t)
-# End:
+** go
+
+#+begin_src emacs-lisp
+  (use-package go-mode)
+#+end_src
