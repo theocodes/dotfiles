@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: (co-author)
-# key: co-author
-# --
-Co-authored-by: ${1:Name} <${0:Email}>
