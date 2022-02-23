@@ -1,7 +1,8 @@
 # prompt
 eval "$(starship init zsh)"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+source /opt/homebrew/opt/asdf/libexec/asdf.sh
+export PATH=$PATH:/opt/homebrew/bin:/opt/homebrew/opt/postgresql@12/bin
 
 alias a="asdf"
 alias e="$EDITOR"
@@ -12,6 +13,7 @@ alias ..="cd .."
 alias lg="lazygit"
 alias j="z"
 alias work="tmux new-session -A -s work"
+alias play="tmux new-session -A -s play"
 alias be="bundle exec"
 
 # history
@@ -30,3 +32,6 @@ source $HOME/.config/zsh/plugins.zsh
 
 # enable autocomplete
 autoload -Uz compinit && compinit
+
+# enable fzf goodness
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
