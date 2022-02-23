@@ -400,7 +400,7 @@ Fuzzy finding package that doesn't care about order.
         completion-category-overrides '((file (styles partial-completion)))))
 #+end_src
 
-*** Practical commands
+Practical commands.
 
 #+begin_src emacs-lisp
 (use-package consult)
@@ -586,8 +586,6 @@ on providing a polished completion UI.
   (corfu-global-mode))
 #+end_src
 
-*** cape
-
 Cape provides a bunch of Completion At Point Functions (CAPFs) which is be
 used by Corfu to offer completions.
 
@@ -600,8 +598,6 @@ used by Corfu to offer completions.
   (add-to-list 'completion-at-point-functions #'cape-abbrev)
   (add-to-list 'completion-at-point-functions #'cape-symbol))
 #+end_src
-
-*** kind-icon
 
 This emacs package adds configurable icon or text-based completion prefixes based
 on the :company-kind property that many completion backends (such as lsp-mode and
@@ -669,18 +665,22 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 ** ruby
 
 #+begin_src emacs-lisp
-(use-package inf-ruby)
 (use-package ruby-mode
-  :config				;
+  :mode "\\.\\(?:a?rb\\|aslsx\\)\\'"
+  :mode "/\\(?:Brew\\|Fast\\)file\\'"
+  :interpreter "j?ruby\\(?:[0-9.]+\\)"
+  :config
   (setq ruby-insert-encoding-magic-comment nil))
+
+(use-package inf-ruby
+  :config
+  (add-hook 'compilation-filter-hook 'inf-ruby-auto-enter)
+  (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode))
 
 (use-package rspec-mode
   :config
   (eval-after-load 'rspec-mode
-    '(rspec-install-snippets))
-
-  ;; switch to inf-ruby when a binding.pry is found
-  (add-hook 'after-init-hook 'inf-ruby-switch-setup))
+    '(rspec-install-snippets)))
 #+end_src
 
 ** go
