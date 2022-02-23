@@ -51,8 +51,13 @@ return packer.startup(function(use)
   use "thoughtbot/vim-rspec"                   -- Quickly run specs
   use "axelf4/vim-strip-trailing-whitespace"   -- Trim whitespace
 
+  -- gdscript support
+  use "habamax/vim-godot"
+
   -- Colorschemes
   use 'tanvirtin/monokai.nvim'
+  use 'projekt0n/github-nvim-theme'
+  use 'navarasu/onedark.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"                       -- The completion plugin
