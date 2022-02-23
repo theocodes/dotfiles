@@ -98,8 +98,10 @@ normal("<leader>hs", ":sp<CR>")
 normal("<leader>op", ":NvimTreeToggle<CR>")
 
 -- Move between buffers
-normal("H", ":BufferLineCyclePrev<CR>")
-normal("L", ":BufferLineCycleNext<CR>")
+-- normal("H", ":BufferLineCyclePrev<CR>")
+normal("H", ":bprev<CR>")
+-- normal("L", ":BufferLineCycleNext<CR>")
+normal("L", ":bnext<CR>")
 
 -- Toggle terminal
 normal("<C-o>", ":ToggleTerm<CR>")

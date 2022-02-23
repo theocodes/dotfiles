@@ -43,7 +43,6 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim"                    -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim"                  -- Useful lua functions used by lots of plugins
   use "rstacruz/vim-closer"                    -- Automagically close things
-  use "akinsho/bufferline.nvim"                -- Display buffers and tabs
   use "terrortylor/nvim-comment"               -- Commeting goodness
   use "lewis6991/gitsigns.nvim"                -- Nice git integrations with buffers
   use "akinsho/toggleterm.nvim"                -- Togglable term used for lazygit etc
