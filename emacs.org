@@ -128,7 +128,7 @@ Disable lock files.
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; find in file
-(global-set-key (kbd "C-s") 'consult-line)
+(global-set-key (kbd "C-s") 'swiper)
 
 ;; paste with CMD-v
 (global-set-key (kbd "M-v") 'yank)
@@ -172,6 +172,12 @@ Highlights the entire elisp expression when point on delimeters.
 #+begin_src emacs-lisp
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
+#+end_src
+
+** Change "yes or no" to "y or n"
+
+#+begin_src emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
 #+end_src
 
 * Packages
@@ -271,9 +277,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 ** doom-themes
 
 #+begin_src emacs-lisp
-(use-package doom-themes
-  :config
-  (load-theme 'doom-one t))
+(use-package doom-themes)
 #+end_src
 
 ** modus-themes
@@ -284,13 +288,14 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   ;; Add all your customizations prior to loading the themes
   (setq modus-themes-italic-constructs t
         modus-themes-bold-constructs nil
+	     modus-themes-org-blocks 'gray-background
         modus-themes-region '(bg-only no-extend))
 
   ;; Load the theme files before enabling a theme
   (modus-themes-load-themes)
   :config
   ;; Load the theme of your choice:
-  ;; (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
+  (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
   :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 
@@ -353,57 +358,74 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   (evil-commentary-mode))
 #+end_src
 
-** vertico
-
-The completion engine.
+** ivy
 
 #+begin_src emacs-lisp
-(use-package vertico
-  :bind (:map vertico-map
-              ("C-j" . vertico-next)
-              ("C-k" . vertico-previous)
-              ("C-f" . vertico-exit)
-              :map minibuffer-local-map
-              ("M-h" . backward-kill-word))
+(use-package ivy
+  :diminish
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package ivy-rich
+  :after ivy
+  :init
+  (ivy-rich-mode 1))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package ivy-prescient
+  :after counsel
   :custom
-  (vertico-cycle t)
-  :init
-  (vertico-mode))
+  (ivy-prescient-enable-filtering nil)
+  :config
+  ;; Uncomment the following line to have sorting remembered across sessions!
+  (prescient-persist-mode 1)
+  (ivy-prescient-mode 1))
 #+end_src
 
-Save completion history.
+** counsel
 
 #+begin_src emacs-lisp
-(use-package savehist
-  :init
-  (savehist-mode))
-#+end_src
-
-Extra context for completions.
-
-#+begin_src emacs-lisp
-(use-package marginalia
-  :after vertico
+(use-package counsel
+  :bind (("C-M-j" . 'counsel-switch-buffer)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history))
   :custom
-  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
-  :init
-  (marginalia-mode))
+  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
+  :config
+  (counsel-mode 1))
 #+end_src
 
-Fuzzy finding package that doesn't care about order.
+** helpful
+
+Helpful is an alternative to the built-in Emacs help that provides much more contextual information.
 
 #+begin_src emacs-lisp
-(use-package orderless
-  :init
-  (setq completion-styles '(orderless)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
-#+end_src
-
-Practical commands.
-
-#+begin_src emacs-lisp
-(use-package consult)
+(use-package helpful
+  :commands (helpful-callable helpful-variable helpful-command helpful-key)
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
 #+end_src
 
 ** rainbow-delimeters
@@ -445,7 +467,11 @@ Useful tool to remind me of keymaps.
     "nt" '(org-roam-dailies-goto-today :which-key "go to today")
 
     "f"  '(:ignore t :which-key "files")
-    "fr" '(consult-recent-file :which-key "open a recent file")
+    "fr" '(counsel-recentf :which-key "open a recent file")
+
+    "w"  '(:ignore t :which-key "window")
+    "wsh" '(evil-window-split :which-key "split window horizontally")
+    "wsv" '(evil-window-vsplit :which-key "split window vertically")
 
     "m"  '(:ignore t :which-key "local")
     "mt"  '(:ignore t :which-key "tests")
@@ -454,7 +480,7 @@ Useful tool to remind me of keymaps.
     "mta"  '(rspec-verify-all :which-key "run all specs")
 
     "b"  '(:ignore t :which-key "buffers")
-    "bb" '(consult-buffer :which-key "list and find buffer")
+    "bb" '(counsel-switch-buffer :which-key "list and find buffer")
     "bd" '(kill-current-buffer :which-key "kill current buffer")
 
     "p"  '(:ignore t :which-key "project")
@@ -468,9 +494,10 @@ Useful tool to remind me of keymaps.
     "gb" '(magit-branch :which-key "branch actions")
     "gg" '(magit :which-key "magit status")
 
+    "*"   '(counsel-rg :which-key "search in project")
     "TAB" '(evil-switch-to-windows-last-buffer :which-key "switch to last buffer")
     "SPC" '(dired-jump :which-key "dired on current directory")
-    "."  '(find-file :which-key "find file")))
+    "."   '(find-file :which-key "find file")))
 #+end_src
 
 ** magit
@@ -654,7 +681,7 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 (use-package lsp-mode
   :hook
   (go-mode . lsp)
-  (ruby-mode . lsp)
+  ;(ruby-mode . lsp)
   (lsp-mode . lsp-enable-which-key-integration)
   :commands lsp)
 
@@ -681,6 +708,8 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
   :config
   (eval-after-load 'rspec-mode
     '(rspec-install-snippets)))
+
+(use-package haml-mode)
 #+end_src
 
 ** go
@@ -688,3 +717,14 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 #+begin_src emacs-lisp
 (use-package go-mode)
 #+end_src
+
+** git-gutter
+
+#+begin_src emacs-lisp
+(use-package git-gutter
+  :custom
+  (git-gitter:visual-line t)
+  :config
+  (global-git-gutter-mode +1))
+#+end_src
+
