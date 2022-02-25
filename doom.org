@@ -44,7 +44,7 @@
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
-       ;;(format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
        multiple-cursors  ; editing in many places at once
@@ -158,12 +158,12 @@
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       ;;web               ; the tubes
+       web               ; the tubes
        yaml              ; JSON, but readable
        ;;zig               ; C, but simpler
 
        :email
-       (mu4e +org)
+       ;; (mu4e +org)
        ;;notmuch
        ;;(wanderlust +gmail)
 
@@ -347,27 +347,3 @@ Emacs 28's elisp-mode) provide.
   (modus-themes-load-vivendi))
 #+end_src
 
-** mu4e
-
-#+begin_src emacs-lisp :tangle ~/.doom.d/config.el
-(setq user-full-name "Theo Felippe")
-(setq user-mail-address "iam@theocodes.com")
-(setq mu4e-get-mail-command "mbsync -a")
-(setq mu4e-update-interval (* 3 60))
-(setq mu4e-change-filenames-when-moving t)
-(setq mu4e-drafts-folder "/Drafts")
-(setq mu4e-sent-folder "/Sent")
-(setq mu4e-attachments-dir "~/Downloads")
-(setq mu4e-trash-folder "/Trash")
-(setq message-send-mail-function 'smtpmail-send-it)
-(setq smtpmail-default-smtp-server "smtp.fastmail.com")
-(setq smtpmail-smtp-server "smtp.fastmail.com")
-(setq mu4e-maildir-shortcuts
-      '(("/INBOX" . ?i)
-        ("/Sent" . ?s)
-        ("/Drafts" . ?d)
-        ("/INBOX/notifications" . ?n)
-        ("/INBOX/theonotdore" . ?g)
-        ("/INBOX/theocodes" . ?t)
-        ("/INBOX/easol" . ?e)))
-#+end_src

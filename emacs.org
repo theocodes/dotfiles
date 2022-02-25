@@ -81,7 +81,7 @@ displayed as a popup as set by the above =display-buffer-alist= entry.
 ** Fonts
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "Iosevka" :height 160)
+(set-face-attribute 'default nil :font "Iosevka" :height 170)
 #+end_src
 
 ** UI
@@ -171,7 +171,7 @@ Highlights the entire elisp expression when point on delimeters.
 
 #+begin_src emacs-lisp
 (show-paren-mode 1)
-(setq show-paren-style 'expression)
+(setq show-paren-style 'parenthesis)
 #+end_src
 
 ** Change "yes or no" to "y or n"
@@ -277,7 +277,9 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 ** doom-themes
 
 #+begin_src emacs-lisp
-(use-package doom-themes)
+(use-package doom-themes
+  :config
+  (load-theme 'doom-snazzy t))
 #+end_src
 
 ** modus-themes
@@ -295,7 +297,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   (modus-themes-load-themes)
   :config
   ;; Load the theme of your choice:
-  (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
+  ;; (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
   :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 
@@ -340,6 +342,14 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   :after evil
   :config
   (evil-collection-init))
+
+(use-package undo-tree
+  :ensure t
+  :after evil
+  :diminish
+  :config
+  (evil-set-undo-system 'undo-tree)
+  (global-undo-tree-mode 1))
 #+end_src
 
 ** evil-multiedit
@@ -377,6 +387,11 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
+  (setq ivy-height 20)
+  (setq ivy-initial-inputs-alist
+	'(
+	 (counsel-M-x . "")
+	 (counsel-describe-symbol . "")))
   (ivy-mode 1))
 #+end_src
 
@@ -393,7 +408,6 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   :custom
   (ivy-prescient-enable-filtering nil)
   :config
-  ;; Uncomment the following line to have sorting remembered across sessions!
   (prescient-persist-mode 1)
   (ivy-prescient-mode 1))
 #+end_src
@@ -405,29 +419,27 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   :bind (("C-M-j" . 'counsel-switch-buffer)
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history))
-  :custom
-  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
   :config
   (counsel-mode 1))
 #+end_src
-
+         
 ** helpful
-
+         
 Helpful is an alternative to the built-in Emacs help that provides much more contextual information.
-
+         
 #+begin_src emacs-lisp
-(use-package helpful
-  :commands (helpful-callable helpful-variable helpful-command helpful-key)
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
+;; (use-package helpful
+;;   :commands (helpful-callable helpful-variable helpful-command helpful-key)
+;;   :custom
+;;   (counsel-describe-function-function #'helpful-callable)
+;;   (counsel-describe-variable-function #'helpful-variable)
+;;   :bind  
+;;   ([remap describe-function] . counsel-describe-function)
+;;   ([remap describe-command] . helpful-command)
+;;   ([remap describe-variable] . counsel-describe-variable)
+;;   ([remap describe-key] . helpful-key))
 #+end_src
-
+         
 ** rainbow-delimeters
 
 Show matching colors for delimeters to make it easier to spot open/close pairs.
@@ -435,6 +447,15 @@ Show matching colors for delimeters to make it easier to spot open/close pairs.
 #+begin_src emacs-lisp
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+
+** smartparens
+
+#+begin_src emacs-lisp
+(use-package smartparens
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-mode 1))
 #+end_src
 
 ** which-key
@@ -480,7 +501,7 @@ Useful tool to remind me of keymaps.
     "mta"  '(rspec-verify-all :which-key "run all specs")
 
     "b"  '(:ignore t :which-key "buffers")
-    "bb" '(counsel-switch-buffer :which-key "list and find buffer")
+    "bb" '(consult-buffer :which-key "list and find buffer")
     "bd" '(kill-current-buffer :which-key "kill current buffer")
 
     "p"  '(:ignore t :which-key "project")
@@ -494,7 +515,7 @@ Useful tool to remind me of keymaps.
     "gb" '(magit-branch :which-key "branch actions")
     "gg" '(magit :which-key "magit status")
 
-    "*"   '(counsel-rg :which-key "search in project")
+    "*"   '(consult-grep :which-key "search in project")
     "TAB" '(evil-switch-to-windows-last-buffer :which-key "switch to last buffer")
     "SPC" '(dired-jump :which-key "dired on current directory")
     "."   '(find-file :which-key "find file")))
@@ -715,16 +736,17 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 ** go
 
 #+begin_src emacs-lisp
-(use-package go-mode)
+(use-package go-mode
+  :config
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (setq gofmt-command "goimports"))
 #+end_src
 
-** git-gutter
+** diff-hl
 
 #+begin_src emacs-lisp
-(use-package git-gutter
-  :custom
-  (git-gitter:visual-line t)
+(use-package diff-hl
   :config
-  (global-git-gutter-mode +1))
+  (global-diff-hl-mode))
 #+end_src
 
