@@ -4,3 +4,6 @@ config/nvim/plugin
 .config/fish/fish_variables
 .config/nvim/plugin
 .doom.d/custom.el
+fish/functions/_fzf*
+fish/functions/fzf*
+fish/functions/fisher*

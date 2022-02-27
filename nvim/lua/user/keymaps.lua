@@ -72,7 +72,7 @@ normal("q", ":q!<CR>")
 normal("<leader>lsp", ":LspInstallInfo<CR>")
 
 -- Fuzzy files in current project
-normal("<C-p>", "<cmd>Telescope fd<cr>")
+normal("<C-p>", "<cmd>Telescope find_files<cr>")
 normal("<leader>pf", "<cmd>Telescope fd<cr>")
 
 -- Fuzzy current buffer
@@ -100,10 +100,10 @@ normal("<leader>op", ":NvimTreeToggle<CR>")
 normal("<leader>theme", ":Telescope colorscheme<CR>")
 
 -- Move between buffers
--- normal("H", ":BufferLineCyclePrev<CR>")
-normal("H", ":bprev<CR>")
--- normal("L", ":BufferLineCycleNext<CR>")
-normal("L", ":bnext<CR>")
+normal("H", ":BufferLineCyclePrev<CR>")
+normal("L", ":BufferLineCycleNext<CR>")
+-- normal("H", ":bprev<CR>")
+-- normal("L", ":bnext<CR>")
 
 -- Toggle terminal
 normal("<C-o>", ":ToggleTerm<CR>")
