@@ -5,6 +5,7 @@ function fish_greeting; end
 set -x DOTFILES $HOME/dotfiles
 set -x EDITOR "nvim"
 set -x GOPATH $HOME/go
+set -x CARGOPATH $HOME/.cargo
 
 # ABBREVIATIONS
 abbr e $EDITOR
@@ -23,6 +24,7 @@ abbr dev ./scripts/dev
 # PATH
 fish_add_path $DOTFILES/bin
 fish_add_path $GOPATH/bin
+fish_add_path $CARGOPATH/bin
 
 # PLATFORM SPECIFIC
 switch (uname)

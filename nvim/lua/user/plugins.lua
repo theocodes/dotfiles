@@ -50,13 +50,13 @@ return packer.startup(function(use)
   use "thoughtbot/vim-rspec"                   -- Quickly run specs
   use "axelf4/vim-strip-trailing-whitespace"   -- Trim whitespace
 
-  -- gdscript support
-  use "habamax/vim-godot"
-
   -- Colorschemes
   use 'tanvirtin/monokai.nvim'
   use 'projekt0n/github-nvim-theme'
   use 'navarasu/onedark.nvim'
+  use 'rafi/awesome-vim-colorschemes'
+  use 'andreypopp/vim-colors-plain'
+  use 'chriskempson/base16-vim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"                       -- The completion plugin
@@ -81,6 +81,9 @@ return packer.startup(function(use)
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "p00f/nvim-ts-rainbow"
+
+  -- rust  use "habamax/vim-godot"
+  use "simrat39/rust-tools.nvim"
 
   -- Sidebar explorer
   use {

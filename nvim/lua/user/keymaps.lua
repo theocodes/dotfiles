@@ -97,6 +97,8 @@ normal("<leader>hs", ":sp<CR>")
 -- Toggle sidebar explorer
 normal("<leader>op", ":NvimTreeToggle<CR>")
 
+normal("<leader>theme", ":Telescope colorscheme<CR>")
+
 -- Move between buffers
 -- normal("H", ":BufferLineCyclePrev<CR>")
 normal("H", ":bprev<CR>")

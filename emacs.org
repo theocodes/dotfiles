@@ -40,7 +40,7 @@ while selecting the window being opened.
   (select-window  (display-buffer-in-side-window buffer alist)))
 #+end_src
 
-** theocodes/vterm-popup
+** theocodes/vterm-popup-toggle
 
 This entry sets up so that all buffers ending in "popup" display
 at the bottom of the screen and only takes 30% of the screen.
@@ -63,12 +63,22 @@ The function which can be called interactively creates an instance of
 displayed as a popup as set by the above =display-buffer-alist= entry.
 
 #+begin_src emacs-lisp
-(defun theocodes/vterm-popup ()
+(defun theocodes/vterm-popup-toggle ()
   (interactive)
   (let ((buf (get-buffer "vterm-popup")))
     (if buf
 	(popper-toggle-latest)
       (vterm "vterm-popup"))))
+#+end_src
+
+** theocodes/vterm-toggle
+
+#+begin_src emacs-lisp
+(defun theocodes/vterm-toggle ()
+  (interactive)
+  (if (string= (buffer-name) "*vterm*")
+      (evil-switch-to-windows-last-buffer)
+    (vterm)))
 #+end_src
 
 * Configuration
@@ -81,7 +91,7 @@ displayed as a popup as set by the above =display-buffer-alist= entry.
 ** Fonts
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "Iosevka" :height 170)
+(set-face-attribute 'default nil :font "Iosevka Nerd Font Mono" :height 160)
 #+end_src
 
 ** UI
@@ -137,7 +147,8 @@ Disable lock files.
 (global-set-key (kbd "C-p") 'projectile-find-file)
 
 ;; toggle vterm popup
-(global-set-key (kbd "M-i") 'theocodes/vterm-popup)
+(global-set-key (kbd "M-i") 'theocodes/vterm-popup-toggle)
+(global-set-key (kbd "M-I") 'theocodes/vterm-toggle)
 #+end_src
 
 ** Window Management
@@ -178,6 +189,12 @@ Highlights the entire elisp expression when point on delimeters.
 
 #+begin_src emacs-lisp
 (fset 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+** Tab width
+
+#+begin_src emacs-lisp
+(setq js-indent-level 2)
 #+end_src
 
 * Packages
@@ -271,8 +288,8 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 ** doom-modeline
 
 #+begin_src emacs-lisp
-(use-package doom-modeline
-  :init (doom-modeline-mode 1))
+;; (use-package doom-modeline
+;;   :init (doom-modeline-mode 1))
 #+end_src
 ** doom-themes
 
@@ -547,11 +564,12 @@ Useful tool to remind me of keymaps.
 #+begin_src emacs-lisp
 (use-package vterm
   :config
-  ;; Disable so it doesn't conflict with centaur-tabs
-  ;; buffer switching
+  ;; disable so it doesn't conflict with others
   (define-key vterm-mode-map (kbd "C-e") nil)
   (define-key vterm-mode-map (kbd "C-n") nil)
   (define-key vterm-mode-map (kbd "M-i") nil)
+  (define-key vterm-mode-map (kbd "M-I") nil)
+  (define-key vterm-mode-map (kbd "M-v") nil)
   :load-path  "~/Code/emacs-libvterm/")
 #+end_src
 
@@ -700,14 +718,33 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 
 #+begin_src emacs-lisp
 (use-package lsp-mode
+  :commands lsp
+  :custom
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6)
+  (lsp-rust-analyzer-server-display-inlay-hints t)
   :hook
-  (go-mode . lsp)
+  ;; (go-mode . lsp)
+  (rustic-mode . lsp)
   ;(ruby-mode . lsp)
   (lsp-mode . lsp-enable-which-key-integration)
-  :commands lsp)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package lsp-ui
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :custom
+  ;; (lsp-ui-sideline-show-hover t)
+  ;; (lsp-ui-sideline-show-diagnostics t)
+  ;; (lsp-ui-peek-always-show t)
+  (lsp-ui-doc-enable nil))
+#+end_src
+
+** yaml
+
+#+begin_src emacs-lisp
+(use-package yaml-mode)
 #+end_src
 
 ** ruby
@@ -739,7 +776,20 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 (use-package go-mode
   :config
   (add-hook 'before-save-hook 'gofmt-before-save)
+  (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
   (setq gofmt-command "goimports"))
+#+end_src
+
+** rust
+
+#+begin_src emacs-lisp
+(use-package rustic
+  :config
+  (setq lsp-eldoc-hook nil)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-signature-auto-activate nil)
+  (setq rustic-lsp-server 'rust-analyzer)
+  (setq rustic-format-on-save t))
 #+end_src
 
 ** diff-hl
@@ -748,5 +798,12 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 (use-package diff-hl
   :config
   (global-diff-hl-mode))
+#+end_src
+
+** flycheck
+
+#+begin_src emacs-lisp
+(use-package flycheck
+  :init (global-flycheck-mode))
 #+end_src
 
