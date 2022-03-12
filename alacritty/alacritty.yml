@@ -1,16 +1,12 @@
 font:
-  size: 16
-
-  # offset:
-  #   x: 1
+  size: 14
 
   normal:
-    family: "Iosevka Nerd Font Mono"
     style: "Regular"
+    family: "Iosevka Term"
 
   bold:
     family: "Iosevka Nerd Font Mono"
-    # family: "JetBrainsMono Nerd Font"
     style: "Medium"
 
 window:
@@ -39,7 +35,6 @@ key_bindings:
   - { key: Key9,                    mods: Command,              chars: "\x60\x39"          }
   - { key: Key0,                    mods: Command,              chars: "\x60\x30"          }
   - { key: T,                       mods: Command,              chars: "\x60\x63"          }
-  # - { key: W,                       mods: Command,              chars: "\x60\x78"          }
   - { key: W,                       mods: Command,              chars: "\x60\x71"          }
   - { key: Return,                  mods: Command|Shift,        chars: "\x60\x22"          }
   - { key: Return,                  mods: Command,              chars: "\x60\x25"          }
@@ -49,10 +44,8 @@ key_bindings:
   - { key: L,                       mods: Command,              chars: "\x60\x6c"          }
   - { key: D,                       mods: Command,              chars: "\x60\x64"          }
   - { key: D,                       mods: Alt,                  chars: "\x60\x64"          }
-  # - { key: X,                       mods: Control,              chars: "\x66\x67\x0D"      }
   - { key: X,                       mods: Command,              chars: "\x66\x67\x0D"      }
   - { key: Z,                       mods: Command,              chars: "\x1A"              }
-  # - { key: F,                       mods: Control,              chars: "\x06"      }
 
 # the configs not loaded are ignored which works in my favour
 # when sharing config between mac/linux and windows.
@@ -60,4 +53,4 @@ import:
   - ~/.config/alacritty/platform/macos.yml
   - C:\Users\theon\AppData\Roaming\alacritty\platform\wsl.yml
 
-  - ~/.config/alacritty/themes/onedark.yml
+  - ~/.config/alacritty/themes/tomorrow_night_bright.yml
