@@ -12,8 +12,8 @@ alias rel="exec $SHELL"
 alias ..="cd .."
 alias lg="lazygit"
 alias j="z"
-alias work="tmux new-session -A -s work"
-alias play="tmux new-session -A -s play"
+alias work="tmux new-session -A -s WORK"
+alias play="tmux new-session -A -s PLAY"
 alias be="bundle exec"
 
 # history
