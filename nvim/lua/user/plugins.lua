@@ -49,11 +49,12 @@ return packer.startup(function(use)
   use "nvim-lualine/lualine.nvim"              -- Better line
   use "thoughtbot/vim-rspec"                   -- Quickly run specs
   use "axelf4/vim-strip-trailing-whitespace"   -- Trim whitespace
-  use "akinsho/bufferline.nvim"                -- Fancy tabs
   use "maxjacobson/vim-fzf-coauthorship"       -- Get co-authors
   use 'junegunn/fzf'
   use "junegunn/fzf.vim"                       -- Dependency of above
   use "mg979/vim-visual-multi"
+  use "kyazdani42/nvim-web-devicons"
+  use "noib3/nvim-cokeline"
 
   -- Colorschemes
   use 'tanvirtin/monokai.nvim'

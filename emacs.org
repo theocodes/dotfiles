@@ -51,7 +51,7 @@ at the bottom of the screen and only takes 30% of the screen.
                (theocodes/active-side-window)
                (side . bottom)
                (slot . -1)
-               (window-height . 0.50)))
+               (window-height . 0.40)))
 #+end_src
 
 Then I make sure that =popper= picks up buffers ending in "popup"
@@ -81,6 +81,95 @@ displayed as a popup as set by the above =display-buffer-alist= entry.
     (vterm)))
 #+end_src
 
+** +org/insert-item-below and +org/insert-item-above
+
+#+begin_src emacs-lisp
+(defun +org--insert-item (direction)
+  (let ((context (org-element-lineage
+                  (org-element-context)
+                  '(table table-row headline inlinetask item plain-list)
+                  t)))
+    (pcase (org-element-type context)
+      ;; Add a new list item (carrying over checkboxes if necessary)
+      ((or `item `plain-list)
+       (let* ((item
+               (if (eq 'item (org-element-type context))
+                   context
+                 ;; if the context has type `plain-list', find closest item
+                 (let ((struct (org-element-property :structure context)))
+                   (save-excursion
+                     (goto-char
+                      (if (= (point) (org-element-property :begin context))
+                          ;; at the begin of the plain-list, we get the list and
+                          ;; not the item with `org-element-at-point'
+                          (1+ (car (car struct)))
+                        (1+ (car (car (last struct))))))
+                     (org-element-at-point)))))
+              (begin (org-element-property :begin item))
+              (end (org-element-property :end item))
+              (cnts-begin (org-element-property :contents-begin item))
+              (str (string-trim (buffer-substring begin (or cnts-begin end)) "\n+" "[ \t\r\n]+")))
+         (pcase direction
+           (`below
+            (goto-char (max (1- end) (line-end-position)))
+            (insert "\n" str " "))
+           (`above
+            (goto-char (line-beginning-position))
+            (insert str " ")
+            (save-excursion (insert "\n"))))))
+
+      ;; Add a new table row
+      ((or `table `table-row)
+       (pcase direction
+         ('below (save-excursion (org-table-insert-row t))
+                 (org-table-next-row))
+         ('above (save-excursion (org-shiftmetadown))
+                 (+org/table-previous-row))))
+
+      ;; Otherwise, add a new heading, carrying over any todo state, if
+      ;; necessary.
+      (_
+       (let ((level (or (org-current-level) 1)))
+         ;; I intentionally avoid `org-insert-heading' and the like because they
+         ;; impose unpredictable whitespace rules depending on the cursor
+         ;; position. It's simpler to express this command's responsibility at a
+         ;; lower level than work around all the quirks in org's API.
+         (pcase direction
+           (`below
+            (let (org-insert-heading-respect-content)
+              (goto-char (line-end-position))
+              (org-end-of-subtree)
+              (insert "\n" (make-string level ?*) " ")))
+           (`above
+            (org-back-to-heading)
+            (insert (make-string level ?*) " ")
+            (save-excursion (insert "\n"))))
+         (when-let* ((todo-keyword (org-element-property :todo-keyword context))
+                     (todo-type    (org-element-property :todo-type context)))
+           (org-todo
+            (cond ((eq todo-type 'done)
+                   ;; Doesn't make sense to create more "DONE" headings
+                   (car (+org-get-todo-keywords-for todo-keyword)))
+                  (todo-keyword)
+                  ('todo)))))))
+
+    (when (org-invisible-p)
+      (org-show-hidden-entry))
+    (when (and (bound-and-true-p evil-local-mode)
+               (not (evil-emacs-state-p)))
+      (evil-insert 1))))
+
+(defun +org/insert-item-below (count)
+  "Inserts a new heading, table cell or item below the current one."
+  (interactive "p")
+  (dotimes (_ count) (+org--insert-item 'below)))
+
+(defun +org/insert-item-above (count)
+  "Inserts a new heading, table cell or item above the current one."
+  (interactive "p")
+  (dotimes (_ count) (+org--insert-item 'above)))
+#+end_src
+
 * Configuration
 ** Set local variables
 
@@ -91,7 +180,7 @@ displayed as a popup as set by the above =display-buffer-alist= entry.
 ** Fonts
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "Iosevka Nerd Font Mono" :height 160)
+(set-face-attribute 'default nil :font "Iosevka" :height 160)
 #+end_src
 
 ** UI
@@ -158,7 +247,7 @@ Disable lock files.
              '("\\*rspec-compilation\\*"
                (theocodes/active-side-window)
                (side . right)
-               (window-width . 0.5)))
+               (window-width . 0.4)))
 
 (add-to-list 'display-buffer-alist
              '("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\)\\*"
@@ -214,6 +303,9 @@ Emacs and cause issues.
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
   (add-to-list 'org-structure-template-alist '("go" . "src go"))
   (add-to-list 'org-structure-template-alist '("js" . "src javascript"))
+
+  (define-key org-mode-map [remap org-insert-heading-respect-content] '+org/insert-item-below)
+  (define-key org-mode-map [remap org-insert-todo-heading-respect-content] '+org/insert-item-above)
 
   ;; do not put spaces on the left
   (setq org-src-preserve-indentation t)
@@ -288,15 +380,19 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 ** doom-modeline
 
 #+begin_src emacs-lisp
-;; (use-package doom-modeline
-;;   :init (doom-modeline-mode 1))
+(use-package doom-modeline
+  :config
+  (setq doom-modeline-minor-modes nil)
+  :hook (doom-modeline-mode . column-number-mode) 
+  :init (doom-modeline-mode 1))
 #+end_src
+
 ** doom-themes
 
 #+begin_src emacs-lisp
 (use-package doom-themes
   :config
-  (load-theme 'doom-snazzy t))
+  (load-theme 'doom-horizon t))
 #+end_src
 
 ** modus-themes
@@ -307,7 +403,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   ;; Add all your customizations prior to loading the themes
   (setq modus-themes-italic-constructs t
         modus-themes-bold-constructs nil
-	     modus-themes-org-blocks 'gray-background
+	    modus-themes-org-blocks 'gray-background
         modus-themes-region '(bg-only no-extend))
 
   ;; Load the theme files before enabling a theme
@@ -487,6 +583,14 @@ Useful tool to remind me of keymaps.
   (setq which-key-idle-delay 1))
 #+end_src
 
+** centaur-tabs
+
+#+begin_src emacs-lisp
+(use-package centaur-tabs
+  :config
+  (centaur-tabs-mode t))
+#+end_src
+
 ** general
 
 #+begin_src emacs-lisp
@@ -532,7 +636,7 @@ Useful tool to remind me of keymaps.
     "gb" '(magit-branch :which-key "branch actions")
     "gg" '(magit :which-key "magit status")
 
-    "*"   '(consult-grep :which-key "search in project")
+    "*"   '(counsel-ag :which-key "search in project")
     "TAB" '(evil-switch-to-windows-last-buffer :which-key "switch to last buffer")
     "SPC" '(dired-jump :which-key "dired on current directory")
     "."   '(find-file :which-key "find file")))
@@ -782,14 +886,16 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 
 ** rust
 
+*Note* This is currently causing issues with magit O_o
+
 #+begin_src emacs-lisp
-(use-package rustic
-  :config
-  (setq lsp-eldoc-hook nil)
-  (setq lsp-enable-symbol-highlighting nil)
-  (setq lsp-signature-auto-activate nil)
-  (setq rustic-lsp-server 'rust-analyzer)
-  (setq rustic-format-on-save t))
+;; (use-package rustic
+;;   :config
+;;   (setq lsp-eldoc-hook nil)
+;;   (setq lsp-enable-symbol-highlighting nil)
+;;   (setq lsp-signature-auto-activate nil)
+;;   (setq rustic-lsp-server 'rust-analyzer)
+;;   (setq rustic-format-on-save t))
 #+end_src
 
 ** diff-hl
@@ -803,7 +909,7 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 ** flycheck
 
 #+begin_src emacs-lisp
-(use-package flycheck
-  :init (global-flycheck-mode))
+;; (use-package flycheck
+;;   :init (global-flycheck-mode))
 #+end_src
 

@@ -1,129 +1,126 @@
-local map = vim.api.nvim_set_keymap
+local nvim_map = vim.api.nvim_set_keymap
 local term_opts = { noremap = true }
 local opts = { noremap = true, silent = true }
 
-local normal = function(key, action, o)
+local map = function(mode, key, action, o)
   o = o or opts
-  return map("n", key, action, o)
-end
-
-local insert = function(key, action, o)
-  o = o or opts
-  return map("i", key, action, o)
-end
-
-local visual = function(key, action, o)
-  o = o or opts
-  return map("v", key, action, o)
-end
-
-local visual_block = function(key, action, o)
-  o = o or opts
-  return map("x", key, action, o)
+  return vim.api.nvim_set_keymap(mode, key, action, o)
 end
 
 -- Space as leader
-map("", "<Space>", "<Nop>", opts)
+map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 
 -- Window navigation
-normal("<C-h>", "<C-w>h")
-normal("<C-j>", "<C-w>j")
-normal("<C-k>", "<C-w>k")
-normal("<C-l>", "<C-w>l")
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
 
 -- Resize with arrows
-normal("<C-Left>", ":vertical resize -2<cr>")
-normal("<C-Right>", ":vertical resize +2<cr>")
-normal("<C-Up>", ":resize +2<cr>")
-normal("<C-Down>", ":resize -2<cr>")
+map("n", "<C-Left>", ":vertical resize -2<cr>")
+map("n", "<C-Right>", ":vertical resize +2<cr>")
+map("n", "<C-Up>", ":resize +2<cr>")
+map("n", "<C-Down>", ":resize -2<cr>")
 
 -- Explorer
--- normal("<C-o>", ":Lex 30<cr>")
+-- map("n", "<C-o>", ":Lex 30<cr>")
 
 -- Indent selection
-visual("<TAB>", ">gv")
-visual("<S-TAB>", "<gv")
+map("v", "<TAB>", ">gv")
+map("v", "<S-TAB>", "<gv")
 
 -- Move block
-visual_block("J", ":move '>+1<CR>gv-gv")
-visual_block("K", ":move '<-2<CR>gv-gv")
+map("x", "J", ":move '>+1<CR>gv-gv")
+map("x", "K", ":move '<-2<CR>gv-gv")
 
 -- Working with tabs
-normal('tn', ':tabnew<cr>')
-normal('tk', ':tabnext<cr>')
-normal('tj', ':tabprev<cr>')
-normal('to', ':tabo<cr>')
+map("n", 'tn', ':tabnew<cr>')
+map("n", 'tk', ':tabnext<cr>')
+map("n", 'tj', ':tabprev<cr>')
+map("n", 'to', ':tabo<cr>')
 
 -- Run shell command
-normal(';', ':!', term_opts)
+map("n", ';', ':!', term_opts)
 
 -- Clear search highlight
-normal('<C-c>', ':set hlsearch!<CR>')
+map("n", '<C-c>', ':set hlsearch!<CR>')
 
 -- run current spec
 -- vim.api.nvim_set_keymap('n', '<leader>mtv', ':call RunCurrentSpecFile()<CR>', { noremap = true })
 -- vim.api.nvim_set_keymap('n', '<leader>mts', ':call RunNearestSpec()<CR>', { noremap = true })
 
 -- Quit buffer with q
-normal("q", ":q!<CR>")
+map("n", "q", ":q!<CR>")
 
 -- LSP installer gui
-normal("<leader>lsp", ":LspInstallInfo<CR>")
+map("n", "<leader>lsp", ":LspInstallInfo<CR>")
 
 -- Fuzzy files in current project
-normal("<C-p>", "<cmd>Telescope fd<cr>")
-normal("<leader>pf", "<cmd>Telescope fd<cr>")
+map("n", "<C-p>", "<cmd>Telescope fd<cr>")
+map("n", "<leader>pf", "<cmd>Telescope fd<cr>")
 
 -- open recent files
-normal("<leader>fr", "<cmd>Telescope oldfiles<cr>")
+map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>")
 
 -- File browser
-normal("<leader><leader>", ":Telescope file_browser<cr>")
+map("n", "<leader><leader>", ":Telescope file_browser<cr>")
 
 -- Fuzzy current buffer
-normal("<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
+map("n", "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
 
 -- Live grep project
-normal("<leader>*", "<cmd>Telescope live_grep<cr>")
+map("n", "<leader>*", "<cmd>Telescope live_grep<cr>")
 
 -- Fuzzy buffer list
-normal("<leader>bb", "<cmd>Telescope buffers show_all_buffers=true<cr>")
+map("n", "<leader>bb", "<cmd>Telescope buffers show_all_buffers=true<cr>")
 
 -- Kill current buffer
-normal("<leader>bd", ":bd<CR>")
+map("n", "<leader>bd", ":bd<CR>")
 
 -- Last opened buffer
-normal("<leader><TAB>", "<C-^>")
+map("n", "<leader><TAB>", "<C-^>")
 
 -- Split window
-normal("<leader>vs", ":vs<CR>")
-normal("<leader>hs", ":sp<CR>")
+map("n", "<leader>vs", ":vs<CR>")
+map("n", "<leader>hs", ":sp<CR>")
 
 -- Toggle sidebar explorer
-normal("<leader>op", ":NvimTreeToggle<CR>")
+map("n", "<leader>op", ":NvimTreeToggle<CR>")
 
 -- Preview hunk
-normal("<leader>gp", ":Gitsigns preview_hunk<CR>")
+map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>")
 
-normal("<leader>theme", ":Telescope colorscheme<CR>")
-normal("<c-t>", ":Telescope colorscheme<CR>")
-normal("<c-x>", ":Telescope commands<CR>")
+map("n", "<leader>theme", ":Telescope colorscheme<CR>")
+map("n", "<c-x>", ":Telescope commands<CR>")
 
 -- Move between buffers
--- normal("H", ":BufferLineCyclePrev<CR>")
--- normal("L", ":BufferLineCycleNext<CR>")
-normal("H", ":bprev<CR>")
-normal("L", ":bnext<CR>")
+map("n", "H", "<Plug>(cokeline-focus-prev)<CR>")
+map("n", "L", "<Plug>(cokeline-focus-next)<CR>")
 
 -- Toggle terminal
-normal("<C-o>", ":ToggleTerm<CR>")
-normal("<leader>gg", ":lua _LAZYGIT_TOGGLE()<CR>")
-normal("<leader>irb", ":lua _IRB_TOGGLE()<CR>")
-normal("<leader>node", ":lua _NODE_TOGGLE()<CR>")
-normal("<leader>mtv", ":lua _RSPEC_SPEC()<CR>")
+map("n", "<C-o>", ":ToggleTerm<CR>")
+map("n", "<leader>gg", ":lua _LAZYGIT_TOGGLE()<CR>")
+map("n", "<leader>irb", ":lua _IRB_TOGGLE()<CR>")
+map("n", "<leader>cons", ":lua _RAILS_TOGGLE()<CR>")
+map("n", "<leader>mtv", ":lua _RSPEC_SPEC()<CR>")
+map("n", "<leader>mts", ":lua _RSPEC_SPEC_SINGLE()<CR>")
+map("n", "<leader>node", ":lua _NODE_TOGGLE()<CR>")
 
 -- Center screen on insert
 -- vim.cmd("autocmd InsertEnter * norm zz")
 
-
+-- LSP
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+map("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+map("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>")
+map("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+map("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>")
+map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")

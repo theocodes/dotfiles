@@ -5,7 +5,7 @@ require "user.plugins"
 require "user.config.cmp"
 require "user.config.lsp"
 require "user.config.telescope"
--- require "user.config.bufferline"
+require "user.config.cokeline"
 require "user.config.comment"
 require "user.config.gitsigns"
 require "user.config.toggleterm"
@@ -29,4 +29,5 @@ vim.cmd [[ hi GitSignsAdd guibg=NONE guifg=#6ffc03 ]]
 vim.cmd [[ hi GitSignsDelete guibg=NONE guifg=Red ]]
 
 vim.cmd [[ hi EndOfBuffer guibg=NONE guifg=NONE ]]
+vim.cmd [[ hi clear TabLineFill ]]
 
