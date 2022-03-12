@@ -42,3 +42,5 @@ starship init fish | source
 
 # LOAD JUMP
 status --is-interactive; and source (jump shell fish | psub)
+
+fish_default_key_bindings
