@@ -39,7 +39,7 @@ normal("<C-Up>", ":resize +2<cr>")
 normal("<C-Down>", ":resize -2<cr>")
 
 -- Explorer
-normal("<C-o>", ":Lex 30<cr>")
+-- normal("<C-o>", ":Lex 30<cr>")
 
 -- Indent selection
 visual("<TAB>", ">gv")
@@ -72,8 +72,14 @@ normal("q", ":q!<CR>")
 normal("<leader>lsp", ":LspInstallInfo<CR>")
 
 -- Fuzzy files in current project
-normal("<C-p>", "<cmd>Telescope find_files<cr>")
+normal("<C-p>", "<cmd>Telescope fd<cr>")
 normal("<leader>pf", "<cmd>Telescope fd<cr>")
+
+-- open recent files
+normal("<leader>fr", "<cmd>Telescope oldfiles<cr>")
+
+-- File browser
+normal("<leader><leader>", ":Telescope file_browser<cr>")
 
 -- Fuzzy current buffer
 normal("<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
@@ -97,13 +103,18 @@ normal("<leader>hs", ":sp<CR>")
 -- Toggle sidebar explorer
 normal("<leader>op", ":NvimTreeToggle<CR>")
 
+-- Preview hunk
+normal("<leader>gp", ":Gitsigns preview_hunk<CR>")
+
 normal("<leader>theme", ":Telescope colorscheme<CR>")
+normal("<c-t>", ":Telescope colorscheme<CR>")
+normal("<c-x>", ":Telescope commands<CR>")
 
 -- Move between buffers
-normal("H", ":BufferLineCyclePrev<CR>")
-normal("L", ":BufferLineCycleNext<CR>")
--- normal("H", ":bprev<CR>")
--- normal("L", ":bnext<CR>")
+-- normal("H", ":BufferLineCyclePrev<CR>")
+-- normal("L", ":BufferLineCycleNext<CR>")
+normal("H", ":bprev<CR>")
+normal("L", ":bnext<CR>")
 
 -- Toggle terminal
 normal("<C-o>", ":ToggleTerm<CR>")
@@ -113,6 +124,6 @@ normal("<leader>node", ":lua _NODE_TOGGLE()<CR>")
 normal("<leader>mtv", ":lua _RSPEC_SPEC()<CR>")
 
 -- Center screen on insert
-vim.cmd("autocmd InsertEnter * norm zz")
+-- vim.cmd("autocmd InsertEnter * norm zz")
 
 
