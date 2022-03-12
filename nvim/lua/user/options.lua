@@ -26,3 +26,4 @@ vim.opt.fileencoding = "utf-8"               -- Duh
 vim.opt.termguicolors = true                 -- More colors
 vim.opt.mouse = "a"                          -- Allow mouse in all modes
 vim.opt.iskeyword:append "-"                 -- This "asdf-asdf" is treated as a single word
+

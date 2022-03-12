@@ -53,6 +53,7 @@ return packer.startup(function(use)
   use "maxjacobson/vim-fzf-coauthorship"       -- Get co-authors
   use 'junegunn/fzf'
   use "junegunn/fzf.vim"                       -- Dependency of above
+  use "mg979/vim-visual-multi"
 
   -- Colorschemes
   use 'tanvirtin/monokai.nvim'
@@ -81,13 +82,18 @@ return packer.startup(function(use)
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
+  use "nvim-telescope/telescope-file-browser.nvim"
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "p00f/nvim-ts-rainbow"
 
-  -- rust  use "habamax/vim-godot"
+  -- rust
   use "simrat39/rust-tools.nvim"
+
+  -- golang
+  use "fatih/vim-go"
 
   -- Sidebar explorer
   use {
