@@ -3,11 +3,7 @@ if not status_ok then
   return
 end
 
-telescope.load_extension('media_files')
-
 local actions = require "telescope.actions"
-local theme = 'ivy'
-local previewer = false
 
 telescope.setup {
   defaults = {
@@ -83,30 +79,38 @@ telescope.setup {
     },
   },
   pickers = {
-    current_buffer_fuzzy_find = { theme = theme, previewer = previewer },
-    fd = { theme = theme, hidden = true },
-    file_browser = { theme = theme, hidden = true },
-    find_files = { theme = theme, previewer = previewer },
-    -- oldfiles = { theme = theme, previewer = previewer },
-    live_grep = { theme = theme },
-    commands = { theme = theme },
-    git_files = { theme = theme, show_untracked = true, previewer = previewer },
-    git_commits = { theme = theme },
-    git_bcommits = { theme = theme },
-    git_status = { theme = theme },
-    colorscheme = { theme = theme },
-    buffers = { theme = theme, previewer = previewer },
+    current_buffer_fuzzy_find = { },
+    fd = { hidden = true },
+    find_files = {  },
+    oldfiles = {  },
+    live_grep = {  },
+    commands = {  },
+    git_files = { show_untracked = true },
+    -- git_commits = { theme = theme },
+    -- git_bcommits = { theme = theme },
+    -- git_status = { theme = theme },
+    -- colorscheme = { theme = theme },
+    buffers = {  },
   },
   extensions = {
     media_files = {
-        -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-        filetypes = {"png", "webp", "jpg", "jpeg"},
-        find_cmd = "rg" -- find command (defaults to `fd`)
-    }
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
+      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+      filetypes = {"png", "webp", "jpg", "jpeg"},
+      find_cmd = "rg" -- find command (defaults to `fd`)
+    },
+
+    -- See below for querying
+    -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    },
   },
 }
+
+telescope.load_extension("file_browser")
+telescope.load_extension('fzf')
+telescope.load_extension('media_files')
