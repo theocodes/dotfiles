@@ -7,12 +7,12 @@ toggleterm.setup({
 	size = 30,
 	hide_numbers = true,
 	shade_filetypes = {},
-	shade_terminals = true,
+	shade_terminals = false,
 	shading_factor = 2,
 	start_in_insert = true,
 	insert_mappings = true,
 	persist_size = true,
-	direction = "horizontal", -- 'vertical' | 'horizontal' | 'tab' | 'float',
+	direction = "float", -- 'vertical' | 'horizontal' | 'tab' | 'float',
 	close_on_exit = true,
 	shell = vim.o.shell,
 	float_opts = {
@@ -27,7 +27,7 @@ toggleterm.setup({
 
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}
-  -- vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-n>', [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-o>', [[<C-\><C-n><C-W>h]], opts)
 end
@@ -45,14 +45,34 @@ function _IRB_TOGGLE()
 	irb:toggle()
 end
 
+local rails = Terminal:new({ cmd = "rails console", hidden = true })
+function _RAILS_TOGGLE()
+	rails:toggle()
+end
+
 local node = Terminal:new({ cmd = "node", hidden = true })
 function _NODE_TOGGLE()
 	node:toggle()
 end
 
-local file = vim.api.nvim_eval("expand('%')")
-local run_spec = Terminal:new({ cmd = "rspec %", hidden = true, direction = "vertical" })
+local run_spec = function(cmd)
+  return Terminal:new({
+    cmd = cmd,
+    hidden = true,
+    direction = "float",
+    close_on_exit = false
+  })
+end
+
 function _RSPEC_SPEC()
-	-- run_spec:toggle()
-  print("rspec " .. file)
+  local file = vim.api.nvim_eval("expand('%')")
+
+	run_spec("rspec " .. file):toggle()
+end
+
+function _RSPEC_SPEC_SINGLE()
+  local file = vim.api.nvim_eval("expand('%')")
+  local line = vim.api.nvim_eval("line('.')")
+
+	run_spec("rspec " .. file .. ":" .. line):toggle()
 end
