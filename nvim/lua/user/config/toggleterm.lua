@@ -55,6 +55,16 @@ function _NODE_TOGGLE()
 	node:toggle()
 end
 
+local notes = Terminal:new({ cmd = "notes", hidden = true })
+function _NOTES_TOGGLE()
+	notes:toggle()
+end
+
+local journal = Terminal:new({ cmd = "notes today", hidden = true })
+function _JOURNAL_TOGGLE()
+	journal:toggle()
+end
+
 local run_spec = function(cmd)
   return Terminal:new({
     cmd = cmd,

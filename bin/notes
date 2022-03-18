@@ -28,7 +28,7 @@ open_today_journal() {
 }
 
 open_note() {
-  NAME=$(fzf --print-query --reverse --preview 'glow -s dark {}' --preview-window=right,60% | xargs | sed 's/\.md//')
+  NAME=$(fzf --print-query --preview 'glow -s dark {}' --height 100% --preview-window=right,60% | xargs | sed 's/\.md//')
 
   # bail if name is empty
   [ "$NAME" = "" ] && exit 0

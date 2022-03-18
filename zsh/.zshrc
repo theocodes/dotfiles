@@ -21,6 +21,8 @@ alias j="z"
 alias work="tmux new-session -A -s WORK"
 alias play="tmux new-session -A -s PLAY"
 alias be="bundle exec"
+alias n="notes"
+alias nt="notes today"
 
 # history
 HISTFILE=~/.histfile

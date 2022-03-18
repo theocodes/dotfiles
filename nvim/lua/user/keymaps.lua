@@ -114,6 +114,8 @@ map("n", "<leader>cons", ":lua _RAILS_TOGGLE()<CR>")
 map("n", "<leader>mtv", ":lua _RSPEC_SPEC()<CR>")
 map("n", "<leader>mts", ":lua _RSPEC_SPEC_SINGLE()<CR>")
 map("n", "<leader>node", ":lua _NODE_TOGGLE()<CR>")
+map("n", "<leader>nt", ":lua _JOURNAL_TOGGLE()<CR>")
+map("n", "<leader>nf", ":lua _NOTES_TOGGLE()<CR>")
 
 -- Center screen on insert
 -- vim.cmd("autocmd InsertEnter * norm zz")
