@@ -52,28 +52,36 @@ map("n", '<C-c>', ':set hlsearch!<CR>')
 
 -- Quit buffer with q
 map("n", "q", ":q!<CR>")
+-- map("n", "q", ":bd<CR>")
 
 -- LSP installer gui
 map("n", "<leader>lsp", ":LspInstallInfo<CR>")
 
 -- Fuzzy files in current project
-map("n", "<C-p>", "<cmd>Telescope fd<cr>")
-map("n", "<leader>pf", "<cmd>Telescope fd<cr>")
+map("n", "<C-p>", ":GFiles!<CR>")
+map("n", "<leader>pf", ":GFiles!<CR>")
+map("n", "<leader>.", ":Files!<CR>")
+-- map("n", "<C-p>", "<cmd>Telescope fd<cr>")
+-- map("n", "<leader>pf", "<cmd>Telescope fd<cr>")
 
 -- open recent files
-map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>")
+-- map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>")
+map("n", "<leader>fr", ":History!<CR>")
 
 -- File browser
 map("n", "<leader><leader>", ":Telescope file_browser<cr>")
 
 -- Fuzzy current buffer
-map("n", "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
+-- map("n", "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
+map("n", "<C-s>", ":BLines<CR>")
 
 -- Live grep project
-map("n", "<leader>*", "<cmd>Telescope live_grep<cr>")
+-- map("n", "<leader>*", "<cmd>Telescope live_grep<cr>")
+map("n", "<leader>*", ":Ag!<CR>")
 
 -- Fuzzy buffer list
-map("n", "<leader>bb", "<cmd>Telescope buffers show_all_buffers=true<cr>")
+-- map("n", "<leader>bb", "<cmd>Telescope buffers show_all_buffers=true<cr>")
+map("n", "<leader>bb", ":Buffers<CR>")
 
 -- Kill current buffer
 map("n", "<leader>bd", ":bd<CR>")

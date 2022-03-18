@@ -1,8 +1,10 @@
 # assumes github and slash separated plugin names
 github_plugins=(
+  Aloxaf/fzf-tab
   zsh-users/zsh-autosuggestions
   zsh-users/zsh-completions
   zsh-users/zsh-history-substring-search
+  zdharma-continuum/fast-syntax-highlighting
   rupa/z
 
   # must be last

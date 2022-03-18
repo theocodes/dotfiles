@@ -56,6 +56,17 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-web-devicons"
   use "noib3/nvim-cokeline"
 
+  -- Session management
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require('auto-session').setup {
+        log_level = 'info',
+        auto_session_suppress_dirs = {'~/', '~/Projects'}
+      }
+    end
+  }
+
   -- Colorschemes
   use 'tanvirtin/monokai.nvim'
   use 'projekt0n/github-nvim-theme'

@@ -57,8 +57,9 @@ require('lualine').setup {
           readonly = '[-]',
           unnamed = '[No Name]',
         }
-      }
-    }
+      },
+      require('auto-session-library').current_session_name
+    },
   },
 }
 

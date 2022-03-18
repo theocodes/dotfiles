@@ -180,7 +180,7 @@ displayed as a popup as set by the above =display-buffer-alist= entry.
 ** Fonts
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "Iosevka" :height 160)
+(set-face-attribute 'default nil :font "Iosevka" :height 140)
 #+end_src
 
 ** UI
@@ -380,11 +380,11 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 ** doom-modeline
 
 #+begin_src emacs-lisp
-(use-package doom-modeline
-  :config
-  (setq doom-modeline-minor-modes nil)
-  :hook (doom-modeline-mode . column-number-mode) 
-  :init (doom-modeline-mode 1))
+;; (use-package doom-modeline
+;;   :config
+;;   (setq doom-modeline-minor-modes nil)
+;;   :hook (doom-modeline-mode . column-number-mode) 
+;;   :init (doom-modeline-mode 1))
 #+end_src
 
 ** doom-themes
@@ -410,7 +410,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   (modus-themes-load-themes)
   :config
   ;; Load the theme of your choice:
-  ;; (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
+  (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
   :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 
@@ -586,6 +586,35 @@ Useful tool to remind me of keymaps.
 ** centaur-tabs
 
 #+begin_src emacs-lisp
+(defun centaur-tabs-hide-tab (x)
+  "Do no to show buffer X in tabs."
+  (let ((name (format "%s" x)))
+    (or
+     ;; Current window is not dedicated window.
+     (window-dedicated-p (selected-window))
+
+     ;; Buffer name not match below blacklist.
+     (string-prefix-p "*epc" name)
+     (string-prefix-p "*helm" name)
+     (string-prefix-p "*Helm" name)
+     (string-prefix-p "*Compile-Log*" name)
+     (string-prefix-p "*rspec-compilation" name)
+     (string-prefix-p "*lsp" name)
+     (string-prefix-p "*company" name)
+     (string-prefix-p "*Flycheck" name)
+     (string-prefix-p "*tramp" name)
+     (string-prefix-p " *Mini" name)
+     (string-prefix-p "*help" name)
+     (string-prefix-p "*straight" name)
+     (string-prefix-p " *temp" name)
+     (string-prefix-p "*Help" name)
+     (string-prefix-p "*mybuf" name)
+
+     ;; Is not magit buffer.
+     (and (string-prefix-p "magit" name)
+	  (not (file-name-extension name)))
+     )))
+
 (use-package centaur-tabs
   :config
   (centaur-tabs-mode t))
