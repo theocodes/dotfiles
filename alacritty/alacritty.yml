@@ -1,5 +1,5 @@
 font:
-  size: 15
+  size: 16
 
   normal:
     style: "Regular"
@@ -9,8 +9,10 @@ font:
     family: "Iosevka Nerd Font Mono"
     style: "Medium"
 
+decorations: none
 window:
   opacity: 0.96
+  decorations: buttonless
 
 selection:
   save_to_clipboard: true
@@ -47,8 +49,6 @@ key_bindings:
   - { key: X,                       mods: Command,              chars: "\x66\x67\x0D"      }
   - { key: Z,                       mods: Command,              chars: "\x1A"              }
 
-# the configs not loaded are ignored which works in my favour
-# when sharing config between mac/linux and windows.
 import:
   - ~/.config/alacritty/platform/macos.yml
   - C:\Users\theon\AppData\Roaming\alacritty\platform\wsl.yml

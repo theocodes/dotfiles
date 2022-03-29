@@ -1,32 +1,40 @@
+local g = vim.g
+local opt = vim.opt
+
 -- :h options
-vim.opt.backup = false                       -- No backup files
-vim.opt.swapfile = false                     -- No swap files
-vim.opt.clipboard = "unnamedplus"            -- Allow nvim to access clipboard
-vim.opt.cmdheight = 1                        -- Hight of command line
-vim.opt.hlsearch = true                      -- Highlight all matches in search pattern
-vim.opt.expandtab = true                     -- Convert tabs to spaces
-vim.opt.showtabline = 0                      -- Always show tabs
-vim.opt.cursorline = true                    -- Highlight the current line
-vim.opt.undofile = true                      -- Persistent undo
-vim.opt.number = true                        -- Set line numbers
-vim.opt.relativenumber = true                -- Relative line numbers
-vim.opt.signcolumn = "yes"                   -- Always show sign column
-vim.opt.wrap = false                         -- Let long lines be long lines
-vim.opt.scrolloff = 2                        -- Lines to keep above and below cursor
-vim.opt.sidescrolloff = 8                    -- Rumber of columns to left and right cursor
-vim.opt.shiftwidth = 2                       -- Spaces per indentation
-vim.opt.tabstop = 2                          -- Number of spaces per tab
-vim.opt.numberwidth = 4                      -- Width of line numbers column
-vim.opt.splitbelow = true                    -- Horizontal splits below current buffer
-vim.opt.splitright = true                    -- Vertical splits to the right of current buffer
-vim.opt.ignorecase = true                    -- Ignore case on search pattern
-vim.opt.smartcase = true                     -- Override ignorecase if pattern contains Uppercased
-vim.opt.smartindent = true                   -- Smart indenting when breaking to new line
-vim.opt.fileencoding = "utf-8"               -- Duh
-vim.opt.termguicolors = true                 -- More colors
-vim.opt.mouse = "a"                          -- Allow mouse in all modes
-vim.opt.iskeyword:append "-"                 -- This "asdf-asdf" is treated as a single word
+opt.backup = false                       -- No backup files
+opt.swapfile = false                     -- No swap files
+opt.clipboard = "unnamedplus"            -- Allow nvim to access clipboard
+opt.cmdheight = 1                        -- Hight of command line
+opt.hlsearch = true                      -- Highlight all matches in search pattern
+opt.expandtab = true                     -- Convert tabs to spaces
+opt.showtabline = 0                      -- Always show tabs
+opt.cursorline = true                    -- Highlight the current line
+opt.undofile = true                      -- Persistent undo
+opt.number = true                        -- Set line numbers
+opt.relativenumber = true                -- Relative line numbers
+opt.signcolumn = "yes"                   -- Always show sign column
+opt.wrap = false                         -- Let long lines be long lines
+opt.scrolloff = 2                        -- Lines to keep above and below cursor
+opt.sidescrolloff = 8                    -- Rumber of columns to left and right cursor
+opt.shiftwidth = 2                       -- Spaces per indentation
+opt.tabstop = 2                          -- Number of spaces per tab
+opt.numberwidth = 4                      -- Width of line numbers column
+opt.splitbelow = true                    -- Horizontal splits below current buffer
+opt.splitright = true                    -- Vertical splits to the right of current buffer
+opt.ignorecase = true                    -- Ignore case on search pattern
+opt.smartcase = true                     -- Override ignorecase if pattern contains Uppercased
+opt.smartindent = false                   -- Smart indenting when breaking to new line
+opt.fileencoding = "utf-8"               -- Duh
+opt.termguicolors = true                 -- More colors
+opt.mouse = "a"                          -- Allow mouse in all modes
+opt.iskeyword:append "-"                 -- This "asdf-asdf" is treated as a single word
 -- vim.opt.guifont = "Iosevka Term"
-vim.opt.guifont = "Iosevka Nerd Font Mono"
+opt.guifont = "Iosevka Nerd Font Mono"
 
 vim.cmd[[autocmd BufWritePre * :%s/\s\+$//e]]
+
+
+-- g.fzf_layout = { down: "~40%" }
+
+vim.cmd[[let g:fzf_layout = { 'down': '~40%' }]]

@@ -47,7 +47,7 @@ at the bottom of the screen and only takes 30% of the screen.
 
 #+begin_src emacs-lisp
 (add-to-list 'display-buffer-alist
-             '("popup$"
+             '("popup\\*$"
                (theocodes/active-side-window)
                (side . bottom)
                (slot . -1)
@@ -65,10 +65,13 @@ displayed as a popup as set by the above =display-buffer-alist= entry.
 #+begin_src emacs-lisp
 (defun theocodes/vterm-popup-toggle ()
   (interactive)
-  (let ((buf (get-buffer "vterm-popup")))
+  (let ((buf (get-buffer "*vterm-popup*")))
     (if buf
 	(popper-toggle-latest)
-      (vterm "vterm-popup"))))
+      (with-current-buffer (vterm "*vterm-popup*")
+	(vterm-send-string (concat "cd " (projectile-project-root)))
+	(vterm-send-return)
+	(vterm-clear)))))
 #+end_src
 
 ** theocodes/vterm-toggle
@@ -79,6 +82,76 @@ displayed as a popup as set by the above =display-buffer-alist= entry.
   (if (string= (buffer-name) "*vterm*")
       (evil-switch-to-windows-last-buffer)
     (vterm)))
+#+end_src
+
+** theocodes/run-command
+
+Helper function to enable running arbitrary commands in vterm.
+
+#+begin_src emacs-lisp
+(defun theocodes/run-command (buf command)
+  (with-current-buffer (vterm buf)
+    (setq-local vterm-kill-buffer-on-exit nil)
+    (vterm-send-string (concat "cd " (projectile-project-root)))
+    (vterm-send-return)
+    (vterm-clear)
+    (vterm-send-string command)
+    (vterm-send-return)
+    (evil-force-normal-state)))
+#+end_src
+
+** theocodes/rspec-spec
+
+Run the whole spec file in vterm.
+
+#+begin_src emacs-lisp
+(defun theocodes/rspec-spec ()
+  (interactive)
+  (let
+      ((file (file-relative-name buffer-file-name (projectile-project-root))))
+    (with-current-buffer (vterm "*rspec-popup*")
+      (setq-local vterm-kill-buffer-on-exit nil)
+      (vterm-send-string (concat "cd " (projectile-project-root)))
+      (vterm-send-return)
+      (vterm-clear)
+      (vterm-send-string (concat "rspec " file " && exit"))
+      (vterm-send-return)
+      (evil-force-normal-state))))
+#+end_src
+
+** theocodes/rspec-spec-single
+
+Run a single spec in vterm.
+
+#+begin_src emacs-lisp
+(defun theocodes/rspec-spec ()
+  (interactive)
+  (let
+      ((file (file-relative-name buffer-file-name (projectile-project-root)))
+       (line (line-number-at-pos)))
+    (with-current-buffer (vterm "*rspec-popup*")
+      (setq-local vterm-kill-buffer-on-exit nil)
+      (vterm-send-string (concat "cd " (projectile-project-root)))
+      (vterm-send-return)
+      (vterm-clear)
+      (vterm-send-string (concat "rspec " file ":" (number-to-string line) " && exit"))
+      (vterm-send-return)
+      (evil-force-normal-state))))
+#+end_src
+
+** theocodes/irb
+
+Start an IRB session in vterm which closes when exited.
+
+#+begin_src emacs-lisp
+(defun theocodes/irb ()
+  (interactive)
+  (with-current-buffer (vterm "*irb-popup*")
+    (vterm-send-string (concat "cd " (projectile-project-root)))
+    (vterm-send-return)
+    (vterm-clear)
+    (vterm-send-string "irb && exit")
+    (vterm-send-return)))
 #+end_src
 
 ** +org/insert-item-below and +org/insert-item-above
@@ -180,7 +253,7 @@ displayed as a popup as set by the above =display-buffer-alist= entry.
 ** Fonts
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "Iosevka" :height 140)
+(set-face-attribute 'default nil :font "Iosevka Term" :height 160)
 #+end_src
 
 ** UI
@@ -206,6 +279,7 @@ displayed as a popup as set by the above =display-buffer-alist= entry.
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
+
 ** Backup files
 
 Move backup files out of current directory.
@@ -235,9 +309,25 @@ Disable lock files.
 ;; find file the old way
 (global-set-key (kbd "C-p") 'projectile-find-file)
 
-;; toggle vterm popup
+;; kill buffer with Q
+(define-key evil-normal-state-map [remap evil-record-macro] 'kill-current-buffer)
+#+end_src
+
+*** Toggle vterm
+
+#+begin_src emacs-lisp
 (global-set-key (kbd "M-i") 'theocodes/vterm-popup-toggle)
 (global-set-key (kbd "M-I") 'theocodes/vterm-toggle)
+#+end_src
+
+*** Switching perpsectives
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "M-1") '(lambda() (interactive) (persp-switch-by-number 1)))
+(global-set-key (kbd "M-2") '(lambda() (interactive) (persp-switch-by-number 2)))
+(global-set-key (kbd "M-3") '(lambda() (interactive) (persp-switch-by-number 3)))
+(global-set-key (kbd "M-4") '(lambda() (interactive) (persp-switch-by-number 4)))
+(global-set-key (kbd "M-5") '(lambda() (interactive) (persp-switch-by-number 5)))
 #+end_src
 
 ** Window Management
@@ -247,7 +337,7 @@ Disable lock files.
              '("\\*rspec-compilation\\*"
                (theocodes/active-side-window)
                (side . right)
-               (window-width . 0.4)))
+               (window-width . 0.8)))
 
 (add-to-list 'display-buffer-alist
              '("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\)\\*"
@@ -390,9 +480,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 ** doom-themes
 
 #+begin_src emacs-lisp
-(use-package doom-themes
-  :config
-  (load-theme 'doom-horizon t))
+(use-package doom-themes)
 #+end_src
 
 ** modus-themes
@@ -402,9 +490,15 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   :init
   ;; Add all your customizations prior to loading the themes
   (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs nil
-	    modus-themes-org-blocks 'gray-background
-        modus-themes-region '(bg-only no-extend))
+	modus-themes-bold-constructs nil
+	modus-themes-org-blocks 'gray-background
+	modus-themes-subtle-line-numbers t
+	modus-themes-mode-line '(accented borderless (padding . 4) (height . 0.9))
+	modus-themes-hl-line '(underline accented)
+	modus-themes-completions '((matches . (extrabold))
+                                 (selection . (semibold accented))
+                                 (popup . (accented intense)))
+	modus-themes-region '(bg-only no-extend))
 
   ;; Load the theme files before enabling a theme
   (modus-themes-load-themes)
@@ -594,6 +688,7 @@ Useful tool to remind me of keymaps.
      (window-dedicated-p (selected-window))
 
      ;; Buffer name not match below blacklist.
+     (string-prefix-p "*vterm-" name)
      (string-prefix-p "*epc" name)
      (string-prefix-p "*helm" name)
      (string-prefix-p "*Helm" name)
@@ -616,7 +711,12 @@ Useful tool to remind me of keymaps.
      )))
 
 (use-package centaur-tabs
+  ;; :custom
+  ;; (centaur-tabs-change-fonts "arial" 160)
+  :init
+  (setq centaur-tabs-cycle-scope 'tabs)
   :config
+  (centaur-tabs-group-by-projectile-project)
   (centaur-tabs-mode t))
 #+end_src
 
@@ -632,7 +732,7 @@ Useful tool to remind me of keymaps.
 
   (rune/leader-keys
     "n"  '(:ignore t :which-key "notes")
-    "nf"  '(org-roam-node-find :which-key "find or create node")
+    "nf" '(org-roam-node-find :which-key "find or create node")
     "nc" '(org-roam-dailies-capture-today :which-key "capture note")
     "nd" '(org-roam-dailies-goto-date :which-key "go to date")
     "nt" '(org-roam-dailies-goto-today :which-key "go to today")
@@ -646,12 +746,12 @@ Useful tool to remind me of keymaps.
 
     "m"  '(:ignore t :which-key "local")
     "mt"  '(:ignore t :which-key "tests")
-    "mts"  '(rspec-verify-single :which-key "run spec near cursor")
-    "mtv"  '(rspec-verify :which-key "run current spec buffer")
+    "mts"  '(theocodes/rspec-spec-single :which-key "run spec near cursor")
+    "mtv"  '(theocodes/rspec-spec :which-key "run current spec buffer")
     "mta"  '(rspec-verify-all :which-key "run all specs")
 
     "b"  '(:ignore t :which-key "buffers")
-    "bb" '(consult-buffer :which-key "list and find buffer")
+    "bb" '(persp-counsel-switch-buffer :which-key "list and find buffer")
     "bd" '(kill-current-buffer :which-key "kill current buffer")
 
     "p"  '(:ignore t :which-key "project")
@@ -668,6 +768,7 @@ Useful tool to remind me of keymaps.
     "*"   '(counsel-ag :which-key "search in project")
     "TAB" '(evil-switch-to-windows-last-buffer :which-key "switch to last buffer")
     "SPC" '(dired-jump :which-key "dired on current directory")
+    "`"   '(persp-switch :which-key "switch/create perspective")
     "."   '(find-file :which-key "find file")))
 #+end_src
 
@@ -719,7 +820,7 @@ Useful tool to remind me of keymaps.
   (setq popper-mode-line t
         popper-display-control 'user)
   (setq popper-reference-buffers
-	'("popup$"))
+	'("popup\\*$"))
   (popper-mode +1)
   (popper-echo-mode +1))
 
@@ -890,15 +991,15 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
   :config
   (setq ruby-insert-encoding-magic-comment nil))
 
-(use-package inf-ruby
-  :config
-  (add-hook 'compilation-filter-hook 'inf-ruby-auto-enter)
-  (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode))
+;; (use-package inf-ruby
+;;   :config
+;;   (add-hook 'compilation-filter-hook 'inf-ruby-auto-enter)
+;;   (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode))
 
-(use-package rspec-mode
-  :config
-  (eval-after-load 'rspec-mode
-    '(rspec-install-snippets)))
+;; (use-package rspec-mode
+;;   :config
+;;   (eval-after-load 'rspec-mode
+;;     '(rspec-install-snippets)))
 
 (use-package haml-mode)
 #+end_src
@@ -942,3 +1043,11 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 ;;   :init (global-flycheck-mode))
 #+end_src
 
+** perspective
+
+#+begin_src emacs-lisp
+(use-package perspective
+  :bind (("C-x k" . persp-kill-buffer*))
+  :init
+  (persp-mode))
+#+end_src

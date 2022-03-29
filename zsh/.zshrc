@@ -4,6 +4,7 @@ eval "$(starship init zsh)"
 source /opt/homebrew/opt/asdf/libexec/asdf.sh
 export PATH=$PATH:/opt/homebrew/bin:/opt/homebrew/opt/postgresql@12/bin
 export PATH=$PATH:$HOME/dotfiles/bin
+export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
 
 # use ripgrep for fzf
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
@@ -34,6 +35,7 @@ setopt appendhistory
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey "^f" vi-end-of-line
+bindkey -e # disable vi-mode
 
 # enable autocomplete
 autoload -Uz compinit && compinit

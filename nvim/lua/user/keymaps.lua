@@ -107,7 +107,7 @@ map("n", "H", "<Plug>(cokeline-focus-prev)<CR>")
 map("n", "L", "<Plug>(cokeline-focus-next)<CR>")
 
 -- Toggle terminal
-map("n", "<C-o>", ":ToggleTerm<CR>")
+map("n", "<C-\\>", ":ToggleTerm<CR>")
 map("n", "<leader>gg", ":lua _LAZYGIT_TOGGLE()<CR>")
 map("n", "<leader>irb", ":lua _IRB_TOGGLE()<CR>")
 map("n", "<leader>cons", ":lua _RAILS_TOGGLE()<CR>")

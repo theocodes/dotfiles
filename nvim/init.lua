@@ -11,7 +11,7 @@ require "user.config.gitsigns"
 require "user.config.toggleterm"
 require "user.config.lualine"
 require "user.config.treesitter"
--- require "user.config.rust-tools"
+--require "user.config.rust-tools"
 
 -- theme
 -- vim.cmd [[ colorscheme sonokai ]]

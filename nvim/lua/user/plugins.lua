@@ -47,7 +47,6 @@ return packer.startup(function(use)
   use "lewis6991/gitsigns.nvim"                -- Nice git integrations with buffers
   use "akinsho/toggleterm.nvim"                -- Togglable term used for lazygit etc
   use "nvim-lualine/lualine.nvim"              -- Better line
-  use "thoughtbot/vim-rspec"                   -- Quickly run specs
   use "axelf4/vim-strip-trailing-whitespace"   -- Trim whitespace
   use "maxjacobson/vim-fzf-coauthorship"       -- Get co-authors
   use 'junegunn/fzf'
@@ -92,10 +91,10 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer"
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim"
-  use "nvim-telescope/telescope-media-files.nvim"
-  use "nvim-telescope/telescope-file-browser.nvim"
-  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+  -- use "nvim-telescope/telescope.nvim"
+  -- use "nvim-telescope/telescope-media-files.nvim"
+  -- use "nvim-telescope/telescope-file-browser.nvim"
+  -- use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
