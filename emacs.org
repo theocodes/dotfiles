@@ -124,7 +124,7 @@ Run the whole spec file in vterm.
 Run a single spec in vterm.
 
 #+begin_src emacs-lisp
-(defun theocodes/rspec-spec ()
+(defun theocodes/rspec-spec-single ()
   (interactive)
   (let
       ((file (file-relative-name buffer-file-name (projectile-project-root)))
@@ -689,24 +689,32 @@ Useful tool to remind me of keymaps.
   (centaur-tabs-group-by-projectile-project)
   (centaur-tabs-mode t)
 
-  (defun centaur-tabs-hide-tab (buffer)
-	  "Hide from the tab bar by BUFFER name."
-	  (let ((name (format "%s" buffer)))
-		(string-match-p
-		 (concat "^\\*\\("
-				 "e?shell\\|"
-				 "Completions\\|"
-				 "clangd\\|" ; lsp c/c++
-				 "Faces\\|"
-				 "Flycheck\\|"
-				 "Help\\|"
-				 "vterm-popup\\|"
-				 "irb-popup\\|"
-				 "rspec-popup\\|"
-				 "helpful\\|"
-				 "Occur"
-				 "\\).*")
-		 name))))
+  (defun centaur-tabs-hide-tab (x)
+  "Do no to show buffer X in tabs."
+  (let ((name (format "%s" x)))
+    (or
+     ;; Current window is not dedicated window.
+     (window-dedicated-p (selected-window))
+
+     ;; Buffer name not match below blacklist.
+     (string-prefix-p "*epc" name)
+     (string-prefix-p "*helm" name)
+     (string-prefix-p "*Helm" name)
+     (string-prefix-p "*Compile-Log*" name)
+     (string-prefix-p "*lsp" name)
+     (string-prefix-p "*company" name)
+     (string-prefix-p "*Flycheck" name)
+     (string-prefix-p "*tramp" name)
+     (string-prefix-p " *Mini" name)
+     (string-prefix-p "*help" name)
+     (string-prefix-p "*straight" name)
+     (string-prefix-p " *temp" name)
+     (string-prefix-p "*Help" name)
+     (string-suffix-p "popup*" name)
+
+     ;; Is not magit buffer.
+     (and (string-prefix-p "magit" name)
+	  (not (file-name-extension name)))))))
 #+end_src
 
 ** general
