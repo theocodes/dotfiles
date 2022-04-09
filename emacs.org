@@ -79,9 +79,9 @@ displayed as a popup as set by the above =display-buffer-alist= entry.
 #+begin_src emacs-lisp
 (defun theocodes/vterm-toggle ()
   (interactive)
-  (if (string= (buffer-name) "*vterm*")
+  (if (string= (buffer-name) (concat "*vterm " (projectile-project-name) "*"))
       (evil-switch-to-windows-last-buffer)
-    (vterm)))
+    (projectile-run-vterm)))
 #+end_src
 
 ** theocodes/run-command
@@ -152,6 +152,26 @@ Start an IRB session in vterm which closes when exited.
     (vterm-clear)
     (vterm-send-string "irb && exit")
     (vterm-send-return)))
+#+end_src
+** theocodes/overmind
+
+#+begin_src emacs-lisp
+(defun theocodes/overmind ()
+  (interactive)
+  (with-current-buffer (vterm "*overmind*")
+    (vterm-send-string (concat "cd " (projectile-project-root)))
+    (vterm-send-return)
+    (vterm-clear)
+    (vterm-send-string "overmind s && exit")
+    (vterm-send-return)))
+#+end_src
+
+** theocodes/test
+
+#+begin_src emacs-lisp
+(defun theocodes/test ()
+  (interactive)
+  (print (projectile-project-name)))
 #+end_src
 
 ** +org/insert-item-below and +org/insert-item-above
@@ -501,7 +521,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   (modus-themes-load-themes)
   :config
   ;; Load the theme of your choice:
-  (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
+  ;;(modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
   :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 
@@ -711,6 +731,8 @@ Useful tool to remind me of keymaps.
      (string-prefix-p " *temp" name)
      (string-prefix-p "*Help" name)
      (string-suffix-p "popup*" name)
+     (string-prefix-p "*overmind" name)
+     (string-prefix-p "*vterm" name)
 
      ;; Is not magit buffer.
      (and (string-prefix-p "magit" name)
@@ -757,6 +779,9 @@ Useful tool to remind me of keymaps.
     "pa"  '(projectile-add-known-project :which-key "add known project")
     "pr"  '(projectile-remove-known-project :which-key "remove known project")
     "pk"  '(projectile-kill-buffers :which-key "kill all project buffers")
+
+    "o"  '(:ignore t :which-key "open")
+    "op" '(neotree-toggle :which-key "open project side view")
 
     "g"  '(:ignore t :which-key "git")
     "gb" '(magit-branch :which-key "branch actions")
@@ -1051,4 +1076,14 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
   :bind (("C-x k" . persp-kill-buffer*))
   :init
   (persp-mode))
+#+end_src
+
+** neotree
+
+#+begin_src emacs-lisp
+(use-package neotree
+  :config
+  (setq neo-window-width 60)
+  (setq neo-show-hidden-files t)
+  (setq neo-autorefresh t))
 #+end_src

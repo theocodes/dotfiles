@@ -2,13 +2,14 @@ local wezterm = require 'wezterm';
 
 return {
   color_scheme = "Tomorrow Night Bright",
-  font = wezterm.font("Iosevka Term", { weight="Medium" }),
-  font_size = 14,
-  scrollback_lines = 3500,
+  font = wezterm.font("Iosevka Term", { weight = "Medium" }),
+  tab_bar_at_bottom = false,
+  font_size = 16,
+  scrollback_lines = 8500,
   use_fancy_tab_bar = false,
   window_decorations = "RESIZE",
   window_padding = {
-    left = 0,
+    left = 4,
     right = 0,
     top = 0,
     bottom = 0,

@@ -1,8 +1,8 @@
 font:
-  size: 16
+  size: 14
 
   normal:
-    style: "Regular"
+    style: "Light"
     family: "Iosevka Term"
 
   bold:
@@ -10,8 +10,10 @@ font:
     style: "Medium"
 
 decorations: none
+
+# background_opacity: 0.98
 window:
-  opacity: 0.96
+  opacity: 1
   decorations: buttonless
 
 selection:
@@ -38,19 +40,19 @@ key_bindings:
   - { key: Key0,                    mods: Command,              chars: "\x60\x30"          }
   - { key: T,                       mods: Command,              chars: "\x60\x63"          }
   - { key: W,                       mods: Command,              chars: "\x60\x71"          }
-  - { key: Return,                  mods: Command|Shift,        chars: "\x60\x22"          }
-  - { key: Return,                  mods: Command,              chars: "\x60\x25"          }
+  - { key: Return,                  mods: Command,              chars: "\x60\x22"          }
+  - { key: Return,                  mods: Command|Shift,        chars: "\x60\x25"          }
   - { key: H,                       mods: Command,              chars: "\x60\x68"          }
   - { key: J,                       mods: Command,              chars: "\x60\x6a"          }
   - { key: K,                       mods: Command,              chars: "\x60\x6b"          }
   - { key: L,                       mods: Command,              chars: "\x60\x6c"          }
   - { key: D,                       mods: Command,              chars: "\x60\x64"          }
   - { key: D,                       mods: Alt,                  chars: "\x60\x64"          }
-  - { key: X,                       mods: Command,              chars: "\x66\x67\x0D"      }
+  # - { key: X,                       mods: Command,              chars: "\x66\x67\x0D"      }
   - { key: Z,                       mods: Command,              chars: "\x1A"              }
 
 import:
   - ~/.config/alacritty/platform/macos.yml
   - C:\Users\theon\AppData\Roaming\alacritty\platform\wsl.yml
 
-  - ~/.config/alacritty/themes/tomorrow_night_bright.yml
+  - ~/.config/alacritty/themes/monokai_pro.yml

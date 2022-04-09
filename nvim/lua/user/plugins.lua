@@ -81,6 +81,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-cmdline"                    -- Cmdline completions
   use "hrsh7th/cmp-nvim-lsp"                   -- More types of completion
   use "saadparwaiz1/cmp_luasnip"               -- Snippet completions
+ 	use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
 
   -- snippets
   use "L3MON4D3/LuaSnip"                       -- Snippet engine

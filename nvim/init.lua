@@ -14,9 +14,7 @@ require "user.config.treesitter"
 --require "user.config.rust-tools"
 
 -- theme
--- vim.cmd [[ colorscheme sonokai ]]
-vim.cmd [[ colorscheme base16-monokai ]]
--- vim.cmd [[ colorscheme base16-black-metal ]]
+vim.cmd [[ colorscheme monokai_pro ]]
 
 -- Theme overrides
 vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]

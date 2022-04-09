@@ -4,11 +4,11 @@ if not status_ok then
 end
 
 toggleterm.setup({
-	size = 30,
+	size = 20,
 	hide_numbers = true,
 	shade_filetypes = {},
-	shade_terminals = false,
-	shading_factor = 2,
+	shade_terminals = true,
+	shading_factor = 4,
 	start_in_insert = true,
 	insert_mappings = true,
 	persist_size = true,
@@ -42,7 +42,9 @@ end
 
 local irb = Terminal:new({ cmd = "irb", hidden = true })
 function _IRB_TOGGLE()
-	irb:toggle()
+	-- irb:toggle()
+  -- io.popen('tmux split-window "irb"')
+  vim.cmd [[:! tmux split-window ls]]
 end
 
 local rails = Terminal:new({ cmd = "rails console", hidden = true })
@@ -66,23 +68,25 @@ function _JOURNAL_TOGGLE()
 end
 
 local run_spec = function(cmd)
-  return Terminal:new({
-    cmd = cmd,
-    hidden = true,
-    direction = "float",
-    close_on_exit = false
-  })
+  io.popen('tmux split-window "' .. cmd .. '"')
+
+  -- return Terminal:new({
+  --   cmd = cmd,
+  --   hidden = true,
+  --   direction = "float",
+  --   close_on_exit = false
+  -- })
 end
 
 function _RSPEC_SPEC()
   local file = vim.api.nvim_eval("expand('%')")
 
-	run_spec("rspec " .. file):toggle()
+	run_spec("rspec " .. file)
 end
 
 function _RSPEC_SPEC_SINGLE()
   local file = vim.api.nvim_eval("expand('%')")
   local line = vim.api.nvim_eval("line('.')")
 
-	run_spec("rspec " .. file .. ":" .. line):toggle()
+	run_spec("rspec " .. file .. ":" .. line)
 end

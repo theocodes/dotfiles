@@ -36,5 +36,4 @@ vim.cmd[[autocmd BufWritePre * :%s/\s\+$//e]]
 
 
 -- g.fzf_layout = { down: "~40%" }
-
 vim.cmd[[let g:fzf_layout = { 'down': '~40%' }]]
