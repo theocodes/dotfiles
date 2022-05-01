@@ -273,7 +273,7 @@ Start an IRB session in vterm which closes when exited.
 ** Fonts
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "Iosevka Term" :height 160)
+(set-face-attribute 'default nil :font "Iosevka Term" :height 140)
 #+end_src
 
 ** UI
@@ -312,6 +312,10 @@ Disable lock files.
 
 #+begin_src emacs-lisp
 (setq create-lockfiles nil)
+#+end_src
+
+#+begin_src emacs-lisp
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 #+end_src
 
 ** Keybindings
@@ -392,10 +396,15 @@ Highlights the entire elisp expression when point on delimeters.
 #+begin_src emacs-lisp
 (setq js-indent-level 2)
 #+end_src
+** Command is the meta key
+
+#+begin_src emacs-lisp
+(setq mac-command-modifier 'meta)
+#+end_src
 
 * Packages
 ** org-mode
-Requiring org-tempo makes the template expanding (=<s=) available. 
+Requiring org-tempo makes the template expanding (=<s=) available.
 
 *Warning*: Keep this config close to the top. If another package tries to load
 org before straight.el has a chance to, it will load the version shipped with
@@ -490,7 +499,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 ;; (use-package doom-modeline
 ;;   :config
 ;;   (setq doom-modeline-minor-modes nil)
-;;   :hook (doom-modeline-mode . column-number-mode) 
+;;   :hook (doom-modeline-mode . column-number-mode)
 ;;   :init (doom-modeline-mode 1))
 #+end_src
 
@@ -521,7 +530,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   (modus-themes-load-themes)
   :config
   ;; Load the theme of your choice:
-  ;;(modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
+  (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
   :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 
@@ -549,7 +558,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 
   (define-key evil-normal-state-map (kbd "H") 'centaur-tabs-backward)
   (define-key evil-normal-state-map (kbd "L") 'centaur-tabs-forward)
-  
+
   ;; kill buffer with Q
   (define-key evil-normal-state-map [remap evil-record-macro] 'kill-current-buffer)
 
@@ -560,7 +569,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   (define-key evil-normal-state-map (kbd "C-p") nil)
 
   ;; No more accidentally going to the top of the file
-  (evil-global-set-key 'motion "H" nil) 
+  (evil-global-set-key 'motion "H" nil)
 
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
@@ -649,24 +658,24 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   :config
   (counsel-mode 1))
 #+end_src
-         
+
 ** helpful
-         
+
 Helpful is an alternative to the built-in Emacs help that provides much more contextual information.
-         
+
 #+begin_src emacs-lisp
 ;; (use-package helpful
 ;;   :commands (helpful-callable helpful-variable helpful-command helpful-key)
 ;;   :custom
 ;;   (counsel-describe-function-function #'helpful-callable)
 ;;   (counsel-describe-variable-function #'helpful-variable)
-;;   :bind  
+;;   :bind
 ;;   ([remap describe-function] . counsel-describe-function)
 ;;   ([remap describe-command] . helpful-command)
 ;;   ([remap describe-variable] . counsel-describe-variable)
 ;;   ([remap describe-key] . helpful-key))
 #+end_src
-         
+
 ** rainbow-delimeters
 
 Show matching colors for delimeters to make it easier to spot open/close pairs.
@@ -802,7 +811,7 @@ Useful tool to remind me of keymaps.
   (setq-default with-editor-emacsclient-executable "emacsclient")
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 #+end_src
-   
+
 ** projectile
 
 #+begin_src emacs-lisp
@@ -890,7 +899,7 @@ on providing a polished completion UI.
   :custom
   (corfu-auto t)
   (corfu-preselect-first nil)
-  (corfu-quit-at-boundary t) 
+  (corfu-quit-at-boundary t)
   ;; (corfu-commit-predicate t)
   (corfu-quit-no-match t)
   (corfu-auto-delay 0)
@@ -1056,7 +1065,7 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 (use-package git-gutter
   :custom
   (git-gutter:modified-sign " ")
-  (git-gutter:added-sign " ")  
+  (git-gutter:added-sign " ")
   (git-gutter:deleted-sign " ")
   :config
   (global-git-gutter-mode +1))
@@ -1074,6 +1083,8 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 #+begin_src emacs-lisp
 (use-package perspective
   :bind (("C-x k" . persp-kill-buffer*))
+  :custom
+  (persp-mode-prefix-key (kbd "C-z"))
   :init
   (persp-mode))
 #+end_src

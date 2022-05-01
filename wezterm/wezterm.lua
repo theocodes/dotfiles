@@ -28,5 +28,9 @@ return {
     {key="k", mods="CMD", action=wezterm.action{ActivatePaneDirection="Up"}},
     {key="h", mods="CMD", action=wezterm.action{ActivatePaneDirection="Left"}},
     {key="l", mods="CMD", action=wezterm.action{ActivatePaneDirection="Right"}},
+
+    -- Alt+x as M+x
+    {key="x", mods="ALT", action=wezterm.action{SendString="\x1bx"}},
+    {key="x", mods="CMD", action=wezterm.action{SendString="\x1bx"}},
   }
 }

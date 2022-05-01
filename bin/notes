@@ -34,17 +34,20 @@ open_note() {
   [ "$NAME" = "" ] && exit 0
 
   # replace spaces with underscores
-  FILENAME="$DIR/${NAME// /_}.md"
+  FULLPATH="$DIR/${NAME// /_}.md"
 
   # create file and add title
-  if [ ! -f $FILENAME ]; then
-    TITLE="$(echo $NAME | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')"
-    echo "# $TITLE" > $FILENAME
+  if [ ! -f $FULLPATH ]; then
+    # create dir in case it doesn't exist yet
+    mkdir -p $(dirname $FULLPATH)
+
+    FILENAME=$(basename $NAME)
+    TITLE="$(echo $FILENAME | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')"
+    echo "# $TITLE" > $FULLPATH
   fi
 
   nvim -c "norm G2o" \
-    -c "norm zz" \
-    -c "startinsert" $FILENAME
+    -c "norm zz" $FULLPATH
 }
 
 pushd $DIR

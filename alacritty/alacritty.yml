@@ -49,6 +49,8 @@ key_bindings:
   - { key: D,                       mods: Command,              chars: "\x60\x64"          }
   - { key: D,                       mods: Alt,                  chars: "\x60\x64"          }
   # - { key: X,                       mods: Command,              chars: "\x66\x67\x0D"      }
+  - { key: X,                       mods: Alt,                  chars: "\x1bx"             }
+  - { key: X,                       mods: Command,              chars: "\x1bx"             }
   - { key: Z,                       mods: Command,              chars: "\x1A"              }
 
 import:

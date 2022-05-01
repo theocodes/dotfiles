@@ -94,7 +94,7 @@ map("n", "<leader>vs", ":vs<CR>")
 map("n", "<leader>hs", ":sp<CR>")
 
 -- Toggle sidebar explorer
-map("n", "<leader>op", ":NvimTreeToggle<CR>")
+map("n", "<leader>op", ":NERDTreeToggle<CR>")
 
 -- Preview hunk
 map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>")
