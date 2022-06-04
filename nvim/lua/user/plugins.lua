@@ -91,12 +91,6 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig"
   use "williamboman/nvim-lsp-installer"
 
-  -- Telescope
-  -- use "nvim-telescope/telescope.nvim"
-  -- use "nvim-telescope/telescope-media-files.nvim"
-  -- use "nvim-telescope/telescope-file-browser.nvim"
-  -- use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "p00f/nvim-ts-rainbow"
@@ -106,17 +100,6 @@ return packer.startup(function(use)
 
   -- golang
   use "fatih/vim-go"
-
-  -- Sidebar explorer
-  use "preservim/nerdtree"
-
-  -- use {
-  --   "kyazdani42/nvim-tree.lua",
-  --   requires = {
-  --     "kyazdani42/nvim-web-devicons", -- optional, for file icon
-  --   },
-  --   config = function() require"nvim-tree".setup {} end
-  -- }
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()
