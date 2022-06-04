@@ -17,6 +17,7 @@ abbr play tmux new-session -A -s play
 abbr a asdf
 abbr b bat
 abbr dev ./scripts/dev
+abbr tf terraform
 
 # ALIASES
 # ...

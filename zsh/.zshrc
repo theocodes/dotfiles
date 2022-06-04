@@ -23,6 +23,7 @@ alias work="tmux new-session -A -s WORK"
 alias play="tmux new-session -A -s PLAY"
 alias be="bundle exec"
 alias n="note"
+alias tf="terraform"
 
 # history
 HISTFILE=~/.histfile
