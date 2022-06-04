@@ -120,5 +120,10 @@ case COMMAND
 when 'new'
   new_note
 else
+  if ARGV.empty?
+    puts "help placeholder"
+    exit 0
+  end
+
   search
 end
