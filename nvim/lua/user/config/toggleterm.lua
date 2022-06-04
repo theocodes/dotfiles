@@ -42,9 +42,7 @@ end
 
 local irb = Terminal:new({ cmd = "irb", hidden = true })
 function _IRB_TOGGLE()
-	-- irb:toggle()
-  -- io.popen('tmux split-window "irb"')
-  vim.cmd [[:! tmux split-window ls]]
+	irb:toggle()
 end
 
 local rails = Terminal:new({ cmd = "rails console", hidden = true })
@@ -67,26 +65,24 @@ function _JOURNAL_TOGGLE()
 	journal:toggle()
 end
 
-local run_spec = function(cmd)
-  io.popen('tmux split-window "' .. cmd .. '"')
-
-  -- return Terminal:new({
-  --   cmd = cmd,
-  --   hidden = true,
-  --   direction = "float",
-  --   close_on_exit = false
-  -- })
+local run_command = function(cmd)
+  return Terminal:new({
+    cmd = cmd,
+    hidden = true,
+    direction = "horizontal",
+    close_on_exit = false
+  }):toggle()
 end
 
 function _RSPEC_SPEC()
   local file = vim.api.nvim_eval("expand('%')")
 
-	run_spec("rspec " .. file)
+	run_command("rspec " .. file)
 end
 
 function _RSPEC_SPEC_SINGLE()
   local file = vim.api.nvim_eval("expand('%')")
   local line = vim.api.nvim_eval("line('.')")
 
-	run_spec("rspec " .. file .. ":" .. line)
+	run_command("rspec " .. file .. ":" .. line)
 end
