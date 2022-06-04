@@ -2,24 +2,19 @@ font:
   size: 14
 
   normal:
-    style: "Light"
-    family: "Iosevka Term"
+    style: "Regular"
+    family: "Iosevka"
 
   bold:
     family: "Iosevka Nerd Font Mono"
     style: "Medium"
 
-decorations: none
-
-# background_opacity: 0.98
-window:
-  opacity: 1
-  decorations: buttonless
-
 selection:
   save_to_clipboard: true
 
 window:
+  decorations: buttonless
+  opacity: 0.9
   padding:
     x: 4
     y: 4
