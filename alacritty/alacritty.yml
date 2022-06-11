@@ -1,8 +1,8 @@
 font:
-  size: 14
+  size: 16
 
   normal:
-    style: "Regular"
+    style: "Light"
     family: "Iosevka"
 
   bold:
@@ -14,7 +14,7 @@ selection:
 
 window:
   decorations: buttonless
-  opacity: 0.9
+  opacity: 0.98
   padding:
     x: 4
     y: 4

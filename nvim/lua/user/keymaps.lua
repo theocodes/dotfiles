@@ -1,4 +1,4 @@
-local nvim_map = vim.api.nvim_set_keymap
+-- local nvim_map = vim.api.nvim_set_keymap
 local term_opts = { noremap = true }
 local opts = { noremap = true, silent = true }
 
@@ -100,6 +100,7 @@ map("n", "<leader>mts", ":lua _RSPEC_SPEC_SINGLE()<CR>")
 map("n", "<leader>node", ":lua _NODE_TOGGLE()<CR>")
 map("n", "<leader>nt", ":lua _JOURNAL_TOGGLE()<CR>")
 map("n", "<leader>nf", ":lua _NOTES_TOGGLE()<CR>")
+map("n", "<leader>lf", ":lua _DIRECTORY_TOGGLE()<CR>")
 
 -- LSP
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")

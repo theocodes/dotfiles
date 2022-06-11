@@ -269,11 +269,16 @@ Start an IRB session in vterm which closes when exited.
 #+begin_src emacs-lisp
 (setq enable-local-variables :all)
 #+end_src
+** Background Opacity
+
+#+begin_src emacs-lisp
+(set-frame-parameter (selected-frame) 'alpha '(98 98))
+#+end_src
 
 ** Fonts
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "Iosevka Term" :height 140)
+(set-face-attribute 'default nil :font "Iosevka" :height 160 :weight 'semi-light)
 #+end_src
 
 ** UI
@@ -496,17 +501,19 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 ** doom-modeline
 
 #+begin_src emacs-lisp
-;; (use-package doom-modeline
-;;   :config
-;;   (setq doom-modeline-minor-modes nil)
-;;   :hook (doom-modeline-mode . column-number-mode)
-;;   :init (doom-modeline-mode 1))
+(use-package doom-modeline
+  :config
+  (setq doom-modeline-minor-modes nil)
+  :hook (doom-modeline-mode . column-number-mode)
+  :init (doom-modeline-mode 1))
 #+end_src
 
 ** doom-themes
 
 #+begin_src emacs-lisp
-(use-package doom-themes)
+(use-package doom-themes
+  :config
+  (load-theme 'doom-one t))
 #+end_src
 
 ** modus-themes
@@ -519,7 +526,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
 	modus-themes-bold-constructs nil
 	modus-themes-org-blocks 'gray-background
 	modus-themes-subtle-line-numbers t
-	modus-themes-mode-line '(accented borderless (padding . 4) (height . 0.9))
+	;; modus-themes-mode-line '(accented borderless (padding . 4) (height . 0.9))
 	modus-themes-hl-line '(underline accented)
 	modus-themes-completions '((matches . (extrabold))
                                  (selection . (semibold accented))
@@ -530,7 +537,7 @@ Run `all-the-icons-install-fonts` the first setting up emacs on a new system.
   (modus-themes-load-themes)
   :config
   ;; Load the theme of your choice:
-  (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
+  ;;(modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
   :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 
@@ -710,10 +717,11 @@ Useful tool to remind me of keymaps.
 
 #+begin_src emacs-lisp
 (use-package centaur-tabs
-  ;; :custom
-  ;; (centaur-tabs-change-fonts "arial" 160)
+  :custom
+  (centaur-tabs-change-fonts "Iosevka" 160)
   :init
   (setq centaur-tabs-cycle-scope 'tabs)
+  (setq centaur-tabs-height 32)
   :config
   (centaur-tabs-group-by-projectile-project)
   (centaur-tabs-mode t)
@@ -1050,13 +1058,13 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
 *Note* This is currently causing issues with magit O_o
 
 #+begin_src emacs-lisp
-;; (use-package rustic
-;;   :config
-;;   (setq lsp-eldoc-hook nil)
-;;   (setq lsp-enable-symbol-highlighting nil)
-;;   (setq lsp-signature-auto-activate nil)
-;;   (setq rustic-lsp-server 'rust-analyzer)
-;;   (setq rustic-format-on-save t))
+(use-package rustic
+  :config
+  (setq lsp-eldoc-hook nil)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-signature-auto-activate nil)
+  (setq rustic-lsp-server 'rust-analyzer)
+  (setq rustic-format-on-save t))
 #+end_src
 
 ** git-gutter
@@ -1097,4 +1105,9 @@ of actions associated with a =filename= type, such as =delete=, =chown= etc.
   (setq neo-window-width 60)
   (setq neo-show-hidden-files t)
   (setq neo-autorefresh t))
+#+end_src
+** terraform
+
+#+begin_src emacs-lisp
+(use-package terraform-mode)
 #+end_src

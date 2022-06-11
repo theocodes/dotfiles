@@ -11,10 +11,11 @@ require "user.config.gitsigns"
 require "user.config.toggleterm"
 require "user.config.lualine"
 require "user.config.treesitter"
---require "user.config.rust-tools"
+require "user.config.rust-tools"
 
 -- theme
-vim.cmd [[ colorscheme monokai_pro ]]
+-- vim.cmd [[ colorscheme monokai_pro ]]
+vim.cmd [[ colorscheme space-vim-dark ]]
 
 -- Theme overrides
 vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
@@ -31,3 +32,10 @@ vim.cmd [[ hi GitSignsDelete guibg=NONE guifg=Red ]]
 vim.cmd [[ hi EndOfBuffer guibg=NONE guifg=NONE ]]
 vim.cmd [[ hi clear TabLineFill ]]
 
+require'lsp_extensions'.inlay_hints{
+	highlight = "Comment",
+	prefix = " > ",
+	aligned = false,
+	only_current_line = false,
+	enabled = { "ChainingHint" }
+}

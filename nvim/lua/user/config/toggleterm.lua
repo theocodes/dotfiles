@@ -65,24 +65,29 @@ function _JOURNAL_TOGGLE()
 	journal:toggle()
 end
 
-local run_command = function(cmd)
+local directory = Terminal:new({ cmd = "lf", hidden = true })
+function _DIRECTORY_TOGGLE()
+	directory:toggle()
+end
+
+local term_for_command = function(cmd)
   return Terminal:new({
     cmd = cmd,
     hidden = true,
     direction = "horizontal",
     close_on_exit = false
-  }):toggle()
+  })
 end
 
 function _RSPEC_SPEC()
   local file = vim.api.nvim_eval("expand('%')")
 
-	run_command("rspec " .. file)
+	term_for_command("rspec " .. file):toggle()
 end
 
 function _RSPEC_SPEC_SINGLE()
   local file = vim.api.nvim_eval("expand('%')")
   local line = vim.api.nvim_eval("line('.')")
 
-	run_command("rspec " .. file .. ":" .. line)
+	term_for_command("rspec " .. file .. ":" .. line):toggle()
 end

@@ -1,15 +1,16 @@
 # prompt
 eval "$(starship init zsh)"
 
+# use brew's ruby (3.1.2) until asdf's ruby works
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
 source /opt/homebrew/opt/asdf/libexec/asdf.sh
 export PATH=$PATH:/opt/homebrew/bin:/opt/homebrew/opt/postgresql@12/bin
 export PATH=$PATH:$HOME/dotfiles/bin
-export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin
 
 # use ripgrep for fzf
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--height 50% --ansi'
-
 
 alias a="asdf"
 alias e="$EDITOR"

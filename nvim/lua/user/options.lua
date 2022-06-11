@@ -29,11 +29,13 @@ opt.fileencoding = "utf-8"               -- Duh
 opt.termguicolors = true                 -- More colors
 opt.mouse = "a"                          -- Allow mouse in all modes
 opt.iskeyword:append "-"                 -- This "asdf-asdf" is treated as a single word
--- vim.opt.guifont = "Iosevka Term"
 opt.guifont = "Iosevka Nerd Font Mono"
+
+g.rustfmt_autosave = 1
 
 vim.cmd[[autocmd BufWritePre * :%s/\s\+$//e]]
 
-
 -- g.fzf_layout = { down: "~40%" }
 vim.cmd[[let g:fzf_layout = { 'down': '~40%' }]]
+
+vim.cmd[[autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true }]]
