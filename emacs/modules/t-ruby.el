@@ -7,4 +7,6 @@
 
 (setq ruby-insert-encoding-magic-comment nil)
 
+;; (add-hook ruby-mode-hook 'eglot)
+
 (provide 't-ruby)

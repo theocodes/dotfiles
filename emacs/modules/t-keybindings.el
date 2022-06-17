@@ -44,9 +44,9 @@
     "bd" '(kill-current-buffer :which-key "kill current buffer")
 
     "p"  '(:ignore t :which-key "project")
-    "pp"  '(project-switch-project :which-key "switch to project")
-    "pf"  '(project-find-file :which-key "find file in project")
-    "pk"  '(project-kill-buffers :which-key "kill all project buffers")
+    "pp"  '(projectile-switch-project :which-key "switch to project")
+    "pf"  '(projectile-find-file :which-key "find file in project")
+    "pk"  '(projectile-kill-buffers :which-key "kill all project buffers")
 
     "o"  '(:ignore t :which-key "open")
     "op" '(neotree-toggle :which-key "open project side view")

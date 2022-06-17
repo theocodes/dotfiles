@@ -4,6 +4,10 @@
 (straight-use-package 'all-the-icons)
 (straight-use-package 'helpful)
 (straight-use-package 'doom-modeline)
+(straight-use-package 'centaur-tabs)
+
+;; Set font
+(set-face-attribute 'default nil :font "Iosevka" :height 160 :weight 'regular)
 
 ;; disable welcome screen
 (setq inhibit-startup-message t)
@@ -13,23 +17,28 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
-;; tab-line
+;; Tabs
 (setq tab-line-close-button nil
-      tab-line-new-button nil)
+      tab-line-new-button nil
+      tab-bar-close-button nil
+      tab-bar-new-button nil)
 
-;;(global-tab-line-mode 1)
+;; (tab-bar-mode 1)
+;; (global-tab-line-mode 1)
 
-;; Set font
-(set-face-attribute 'default nil :font "Iosevka" :height 160 :weight 'regular)
+(centaur-tabs-mode t)
+(centaur-tabs-headline-match)
+(centaur-tabs-group-by-projectile-project)
 
 ;; Customize tab-bar
-(setq-default background-color (face-attribute 'default :background))
-(set-face-attribute 'tab-bar nil :inherit 'default :background background-color :box background-color :underline nil :overline nil)
-(set-face-attribute 'tab-bar-tab nil :inherit 'tab-bar :underline t :weight 'bold :overline nil)
-(set-face-attribute 'tab-bar-tab-inactive nil :inherit 'tab-bar :background background-color :foreground "grey" :overline nil)
+;; (setq-default background-color (face-attribute 'default :background))
+;(set-face-attribute 'tab-bar nil :inherit 'default :background background-color :box background-color :underline nil :overline "black")
+;(set-face-attribute 'tab-bar-tab nil :inherit 'tab-bar :underline t :weight 'bold :overline nil)
+;(set-face-attribute 'tab-bar-tab-inactive nil :inherit 'tab-bar :background background-color :foreground "grey" :overline nil)
 
-(setq tab-bar-close-button nil
-      tab-bar-new-button nil)
+;(set-face-attribute 'tab-line nil :inherit 'default :background background-color :box background-color :underline nil :overline nil)
+;(set-face-attribute 'tab-line-tab nil :inherit 'tab-bar :underline t :weight 'bold :overline nil)
+;(set-face-attribute 'tab-line-tab-inactive nil :inherit 'tab-bar :background background-color :foreground "grey" :overline nil)
 
 ;; Start up the modeline after initialization is finished
 (add-hook 'after-init-hook 'doom-modeline-init)

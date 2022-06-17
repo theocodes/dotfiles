@@ -3,6 +3,7 @@
 ;; Install dependencies
 (straight-use-package 'rainbow-delimiters)
 (straight-use-package 'git-gutter)
+(straight-use-package 'projectile)
 
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -20,5 +21,11 @@
 (customize-set-variable 'git-gutter:deleted-sign " ")
 
 (global-git-gutter-mode +1)
+
+;; projectile
+(when (file-directory-p "~/Code")
+    (setq projectile-project-search-path '("~/Code")))
+
+(projectile-global-mode +1)
 
 (provide 't-editing)

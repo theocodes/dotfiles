@@ -16,3 +16,4 @@
 (require 't-org)
 (require 't-golang)
 (require 't-ruby)
+(require 't-terraform)

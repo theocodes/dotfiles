@@ -23,8 +23,10 @@
 (evil-mode 1)
 
 ;; Keybindings
-(define-key evil-normal-state-map (kbd "H") 'tab-previous)
-(define-key evil-normal-state-map (kbd "L") 'tab-next)
+(define-key evil-normal-state-map (kbd "L") 'centaur-tabs-forward)
+(define-key evil-normal-state-map (kbd "H") 'centaur-tabs-backward)
+(define-key evil-normal-state-map (kbd "C-H") 'tab-previous)
+(define-key evil-normal-state-map (kbd "C-L") 'tab-next)
 ;; (define-key evil-normal-state-map (kbd "H") 'previous-buffer)
 ;; (define-key evil-normal-state-map (kbd "L") 'next-buffer)
 
