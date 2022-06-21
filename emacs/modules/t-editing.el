@@ -4,6 +4,9 @@
 (straight-use-package 'rainbow-delimiters)
 (straight-use-package 'git-gutter)
 (straight-use-package 'projectile)
+(straight-use-package 'perspective)
+
+(require 'perspective)
 
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -26,6 +29,9 @@
 (when (file-directory-p "~/Code")
     (setq projectile-project-search-path '("~/Code")))
 
+;; Init
+
 (projectile-global-mode +1)
+(persp-mode)
 
 (provide 't-editing)

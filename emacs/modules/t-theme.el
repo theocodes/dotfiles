@@ -29,4 +29,11 @@
 ;; Toggle dark/light
 (define-key global-map (kbd "<f5>") #'modus-themes-toggle)
 
+;; Init
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+
+(add-hook 'window-setup-hook 'on-after-init)
+
 (provide 't-theme)

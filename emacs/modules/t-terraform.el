@@ -2,3 +2,5 @@
 
 ;; Install dependencies
 (straight-use-package 'terraform-mode)
+
+(provide 't-terraform)

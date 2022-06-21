@@ -2,6 +2,7 @@
 
 ;; Install packages
 (straight-use-package 'exec-path-from-shell)
+(straight-use-package 'xclip)
 
 ;; Make emacs load system PATH when launching via GUI
 (when (memq window-system '(mac ns x))
@@ -46,5 +47,8 @@
 
 ;; Move custom away from init.el
 (setq custom-file "~/.emacs.d/custom.el")
+
+;; init
+(xclip-mode 1) ;; copy to system clipboard (x-plat)
 
 (provide 't-defaults)

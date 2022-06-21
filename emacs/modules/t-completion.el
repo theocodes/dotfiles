@@ -1,15 +1,13 @@
 ;;; t-completion.el -*- lexical-binding: t; -*-
 
 ;; Install dependencies
-(straight-use-package 'cape)
 (straight-use-package 'consult)
-(straight-use-package 'corfu-doc)
-(straight-use-package 'corfu)
 (straight-use-package 'embark)
 (straight-use-package 'embark-consult)
 (straight-use-package 'marginalia)
 (straight-use-package 'orderless)
 (straight-use-package 'vertico)
+(straight-use-package 'company)
 
 ;;; Vertico
 
@@ -60,37 +58,38 @@
 (with-eval-after-load 'embark-consult
   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
-;;; Corfu
+;; Company
 
-;; Setup corfu for popup like completion
-(customize-set-variable 'corfu-cycle t) ; Allows cycling through candidates
-(customize-set-variable 'corfu-auto t)  ; Enable auto completion
-(customize-set-variable 'corfu-auto-prefix 2) ; Complete with less prefix keys
-(customize-set-variable 'corfu-auto-delay 0.0) ; No delay for completion
-(customize-set-variable 'corfu-echo-documentation 0.25) ; Echo docs for current completion option
+(setq company-idle-delay 0
+      company-minimum-prefix-length 1
+      company-selection-wrap-around t
+      company-backends '((company-capf company-dabbrev-code)))
 
-(global-corfu-mode 1)
+(company-tng-configure-default)
 
-;;; Cape
+;; Copilot
 
-;; Setup Cape for better completion-at-point support and more
-(require 'cape)
+(use-package copilot
+  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+  :ensure t)
 
-;; Add useful defaults completion sources from cape
-(add-to-list 'completion-at-point-functions #'cape-file)
-(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+;; (defun my-tab ()
+;;   (interactive)
+;;   (or (copilot-accept-completion)
+;;       (company-indent-or-complete-common nil)))
 
-;; Silence the pcomplete capf, no errors or messages!
-;; Important for corfu
-(advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+; modify company-mode behaviors
+;; (with-eval-after-load 'company
+;;   ;; disable inline previews
+;;   (delq 'company-preview-if-just-one-frontend company-frontends)
 
-;; Ensure that pcomplete does not write to the buffer
-;; and behaves as a pure `completion-at-point-function'.
-(advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)
-(add-hook 'eshell-mode-hook
-          (lambda () (setq-local corfu-quit-at-boundary t
-                            corfu-quit-no-match t
-                            corfu-auto nil)
-            (corfu-mode)))
+;;   (define-key company-mode-map (kbd "<tab>") 'my-tab)
+;;   (define-key company-mode-map (kbd "TAB") 'my-tab)
+;;   (define-key company-active-map (kbd "<tab>") 'my-tab)
+;;   (define-key company-active-map (kbd "TAB") 'my-tab))
+
+;; Init
+(add-hook 'after-init-hook 'global-company-mode)
+(copilot-mode 1)
 
 (provide 't-completion)

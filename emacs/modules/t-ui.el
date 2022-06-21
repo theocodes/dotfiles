@@ -31,17 +31,15 @@
 (centaur-tabs-group-by-projectile-project)
 
 ;; Customize tab-bar
-;; (setq-default background-color (face-attribute 'default :background))
-;(set-face-attribute 'tab-bar nil :inherit 'default :background background-color :box background-color :underline nil :overline "black")
-;(set-face-attribute 'tab-bar-tab nil :inherit 'tab-bar :underline t :weight 'bold :overline nil)
-;(set-face-attribute 'tab-bar-tab-inactive nil :inherit 'tab-bar :background background-color :foreground "grey" :overline nil)
+(setq tab-bar-separator " ")
+(setq-default background-color (face-attribute 'default :background))
+(set-face-attribute 'tab-bar nil :inherit 'default :background background-color :box background-color :underline nil :overline "black")
+(set-face-attribute 'tab-bar-tab nil :inherit 'tab-bar :underline t :weight 'bold :overline nil)
+(set-face-attribute 'tab-bar-tab-inactive nil :inherit 'tab-bar :background background-color :foreground "grey" :overline nil)
 
 ;(set-face-attribute 'tab-line nil :inherit 'default :background background-color :box background-color :underline nil :overline nil)
 ;(set-face-attribute 'tab-line-tab nil :inherit 'tab-bar :underline t :weight 'bold :overline nil)
 ;(set-face-attribute 'tab-line-tab-inactive nil :inherit 'tab-bar :background background-color :foreground "grey" :overline nil)
-
-;; Start up the modeline after initialization is finished
-(add-hook 'after-init-hook 'doom-modeline-init)
 
 ;; Configure `doom-modeline'
 (customize-set-variable 'doom-modeline-height 15)
@@ -73,5 +71,8 @@
                 treemacs-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; init
+;; (add-hook 'after-init-hook 'doom-modeline-init)
 
 (provide 't-ui)

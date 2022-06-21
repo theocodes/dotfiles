@@ -52,4 +52,4 @@ import:
   - ~/.config/alacritty/platform/macos.yml
   - C:\Users\theon\AppData\Roaming\alacritty\platform\wsl.yml
 
-  - ~/.config/alacritty/themes/monokai_pro.yml
+  - ~/.config/alacritty/themes/ayu_dark.yml

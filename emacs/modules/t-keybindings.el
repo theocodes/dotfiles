@@ -70,16 +70,19 @@
 ;; Paste with cmd-v
 (global-set-key (kbd "M-v") 'yank)
 
-(defun t/select-tab-1 () (interactive) (tab-bar-select-tab 1))
-(defun t/select-tab-2 () (interactive) (tab-bar-select-tab 2))
-(defun t/select-tab-3 () (interactive) (tab-bar-select-tab 3))
-(defun t/select-tab-4 () (interactive) (tab-bar-select-tab 4))
-(defun t/select-tab-5 () (interactive) (tab-bar-select-tab 5))
+;; Kill buffer with Q in dired also
+(define-key dired-mode-map [remap quit-window] #'kill-current-buffer)
 
-(global-set-key (kbd "M-1") 't/select-tab-1)
-(global-set-key (kbd "M-2") 't/select-tab-2)
-(global-set-key (kbd "M-3") 't/select-tab-3)
-(global-set-key (kbd "M-4") 't/select-tab-4)
-(global-set-key (kbd "M-5") 't/select-tab-5)
+;; (defun t/select-tab-1 () (interactive) (tab-bar-select-tab 1))
+;; (defun t/select-tab-2 () (interactive) (tab-bar-select-tab 2))
+;; (defun t/select-tab-3 () (interactive) (tab-bar-select-tab 3))
+;; (defun t/select-tab-4 () (interactive) (tab-bar-select-tab 4))
+;; (defun t/select-tab-5 () (interactive) (tab-bar-select-tab 5))
+
+;; (global-set-key (kbd "M-1") 't/select-tab-1)
+;; (global-set-key (kbd "M-2") 't/select-tab-2)
+;; (global-set-key (kbd "M-3") 't/select-tab-3)
+;; (global-set-key (kbd "M-4") 't/select-tab-4)
+;; (global-set-key (kbd "M-5") 't/select-tab-5)
 
 (provide 't-keybindings)
