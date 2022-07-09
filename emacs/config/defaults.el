@@ -1,15 +1,7 @@
-;;; t-defaults.el -*- lexical-binding: t; -*-
-
-;; Install packages
-(straight-use-package 'exec-path-from-shell)
-(straight-use-package 'xclip)
 
 ;; Make emacs load system PATH when launching via GUI
 (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize))
-
-;; Use spaces instead of tabs
-(setq-default indent-tabs-mode nil)
 
 ;; Use y/n instead of yes/no
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -51,4 +43,6 @@
 ;; init
 (xclip-mode 1) ;; copy to system clipboard (x-plat)
 
-(provide 't-defaults)
+;; magit
+(setq-default with-editor-emacsclient-executable "emacsclient")
+(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)

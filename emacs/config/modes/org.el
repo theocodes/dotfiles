@@ -1,11 +1,3 @@
-;;; t-org.el -*- lexical-binding: t; -*-
-
-;; Install dependencies
-(straight-use-package 'org)
-(straight-use-package 'org-bullets)
-(straight-use-package 'org-roam)
-(straight-use-package 'org-appear)
-
 (require 'org)
 (require 'org-tempo)
 
@@ -66,5 +58,3 @@
 
 (require 'org-roam-dailies)
 (org-roam-db-autosync-mode)
-
-(provide 't-org)

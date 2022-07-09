@@ -1,12 +1,3 @@
-;;; t-evil.el -*- lexical-binding: t; -*-
-
-;; Install dependencies
-(straight-use-package 'evil)
-(straight-use-package 'evil-collection)
-(straight-use-package 'evil-commentary)
-(straight-use-package 'undo-tree)
-(straight-use-package 'evil-multiedit)
-
 ;; Turn on undo-tree globally
 (global-undo-tree-mode)
 
@@ -19,7 +10,6 @@
 (customize-set-variable 'evil-undo-system 'undo-tree)
 
 ;; Load Evil and enable it globally
-(require 'evil)
 (evil-mode 1)
 
 ;; Keybindings
@@ -59,5 +49,3 @@
 
 ;; Enable collection of evil-specific configurations
 (evil-collection-init)
-
-(provide 't-evil)

@@ -1,18 +1,9 @@
-;;; t-keybindings.el -*- lexical-binding: t; -*-
 
-;; Install dependencies
-(straight-use-package 'general)
-(straight-use-package 'which-key)
-
-;; Which-key
-
-(require 'which-key)
+;; how long before which-key shows up
 (setq which-key-idle-delay 1)
+
+;; load which-key
 (which-key-mode 1)
-
-;; General
-
-(require 'general)
 
 (general-create-definer rune/leader-keys
   :keymaps '(normal insert visual emacs)
@@ -45,6 +36,8 @@
 
     "p"  '(:ignore t :which-key "project")
     "pp"  '(projectile-switch-project :which-key "switch to project")
+    "pa"  '(projectile-add-known-project :which-key "add new project")
+    "pd"  '(projectile-remove-known-project :which-key "remove project")
     "pf"  '(projectile-find-file :which-key "find file in project")
     "pk"  '(projectile-kill-buffers :which-key "kill all project buffers")
 
@@ -71,18 +64,22 @@
 (global-set-key (kbd "M-v") 'yank)
 
 ;; Kill buffer with Q in dired also
-(define-key dired-mode-map [remap quit-window] #'kill-current-buffer)
+; (define-key dired-mode-map [remap quit-window] #'kill-current-buffer)
 
-;; (defun t/select-tab-1 () (interactive) (tab-bar-select-tab 1))
-;; (defun t/select-tab-2 () (interactive) (tab-bar-select-tab 2))
-;; (defun t/select-tab-3 () (interactive) (tab-bar-select-tab 3))
-;; (defun t/select-tab-4 () (interactive) (tab-bar-select-tab 4))
-;; (defun t/select-tab-5 () (interactive) (tab-bar-select-tab 5))
+;; fuzzy search in buffer
+(global-set-key (kbd "C-s") 'consult-line)
 
-;; (global-set-key (kbd "M-1") 't/select-tab-1)
-;; (global-set-key (kbd "M-2") 't/select-tab-2)
-;; (global-set-key (kbd "M-3") 't/select-tab-3)
-;; (global-set-key (kbd "M-4") 't/select-tab-4)
-;; (global-set-key (kbd "M-5") 't/select-tab-5)
+(setq completion-in-region-function #'consult-completion-in-region)
 
-(provide 't-keybindings)
+(customize-set-variable 'completion-styles '(orderless))
+(customize-set-variable 'completion-category-overrides '((file (styles . (partial-completion)))))
+
+(global-set-key [remap describe-bindings] #'embark-bindings)
+(global-set-key (kbd "C-.") 'embark-act)
+
+;; Use Embark to show bindings in a key prefix with `C-h`
+(setq prefix-help-command #'embark-prefix-help-command)
+
+(with-eval-after-load 'embark-consult
+  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
+
