@@ -19,6 +19,7 @@
 (define-key evil-normal-state-map (kbd "I") 'diff-hl-show-hunk)
 
 (define-key evil-normal-state-map (kbd "q") 'kill-current-buffer)
+(define-key evil-normal-state-map (kbd "M-q") 'evil-window-delete)
 
 (define-key evil-insert-state-map (kbd "C-f") 'copilot-accept-completion)
 
