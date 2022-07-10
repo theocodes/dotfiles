@@ -16,45 +16,5 @@
 (setq package-enable-at-startup nil
       straight-use-package-by-default t)
 
-;; install packages
-(defvar packages
-  '(
-    use-package
-    evil
-    evil-collection
-    evil-commentary
-    evil-multiedit
-    undo-tree
-    doom-themes
-    centaur-tabs
-    all-the-icons
-    helpful
-    general
-    which-key
-    exec-path-from-shell
-    xclip
-    consult
-    embark
-    embark-consult
-    marginalia
-    orderless
-    vertico
-    company
-    perspective
-    org
-    org-bullets
-    org-roam
-    org-appear
-    magit
-    projectile
-    denote
-    markdown-mode
-    modus-themes
-    eshell-git-prompt
-    pulsar
-    counsel
-    diff-hl
-    git-gutter))
-
 (dolist (x packages)
   (straight-use-package x))
