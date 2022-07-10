@@ -99,3 +99,5 @@
 ;; shells
 (global-set-key (kbd "M-i") 't/eshell-popup-toggle)
 (global-set-key (kbd "M-I") 't/eshell-toggle)
+(global-set-key (kbd "M-o") 't/vterm-popup-toggle)
+(global-set-key (kbd "M-O") 't/vterm-toggle)

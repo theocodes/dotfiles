@@ -47,7 +47,9 @@ The order of inspection is as follows:
   (let* ((name (concat "*eshell " (projectile-project-name) " popup*"))
          (buf (get-buffer name)))
     (if buf
-        (popper-toggle-latest)
+        (if (string= (buffer-name buf) (buffer-name))
+            (popper-toggle-latest)
+          (display-buffer name))
       (with-current-buffer (projectile-run-eshell)
         (rename-buffer name)))))
 
@@ -61,10 +63,11 @@ The order of inspection is as follows:
 (defun t/vterm-popup-toggle ()
   "Toggle a popup vterm instance in the context of current project."
   (interactive)
-  (let ((buf (get-buffer "*vterm-popup*")))
+  (let* ((name (concat "*vterm " (projectile-project-name) " popup*"))
+         (buf (get-buffer name)))
     (if buf
-	(popper-toggle-latest)
-      (with-current-buffer (vterm "*vterm-popup*")
-	(vterm-send-string (concat "cd " (projectile-project-root)))
-	(vterm-send-return)
-	(vterm-clear)))))
+        (if (string= (buffer-name buf) (buffer-name))
+	    (popper-toggle-latest)
+          (display-buffer name))
+      (with-current-buffer (projectile-run-vterm name)
+        (rename-buffer name)))))

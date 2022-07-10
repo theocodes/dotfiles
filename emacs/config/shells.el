@@ -14,3 +14,8 @@
         eshell-scroll-to-bottom-on-input t))
 
 (add-hook 'eshell-first-time-mode 't/configure-eshell)
+
+(defun t/configure-vterm ()
+  (define-key vterm-mode-map (kbd "M-i") nil))
+
+(add-hook 'vterm-mode-hook 't/configure-vterm)

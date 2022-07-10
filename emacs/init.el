@@ -20,8 +20,8 @@
     "straight"
 
     ;; configure and load modes
-    "config/modes/evil"
     "config/modes/centaur-tabs"
+    "config/modes/evil"
     "config/modes/org"
 
     ;; everything else

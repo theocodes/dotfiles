@@ -1,6 +1,6 @@
 ;; relative line numbers
-(global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode 1)
 
 ;; use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
