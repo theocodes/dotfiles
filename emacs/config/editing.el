@@ -29,11 +29,7 @@
 (pulsar-global-mode 1)
 
 ;; show changes from hit in the gutter
-(customize-set-variable 'git-gutter:modified-sign " ")
-(customize-set-variable 'git-gutter:added-sign " ")
-(customize-set-variable 'git-gutter:deleted-sign " ")
-
-;(global-git-gutter-mode +1)
+(global-diff-hl-mode)
 
 ;; highlight matching parens
 (show-paren-mode 1)

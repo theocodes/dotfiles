@@ -53,6 +53,7 @@
     eshell-git-prompt
     pulsar
     counsel
+    diff-hl
     git-gutter))
 
 (dolist (x packages)
