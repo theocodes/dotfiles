@@ -11,7 +11,7 @@
 
 (rune/leader-keys
     "n"  '(:ignore t :which-key "notes")
-    "nn" '(denote :which-key "create note")
+    "nc" '(denote :which-key "capture note")
     "nf" '(t/denote-search-note :which-key "open notes directory in dired")
 
     "f"  '(:ignore t :which-key "files")
@@ -90,3 +90,8 @@
 ;; override M-{hl} on eshell to move to side windows
 (global-set-key [remap eshell-forward-argument] #'evil-window-right)
 (global-set-key [remap eshell-backward-argument] #'evil-window-left)
+
+;; quick switch between perspectives
+(global-set-key (kbd "M-1") 't/switch-to-perspective-one)
+(global-set-key (kbd "M-2") 't/switch-to-perspective-two)
+(global-set-key (kbd "M-3") 't/switch-to-perspective-three)
