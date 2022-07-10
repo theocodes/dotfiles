@@ -1,5 +1,3 @@
-;; Set some variables that must be configured before loading the package
-
 (customize-set-variable 'evil-want-integration t)
 (customize-set-variable 'evil-want-keybinding nil)
 (customize-set-variable 'evil-want-C-i-jump nil)
@@ -27,6 +25,9 @@
 
 ;; Ctrl-p is for finding files...
 (define-key evil-normal-state-map (kbd "C-p") nil)
+
+;; describe thing at point
+(define-key evil-normal-state-map (kbd "K") 't/describe-thing-at-point)
 
 ;; Turn on evil-commentary
 (evil-commentary-mode)

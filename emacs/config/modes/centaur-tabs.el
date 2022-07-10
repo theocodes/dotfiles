@@ -1,4 +1,3 @@
-
 ;; load tabs
 (centaur-tabs-mode t)
 (centaur-tabs-headline-match)

@@ -84,8 +84,8 @@
 
 (global-set-key (kbd "M-l") 'evil-window-right)
 (global-set-key (kbd "M-h") 'evil-window-left)
-(global-set-key (kbd "M-j") 'evil-window-bottom)
-(global-set-key (kbd "M-k") 'evil-window-top)
+(global-set-key (kbd "M-j") 'evil-window-down)
+(global-set-key (kbd "M-k") 'evil-window-up)
 
 ;; override M-{hl} on eshell to move to side windows
 (global-set-key [remap eshell-forward-argument] #'evil-window-right)
@@ -95,3 +95,7 @@
 (global-set-key (kbd "M-1") 't/switch-to-perspective-one)
 (global-set-key (kbd "M-2") 't/switch-to-perspective-two)
 (global-set-key (kbd "M-3") 't/switch-to-perspective-three)
+
+;; shells
+(global-set-key (kbd "M-i") 't/eshell-popup-toggle)
+(global-set-key (kbd "M-I") 't/eshell-toggle)

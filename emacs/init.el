@@ -1,4 +1,7 @@
-;; packages to install
+;;; -*- lexical-binding: t; -*-
+
+;; Packages to install
+
 (setq packages
   '(
     use-package evil evil-collection evil-commentary evil-multiedit
@@ -6,9 +9,10 @@
     which-key exec-path-from-shell xclip consult embark embark-consult
     marginalia orderless vertico company perspective org org-bullets
     org-roam org-appear magit projectile denote markdown-mode modus-themes
-    eshell-git-prompt pulsar counsel diff-hl git-gutter))
+    eshell-git-prompt pulsar counsel diff-hl git-gutter vterm popper))
 
-;; modules to load
+;; Modules to load
+
 (setq modules
   '(
     ;; top level
@@ -23,12 +27,14 @@
     ;; everything else
     "config/defaults"
     "config/ui"
+    "config/windows"
     "config/completion"
     "config/editing"
     "config/notes"
     "config/keybindings"
     "config/shells"))
 
-;; load modules
+;; Load modules
+
 (dolist (x modules)
   (load (concat config-dir x)))
