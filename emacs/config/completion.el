@@ -1,4 +1,3 @@
-
 (require 'vertico)
 
 (with-eval-after-load 'evil

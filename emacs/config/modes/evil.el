@@ -1,7 +1,5 @@
-;; Turn on undo-tree globally
-(global-undo-tree-mode)
-
 ;; Set some variables that must be configured before loading the package
+
 (customize-set-variable 'evil-want-integration t)
 (customize-set-variable 'evil-want-keybinding nil)
 (customize-set-variable 'evil-want-C-i-jump nil)
@@ -11,6 +9,9 @@
 
 ;; Load Evil and enable it globally
 (evil-mode 1)
+
+;; Turn on undo-tree globally
+(global-undo-tree-mode)
 
 ;; Keybindings
 (define-key evil-normal-state-map (kbd "L") 'centaur-tabs-forward)

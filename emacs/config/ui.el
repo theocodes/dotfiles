@@ -33,7 +33,6 @@
 
 ;; Load the theme of your choice
 (modus-themes-load-vivendi) ;; OR (modus-themes-load-operandi)
-;;(load-theme 'doom-horizon t)
 
 ;; Toggle dark/light
 (define-key global-map (kbd "<f5>") #'modus-themes-toggle)

@@ -35,4 +35,5 @@
 (show-paren-mode 1)
 
 ;; enable multiedit with evil keys
+(require 'evil-multiedit)
 (evil-multiedit-default-keybinds)
