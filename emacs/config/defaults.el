@@ -37,7 +37,7 @@
 (customize-set-variable 'recentf-save-file
                         (expand-file-name ".recentf" "~/.emacs.d/"))
 
-;; Move custom away from init.el
+;; Move custom away from .emacs
 (setq custom-file "~/.emacs.d/custom.el")
 
 ;; init

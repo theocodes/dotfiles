@@ -1,4 +1,3 @@
-
 ;; how long before which-key shows up
 (setq which-key-idle-delay 1)
 
@@ -12,10 +11,8 @@
 
 (rune/leader-keys
     "n"  '(:ignore t :which-key "notes")
-    "nf" '(org-roam-node-find :which-key "find or create node")
-    "nc" '(org-roam-dailies-capture-today :which-key "capture note")
-    "nd" '(org-roam-dailies-goto-date :which-key "go to date")
-    "nt" '(org-roam-dailies-goto-today :which-key "go to today")
+    "nn" '(denote :which-key "create note")
+    "nf" '(t/denote-search-note :which-key "open notes directory in dired")
 
     "f"  '(:ignore t :which-key "files")
     "fr" '(consult-recent-file :which-key "open a recent file")
@@ -60,11 +57,13 @@
 ;; New tab with Cmd-Return
 (global-set-key (kbd "M-RET") 'tab-new)
 
-;; Paste with cmd-v
+;; Paste with M-v (mac) or Ctrl-Shift-v
 (global-set-key (kbd "M-v") 'yank)
+(global-set-key (kbd "C-S-V") 'yank)
 
 ;; Kill buffer with Q in dired also
-; (define-key dired-mode-map [remap quit-window] #'kill-current-buffer)
+(require 'dired)
+(define-key dired-mode-map [remap quit-window] #'kill-current-buffer)
 
 ;; fuzzy search in buffer
 (global-set-key (kbd "C-s") 'consult-line)
@@ -83,3 +82,11 @@
 (with-eval-after-load 'embark-consult
   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
+(global-set-key (kbd "M-l") 'evil-window-right)
+(global-set-key (kbd "M-h") 'evil-window-left)
+(global-set-key (kbd "M-j") 'evil-window-bottom)
+(global-set-key (kbd "M-k") 'evil-window-top)
+
+;; override M-{hl} on eshell to move to side windows
+(global-set-key [remap eshell-forward-argument] #'evil-window-right)
+(global-set-key [remap eshell-backward-argument] #'evil-window-left)

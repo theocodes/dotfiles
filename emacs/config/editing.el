@@ -19,8 +19,24 @@
 (setq persp-mode-prefix-key "")
 (persp-mode)
 
-;; projectile
+;; set projectile project search path
 (when (file-directory-p "~/Code")
     (setq projectile-project-search-path '("~/Code")))
 
 (projectile-global-mode +1)
+
+;; find the cursor
+(pulsar-global-mode 1)
+
+;; show changes from hit in the gutter
+(customize-set-variable 'git-gutter:modified-sign " ")
+(customize-set-variable 'git-gutter:added-sign " ")
+(customize-set-variable 'git-gutter:deleted-sign " ")
+
+;(global-git-gutter-mode +1)
+
+;; highlight matching parens
+(show-paren-mode 1)
+
+;; enable multiedit with evil keys
+(evil-multiedit-default-keybinds)

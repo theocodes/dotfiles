@@ -1,4 +1,4 @@
-;; Install and bootstrap straight.el
+;; install and bootstrap straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -16,33 +16,44 @@
 (setq package-enable-at-startup nil
       straight-use-package-by-default t)
 
-;; Install packages
+;; install packages
+(defvar packages
+  '(
+    use-package
+    evil
+    evil-collection
+    evil-commentary
+    evil-multiedit
+    undo-tree
+    doom-themes
+    centaur-tabs
+    all-the-icons
+    helpful
+    general
+    which-key
+    exec-path-from-shell
+    xclip
+    consult
+    embark
+    embark-consult
+    marginalia
+    orderless
+    vertico
+    company
+    perspective
+    org
+    org-bullets
+    org-roam
+    org-appear
+    magit
+    projectile
+    denote
+    markdown-mode
+    modus-themes
+    eshell-git-prompt
+    pulsar
+    counsel
+    git-gutter))
 
-(straight-use-package 'use-package)
-(straight-use-package 'evil)
-(straight-use-package 'evil-collection)
-(straight-use-package 'evil-commentary)
-(straight-use-package 'evil-multiedit)
-(straight-use-package 'undo-tree)
-(straight-use-package 'doom-themes)
-(straight-use-package 'centaur-tabs)
-(straight-use-package 'all-the-icons)
-(straight-use-package 'helpful)
-(straight-use-package 'general)
-(straight-use-package 'which-key)
-(straight-use-package 'exec-path-from-shell)
-(straight-use-package 'xclip)
-(straight-use-package 'consult)
-(straight-use-package 'embark)
-(straight-use-package 'embark-consult)
-(straight-use-package 'marginalia)
-(straight-use-package 'orderless)
-(straight-use-package 'vertico)
-(straight-use-package 'company)
-(straight-use-package 'perspective)
-(straight-use-package 'org)
-(straight-use-package 'org-bullets)
-(straight-use-package 'org-roam)
-(straight-use-package 'org-appear)
-(straight-use-package 'magit)
-(straight-use-package 'projectile)
+(dolist (x packages)
+  (straight-use-package x))
