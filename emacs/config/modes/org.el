@@ -12,6 +12,9 @@
 (customize-set-variable 'org-hide-emphasis-markers t)
 (add-hook 'org-mode-hook 'org-appear-mode)
 
+;; automatic parens pairing
+(electric-pair-mode 1)
+
 ;; disable auto-pairing of "<" in org-mode
 (add-hook 'org-mode-hook (lambda ()
     (setq-local electric-pair-inhibit-predicate
