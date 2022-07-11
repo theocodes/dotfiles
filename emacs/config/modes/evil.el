@@ -1,4 +1,4 @@
-;; evil-mode configuration
+;; Configuration for evil-mode.
 
 (customize-set-variable 'evil-want-integration t)
 (customize-set-variable 'evil-want-keybinding nil)
