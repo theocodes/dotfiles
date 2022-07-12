@@ -7,6 +7,23 @@
   (interactive)
   (consult-find (denote-directory)))
 
+;; (defun t/denote-create-journal-entry ()
+;;   "Creates a journal entry note that will go in the 'journal/' directory within
+;; `denote-directory'. The directory will be created on the fly if it doesn't yet exist."
+;;   (interactive)
+;;   (let* ((date (shell-command-to-string (concat "echo -n $(date +%Y/%B/%d/%A)")))
+;;          (parts (split-string date "/"))
+;;          (year (car parts))
+;;          (month (car (cdr parts)))
+;;          (day (car (cdr (cdr parts))))
+;;          (day-of-week (car (cdr (cdr (cdr parts)))))
+;;          (directory (concat denote-directory "journal/")))
+         
+;;     (shell-command (concat "mkdir -p " directory))
+;;     (denote-subdirectory directory (format "%s, %s %s %s" day-of-week day month year) '("journal"))))
+
+;; (denote-subdirectory (concat denote-directory "journal") "Journal Entry" '("journal"))
+
 (defun t/switch-to-perspective-one ()
   "Switches to whichever the first perspective is."
   (interactive)

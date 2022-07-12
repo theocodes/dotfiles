@@ -1,6 +1,8 @@
 (require 'org)
 (require 'org-tempo)
 
+(setq org-directory "~/Documents/notes")
+
 ;; Return or left-click with mouse follows link
 (customize-set-variable 'org-return-follows-link t)
 (customize-set-variable 'org-mouse-1-follows-link t)
@@ -56,7 +58,7 @@
 (setq org-roam-v2-ack t
         org-roam-dailies-directory "journal/")
 
-(customize-set-variable 'org-roam-directory "~/RoamNotes")
+(customize-set-variable 'org-roam-directory "~/Documents/notes")
 (customize-set-variable 'org-roam-completion-everywhere t)
 
 (require 'org-roam-dailies)
