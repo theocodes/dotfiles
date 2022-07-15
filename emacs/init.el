@@ -9,7 +9,7 @@
     which-key exec-path-from-shell xclip consult embark embark-consult
     marginalia orderless vertico company perspective org org-bullets
     org-roam org-appear magit projectile denote markdown-mode modus-themes
-    terraform-mode neotree
+    terraform-mode neotree web-mode haml-mode emmet-mode
     eshell-git-prompt pulsar counsel diff-hl git-gutter vterm popper))
 
 ;; Modules to load
