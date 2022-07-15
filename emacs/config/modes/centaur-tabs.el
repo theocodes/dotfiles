@@ -28,6 +28,8 @@
      (and (string-prefix-p "magit" name)
 	  (not (file-name-extension name))))))
 
+(setq centaur-tabs-cycle-scope 'tabs)
+
 ;; load tabs
 (centaur-tabs-mode +1)
 (centaur-tabs-headline-match)
