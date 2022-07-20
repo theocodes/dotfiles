@@ -10,12 +10,15 @@ require "user.config.comment"
 require "user.config.gitsigns"
 require "user.config.toggleterm"
 require "user.config.lualine"
+require "user.config.nvimtree"
 require "user.config.treesitter"
 require "user.config.rust-tools"
+require "user.config.fzf"
 
 -- theme
 -- vim.cmd [[ colorscheme monokai_pro ]]
-vim.cmd [[ colorscheme space-vim-dark ]]
+-- vim.cmd [[ colorscheme space-vim-dark ]]
+vim.cmd [[ colorscheme sunbather ]]
 
 -- Theme overrides
 vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
@@ -31,11 +34,21 @@ vim.cmd [[ hi GitSignsDelete guibg=NONE guifg=Red ]]
 
 vim.cmd [[ hi EndOfBuffer guibg=NONE guifg=NONE ]]
 vim.cmd [[ hi clear TabLineFill ]]
+vim.cmd [[ hi ExtraWhitespace ctermbg=red guibg=red ]]
+
+vim.cmd [[hi Whitespace guibg=None guifg=#222422]]
+vim.cmd [[match Whitespace /\s/]]
 
 require'lsp_extensions'.inlay_hints{
-	highlight = "Comment",
-	prefix = " > ",
-	aligned = false,
-	only_current_line = false,
-	enabled = { "ChainingHint" }
+  highlight = "Comment",
+  prefix = " > ",
+  aligned = false,
+  only_current_line = false,
+  enabled = { "ChainingHint" }
 }
+
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("tab: >")
+
+--vim.cmd [[set lcs+=space:·]]

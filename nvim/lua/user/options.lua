@@ -4,7 +4,7 @@ local opt = vim.opt
 -- :h options
 opt.backup = false                       -- No backup files
 opt.swapfile = false                     -- No swap files
-opt.clipboard = "unnamedplus"            -- Allow nvim to access clipboard
+opt.clipboard = "unnamedplus"            -- Allow nvim to access clipboard (relies on xclip,xsel on linux)
 opt.cmdheight = 1                        -- Hight of command line
 opt.hlsearch = true                      -- Highlight all matches in search pattern
 opt.expandtab = true                     -- Convert tabs to spaces
@@ -39,3 +39,4 @@ vim.cmd[[autocmd BufWritePre * :%s/\s\+$//e]]
 vim.cmd[[let g:fzf_layout = { 'down': '~40%' }]]
 
 vim.cmd[[autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true }]]
+

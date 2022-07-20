@@ -51,10 +51,25 @@ return packer.startup(function(use)
   use "maxjacobson/vim-fzf-coauthorship"       -- Get co-authors
   use 'junegunn/fzf'
   use "junegunn/fzf.vim"                       -- Dependency of above
+  use { 'ibhagwan/fzf-lua',
+    -- optional for icon support
+    requires = { 'kyazdani42/nvim-web-devicons' }
+  }
   use "mg979/vim-visual-multi"
   use "kyazdani42/nvim-web-devicons"
   use "noib3/nvim-cokeline"
   use "machakann/vim-highlightedyank"          -- Highlight yanks
+  -- use "lukas-reineke/indent-blankline.nvim"    -- Show indentation lines
+
+  -- motion tool
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    end
+  }
 
   -- Session management
   use {
@@ -96,6 +111,15 @@ return packer.startup(function(use)
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "p00f/nvim-ts-rainbow"
+
+  -- Explorer
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    tag = 'nightly'
+  }
 
   -- rust
   use "rust-lang/rust.vim"

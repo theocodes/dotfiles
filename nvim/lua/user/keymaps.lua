@@ -24,7 +24,7 @@ map("n", "<C-Up>", ":resize +2<cr>")
 map("n", "<C-Down>", ":resize -2<cr>")
 
 -- Explorer
-map("n", "<leader>op", ":Lex 30<cr>")
+map("n", "<leader>op", ":NvimTreeToggle<cr>")
 
 -- Indent selection
 map("v", "<TAB>", ">gv")
@@ -54,9 +54,8 @@ map("n", "q", ":q!<CR>")
 map("n", "<leader>lsp", ":LspInstallInfo<CR>")
 
 -- Fuzzy files in current project
-map("n", "<C-p>", ":GFiles!<CR>")
-map("n", "<leader>pf", ":GFiles!<CR>")
-map("n", "<leader>.", ":Files!<CR>")
+map("n", "<C-p>", ":FzfLua files<CR>")
+map("n", "<leader>pf", ":FzfLua files<CR>")
 
 -- open recent files
 map("n", "<leader>fr", ":History!<CR>")
@@ -65,13 +64,14 @@ map("n", "<leader>fr", ":History!<CR>")
 map("n", "<leader><leader>", ":Telescope file_browser<cr>")
 
 -- Fuzzy current buffer
-map("n", "<C-s>", ":BLines<CR>")
+map("n", "<C-s>", ":FzfLua blines<CR>")
 
 -- Live grep project
-map("n", "<leader>*", ":Ag!<CR>")
+-- map("n", "<leader>*", ":Ag!<CR>")
+map("n", "<leader>*", ":FzfLua live_grep<CR>")
 
 -- Fuzzy buffer list
-map("n", "<leader>bb", ":Buffers<CR>")
+map("n", "<leader>bb", ":FzfLua buffers<CR>")
 
 -- Kill current buffer
 map("n", "<leader>bd", ":bd<CR>")
@@ -79,16 +79,15 @@ map("n", "<leader>bd", ":bd<CR>")
 -- Last opened buffer
 map("n", "<leader><TAB>", "<C-^>")
 
--- Split window
-map("n", "<leader>vs", ":vs<CR>")
-map("n", "<leader>hs", ":sp<CR>")
-
 -- Preview hunk
-map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>")
+map("n", "I", ":Gitsigns preview_hunk<CR>")
 
 -- Move between buffers
 map("n", "H", "<Plug>(cokeline-focus-prev)<CR>")
 map("n", "L", "<Plug>(cokeline-focus-next)<CR>")
+
+-- Easy motion
+map('n', 's', ":HopWord<CR>")
 
 -- Toggle terminal
 map("n", "<C-\\>", ":ToggleTerm<CR>")
