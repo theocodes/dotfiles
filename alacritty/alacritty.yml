@@ -1,5 +1,5 @@
 font:
-  size: 14
+  size: 12
 
   normal:
     family: "Iosevka"
@@ -36,6 +36,8 @@ key_bindings:
   - { key: W,                       mods: Command,              chars: "\x60\x71"          }
   - { key: Return,                  mods: Command,              chars: "\x60\x22"          }
   - { key: Return,                  mods: Command|Shift,        chars: "\x60\x25"          }
+  - { key: Return,                  mods: Alt,                  chars: "\x60\x22"          }
+  - { key: Return,                  mods: Alt|Shift,            chars: "\x60\x25"          }
   - { key: H,                       mods: Command,              chars: "\x60\x68"          }
   - { key: J,                       mods: Command,              chars: "\x60\x6a"          }
   - { key: K,                       mods: Command,              chars: "\x60\x6b"          }
