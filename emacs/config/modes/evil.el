@@ -13,9 +13,15 @@
 ;; Turn on undo-tree globally
 (global-undo-tree-mode)
 
-;; Keybindings
+;; move sideways between tabs
 (define-key evil-normal-state-map (kbd "L") 'centaur-tabs-forward)
 (define-key evil-normal-state-map (kbd "H") 'centaur-tabs-backward)
+
+;; move tabs
+(define-key evil-normal-state-map (kbd "M-L") 'centaur-tabs-move-current-tab-to-right)
+(define-key evil-normal-state-map (kbd "M-H") 'centaur-tabs-move-current-tab-to-left)
+
+;; show hunk diff
 (define-key evil-normal-state-map (kbd "I") 'diff-hl-show-hunk)
 
 (define-key evil-normal-state-map (kbd "q") 'kill-current-buffer)

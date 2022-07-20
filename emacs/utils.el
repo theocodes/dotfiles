@@ -18,7 +18,7 @@
 ;;          (day (car (cdr (cdr parts))))
 ;;          (day-of-week (car (cdr (cdr (cdr parts)))))
 ;;          (directory (concat denote-directory "journal/")))
-         
+
 ;;     (shell-command (concat "mkdir -p " directory))
 ;;     (denote-subdirectory directory (format "%s, %s %s %s" day-of-week day month year) '("journal"))))
 

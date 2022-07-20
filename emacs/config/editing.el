@@ -15,6 +15,12 @@
 
 (company-tng-configure-default)
 
+;; indent with spaces
+(setq-default indent-tabs-mode nil)
+
+;; delete trailing whitespace
+(add-hook 'write-file-hooks 'delete-trailing-whitespace nil t)
+
 ;; load perspective
 (setq persp-mode-prefix-key "")
 (persp-mode)
@@ -55,3 +61,16 @@
 
 ;; enable emmet on web-mode
 (add-hook 'web-mode-hook 'emmet-mode)
+
+(setq-local show-trailing-whitespace t)
+
+;; show whitespace
+;;(setq whitespace-style (quote (face spaces tabs space-mark tab-mark)))
+;;(global-whitespace-mode 1)
+
+;; delete trailing whitespace on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; init indentation lines
+;; (setq highlight-indent-guides-method 'bitmap)
+;; (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)

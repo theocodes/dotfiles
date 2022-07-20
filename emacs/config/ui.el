@@ -1,5 +1,5 @@
 ;; setting fonts
-(set-face-attribute 'default nil :font "Iosevka Comfy" :height 130 :weight 'regular)
+(set-face-attribute 'default nil :font "Iosevka Comfy" :height 120 :weight 'regular)
 
 ;; load the team to use
 ;; (load-theme 'doom-badger t)
@@ -32,7 +32,8 @@
 (modus-themes-load-themes)
 
 ;; Load the theme of your choice
-(modus-themes-load-vivendi) ;; OR (modus-themes-load-operandi)
+;; (modus-themes-load-vivendi) ;; OR (modus-themes-load-operandi)
+(load-theme 'doom-xcode t)
 
 ;; Toggle dark/light
 (define-key global-map (kbd "<f5>") #'modus-themes-toggle)
@@ -44,5 +45,5 @@
 (add-hook 'window-setup-hook 'on-after-init)
 
 ;; set background opacity
-(set-frame-parameter (selected-frame) 'alpha '(98 . 98))
-(add-to-list 'default-frame-alist '(alpha . (98 . 98)))
+(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
+(add-to-list 'default-frame-alist '(alpha . (99 . 99)))

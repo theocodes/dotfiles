@@ -9,7 +9,9 @@
     which-key exec-path-from-shell xclip consult embark embark-consult
     marginalia orderless vertico company perspective org org-bullets
     org-roam org-appear magit projectile denote markdown-mode modus-themes
-    terraform-mode neotree web-mode haml-mode emmet-mode
+    neotree
+    ;; treemacs treemacs-evil treemacs-projectile treemacs-persp
+    web-mode haml-mode emmet-mode highlight-indent-guides terraform-mode
     eshell-git-prompt pulsar counsel diff-hl git-gutter vterm popper))
 
 ;; Modules to load
@@ -24,6 +26,7 @@
     "config/modes/centaur-tabs"
     "config/modes/evil"
     "config/modes/org"
+    "config/modes/neotree"
 
     ;; everything else
     "config/defaults"

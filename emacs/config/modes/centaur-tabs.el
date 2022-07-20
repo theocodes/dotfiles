@@ -30,6 +30,8 @@
 
 (setq centaur-tabs-cycle-scope 'tabs)
 
+;; (centaur-tabs-change-fonts "Iosevka Comfy" 140)
+
 ;; load tabs
 (centaur-tabs-mode +1)
 (centaur-tabs-headline-match)
