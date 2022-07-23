@@ -49,10 +49,7 @@ return packer.startup(function(use)
   use "nvim-lualine/lualine.nvim"              -- Better line
   use "axelf4/vim-strip-trailing-whitespace"   -- Trim whitespace
   use "maxjacobson/vim-fzf-coauthorship"       -- Get co-authors
-  use 'junegunn/fzf'
-  use "junegunn/fzf.vim"                       -- Dependency of above
   use { 'ibhagwan/fzf-lua',
-    -- optional for icon support
     requires = { 'kyazdani42/nvim-web-devicons' }
   }
   use "mg979/vim-visual-multi"
