@@ -24,7 +24,7 @@ map("n", "<C-Up>", ":resize +2<cr>")
 map("n", "<C-Down>", ":resize -2<cr>")
 
 -- Explorer
-map("n", "<leader>op", ":NvimTreeToggle<cr>")
+map("n", "<leader>op", ":NeoTreeRevealToggle<cr>")
 
 -- Indent selection
 map("v", "<TAB>", ">gv")
@@ -54,14 +54,12 @@ map("n", "q", ":q!<CR>")
 map("n", "<leader>lsp", ":LspInstallInfo<CR>")
 
 -- Fuzzy files in current project
-map("n", "<C-p>", ":FzfLua files<CR>")
-map("n", "<leader>pf", ":FzfLua files<CR>")
+map("n", "<C-p>", ":FzfLua git_files<CR>")
+map("n", "<leader>pf", ":FzfLua git_files<CR>")
+map("n", "<leader>.", ":FzfLua files<CR>")
 
 -- open recent files
 map("n", "<leader>fr", ":History!<CR>")
-
--- File browser
-map("n", "<leader><leader>", ":Telescope file_browser<cr>")
 
 -- Fuzzy current buffer
 map("n", "<C-s>", ":FzfLua blines<CR>")

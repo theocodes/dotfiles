@@ -1,3 +1,5 @@
+local helpers = require "user.config.helpers"
+
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
@@ -10,7 +12,7 @@ require "user.config.comment"
 require "user.config.gitsigns"
 require "user.config.toggleterm"
 require "user.config.lualine"
-require "user.config.nvimtree"
+require "user.config.neotree"
 require "user.config.treesitter"
 require "user.config.rust-tools"
 require "user.config.fzf"
@@ -52,3 +54,21 @@ vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("tab: >")
 
 --vim.cmd [[set lcs+=space:·]]
+
+-- Set up system clipboard for WSL
+if helpers.is_wsl then
+  vim.cmd [[
+    let g:clipboard = {
+        \   'name': 'win32yank-wsl',
+        \   'copy': {
+        \      '+': 'win32yank.exe -i --crlf',
+        \      '*': 'win32yank.exe -i --crlf',
+        \    },
+        \   'paste': {
+        \      '+': 'win32yank.exe -o --lf',
+        \      '*': 'win32yank.exe -o --lf',
+        \   },
+        \   'cache_enabled': 0,
+        \ }
+  ]]
+end
