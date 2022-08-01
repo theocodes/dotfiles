@@ -6,7 +6,6 @@ require "user.plugins"
 
 require "user.config.cmp"
 require "user.config.lsp"
-require "user.config.telescope"
 require "user.config.cokeline"
 require "user.config.comment"
 require "user.config.gitsigns"
@@ -18,12 +17,11 @@ require "user.config.rust-tools"
 require "user.config.fzf"
 
 -- theme
--- vim.cmd [[ colorscheme monokai_pro ]]
--- vim.cmd [[ colorscheme space-vim-dark ]]
-vim.cmd [[ colorscheme sunbather ]]
+vim.cmd [[ colorscheme minimal ]]
 
 -- Theme overrides
 vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
+vim.cmd [[ hi FzfLuaNormal guibg=NONE ctermbg=NONE ]]
 
 vim.cmd [[ hi LineNr guibg=NONE ]]
 vim.cmd [[ hi clear SignColumn ]]

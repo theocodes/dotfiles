@@ -49,6 +49,7 @@ return packer.startup(function(use)
   use "nvim-lualine/lualine.nvim"              -- Better line
   use "axelf4/vim-strip-trailing-whitespace"   -- Trim whitespace
   use "maxjacobson/vim-fzf-coauthorship"       -- Get co-authors
+  use "junegunn/fzf"
   use { 'ibhagwan/fzf-lua',
     requires = { 'kyazdani42/nvim-web-devicons' }
   }
@@ -56,7 +57,6 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-web-devicons"
   use "noib3/nvim-cokeline"
   use "machakann/vim-highlightedyank"          -- Highlight yanks
-  -- use "lukas-reineke/indent-blankline.nvim"    -- Show indentation lines
 
   -- motion tool
   use {
@@ -97,6 +97,7 @@ return packer.startup(function(use)
   use 'rafi/awesome-vim-colorschemes'
   use 'andreypopp/vim-colors-plain'
   use 'chriskempson/base16-vim'
+  use 'Yazeed1s/minimal.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"                       -- The completion plugin
