@@ -48,15 +48,15 @@ return packer.startup(function(use)
   use "akinsho/toggleterm.nvim"                -- Togglable term used for lazygit etc
   use "nvim-lualine/lualine.nvim"              -- Better line
   use "axelf4/vim-strip-trailing-whitespace"   -- Trim whitespace
-  use "maxjacobson/vim-fzf-coauthorship"       -- Get co-authors
   use "junegunn/fzf"
-  use { 'ibhagwan/fzf-lua',
-    requires = { 'kyazdani42/nvim-web-devicons' }
-  }
+  use "maxjacobson/vim-fzf-coauthorship"       -- Get co-authors
+  use { 'ibhagwan/fzf-lua', requires = { 'kyazdani42/nvim-web-devicons' } }
   use "mg979/vim-visual-multi"
   use "kyazdani42/nvim-web-devicons"
   use "noib3/nvim-cokeline"
   use "machakann/vim-highlightedyank"          -- Highlight yanks
+
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
   -- motion tool
   use {
