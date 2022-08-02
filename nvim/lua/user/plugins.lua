@@ -56,9 +56,6 @@ return packer.startup(function(use)
   use "noib3/nvim-cokeline"
   use "machakann/vim-highlightedyank"          -- Highlight yanks
   use "dag/vim-fish"                           -- Fish syntax highlighting
-  use "bakpakin/fennel.vim"                    -- Fennel syntax highlighting
-  use "Olical/aniseed"                         -- Fennel -> Neovim integration
-
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
   -- motion tool
