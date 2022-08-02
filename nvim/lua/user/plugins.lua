@@ -48,15 +48,16 @@ return packer.startup(function(use)
   use "akinsho/toggleterm.nvim"                -- Togglable term used for lazygit etc
   use "nvim-lualine/lualine.nvim"              -- Better line
   use "axelf4/vim-strip-trailing-whitespace"   -- Trim whitespace
+  use "junegunn/fzf"
   use "maxjacobson/vim-fzf-coauthorship"       -- Get co-authors
-  use { 'ibhagwan/fzf-lua',
-    requires = { 'kyazdani42/nvim-web-devicons' }
-  }
+  use { 'ibhagwan/fzf-lua', requires = { 'kyazdani42/nvim-web-devicons' } }
   use "mg979/vim-visual-multi"
   use "kyazdani42/nvim-web-devicons"
   use "noib3/nvim-cokeline"
   use "machakann/vim-highlightedyank"          -- Highlight yanks
-  -- use "lukas-reineke/indent-blankline.nvim"    -- Show indentation lines
+  use "dag/vim-fish"                           -- Fish syntax highlighting
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  use "rktjmp/hotpot.nvim"
 
   -- motion tool
   use {
@@ -97,6 +98,7 @@ return packer.startup(function(use)
   use 'rafi/awesome-vim-colorschemes'
   use 'andreypopp/vim-colors-plain'
   use 'chriskempson/base16-vim'
+  use 'Yazeed1s/minimal.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"                       -- The completion plugin
@@ -141,8 +143,8 @@ return packer.startup(function(use)
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
-        auto_open = true,
-        auto_close = true
+        auto_open = false,
+        auto_close = false
       }
     end
   }

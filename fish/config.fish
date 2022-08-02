@@ -23,6 +23,8 @@ abbr tf terraform
 # ...
 
 # PATH
+fish_add_path /opt/homebrew/opt/ruby/bin
+fish_add_path /opt/homebrew/lib/ruby/gems/3.1.0/bin
 fish_add_path $DOTFILES/bin
 fish_add_path $GOPATH/bin
 fish_add_path $CARGOPATH/bin

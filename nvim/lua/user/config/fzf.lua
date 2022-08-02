@@ -1,6 +1,10 @@
 require('fzf-lua').setup{
   winopts = {
-    split = "belowright new",
-    border = "single"
+    border = "single",
+    fullscreen = true,
+    preview = {
+      vertical = 'up:70%',
+      layout = 'vertical',
+    }
   },
 }

@@ -32,11 +32,7 @@ opt.iskeyword:append "-"                 -- This "asdf-asdf" is treated as a sin
 opt.guifont = "Iosevka Nerd Font Mono"
 
 g.rustfmt_autosave = 1
-
 vim.cmd[[autocmd BufWritePre * :%s/\s\+$//e]]
-
--- g.fzf_layout = { down: "~40%" }
-vim.cmd[[let g:fzf_layout = { 'down': '~40%' }]]
 
 vim.cmd[[autocmd CursorHold,CursorHoldI *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true }]]
 
