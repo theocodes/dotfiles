@@ -70,3 +70,6 @@ if helpers.is_wsl then
         \ }
   ]]
 end
+
+-- local fennel config
+require('aniseed.env').init()
