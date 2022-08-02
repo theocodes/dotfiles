@@ -55,6 +55,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-web-devicons"
   use "noib3/nvim-cokeline"
   use "machakann/vim-highlightedyank"          -- Highlight yanks
+  use "dag/vim-fish"                           -- Fish syntax highlighting
 
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
