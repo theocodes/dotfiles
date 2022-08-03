@@ -40,6 +40,9 @@ map("n", 'tk', ':tabnext<cr>')
 map("n", 'tj', ':tabprev<cr>')
 map("n", 'to', ':tabo<cr>')
 
+-- source fnl file
+map("n", '<leader>xe', ':Fnlsource %<cr>')
+
 -- Run shell command
 map("n", ';', ':!', term_opts)
 

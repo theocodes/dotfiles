@@ -57,7 +57,10 @@ return packer.startup(function(use)
   use "machakann/vim-highlightedyank"          -- Highlight yanks
   use "dag/vim-fish"                           -- Fish syntax highlighting
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
+  -- Fennel
   use "rktjmp/hotpot.nvim"
+  use "bakpakin/fennel.vim"
 
   -- motion tool
   use {
