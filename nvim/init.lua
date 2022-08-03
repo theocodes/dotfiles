@@ -1,6 +1,6 @@
 local helpers = require "user.config.helpers"
 
--- require "user.options"
+require "user.options"
 require "user.keymaps"
 require "user.plugins"
 
@@ -17,7 +17,7 @@ require "user.config.rust-tools"
 require "user.config.fzf"
 
 -- theme
-vim.cmd [[ colorscheme minimal ]]
+vim.cmd [[ colorscheme ayu ]]
 
 -- Theme overrides
 vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
