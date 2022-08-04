@@ -25,7 +25,6 @@
 (set o.fileencoding "utf-8")
 (set o.termguicolors true)
 (set o.mouse "a")
-
 (set o.list true)
-(table.insert o.listchars "space:⋅")
-(table.insert o.listchars "tab: >")
+(set o.listchars "tab:»·,trail:·,nbsp:~")
+

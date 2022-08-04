@@ -27,12 +27,12 @@ map("n", "<C-Down>", ":resize -2<cr>")
 -- map("n", "<leader>op", ":NeoTreeRevealToggle<cr>")
 
 -- Indent selection
-map("v", "<TAB>", ">gv")
-map("v", "<S-TAB>", "<gv")
+-- map("v", "<TAB>", ">gv")
+-- map("v", "<S-TAB>", "<gv")
 
 -- Move block
-map("x", "J", ":move '>+1<CR>gv-gv")
-map("x", "K", ":move '<-2<CR>gv-gv")
+-- map("x", "J", ":move '>+1<CR>gv-gv")
+-- map("x", "K", ":move '<-2<CR>gv-gv")
 
 -- Working with tabs
 map("n", 'tn', ':tabnew<cr>')
@@ -44,51 +44,51 @@ map("n", 'to', ':tabo<cr>')
 map("n", '<leader>xe', ':Fnlsource %<cr>')
 
 -- Run shell command
-map("n", ';', ':!', term_opts)
+-- map("n", ';', ':!', term_opts)
 
 -- Clear search highlight
-map("n", '<C-c>', ':set hlsearch!<CR>')
+-- map("n", '<C-c>', ':set hlsearch!<CR>')
 
 -- Quit buffer with q
-map("n", "q", ":q!<CR>")
+-- map("n", "q", ":q!<CR>")
 -- map("n", "q", ":bd<CR>")
 
 -- LSP installer gui
 map("n", "<leader>lsp", ":LspInstallInfo<CR>")
 
 -- Fuzzy files in current project
-map("n", "<C-p>", ":FzfLua git_files<CR>")
-map("n", "<leader>pf", ":FzfLua git_files<CR>")
-map("n", "<leader>.", ":FzfLua files<CR>")
+-- map("n", "<C-p>", ":FzfLua git_files<CR>")
+-- map("n", "<leader>pf", ":FzfLua git_files<CR>")
+-- map("n", "<leader>.", ":FzfLua files<CR>")
 
 -- open recent files
-map("n", "<leader>fr", ":History!<CR>")
+-- map("n", "<leader>fr", ":History!<CR>")
 
 -- Fuzzy current buffer
-map("n", "<C-s>", ":FzfLua blines<CR>")
+-- map("n", "<C-s>", ":FzfLua blines<CR>")
 
 -- Live grep project
 -- map("n", "<leader>*", ":Ag!<CR>")
-map("n", "<leader>*", ":FzfLua live_grep<CR>")
+-- map("n", "<leader>*", ":FzfLua live_grep<CR>")
 
 -- Fuzzy buffer list
-map("n", "<leader>bb", ":FzfLua buffers<CR>")
+-- map("n", "<leader>bb", ":FzfLua buffers<CR>")
 
 -- Kill current buffer
-map("n", "<leader>bd", ":bd<CR>")
+-- map("n", "<leader>bd", ":bd<CR>")
 
 -- Last opened buffer
-map("n", "<leader><TAB>", "<C-^>")
+-- map("n", "<leader><TAB>", "<C-^>")
 
 -- Preview hunk
-map("n", "I", ":Gitsigns preview_hunk<CR>")
+-- map("n", "I", ":Gitsigns preview_hunk<CR>")
 
 -- Move between buffers
-map("n", "H", "<Plug>(cokeline-focus-prev)<CR>")
-map("n", "L", "<Plug>(cokeline-focus-next)<CR>")
+-- map("n", "H", "<Plug>(cokeline-focus-prev)<CR>")
+-- map("n", "L", "<Plug>(cokeline-focus-next)<CR>")
 
 -- Easy motion
-map('n', 's', ":HopWord<CR>")
+-- map('n', 's', ":HopWord<CR>")
 
 -- Toggle terminal
 map("n", "<C-\\>", ":ToggleTerm<CR>")
