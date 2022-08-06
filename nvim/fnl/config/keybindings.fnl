@@ -1,91 +1,80 @@
+(local module {})
+
+(local helpers (require :config.helpers))
+(local plugins (require :config.plugins))
+
+(plugins.add :which-key)
+
 (local wk (require :which-key))
 
 ;; Leader is space
-(let [leader {}]
-
-  (set leader.* [ ":FzfLua live_grep<CR>" "Grep project" ])
-  (set leader.<TAB> [ "<C-^>" "Switch to previous buffer" ])
-
-  (let [f {:name "files"}]
-    (set f.b [ ":NeoTreeRevealToggle<CR>" "File Browser" ])
-    (set f.s [ ":source %<CR>" "Source file" ])
-    (set leader.f f))
-
-  (let [p {:name "project"}]
-    (set p.f [ ":FzfLua files<CR>" "Find project file" ])
-    (set leader.p p))
-
-  (let [b {:name "buffers"}]
-    (set b.b [ ":FzfLua buffers<CR>" "Switch buffers" ])
-    (set b.d [ ":bd<CR>" "Delete buffer" ])
-    (set leader.b b))
-
-  (wk.register leader { :prefix "<leader>" }))
-
 (set vim.g.mapleader " ")
 
-;; TODO move somewhere else
-(fn map [mode key result]
-  "Remap globally KEY to RESULT in MODE."
-  (vim.api.nvim_set_keymap mode key result {:noremap true :silent true}))
+(fn setup-which-key []
+  (let [leader {}]
 
-;; Split navigation
-(map :n "<C-h>" "<C-w>h")
-(map :n "<C-j>" "<C-w>j")
-(map :n "<C-k>" "<C-w>k")
-(map :n "<C-l>" "<C-w>l")
+    (set leader.* [ ":FzfLua live_grep<CR>" "Grep project" ])
+    (set leader.<TAB> [ "<C-^>" "Switch to previous buffer" ])
 
-;; Ident selection
-(map :v "<TAB>" ">gv")
-(map :v "<S-TAB>" "<gv")
+    (let [f {:name "files"}]
+      (set f.b [ ":NeoTreeRevealToggle<CR>" "File Browser" ])
+      (set f.s [ ":source %<CR>" "Source file" ])
+      (set leader.f f))
 
-;; Run shell command
-(map :n ";" ":!")
+    (let [p {:name "project"}]
+      (set p.f [ ":FzfLua files<CR>" "Find project file" ])
+      (set leader.p p))
 
-;; Move block
-(map :x "J" ":move '>+1<CR>gv-gv")
-(map :x "K" ":move '<-2<CR>gv-gv")
+    (let [b {:name "buffers"}]
+      (set b.b [ ":FzfLua buffers<CR>" "Switch buffers" ])
+      (set b.d [ ":bd<CR>" "Delete buffer" ])
+      (set leader.b b))
 
-;; Clear search highlight
-(map :n "<C-c>" ":set hlsearch!<CR>")
+    (wk.register leader { :prefix "<leader>" })))
 
-;; Quit buffer
-(map :n "q" ":q!<CR>")
+(fn setup-global-bindings []
+  (let [map helpers.map]
+    ;; Split navigation
+    (map :n "<C-h>" "<C-w>h")
+    (map :n "<C-j>" "<C-w>j")
+    (map :n "<C-k>" "<C-w>k")
+    (map :n "<C-l>" "<C-w>l")
 
-;; Fuzzy find file
-(map :n "<C-p>" ":FzfLua git_files<CR>")
+    ;; Ident selection
+    (map :v "<TAB>" ">gv")
+    (map :v "<S-TAB>" "<gv")
 
-;; Fuzzy find in file
-(map :n "<C-s>" ":FzfLua blines<CR>")
+    ;; Run shell command
+    (map :n ";" ":!")
 
-;; Preview changed hunk
-(map :n "I" ":Gitsigns preview_hunk<CR>")
+    ;; Move block
+    (map :x "J" ":move '>+1<CR>gv-gv")
+    (map :x "K" ":move '<-2<CR>gv-gv")
 
-;; Move between buffers
-(map :n "H" "<Plug>(cokeline-focus-prev)<CR>")
-(map :n "L" "<Plug>(cokeline-focus-next)<CR>")
+    ;; Clear search highlight
+    (map :n "<C-c>" ":set hlsearch!<CR>")
 
-;; Easy motion within buffer
-(map :n "s" ":HopWord<CR>")
+    ;; Quit buffer
+    (map :n "q" ":q!<CR>")
 
-(let [leader {}]
+    ;; Fuzzy find file
+    (map :n "<C-p>" ":FzfLua git_files<CR>")
 
-  (set leader.* [ ":FzfLua live_grep<CR>" "Grep project" ])
-  (set leader.<TAB> [ "<C-^>" "Switch to previous buffer" ])
+    ;; Fuzzy find in file
+    (map :n "<C-s>" ":FzfLua blines<CR>")
 
-  (let [f {:name "files"}]
-    (set f.b [ ":NeoTreeRevealToggle<CR>" "File Browser" ])
-    (set f.s [ ":source %<CR>" "Source file" ])
-    (set leader.f f))
+    ;; Preview changed hunk
+    (map :n "I" ":Gitsigns preview_hunk<CR>")
 
-  (let [p {:name "project"}]
-    (set p.f [ ":FzfLua files<CR>" "Find project file" ])
-    (set leader.p p))
+    ;; Move between buffers
+    (map :n "H" "<Plug>(cokeline-focus-prev)<CR>")
+    (map :n "L" "<Plug>(cokeline-focus-next)<CR>")
 
-  (let [b {:name "buffers"}]
-    (set b.b [ ":FzfLua buffers<CR>" "Switch buffers" ])
-    (set b.d [ ":bd<CR>" "Delete buffer" ])
-    (set leader.b b))
+    ;; Easy motion within buffer
+    (map :n "s" ":HopWord<CR>")))
 
-  (wk.register leader { :prefix "<leader>" }))
+(fn module.init []
+  (setup-which-key)
+  (setup-global-bindings))
 
+module

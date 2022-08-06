@@ -1,7 +1,11 @@
-(local helpers {})
+(local module {})
 
-(set helpers.wsl? (not (not (string.find (vim.fn.system "uname -r") "WSL"))))
-(set helpers.mac? (= (vim.fn.has "macunix") 1))
-(set helpers.linux? (and (not mac?) (not wsl?)))
+(fn module.highlight [hi opts]
+  "Sets the Highlight group with the provided options."
+  (vim.api.nvim_set_hl 0 hi opts))
 
-helpers
+(fn module.map [mode key result]
+  "Remap globally KEY to RESULT in MODE."
+  (vim.api.nvim_set_keymap mode key result {:noremap true :silent true}))
+
+module
