@@ -9,7 +9,7 @@
 (map! [n] "s" ":HopWord<CR>" "Hop to word anywhere")
 
 (map! [n] "<C-c>" ":set hlsearch!<CR>" "Clear search highlighting")
-(map! [n] "<C-p>" ":FzfLua files<CR>" "Fuzzy find files")
+(map! [n] "<C-p>" ":FzfLua git_files<CR>" "Fuzzy find files")
 (map! [n] "<C-s>" ":FzfLua blines<CR>" "Fuzy find in buffer")
 
 (map! [n] "I" ":Gitsigns preview_hunk<CR>" "Show changed hunk")
