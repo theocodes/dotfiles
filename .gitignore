@@ -1,6 +1,6 @@
 Brewfile.lock.json
 config/nvim/plugin
-
+nvim/lua/
 .config/fish/fish_variables
 .config/nvim/plugin
 .doom.d/custom.el

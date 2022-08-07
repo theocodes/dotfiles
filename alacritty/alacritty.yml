@@ -1,18 +1,14 @@
 font:
-  size: 12
+  size: 16
 
   normal:
-    family: "Iosevka"
-
-  bold:
-    family: "Iosevka Nerd Font Mono"
-    style: "Medium"
+    family: "Iosevka Comfy"
 
 selection:
   save_to_clipboard: true
 
 window:
-  # decorations: buttonless
+  decorations: buttonless
   opacity: 0.98
   padding:
     x: 4
