@@ -1,5 +1,4 @@
 (import-macros {: map! : g!} :hibiscus.vim)
-(import-macros {: leader!} :config.macros)
 
 (g! mapleader " ")
 (g! maplocalleader ",")
@@ -22,10 +21,10 @@
 (map! [x] "J" ":move '>+1<CR>gv-gv" "Move block down")
 (map! [x] "K" ":move '<-2<CR>gv-gv" "Move block up")
 
-(leader! [n] "*" ":FzfLua live_grep<CR>" "Grep in project")
-(leader! [n] "<TAB>" "<C-^>" "Switch to last buffer")
+(map! [n] "<Leader>*" ":FzfLua live_grep<CR>" "Grep in project")
+(map! [n] "<Leader><TAB>" "<C-^>" "Switch to last buffer")
 
-(leader! [n] "op" ":NeoTreeRevealToggle<CR>" "Toggle file explorer")
+(map! [n] "<Leader>op" ":NeoTreeRevealToggle<CR>" "Toggle file explorer")
 
-(leader! [n] "bb" ":FzfLua buffers<CR>" "List/Switch buffers")
-(leader! [n] "bd" ":bd<CR>" "Delete buffer")
+(map! [n] "<Leader>bb" ":FzfLua buffers<CR>" "List/Switch buffers")
+(map! [n] "<Leader>bd" ":bd<CR>" "Delete buffer")

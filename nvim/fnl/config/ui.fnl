@@ -1,5 +1,5 @@
 (import-macros {: color!} :hibiscus.vim)
-(import-macros {: hi!} :config.macros)
+(import-macros {: hi!} :macros)
 
 ;; Set colorscheme
 (color! minimal)
