@@ -25,6 +25,14 @@
   (use! :phaazon/hop.nvim
         :branch "v2")
 
+  ;; Completion
+  (use! :hrsh7th/nvim-cmp
+        :module "config.plugins.cmp")
+  (use! :hrsh7th/cmp-buffer)
+  (use! :hrsh7th/cmp-path)
+  (use! :hrsh7th/cmp-cmdline)
+  (use! :hrsh7th/cmp-nvim-lsp)
+  (use! :saadparwaiz1/cmp_luasnip)
 
   ;; Treesitter
   (use! :nvim-treesitter/nvim-treesitter
