@@ -1,5 +1,4 @@
 (require-macros :hibiscus.packer)
-(import-macros {: augroup!} :hibiscus.vim)
 
 (packer-setup {})
 

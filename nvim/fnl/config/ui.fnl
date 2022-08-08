@@ -1,5 +1,3 @@
-(local cokeline (require :cokeline))
-
 (import-macros {: color!} :hibiscus.vim)
 (import-macros {: hi!} :config.macros)
 
