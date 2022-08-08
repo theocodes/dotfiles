@@ -25,6 +25,11 @@
   (use! :phaazon/hop.nvim
         :branch "v2")
 
+
+  ;; Treesitter
+  (use! :nvim-treesitter/nvim-treesitter
+        :run ":TSUpdate")
+
   ;; Overlay term
   (use! :akinsho/toggleterm.nvim
         :module "config.plugins.toggleterm")
