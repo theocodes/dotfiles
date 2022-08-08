@@ -21,6 +21,10 @@
   (use! :dag/vim-fish)
   (use! :jiangmiao/auto-pairs)
 
+  ;; Easy motion
+  (use! :phaazon/hop.nvim
+        :branch "v2")
+
   ;; Overlay term
   (use! :akinsho/toggleterm.nvim
         :module "config.plugins.toggleterm")
