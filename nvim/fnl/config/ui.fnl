@@ -2,7 +2,7 @@
 (import-macros {: hi!} :macros)
 
 ;; Set colorscheme
-(color! minimal)
+(color! base16-irblack)
 
 ;; Overrides
 (hi! Normal { :bg "NONE" })

@@ -21,6 +21,10 @@
   (use! :dag/vim-fish)
   (use! :jiangmiao/auto-pairs)
 
+  ;; Overlay term
+  (use! :akinsho/toggleterm.nvim
+        :module "config.plugins.toggleterm")
+
   ;; line
   (use! :nvim-lualine/lualine.nvim
         :requires ["kyazdani42/nvim-web-devicons"]

@@ -28,3 +28,5 @@
 
 (map! [n] "<Leader>bb" ":FzfLua buffers<CR>" "List/Switch buffers")
 (map! [n] "<Leader>bd" ":bd<CR>" "Delete buffer")
+
+(map! [n] "<leader>gg" ":lua _LAZYGIT_TOGGLE()<CR>")
