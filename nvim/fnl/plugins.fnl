@@ -36,7 +36,8 @@
 
   ;; Treesitter
   (use! :nvim-treesitter/nvim-treesitter
-        :run ":TSUpdate")
+        :run ":TSUpdate"
+        :module "config.plugins.treesitter")
 
   ;; Overlay term
   (use! :akinsho/toggleterm.nvim
