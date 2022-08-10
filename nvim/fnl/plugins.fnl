@@ -33,6 +33,7 @@
   (use! :hrsh7th/cmp-cmdline)
   (use! :hrsh7th/cmp-nvim-lsp)
   (use! :saadparwaiz1/cmp_luasnip)
+  (use! :github/copilot.vim)
 
   ;; Treesitter
   (use! :nvim-treesitter/nvim-treesitter
