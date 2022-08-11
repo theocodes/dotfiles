@@ -30,3 +30,5 @@
 (map! [n] "<Leader>bd" ":bd<CR>" "Delete buffer")
 
 (map! [n] "<leader>gg" ":lua _LAZYGIT_TOGGLE()<CR>")
+
+(map! [n] "<leader>gg" ":lua _LAZYGIT_TOGGLE()<CR>")
