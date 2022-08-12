@@ -1,8 +1,9 @@
-(import-macros {: color!} :hibiscus.vim)
-(import-macros {: hi!} :macros)
+(module config.ui
+  {require {: ayu}
+   require-macros [macros]})
 
-;; Set colorscheme
-(color! base16-irblack)
+(ayu.setup { :mirage false })
+(vim.cmd "colorscheme ayu")
 
 ;; Overrides
 (hi! Normal { :bg "NONE" })

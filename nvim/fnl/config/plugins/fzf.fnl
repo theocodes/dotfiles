@@ -1,15 +1,14 @@
-(local fzf (require :fzf-lua))
-(local config {})
+(module config.plugins.fzf
+  {require {fzf fzf-lua}})
 
-(local winopts {})
-(set winopts.border "single")
-(set winopts.fullscreen false)
+(def- config {})
 
-(local preview {})
-(set preview.vertical "up:80%")
-(set preview.layout "vertical")
+(set config.winopts {})
+(set config.winopts.border "single")
+(set config.winopts.fullscreen false)
 
-(set winopts.preview preview)
-(set config.winopts winopts)
+(set config.winopts.preview {})
+(set config.winopts.preview.vertical "up:80%")
+(set config.winopts.preview.layout "vertical")
 
 (fzf.setup config)

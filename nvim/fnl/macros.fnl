@@ -1,4 +1,3 @@
-
 (lambda parse-sym [xs]
   "parses symbol 'xs' converts it to string if not a variable."
   (if (or (in-scope? xs) (not (sym? xs)))

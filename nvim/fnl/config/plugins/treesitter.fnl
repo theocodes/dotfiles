@@ -1,4 +1,5 @@
-(local configs (require "nvim-treesitter.configs"))
+(module config.plugins.treesitter
+  {require {configs nvim-treesitter.configs}})
 
 (configs.setup {
   :ensure_installed [ "lua" "fennel" "ruby" ]
@@ -11,4 +12,3 @@
   }
   :indent { :enable false :disable [ "yaml" ] }
 })
-

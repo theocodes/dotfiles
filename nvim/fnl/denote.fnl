@@ -67,4 +67,4 @@
 (assert "20220810210420--my_test_note--test-notes.md"
         (get-filename "2022-08-10 21:04:20" "My Test Note" ["test" "notes"]))
 
-; (create-note)
+(create-note)

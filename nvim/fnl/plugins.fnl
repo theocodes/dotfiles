@@ -1,76 +1,66 @@
-(require-macros :hibiscus.packer)
+(module plugins
+  {require {: packer}})
 
-(packer-setup {})
+(defn- dependencies [use]
+  ;; let packer self-manage
+  (use :wbthomason/packer.nvim)
 
-(packer
-  ;; Fennel integration
-  (use! :Olical/conjure)
-  (use! :bakpakin/fennel.vim)
-  (use! :udayvir-singh/tangerine.nvim)
-  (use! :udayvir-singh/hibiscus.nvim
-        :requires ["udayvir-singh/tangerine.nvim"])
+  ;; general
+  (use :terrortylor/nvim-comment)
+  (use :axelf4/vim-strip-trailing-whitespace)
+  (use :machakann/vim-highlightedyank)
+  (use :dag/vim-fish)
+  (use :jiangmiao/auto-pairs)
+  (use :lewis6991/gitsigns.nvim)
 
-  ;; Git in the gutter
-  (use! :lewis6991/gitsigns.nvim
-        :module "config.plugins.gitsigns")
-
-  ;; General
-  (use! :terrortylor/nvim-comment)
-  (use! :axelf4/vim-strip-trailing-whitespace)
-  (use! :machakann/vim-highlightedyank)
-  (use! :dag/vim-fish)
-  (use! :jiangmiao/auto-pairs)
-
-  ;; Easy motion
-  (use! :phaazon/hop.nvim
-        :branch "v2")
-
-  ;; Completion
-  (use! :hrsh7th/nvim-cmp
-        :module "config.plugins.cmp")
-  (use! :hrsh7th/cmp-buffer)
-  (use! :hrsh7th/cmp-path)
-  (use! :hrsh7th/cmp-cmdline)
-  (use! :hrsh7th/cmp-nvim-lsp)
-  (use! :saadparwaiz1/cmp_luasnip)
-  (use! :github/copilot.vim)
-
-  ;; Treesitter
-  (use! :nvim-treesitter/nvim-treesitter
-        :run ":TSUpdate"
-        :module "config.plugins.treesitter")
-
-  ;; Overlay term
-  (use! :akinsho/toggleterm.nvim
-        :module "config.plugins.toggleterm")
-
-  ;; line
-  (use! :nvim-lualine/lualine.nvim
-        :requires ["kyazdani42/nvim-web-devicons"]
-        :module "config.plugins.lualine")
-
-  ;; Fuzzy finder
-  (use! :ibhagwan/fzf-lua
-        :requires ["kyazdani42/nvim-web-devicons"]
-        :module "config.plugins.fzf")
-  (use! :maxjacobson/vim-fzf-coauthorship
-        :requires ["junegunn/fzf"])
-
-  ;; Colorschemes
-  (use! :chriskempson/base16-vim)
-  (use! :Yazeed1s/minimal.nvim)
-  (use! :nikolvs/vim-sunbather)
-
-  ;; Session management
-  (use! :rmagatti/auto-session
-        :module "config.plugins.session")
-
-  ;; Better tabs
-  (use! :noib3/nvim-cokeline
-        :module "config.plugins.cokeline")
-
-  ;; File browser
-  (use! :nvim-neo-tree/neo-tree.nvim
+  ;; file browser
+  (use {1 :nvim-neo-tree/neo-tree.nvim
         :branch "v2.x"
-        :requires ["nvim-lua/plenary.nvim" "kyazdani42/nvim-web-devicons" "MunifTanjim/nui.nvim"]
-        :module "config.plugins.neotree"))
+        :requires ["nvim-lua/plenary.nvim" "kyazdani42/nvim-web-devicons" "MunifTanjim/nui.nvim"]})
+
+  ;; fuzzy finder
+  (use {1 :ibhagwan/fzf-lua
+        :requires ["kyazdani42/nvim-web-devicons"]})
+  (use {1 :maxjacobson/vim-fzf-coauthorship
+        :requires ["junegunn/fzf"]})
+
+  ;; colorschemes
+  (use :chriskempson/base16-vim)
+  (use :Shatur/neovim-ayu)
+
+  ;; treesitter
+  (use {1 :nvim-treesitter/nvim-treesitter :run ":TSUpdate" })
+
+  ;; session management
+  (use :rmagatti/auto-session)
+
+  ;; better tabs
+  (use :noib3/nvim-cokeline)
+
+  ;; status line
+  (use {1 :nvim-lualine/lualine.nvim
+        :requires ["kyazdani42/nvim-web-devicons"]})
+
+  ;; overlay term
+  (use :akinsho/toggleterm.nvim)
+
+  ;; easy motion
+  (use {1 :phaazon/hop.nvim
+        :branch "v2"})
+
+  ;; fennel integration
+  (use :Olical/aniseed)
+  (use :Olical/conjure))
+
+(packer.startup dependencies)
+
+;; require configs here
+;; TODO find a way to autoload configs
+(require :config.plugins.neotree)
+(require :config.plugins.nvim-comment)
+(require :config.plugins.hop)
+(require :config.plugins.session)
+(require :config.plugins.lualine)
+(require :config.plugins.cokeline)
+(require :config.plugins.fzf)
+(require :config.plugins.treesitter)
