@@ -6,7 +6,7 @@
 (def- config {})
 
 (set config.show_if_buffers_are_at_least 1)
-(set config.mappings { :cycle_prev_next true })
+(set config.mappings {:cycle_prev_next true})
 
 (set config.default_hl {})
 (set config.default_hl.fg
@@ -23,7 +23,7 @@
 
 (set config.components [])
 
-(table.insert config.components { :text (λ [b] " ") })
+(table.insert config.components {:text (λ [b] " ")})
 (table.insert config.components
               {:text (λ [b] b.unique_prefix)
                :fg (λ [b] (if b.is_focused (get-hex "Normal" "fg") (get-hex "Comment" "fg")))

@@ -91,7 +91,9 @@
         :requires ["nvim-lua/plenary.nvim" "kyazdani42/nvim-web-devicons" "MunifTanjim/nui.nvim"]
         :module "config.plugins.neotree"))
 
+;; source file and run PackerSync when the file changes
 (augroup! :packer_user_config
-  [[BufWritePost] "*/plugins.fnl" '(do
-                                    (vim.cmd ":AniseedEvalFile <afile>")
-                                    (vim.cmd ":PackerSync"))])
+  [[BufWritePost] "*/plugins.fnl"
+   '(do
+     (vim.cmd ":AniseedEvalFile <afile>")
+     (vim.cmd ":PackerSync"))])

@@ -1,9 +1,7 @@
-(module init
-  {require {nvim aniseed.nvim}})
+(module init)
 
 (require :plugins)
 (require :config.ui)
 (require :config.options)
 (require :config.keymaps)
 (require :config.editing)
-
