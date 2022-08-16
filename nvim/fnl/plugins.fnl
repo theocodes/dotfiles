@@ -23,6 +23,7 @@
   (use! :axelf4/vim-strip-trailing-whitespace)
   (use! :machakann/vim-highlightedyank)
   (use! :dag/vim-fish)
+  (use! :tpope/vim-fugitive)
 
   ;; Auto pair
   (use! :gpanders/nvim-parinfer)
