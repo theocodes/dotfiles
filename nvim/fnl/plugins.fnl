@@ -87,6 +87,9 @@
   (use! :noib3/nvim-cokeline
         :module "config.plugins.cokeline")
 
+  ;; Note taking
+  (use! "~/Code/notery")
+
   ;; File browser
   (use! :nvim-neo-tree/neo-tree.nvim
         :branch "v2.x"
