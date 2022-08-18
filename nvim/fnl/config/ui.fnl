@@ -3,7 +3,7 @@
    require-macros [hibiscus.vim macros]})
 
 (ayu.setup { :mirage false})
-(color! "ayu")
+(color! "modus-vivendi")
 
 ;; Overrides
 (hi! Normal { :bg "NONE"})
@@ -11,7 +11,7 @@
 (hi! FzfLuaNormal { :bg "NONE"})
 (hi! LineNr { :bg "NONE" :fg "#3b4045"})
 (hi! SignColumn {})
-(hi! CursorLine { :bg "#141414"})
+(hi! CursorLine { :bg "#120026"})
 (hi! CursorLineNr { :bg "#171616" :fg "#3b4045"})
 (hi! GitSignsChange { :bg "NONE" :fg "Yellow"})
 (hi! GitSignsAdd { :bg "NONE" :fg "#6ffc03"})

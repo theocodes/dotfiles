@@ -74,7 +74,7 @@
   (use! :nikolvs/vim-sunbather)
   (use! :Shatur/neovim-ayu)
   (use! :B4mbus/oxocarbon-lua.nvim)
-  (use! :folke/tokyonight.nvim)
+  (use! :ishan9299/modus-theme-vim)
 
   ;; Indentation lines
   (use! :lukas-reineke/indent-blankline.nvim)
