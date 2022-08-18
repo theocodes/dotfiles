@@ -6,11 +6,12 @@
 
 (map! [n :verbose] "<C-x><C-e>" ":AniseedEvalFile %<CR>" "Eval fennel file")
 (map! [n :verbose] "<Leader><Leader>x" ":AniseedEvalFile %<CR>" "Eval fennel file")
+
 (map! [n] "q" ":q!<CR>" "Close window without saving")
 (map! [n] "s" ":HopWord<CR>" "Hop to word anywhere")
 
 (map! [n] "<C-c>" ":set hlsearch!<CR>" "Clear search highlighting")
-(map! [n] "<C-p>" ":FzfLua git_files<CR>" "Fuzzy find files")
+(map! [n] "<C-p>" ":FzfLua git_files<CR>" "Fuzzy find files in git")
 (map! [n] "<C-s>" ":FzfLua blines<CR>" "Fuzy find in buffer")
 
 (map! [n] "I" ":Gitsigns preview_hunk<CR>" "Show changed hunk")
@@ -23,6 +24,7 @@
 (map! [x] "J" ":move '>+1<CR>gv-gv" "Move block down")
 (map! [x] "K" ":move '<-2<CR>gv-gv" "Move block up")
 
+(map! [n] "<Leader>." ":FzfLua files<CR>" "Fuzzy find files")
 (map! [n] "<Leader>*" ":FzfLua live_grep<CR>" "Grep in project")
 (map! [n] "<Leader><TAB>" "<C-^>" "Switch to last buffer")
 
