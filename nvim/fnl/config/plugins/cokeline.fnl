@@ -5,39 +5,45 @@
 (def- get-hex utils.get_hex)
 (def- config {})
 
-(set config.show_if_buffers_are_at_least 1)
-(set config.mappings {:cycle_prev_next true})
+(def- default-foreground (get-hex "Comment" "fg"))
+(def- selected-foreground "White")
+(def- default-background "NONE")
+(def- selected-background (get-hex "String" "fg"))
+(def- default-modified-state nil)
+(def- selected-modified-state "White")
 
-(set config.default_hl {})
-(set config.default_hl.fg
+(def- foreground
      (λ [buffer]
-       (if buffer.is_focused "Black" (get-hex "Comment" "fg"))))
+       (if buffer.is_focused selected-foreground default-foreground)))
 
-(set config.default_hl.bg
+(def- background
      (λ [buffer]
-       (if buffer.is_focused (get-hex "String" "fg") "NONE")))
+       (if buffer.is_focused selected-background default-background)))
 
-(set config.default_hl.style
+(def- style
      (λ [buffer]
        (if buffer.is_focused "bold" nil)))
 
-(set config.components [])
+(def- padding
+  {:text " "})
 
-(table.insert config.components {:text (λ [b] " ")})
-(table.insert config.components
-              {:text (λ [b] b.unique_prefix)
-               :fg (λ [b] (if b.is_focused (get-hex "Normal" "fg") (get-hex "Comment" "fg")))
-               :style "italic"})
+(def- something
+  {:text (λ [b] b.unique_prefix)
+   :fg (λ [b] (if b.is_focused (get-hex "Normal" "fg") (get-hex "Comment" "fg")))
+   :style "italic"})
 
-(table.insert config.components
-              {:text (λ [b] b.filename)
-               :style (λ [b] (if b.is_focused "bold" nil))})
+(def- name
+  {:text (λ [b] b.filename)
+   :style (λ [b] (if b.is_focused "bold" nil))})
 
-(table.insert config.components
-              {:text (λ [b] (if b.is_modified " ●" ""))
-               :fg (λ [b] (if b.is_focused "Black" nil))})
+(def- modified-state
+  {:text (λ [b] (if b.is_modified " ●" ""))
+   :fg (λ [b] (if b.is_focused selected-modified-state default-modified-state))})
 
-(table.insert config.components {:text " "})
-
-(cokeline.setup config)
-
+(cokeline.setup
+  {:components [padding something name modified-state padding]
+   :show_if_buffers_are_at_least 1
+   :mappings {:cycle_prev_next true}
+   :default_hl {:fg foreground
+                :bg background
+                :style style}})

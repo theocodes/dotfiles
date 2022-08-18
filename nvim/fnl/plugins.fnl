@@ -84,8 +84,7 @@
         :module "config.plugins.session")
 
   ;; Better tabs
-  (use! :noib3/nvim-cokeline
-        :module "config.plugins.cokeline")
+  (use! :noib3/nvim-cokeline)
 
   ;; Note taking
   (use! "~/Code/notery")

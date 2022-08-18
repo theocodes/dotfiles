@@ -5,3 +5,5 @@
 (require :config.options)
 (require :config.keymaps)
 (require :config.editing)
+
+(require :config.plugins.cokeline)
