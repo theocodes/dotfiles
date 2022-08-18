@@ -24,10 +24,13 @@
    (cmp.mapping.preset.insert
      {"<C-f>" (cmp.mapping.confirm { :select true})
       "<C-c>" (cmp.mapping.abort)
-      "<C-j>" (cmp.mapping.select_next_item)
-      "<C-k>" (cmp.mapping.select_prev_item)})
+      "<TAB>" (cmp.mapping.select_next_item)
+      "<S-TAB>" (cmp.mapping.select_prev_item)})
 
-   :sources (cmp.config.sources [{:name "nvim_lsp"} {:name "orgmode"} {:name "luasnip"} {:name "conjure"}] [{:name "buffer"}])
+   :sources (cmp.config.sources [{:name "nvim_lsp"}
+                                 {:name "orgmode"}
+                                 {:name "luasnip"}
+                                 {:name "conjure"}] [{:name "buffer"}])
 
    :snippet
    {:expand
