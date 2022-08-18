@@ -1,3 +1,5 @@
+(require 'centaur-tabs)
+
 ;; setting fonts
 (set-face-attribute 'default nil :font "Iosevka Comfy" :height 160 :weight 'regular)
 
@@ -17,13 +19,17 @@
       tab-bar-close-button-show nil
       tab-bar-new-button-show nil)
 
-(tab-bar-mode 1)
+;;(tab-bar-mode 1)
+
+;; start modeline
+(doom-modeline-mode 1)
 
 ;; modus themes customizations
 (setq modus-themes-italic-constructs t
       modus-themes-bold-constructs t
       modus-themes-org-blocks 'gray-background
       modus-themes-subtle-line-numbers t
+      modus-themes-mode-line '(accented borderless)
       modus-themes-paren-match '(bold intense)
       modus-themes-completions '((matches . (extrabold))
                                  (selection . (semibold accented))
@@ -36,6 +42,7 @@
 ;; Load the theme of your choice
 (modus-themes-load-vivendi)
 ;; (modus-themes-load-operandi)
+;; (load-theme 'wombat t)
 
 (defun on-after-init ()
   (unless (display-graphic-p (selected-frame))
@@ -50,7 +57,16 @@
 (defun override-tabs-styles ()
   "Resets tabs styles"
   (interactive)
-  (set-face-attribute 'tab-bar nil :background nil :foreground "#292726" :box '(:line-width 4 :color "#0000000" :alpha 0) :inherit nil)
+
+  (set-face-attribute 'modus-themes-tab-backdrop nil :inherit nil :background nil :foreground nil )
+  (set-face-attribute 'centaur-tabs-default nil :inherit nil :background nil)
+  (set-face-attribute 'centaur-tabs-selected nil :inherit nil :background (face-attribute 'font-lock-keyword-face :foreground) :foreground "#fff")
+  (set-face-attribute 'centaur-tabs-selected-modified nil :inherit nil :background nil)
+  (set-face-attribute 'centaur-tabs-unselected nil :inherit nil :background nil)
+  (set-face-attribute 'centaur-tabs-unselected-modified nil :inherit nil :background nil)
+
+
+  (set-face-attribute 'tab-bar nil :background nil :foreground nil :box '(:line-width 4 :color "#0000000" :alpha 0) :inherit nil)
   (set-face-attribute 'tab-bar-tab nil :background nil :foreground (face-attribute 'font-lock-keyword-face :foreground) :box nil :inherit nil)
   (set-face-attribute 'tab-bar-tab-inactive nil :background nil :foreground nil :box nil :inherit nil)
   (set-face-attribute 'tab-bar-tab-group-current nil :background nil :foreground nil :box nil)

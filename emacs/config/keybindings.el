@@ -107,12 +107,12 @@
 (global-set-key [remap eshell-forward-argument] #'evil-window-right)
 (global-set-key [remap eshell-backward-argument] #'evil-window-left)
 
-(global-set-key (kbd "M-1") (lambda () (interactive) (t/select-tab 1)))
-(global-set-key (kbd "M-2") (lambda () (interactive) (t/select-tab 2)))
-(global-set-key (kbd "M-3") (lambda () (interactive) (t/select-tab 3)))
-(global-set-key (kbd "M-4") (lambda () (interactive) (t/select-tab 4)))
-(global-set-key (kbd "M-5") (lambda () (interactive) (t/select-tab 5)))
-(global-set-key (kbd "M-6") (lambda () (interactive) (t/select-tab 6)))
+(global-set-key (kbd "M-1") (lambda () (interactive) (t/switch-to-perspective-by-number 1)))
+(global-set-key (kbd "M-2") (lambda () (interactive) (t/switch-to-perspective-by-number 2)))
+(global-set-key (kbd "M-3") (lambda () (interactive) (t/switch-to-perspective-by-number 3)))
+(global-set-key (kbd "M-4") (lambda () (interactive) (t/switch-to-perspective-by-number 4)))
+(global-set-key (kbd "M-5") (lambda () (interactive) (t/switch-to-perspective-by-number 5)))
+(global-set-key (kbd "M-6") (lambda () (interactive) (t/switch-to-perspective-by-number 6)))
 
 ;; shells
 (global-set-key (kbd "M-i") 't/eshell-popup-toggle)

@@ -2,7 +2,7 @@
 
 (setq lsp-keymap-prefix "C-c l"
       lsp-headerline-breadcrumb-enable nil
-      lsp-ui-sideline-show-hover t)
+      lsp-ui-sideline-show-hover nil)
 
 ;; Ruby
 
@@ -11,3 +11,7 @@
 ;; load inf-ruby alongside ruby-mode
 (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
 (add-hook 'ruby-mode-hook 'lsp)
+
+;; Javascript
+
+(setq js-indent-level 2)

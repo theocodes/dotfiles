@@ -12,32 +12,22 @@
   (interactive)
   (tab-bar-select-tab n))
 
-(defun t/switch-to-perspective-one ()
-  "Switches to whichever the first perspective is."
+(defun t/switch-to-perspective-by-number (n)
+  "Switches to whichever the 'n' perspective is."
   (interactive)
-  (persp-switch-by-number 1)
-  (message "Switched to '%s' perspective" (persp-current-name)))
-
-(defun t/switch-to-perspective-two ()
-  "Switches to whichever the second perspective is."
-  (interactive)
-  (persp-switch-by-number 2)
-  (message "Switched to '%s' perspective" (persp-current-name)))
-
-(defun t/switch-to-perspective-three ()
-  "Switches to whichever the third perspective is."
-  (interactive)
-  (persp-switch-by-number 3)
+  (persp-switch-by-number n)
   (message "Switched to '%s' perspective" (persp-current-name)))
 
 (defun t/describe-thing-at-point ()
   "Describes thing at point.
 The order of inspection is as follows:
   - Attempt to describe as an elisp symbol
-  - Hand over to lsp (TODO)"
+  - Hand over to lsp if enabled"
   (interactive)
   (let ((thing (symbol-at-point)))
-    (help-xref-interned thing)))
+    (if (and (boundp 'lsp-mode) lsp-mode)
+        (lsp-describe-thing-at-point)
+        (help-xref-interned thing))))
 
 (defun t/eshell-toggle ()
   "Toggle an full-sized eshell instance in the context of current project."

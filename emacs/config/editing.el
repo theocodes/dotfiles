@@ -35,6 +35,11 @@
 (pulsar-global-mode 1)
 
 ;; show changes from hit in the gutter
+(require 'diff-hl)
+(set-face-attribute 'diff-hl-insert nil :inherit nil :background "#468800" :foreground "#468800")
+(set-face-attribute 'diff-hl-change nil :inherit nil :background "#bda900" :foreground "#bda900")
+(set-face-attribute 'diff-hl-delete nil :inherit nil :background "#FF5E5E" :foreground "#FF5E5E")
+
 (global-diff-hl-mode)
 
 ;; highlight matching parens
@@ -72,14 +77,17 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; configuring indentation lines
-(setq highlight-indentation-blank-lines t)
+;; (setq highlight-indentation-blank-lines t)
 
-(require 'highlight-indentation)
-(set-face-attribute 'highlight-indentation-current-column-face nil :background "#1e1e1e")
-(set-face-attribute 'highlight-indentation-face nil :background "#090a09")
+(setq highlight-indent-guides-method 'character)
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
-(add-hook 'prog-mode-hook 'highlight-indentation-mode)
-(add-hook 'prog-mode-hook 'highlight-indentation-current-column-mode)
+;; (require 'highlight-indentation)
+;; (set-face-attribute 'highlight-indentation-current-column-face nil :background "#1e1e1e")
+;; (set-face-attribute 'highlight-indentation-face nil :background "#090a09")
+
+;; (add-hook 'prog-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'prog-mode-hook 'highlight-indentation-current-column-mode)
 
 ;; enable parinfer on lisps
 ;; (require 'parinfer-rust-mode)
@@ -87,8 +95,4 @@
 
 ;; automatic parens pairing
 ;; (electric-pair-mode 1)
-
-(use-package parinfer-rust-mode
-    :hook emacs-lisp-mode
-    :init
-    (setq parinfer-rust-auto-download t))
+(rainbow-delimiters-mode 1)

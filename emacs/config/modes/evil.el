@@ -14,12 +14,12 @@
 (global-undo-tree-mode)
 
 ;; move sideways between tabs
-(define-key evil-normal-state-map (kbd "L") 'tab-next)
-(define-key evil-normal-state-map (kbd "H") 'tab-previous)
+(define-key evil-normal-state-map (kbd "L") 'centaur-tabs-forward)
+(define-key evil-normal-state-map (kbd "H") 'centaur-tabs-backward)
 
 ;; move tabs
-(define-key evil-normal-state-map (kbd "M-S-<left>") 'tab-bar-move-tab-backward)
-(define-key evil-normal-state-map (kbd "M-S-<right>") 'tab-bar-move-tab)
+(define-key evil-normal-state-map (kbd "M-S-<left>") 'centaur-tabs-move-current-tab-to-left)
+(define-key evil-normal-state-map (kbd "M-S-<right>") 'centaur-tabs-move-current-tab-to-right)
 
 ;; show hunk diff
 (define-key evil-normal-state-map (kbd "I") 'diff-hl-show-hunk)
@@ -42,6 +42,8 @@
 
 ;; describe thing at point
 (define-key evil-normal-state-map (kbd "K") 't/describe-thing-at-point)
+
+(define-key evil-normal-state-map (kbd ";") 'async-shell-command)
 
 ;; Turn on evil-commentary
 (evil-commentary-mode)

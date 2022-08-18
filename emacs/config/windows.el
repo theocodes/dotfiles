@@ -7,14 +7,14 @@
   (select-window  (display-buffer-in-side-window buffer alist)))
 
 (add-to-list 'display-buffer-alist
-             '("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\)\\*"
+             '("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|lsp-help\\|Messages\\)\\*"
                (t/focused)
                (side . bottom)
                (slot . 0)
                (window-height . 0.25)))
 
 (add-to-list 'display-buffer-alist
-             '("\\*\\(Flymake diagnostics\\)"
+             '("\\*\\(Flymake diagnostics\\|Async Shell Command\\)"
                (t/focused)
                (side . bottom)
                (slot . 0)
@@ -42,7 +42,7 @@
       popper-display-control 'user)
 
 (setq popper-reference-buffers
-      '("popup\\*$"))
+      '("\\(Async Shell Command\\|popup\\)\\*$"))
 
 (global-set-key (kbd "C-`") 'popper-toggle-latest)
 (global-set-key (kbd "M-`") 'popper-cycle)

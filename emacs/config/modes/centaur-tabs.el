@@ -28,11 +28,12 @@
      (and (string-prefix-p "magit" name)
 	  (not (file-name-extension name))))))
 
-(setq centaur-tabs-cycle-scope 'tabs)
+(setq centaur-tabs-cycle-scope 'tabs
+      centaur-tabs-set-close-button nil
+      centaur-tabs-bar-height 40
+      centaur-tabs-show-new-tab-button nil)
 
-;; (centaur-tabs-change-fonts "Iosevka Comfy" 140)
-
-;; (set-face-attribute 'default nil :font "Iosevka Comfy" :height 150 :weight 'regular)
+;; (centaur-tabs-change-fonts "Iosevka Comfy" 160)
 
 ;; load tabs
 (centaur-tabs-mode +1)

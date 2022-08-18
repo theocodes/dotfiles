@@ -31,12 +31,14 @@
          denote
          markdown-mode
          modus-themes
+         doom-themes
+         doom-modeline
          pulsar
          web-mode
          haml-mode
          emmet-mode
-         ;; highlight-indent-guides
-         highlight-indentation
+         highlight-indent-guides
+         ;; highlight-indentation
          terraform-mode
          diff-hl
          git-gutter
@@ -49,7 +51,8 @@
          haml-mode
          lsp-mode
          lsp-ui
-         parinfer-rust-mode
+         centaur-tabs
+         rainbow-delimiters
          counsel))
 
 ;; Modules to load
@@ -60,6 +63,7 @@
 
         "config/modes/evil"
         "config/modes/org"
+        "config/modes/centaur-tabs"
 
         "config/defaults"
         "config/ui"
