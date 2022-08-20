@@ -1,7 +1,7 @@
 (module config.plugins.fzf
   {require {fzf fzf-lua}})
 
-(def- config {})
+(def- config {:git {:files {:file_icons false :git_icons false}}})
 
 (set config.winopts {})
 (set config.winopts.border "single")

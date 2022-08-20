@@ -7,3 +7,4 @@
 (require :config.editing)
 
 (require :config.plugins.cokeline)
+(require :config.plugins.toggleterm)

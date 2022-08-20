@@ -24,6 +24,7 @@
   (use! :machakann/vim-highlightedyank)
   (use! :dag/vim-fish)
   (use! :tpope/vim-fugitive)
+  (use! :folke/which-key.nvim)
 
   ;; Auto pair
   (use! :gpanders/nvim-parinfer)
@@ -53,8 +54,7 @@
         :module "config.plugins.treesitter")
 
   ;; Overlay term
-  (use! :akinsho/toggleterm.nvim
-        :module "config.plugins.toggleterm")
+  (use! :akinsho/toggleterm.nvim)
 
   ;; line
   (use! :nvim-lualine/lualine.nvim

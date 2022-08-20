@@ -8,7 +8,7 @@
 (def- default-foreground (get-hex "Comment" "fg"))
 (def- selected-foreground "White")
 (def- default-background "NONE")
-(def- selected-background (get-hex "String" "fg"))
+(def- selected-background "#3f33af")
 (def- default-modified-state nil)
 (def- selected-modified-state "White")
 

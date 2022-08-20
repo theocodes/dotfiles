@@ -2,11 +2,11 @@ font:
   size: 16
 
   normal:
-    family: "Iosevka Nerd Font Mono"
+    family: "Iosevka Comfy"
     style: Regular
 
   bold:
-    family: "Iosevka Nerd Font Mono"
+    family: "Iosevka Comfy"
     style: Medium
 
 selection:
