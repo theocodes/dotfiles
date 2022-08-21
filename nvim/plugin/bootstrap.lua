@@ -15,7 +15,19 @@ local function bootstrap (url)
 end
 
 bootstrap "https://github.com/wbthomason/packer.nvim"
-bootstrap "https://github.com/Olical/aniseed"
+bootstrap "https://github.com/udayvir-singh/tangerine.nvim"
+bootstrap "https://github.com/udayvir-singh/hibiscus.nvim"
 
--- let aniseed load the fennel configuration
-vim.cmd [[ let g:aniseed#env = v:true ]]
+require "tangerine".setup {
+  compiler = {
+    verbose = false,
+    hooks = {"onsave", "oninit"}
+  },
+  eval = {
+    float  = true,
+    diagnostic = {
+      virtual = true,
+      timeout = 10
+    }
+  },
+}

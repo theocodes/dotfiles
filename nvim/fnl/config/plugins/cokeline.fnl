@@ -1,42 +1,39 @@
-(module config.plugins.cokeline
-  {require {: cokeline
-            utils "cokeline/utils"}})
+(local cokeline (require :cokeline))
+(local utils (require "cokeline/utils"))
+(local get-hex utils.get_hex)
 
-(def- get-hex utils.get_hex)
-(def- config {})
+(local default-foreground (get-hex "Comment" "fg"))
+(local selected-foreground "White")
+(local default-background "NONE")
+(local selected-background "#3f33af")
+(local default-modified-state nil)
+(local selected-modified-state "White")
 
-(def- default-foreground (get-hex "Comment" "fg"))
-(def- selected-foreground "White")
-(def- default-background "NONE")
-(def- selected-background "#3f33af")
-(def- default-modified-state nil)
-(def- selected-modified-state "White")
-
-(def- foreground
+(local foreground
      (λ [buffer]
        (if buffer.is_focused selected-foreground default-foreground)))
 
-(def- background
+(local background
      (λ [buffer]
        (if buffer.is_focused selected-background default-background)))
 
-(def- style
+(local style
      (λ [buffer]
        (if buffer.is_focused "bold" nil)))
 
-(def- padding
+(local padding
   {:text " "})
 
-(def- something
+(local something
   {:text (λ [b] b.unique_prefix)
    :fg (λ [b] (if b.is_focused (get-hex "Normal" "fg") (get-hex "Comment" "fg")))
    :style "italic"})
 
-(def- name
+(local name
   {:text (λ [b] b.filename)
    :style (λ [b] (if b.is_focused "bold" nil))})
 
-(def- modified-state
+(local modified-state
   {:text (λ [b] (if b.is_modified " ●" ""))
    :fg (λ [b] (if b.is_focused selected-modified-state default-modified-state))})
 

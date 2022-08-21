@@ -1,12 +1,17 @@
-(module config.editing
-  {require {nvim-comment nvim_comment
-            lines indent_blankline
-            npairs nvim-autopairs
-            : hop
-            : cmp}})
+(local session (require :auto-session))
+(local ncomment (require :nvim_comment))
+(local hop (require :hop))
+(local npairs (require :nvim-autopairs))
+(local cmp (require :cmp))
+(local lines (require :indent_blankline))
 
-;; Enable commenting with 'gc' or 'gcc'
-(nvim-comment.setup)
+;; sessions
+(session.setup
+  {:log_level "info"
+   :auto_session_suppress_dirs ["~/" "~/Projects"]})
+
+;; commenting
+(ncomment.setup)
 
 ;; Enable easy motion with 's'
 (hop.setup { :keys "etovxqpdygfblzhckisuran"})
@@ -46,3 +51,4 @@
    :show_current_context_start true
    :char_highlight_list
     ["IndentBlanklineIndent1"]})
+

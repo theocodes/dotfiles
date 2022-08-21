@@ -1,8 +1,6 @@
-(module config.plugins.lsp
-  {require-macros [hibiscus.vim]
-   require {: lspconfig
-            keymaps config.keymaps
-            cmp-nvim-lsp cmp_nvim_lsp}})
+(local lspconfig (require :lspconfig))
+(local keymaps (require :config.keymaps))
+(local cmp-nvim-lsp (require :cmp_nvim_lsp))
 
 (local capabilities (cmp-nvim-lsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
 

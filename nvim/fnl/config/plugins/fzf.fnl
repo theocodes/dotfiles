@@ -1,14 +1,8 @@
-(module config.plugins.fzf
-  {require {fzf fzf-lua}})
+(local fzf (require :fzf-lua))
 
-(def- config {:git {:files {:file_icons false :git_icons false}}})
-
-(set config.winopts {})
-(set config.winopts.border "single")
-(set config.winopts.fullscreen false)
-
-(set config.winopts.preview {})
-(set config.winopts.preview.vertical "up:80%")
-(set config.winopts.preview.layout "vertical")
-
-(fzf.setup config)
+(fzf.setup
+  {:git {:files {:file_icons false :git_icons false}}
+   :winopts {:border "single"
+             :fullscreen true
+             :preview {:vertical "up:80%"
+                       :layout "vertical"}}})

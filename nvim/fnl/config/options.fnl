@@ -1,5 +1,4 @@
-(module config.options
-  {require-macros [hibiscus.vim]})
+(import-macros {: set!} :hibiscus.vim)
 
 (set! tabstop 2)
 (set! shiftwidth 2)

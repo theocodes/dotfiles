@@ -1,9 +1,8 @@
-(module config.ui
-  {require {: ayu}
-   require-macros [hibiscus.vim macros]})
+(import-macros {: color!} :hibiscus.vim)
+(import-macros {: hi!} :macros)
 
-(ayu.setup { :mirage false})
 (color! "modus-vivendi")
+; (color! "starry")
 
 ;; Overrides
 (hi! Normal { :bg "NONE"})
@@ -23,4 +22,3 @@
 (hi! NormalFloat { :bg "NONE"})
 
 (hi! IndentBlanklineIndent1 {:fg "#1f1f1e"})
-

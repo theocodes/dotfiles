@@ -1,29 +1,29 @@
-(module config.plugins.toggleterm
-  {require {: toggleterm
-            t toggleterm.terminal}
-   require-macros [hibiscus.vim]})
+(import-macros {: augroup!} :hibiscus.vim)
+
+(local toggleterm (require :toggleterm))
+(local t (require :toggleterm.terminal))
 
 (local terminal t.Terminal)
 (local lazygit (terminal:new { :cmd "lazygit" :hidden true :direction "float"}))
 
-(defn- set-terminal-keymaps []
+(fn set-terminal-keymaps []
   (vim.api.nvim_buf_set_keymap 0 "t" "<C-n>" "<C-\\><C-n>" { :noremap true}))
 
-(defn term-for-command [cmd]
+(fn term-for-command [cmd]
   "Returns an initialized terminal with the given command to be toggled."
   (terminal:new { :cmd cmd :hidden true :direction "float" :close_on_exit false}))
 
-(defn lazygit-toggle []
+(fn lazygit-toggle []
   "Toggles a 'toggleterm' window with lazygit in it."
   (lazygit:toggle))
 
-(defn run-spec-file []
+(fn run-spec-file []
   "Runs a spec file in a 'toggleterm' window."
   (let [file (vim.api.nvim_eval "expand('%')")
         term (term-for-command (.. "rspec " file))]
     (term:toggle)))
 
-(defn run-single-spec []
+(fn run-single-spec []
   "Runs a single spec in a 'toggleterm' window."
   (let [file (vim.api.nvim_eval "expand('%')")
         line (vim.api.nvim_eval "line('.')")
@@ -46,3 +46,7 @@
                 :winblend 0
                 :highlights {:border "Normal"
                              :background "Normal"}}})
+
+{:run-spec-file run-spec-file
+ :run-single-spec run-single-spec
+ :lazygit-toggle lazygit-toggle}

@@ -1,9 +1,8 @@
-(module config.plugins.lualine
-  {require {lualine lualine
-            theme lualine.themes.codedark
-            auto-session auto-session-library}})
+(local lualine (require :lualine))
+(local theme (require :lualine.themes.codedark))
+(local auto-session (require :auto-session-library))
 
-(def- colours {})
+(local colours {})
 
 (set colours.black "#282828")
 (set colours.white "#ffffff")
@@ -38,18 +37,22 @@
 (set theme.replace.c.bg nil)
 (set theme.replace.c.fg colours.darkgray)
 
-(def- config {})
+(local config {})
 
 (set config.options {})
 (set config.options.theme theme)
 (set config.options.icons_enabled false)
-(set config.options.section_separators { :left "" :right "" })
-(set config.options.component_separators { :left "" :right "" })
+(set config.options.section_separators { :left "" :right ""})
+(set config.options.component_separators { :left "" :right ""})
 
 (set config.sections {})
-(set config.sections.lualine_c [
-  {1 "filename" :file_status true :path 1 :shorting_target 40 :symbols { :modified "[+]" :readonly "[-]" :unnamed "[No Name]"}}
-  auto-session.current_session_name
-])
+(set config.sections.lualine_c
+      [{1 "filename"
+        :file_status true
+        :path 1
+        :shorting_target 40
+        :symbols { :modified "[+]" :readonly "[-]" :unnamed "[No Name]"}}
+       auto-session.current_session_name])
 
 (lualine.setup config)
+
