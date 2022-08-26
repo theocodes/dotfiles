@@ -51,8 +51,8 @@
          haml-mode
          lsp-mode
          lsp-ui
-         centaur-tabs
          rainbow-delimiters
+         neotree
          counsel))
 
 ;; Modules to load
@@ -63,7 +63,7 @@
 
         "config/modes/evil"
         "config/modes/org"
-        "config/modes/centaur-tabs"
+        "config/modes/neotree"
 
         "config/defaults"
         "config/ui"
