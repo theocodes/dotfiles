@@ -35,8 +35,8 @@
 
     "m"  '(:ignore t :which-key "local")
     "mt"  '(:ignore t :which-key "tests")
-    "mts"  '(theocodes/rspec-spec-single :which-key "run spec near cursor")
-    "mtv"  '(theocodes/rspec-spec :which-key "run current spec buffer")
+    "mts"  '(theocodes/rspec-spec :which-key "run spec near cursor")
+    "mtv"  '(theocodes/rspec-file :which-key "run current spec buffer")
     "mta"  '(rspec-verify-all :which-key "run all specs")
 
     "b"  '(:ignore t :which-key "buffers")
@@ -51,7 +51,7 @@
     "pk"  '(projectile-kill-buffers :which-key "kill all project buffers")
 
     "o"  '(:ignore t :which-key "open")
-    "op" '(neotree-toggle :which-key "open project side view")
+    "op" '(theocodes/neotree-project-dir :which-key "open project side view")
     "ot" '(t/open-vterm-tab :which-key "open project vterm in new tab")
 
     "g"  '(:ignore t :which-key "git")
@@ -71,11 +71,14 @@
 (global-set-key (kbd "M-<return>") (lambda () (interactive) (evil-window-vsplit) (other-window 1)))
 (global-set-key (kbd "M-S-<return>") (lambda () (interactive) (split-window-below) (other-window 1)))
 
-(global-set-key (kbd "M-w") 'delete-window)
+(global-set-key (kbd "M-w") 'theocodes/delete-window)
 
 ;; Paste with M-v (mac) or Ctrl-Shift-v
 (global-set-key (kbd "M-v") 'yank)
 (global-set-key (kbd "C-S-V") 'yank)
+
+;; Copy with cmd-c
+(global-set-key (kbd "M-c") 'evil-yank)
 
 ;; Kill buffer with Q in dired also
 (require 'dired)

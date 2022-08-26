@@ -1,5 +1,3 @@
-(require 'centaur-tabs)
-
 ;; setting fonts
 (set-face-attribute 'default nil :font "Iosevka Comfy" :height 160 :weight 'regular)
 
@@ -19,7 +17,33 @@
       tab-bar-close-button-show nil
       tab-bar-new-button-show nil)
 
-;;(tab-bar-mode 1)
+;(tab-bar-mode 1)
+;; (global-tab-line-mode 1)
+
+;; sidebar explorer
+
+(defun custom-awesome-tab-hide-tab (x)
+  (let ((name (format "%s" x)))
+    (or
+     (string-suffix-p "popup*" name)
+     (string-prefix-p "*epc" name)
+     (string-prefix-p "*vterm" name)
+     (string-prefix-p "*eshell" name)
+     (string-prefix-p "*Async Shell Command" name)
+     (string-prefix-p "*Help" name)
+     (string-prefix-p "*Messages" name)
+     (string-prefix-p "*straight-process" name)
+     (string-prefix-p "*helm" name)
+     (string-prefix-p "*Compile-Log*" name)
+     (string-prefix-p "*lsp" name)
+     (and (string-prefix-p "magit" name)
+               (not (file-name-extension name)))
+     )))
+
+(setq awesome-tab-cycle-scope 'tabs
+      awesome-tab-hide-tab-function 'custom-awesome-tab-hide-tab)
+
+(awesome-tab-mode t)
 
 ;; start modeline
 (doom-modeline-mode 1)
@@ -59,16 +83,10 @@
   (interactive)
 
   (set-face-attribute 'modus-themes-tab-backdrop nil :inherit nil :background nil :foreground nil )
-  (set-face-attribute 'centaur-tabs-default nil :inherit nil :background nil)
-  (set-face-attribute 'centaur-tabs-selected nil :inherit nil :background (face-attribute 'font-lock-keyword-face :foreground) :foreground "#fff")
-  (set-face-attribute 'centaur-tabs-selected-modified nil :inherit nil :background nil)
-  (set-face-attribute 'centaur-tabs-unselected nil :inherit nil :background nil)
-  (set-face-attribute 'centaur-tabs-unselected-modified nil :inherit nil :background nil)
-
 
   (set-face-attribute 'tab-bar nil :background nil :foreground nil :box '(:line-width 4 :color "#0000000" :alpha 0) :inherit nil)
   (set-face-attribute 'tab-bar-tab nil :background nil :foreground (face-attribute 'font-lock-keyword-face :foreground) :box nil :inherit nil)
-  (set-face-attribute 'tab-bar-tab-inactive nil :background nil :foreground nil :box nil :inherit nil)
+  (set-face-attribute 'tab-bar-tab-inactive nil :background nil :foreground "#282828" :box nil :inherit nil)
   (set-face-attribute 'tab-bar-tab-group-current nil :background nil :foreground nil :box nil)
   (set-face-attribute 'tab-bar-tab-group-inactive nil :background nil :foreground nil :box nil))
 
@@ -83,6 +101,7 @@
                 shell-mode-hook
                 eshell-mode-hook
                 treemacs-mode-hook
+                neotree-mode-hook
                 vterm-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))

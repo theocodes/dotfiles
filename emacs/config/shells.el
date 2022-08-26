@@ -21,6 +21,9 @@
 (add-hook 'eshell-first-time-mode 't/configure-eshell)
 
 (defun t/configure-vterm ()
+  (interactive)
+  (define-key vterm-mode-map (kbd "M-v") 'yank)
+  (define-key vterm-mode-map (kbd "M-c") 'evil-yank)
   (define-key vterm-mode-map (kbd "M-O") nil)
   (define-key vterm-mode-map (kbd "M-i") nil))
 

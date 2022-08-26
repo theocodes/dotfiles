@@ -2,6 +2,39 @@
 
 ;; Helper functions
 
+(defun theocodes/neotree-project-dir ()
+    "Open NeoTree using the git root."
+    (interactive)
+    (let ((project-dir (projectile-project-root))
+          (file-name (buffer-file-name)))
+      (neotree-toggle)
+      (if project-dir
+          (if (neo-global--window-exists-p)
+              (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name)))
+        (message "Could not find git project root."))))
+
+(defun theocodes/rspec-file ()
+  (interactive)
+  (let* ((filename (buffer-file-name))
+         (cmd (format "rspec %s" filename)))
+    (projectile-run-async-shell-command-in-root cmd)))
+
+(defun theocodes/rspec-spec ()
+  (interactive)
+  (let* ((filename (buffer-file-name))
+         (line (line-number-at-pos))
+         (cmd (format "rspec %s:%s" filename line)))
+    (projectile-run-async-shell-command-in-root cmd)))
+
+(defun theocodes/delete-window ()
+  "Closes a split window or tab."
+  (interactive)
+  (if (= (length (window-list)) 1)
+      (tab-close)
+    (delete-window)))
+
 (defun t/denote-search-note ()
   "Search for notes in denote directory."
   (interactive)

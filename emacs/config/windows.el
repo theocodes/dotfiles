@@ -21,6 +21,13 @@
                (window-height . 0.25)))
 
 (add-to-list 'display-buffer-alist
+             '("\\*\\(Async Shell Command\\)"
+               (t/focused)
+               (side . bottom)
+               (slot . -1)
+               (window-height . 0.40)))
+
+(add-to-list 'display-buffer-alist
              '("popup\\*$"
                (t/focused)
                (side . bottom)

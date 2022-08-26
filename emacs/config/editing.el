@@ -23,11 +23,11 @@
 
 ;; load perspective
 (setq persp-mode-prefix-key "")
-(persp-mode)
+(persp-mode 1)
 
 ;; set projectile project search path
 (when (file-directory-p "~/Code")
-    (setq projectile-project-search-path '("~/Code")))
+  (setq projectile-project-search-path '("~/Code")))
 
 (projectile-global-mode +1)
 

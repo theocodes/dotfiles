@@ -4,6 +4,7 @@
 
 (setq packages
       '(use-package
+         awesome-tab
          evil
          evil-collection
          evil-commentary

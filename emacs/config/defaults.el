@@ -48,3 +48,6 @@
 
 ;; real maximise without gaps
 (setq frame-resize-pixelwise t)
+
+;; don't ask for confirmation if output buffer is taken
+(setq async-shell-command-buffer 'new-buffer)

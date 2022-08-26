@@ -10,6 +10,6 @@
 
 (setq denote-directory (expand-file-name "~/Dropbox/notes/")
       denote-known-keywords '("journal")
-      denote-file-type 'text)
+      denote-file-type 'org)
 
 (add-hook 'dired-mode-hook #'denote-dired-mode)

@@ -13,13 +13,25 @@
 ;; Turn on undo-tree globally
 (global-undo-tree-mode)
 
-;; move sideways between tabs
-(define-key evil-normal-state-map (kbd "L") 'centaur-tabs-forward)
-(define-key evil-normal-state-map (kbd "H") 'centaur-tabs-backward)
+;; centaur-tabs
+;; (define-key evil-normal-state-map (kbd "L") 'centaur-tabs-forward)
+;; (define-key evil-normal-state-map (kbd "H") 'centaur-tabs-backward)
+
+;; tab-bar-mode
+;; (define-key evil-normal-state-map (kbd "L") 'tab-bar-switch-to-next-tab)
+;; (define-key evil-normal-state-map (kbd "H") 'tab-bar-switch-to-prev-tab)
+
+;; tab-line-mode
+;; (define-key evil-normal-state-map (kbd "L") 'tab-line-switch-to-next-tab)
+;; (define-key evil-normal-state-map (kbd "H") 'tab-line-switch-to-prev-tab)
+
+;; tab-line-mode
+(define-key evil-normal-state-map (kbd "L") 'awesome-tab-forward)
+(define-key evil-normal-state-map (kbd "H") 'awesome-tab-backward)
 
 ;; move tabs
-(define-key evil-normal-state-map (kbd "M-S-<left>") 'centaur-tabs-move-current-tab-to-left)
-(define-key evil-normal-state-map (kbd "M-S-<right>") 'centaur-tabs-move-current-tab-to-right)
+(define-key evil-normal-state-map (kbd "M-S-<left>") 'awesome-tab-move-current-tab-to-left)
+(define-key evil-normal-state-map (kbd "M-S-<right>") 'awesome-tab-move-current-tab-to-right)
 
 ;; show hunk diff
 (define-key evil-normal-state-map (kbd "I") 'diff-hl-show-hunk)
@@ -43,7 +55,7 @@
 ;; describe thing at point
 (define-key evil-normal-state-map (kbd "K") 't/describe-thing-at-point)
 
-(define-key evil-normal-state-map (kbd ";") 'async-shell-command)
+(define-key evil-normal-state-map (kbd ";") 'project-async-shell-command)
 
 ;; Turn on evil-commentary
 (evil-commentary-mode)
