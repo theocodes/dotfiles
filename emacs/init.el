@@ -4,6 +4,7 @@
 
 (setq packages
       '(use-package
+         ace-window
          awesome-tab
          evil
          evil-collection
@@ -54,6 +55,8 @@
          lsp-ui
          rainbow-delimiters
          neotree
+         yaml-mode
+         coffee-mode
          counsel))
 
 ;; Modules to load

@@ -5,6 +5,7 @@
 
 (local terminal t.Terminal)
 (local lazygit (terminal:new { :cmd "lazygit" :hidden true :direction "float"}))
+(local journal (terminal:new { :cmd "journal" :hidden true :direction "float" :close_on_exit true}))
 
 (fn set-terminal-keymaps []
   (vim.api.nvim_buf_set_keymap 0 "t" "<C-n>" "<C-\\><C-n>" { :noremap true}))
@@ -22,6 +23,10 @@
   (let [file (vim.api.nvim_eval "expand('%')")
         term (term-for-command (.. "rspec " file))]
     (term:toggle)))
+
+(fn journal-capture []
+  "Capture a note with a floating nvim instance."
+  (journal:toggle))
 
 (fn run-single-spec []
   "Runs a single spec in a 'toggleterm' window."
@@ -49,4 +54,5 @@
 
 {:run-spec-file run-spec-file
  :run-single-spec run-single-spec
- :lazygit-toggle lazygit-toggle}
+ :lazygit-toggle lazygit-toggle
+ :journal-capture journal-capture}

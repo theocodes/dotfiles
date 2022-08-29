@@ -48,8 +48,13 @@
        :b ["<cmd>FzfLua buffers<CR>" "List open buffers"]
        :d [":bd<CR>" "Delete current buffer"]}
 
-   :n {:name "notes"
-       :n ["<cmd>NoteryDevOpen<CR>" "Open Notery"]}
+   ; :n {:name "notes"
+   ;     :n ["<cmd>NoteryDevOpen<CR>" "Open Notery"]
+   ;     :n [t.capture-note "Open note capture"]}
+
+   :j {:name "journal"
+       ; :n ["<cmd>NoteryDevOpen<CR>" "Open Notery"]
+       :c [t.journal-capture "Capture a journal entry"]}
 
    :m {:name "misc"
        :s ["<cmd>FzfLua spell_suggest<CR>" "Suggest spellings"]}

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+FILENAME="$HOME/Dropbox/notes/$(date +%Y%m%d)_journal.md"
+
+if [ ! -f $FILENAME ]; then
+  echo "# Journal for $(date '+%d %b %Y')" > $FILENAME
+fi
+
+nvim -c "norm Go" \
+  -c "norm zz" \
+  -c "startinsert" $FILENAME

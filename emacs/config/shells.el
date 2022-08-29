@@ -25,6 +25,12 @@
   (define-key vterm-mode-map (kbd "M-v") 'yank)
   (define-key vterm-mode-map (kbd "M-c") 'evil-yank)
   (define-key vterm-mode-map (kbd "M-O") nil)
+
+  (define-key vterm-mode-map (kbd "M-h") 'evil-window-left)
+  (define-key vterm-mode-map (kbd "M-l") 'evil-window-right)
+  (define-key vterm-mode-map (kbd "M-j") 'evil-window-bottom)
+  (define-key vterm-mode-map (kbd "M-k") 'evil-window-top)
+
   (define-key vterm-mode-map (kbd "M-i") nil))
 
 (add-hook 'vterm-mode-hook 't/configure-vterm)

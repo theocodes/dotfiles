@@ -27,6 +27,7 @@
   (use! :tpope/vim-fugitive)
   (use! :tpope/vim-eunuch)
   (use! :akinsho/toggleterm.nvim)
+  (use! :nvim-lua/plenary.nvim)
 
   ;; Completion
   (use! :hrsh7th/cmp-buffer)
@@ -34,7 +35,7 @@
   (use! :hrsh7th/cmp-nvim-lsp)
   (use! :hrsh7th/nvim-cmp)
   (use! :L3MON4D3/LuaSnip)
-  (use! :github/copilot.vim)
+  ; (use! :github/copilot.vim)
 
   ;; LSP
   (use! :neovim/nvim-lspconfig
@@ -86,7 +87,12 @@
         :requires ["nvim-lua/plenary.nvim" "kyazdani42/nvim-web-devicons" "MunifTanjim/nui.nvim"]
         :module "config.plugins.neotree")
 
-  ;; Notery
+  ;; Note taking
+  (use! "phaazon/mind.nvim"
+        :branch "v2"
+        :requires ["nvim-lua/plenary.nvim"]
+        :module "config.plugins.mind")
+
   (use! "~/Code/notery"))
 
 (augroup! :packer_user_config

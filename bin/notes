@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-DIR="${NOTES_DIR:-$HOME/notes}"
+DIR="${NOTES_DIR:-$HOME/Dropbox/notes}"
 ARG=$1
-TODAY="$(date '+%Y-%m-%d')"
+DATE="$(date '+%Y%m%d%H%M%S')"
+EXT=".md"
 
 pushd () {
     command pushd "$@" > /dev/null
@@ -12,48 +13,79 @@ popd () {
     command popd "$@" > /dev/null
 }
 
-open_today_journal() {
-  FILENAME="$DIR/journal/$TODAY.md"
+# open_today_journal() {
+#   FILENAME="$DIR/journal/$TODAY.md"
+#
+#   if [ ! -f $FILENAME ]; then
+#     TITLE="$(date '+%a %d %b %Y')"
+#     echo "# $TITLE" > $FILENAME
+#   fi
+#
+#   nvim -c "norm Go" \
+#     -c "norm Go## $(date +%H:%M)" \
+#     -c "norm G2o" \
+#     -c "norm zz" \
+#     -c "startinsert" $FILENAME
+# }
 
-  if [ ! -f $FILENAME ]; then
-    TITLE="$(date '+%a %d %b %Y')"
-    echo "# $TITLE" > $FILENAME
-  fi
+# open_note() {
+#   NAME=$(fzf --print-query --preview 'glow -s dark {}' --height 100% --preview-window=right,60% | xargs | sed 's/\.md//')
+#
+#   # bail if name is empty
+#   [ "$NAME" = "" ] && exit 0
+#
+#   # replace spaces with underscores
+#   FULLPATH="$DIR/${NAME// /_}.md"
+#
+#   # create file and add title
+#   if [ ! -f $FULLPATH ]; then
+#     # create dir in case it doesn't exist yet
+#     mkdir -p $(dirname $FULLPATH)
+#
+#     FILENAME=$(basename $NAME)
+#     TITLE="$(echo $FILENAME | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')"
+#     echo "# $TITLE" > $FULLPATH
+#   fi
+#
+#   nvim -c "norm G2o" \
+#     -c "norm zz" $FULLPATH
+# }
 
-  nvim -c "norm Go" \
-    -c "norm Go## $(date +%H:%M)" \
-    -c "norm G2o" \
-    -c "norm zz" \
-    -c "startinsert" $FILENAME
+create_note() {
+  local TITLE="title placeholder"
+  read -p "Enter title: " TITLE
+
+  local TAGS="tags placeholder"
+  read -p "Enter tags (comma separated): " TAGS
+
+  echo "$TITLE"
+  echo "$TAGS"
 }
 
 open_note() {
-  NAME=$(fzf --print-query --preview 'glow -s dark {}' --height 100% --preview-window=right,60% | xargs | sed 's/\.md//')
+  # local NAME=$(fzf --print-query --preview 'glow -s dark {}' --height 100% --preview-window=top,80% | xargs | sed 's/\.md//')
+  local NAME=$(fzf --print-query --preview 'glow -s dark {}' --height 100% --preview-window=top,80%)
+
+  echo $NAME
+  exit 0
 
   # bail if name is empty
   [ "$NAME" = "" ] && exit 0
 
-  # replace spaces with underscores
-  FULLPATH="$DIR/${NAME// /_}.md"
+  local FULLPATH="$DIR/${NAME// /_}"
 
-  # create file and add title
-  if [ ! -f $FULLPATH ]; then
-    # create dir in case it doesn't exist yet
-    mkdir -p $(dirname $FULLPATH)
-
-    FILENAME=$(basename $NAME)
-    TITLE="$(echo $FILENAME | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')"
-    echo "# $TITLE" > $FULLPATH
+  if [ -f $FULLPATH ]; then
+    nvim ${FULLPATH}
+    exit 0
   fi
 
-  nvim -c "norm G2o" \
-    -c "norm zz" $FULLPATH
+  echo $FULLPATH
 }
 
 pushd $DIR
 
 if [ ! -z "$ARG" ]; then
-  [ "$ARG" = "today" ] && open_today_journal && exit 0
+  [ "$ARG" = "new" ] && create_note && exit 0
 fi
 
 open_note

@@ -23,6 +23,7 @@
     "ld" '(flymake-show-buffer-diagnostics :which-key "show diagnostics buffer")
 
     "w"  '(:ignore t :which-key "window")
+    "ww" '(ace-window :which-key "select window to jump to")
     "wsh" '(evil-window-split :which-key "split window horizontally")
     "wsv" '(evil-window-vsplit :which-key "split window vertically")
 

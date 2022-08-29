@@ -34,6 +34,8 @@
      (string-prefix-p "*Messages" name)
      (string-prefix-p "*straight-process" name)
      (string-prefix-p "*helm" name)
+     (string-prefix-p "*Flymake diagnostics" name)
+     (string-prefix-p "*Neo" name)
      (string-prefix-p "*Compile-Log*" name)
      (string-prefix-p "*lsp" name)
      (and (string-prefix-p "magit" name)
