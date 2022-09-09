@@ -1,129 +1,13 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
+#!/usr/bin/env bash
 
-require 'pry'
-require 'yaml'
+TITLE="$1"
+TAGS="$2"
+FILENAME="$HOME/Dropbox/notes/$(date +%Y%m%d)_note.md"
 
-DIR = ENV['NOTES_DIR'] || "#{ENV['HOME']}/new_notes"
-TEMP_DIR = '/tmp'
-COMMAND = ARGV.first
-ARG = ARGV[1]
+if [ ! -f $FILENAME ]; then
+  echo "# $TITLE" > $FILENAME
+fi
 
-class Note
-  attr_reader :file_name
-
-  def initialize(file_name)
-    @file_name = file_name
-    @raw = File.open(file_name).read
-  end
-
-  def tags
-    metadata['tags'].map(&:downcase)
-  end
-
-  def contents
-    @contents ||= @raw.gsub(/^---[\s\S]+?---/, '').strip
-  end
-
-  def metadata
-    @metadata ||= YAML.safe_load(@raw[/^---[\s\S]+?---/])
-  end
-
-  def to_s
-    s = StringIO.new
-
-    # Print source file path
-    s << "\n\u001b[30m"
-    s << @file_name
-    s << "\u001b[0m\n\n"
-
-    s << contents
-
-    s.string
-  end
-end
-
-def new_note
-  raise 'TAGS not provided' if ARGV[1..].empty?
-
-  file_name = "#{Time.now.to_i}.md"
-
-  tmp_file_path = File.join(TEMP_DIR, file_name)
-  write_tmp_note(tmp_file_path)
-
-  file_path = File.join(DIR, file_name)
-  exec("nvim #{file_path} -c 'r #{tmp_file_path}' -c 'norm Go' -c 'startinsert'")
-ensure
-  exec("rm #{tmp_file_path}") unless ARG.nil?
-end
-
-def write_tmp_note(tmp_file_path)
-  new_note_template = <<~TXT.strip
-    ---
-    tags:
-      - #{ARGV[1..].join("\n  - ")}
-    ---
-  TXT
-
-  File.write(tmp_file_path, new_note_template.chomp)
-end
-
-def print_header
-  puts ''
-  puts "# Showing results for: #{ARGV.join(',')}"
-  puts ''
-end
-
-def search
-  # The search terms
-  tags = ARGV.map(&:strip).select { |x| !x.start_with? '-' }
-  flags = ARGV.map(&:strip).select { |x| x.start_with? '-' }
-
-  # Gather notes and turn them into Note objects for
-  # querying.
-  notes = []
-  Dir[File.join(DIR, '**', '*')].each do |file_name|
-    notes << Note.new(file_name)
-  end
-
-  # Match tags against Notes metadata tags field.
-  results = []
-  notes.each do |note|
-    next unless tags.all? { |tag| note.tags.include? tag.downcase }
-
-    results << note
-  end
-
-  # Print results
-  s = StringIO.new
-
-  s << "\n"
-  s << "# Showing results for: #{tags.join(', ')}"
-  s << "\n\n"
-
-  results.each do |note|
-    s << "## "
-    s << "#{note.file_name}"
-    s << "\n\n"
-
-    s << note.contents
-    s << "\n\n"
-  end
-
-  written = File.write("/tmp/result.md", s.string.chomp)
-  exec("glow /tmp/result.md")
-ensure
-  exec("rm /tmp/result.md") if written
-end
-
-case COMMAND
-when 'new'
-  new_note
-else
-  if ARGV.empty?
-    puts "help placeholder"
-    exit 0
-  end
-
-  search
-end
+nvim -c "norm Go" \
+  -c "norm zz" \
+  -c "startinsert" $FILENAME

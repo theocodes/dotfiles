@@ -1,6 +1,7 @@
 (import-macros {: g!
                 : map!} :hibiscus.vim)
 
+(local denote (require :denote))
 (local wk (require :which-key))
 (local t (require :config.plugins.toggleterm))
 
@@ -48,12 +49,12 @@
        :b ["<cmd>FzfLua buffers<CR>" "List open buffers"]
        :d [":bd<CR>" "Delete current buffer"]}
 
-   ; :n {:name "notes"
-   ;     :n ["<cmd>NoteryDevOpen<CR>" "Open Notery"]
-   ;     :n [t.capture-note "Open note capture"]}
+   :n {:name "notes"
+       :n ["<cmd>Neotree ~/Dropbox/notes<CR>" "Open notes directory"]
+       :f ["<cmd>FzfLua files cwd=~/Dropbox/notes<CR>" "Find note"]
+       :c [denote.capture-note "Capture note"]}
 
    :j {:name "journal"
-       ; :n ["<cmd>NoteryDevOpen<CR>" "Open Notery"]
        :c [t.journal-capture "Capture a journal entry"]}
 
    :m {:name "misc"

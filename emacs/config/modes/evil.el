@@ -1,78 +1,39 @@
 ;; Configuration for evil-mode.
 
-(customize-set-variable 'evil-want-integration t)
-(customize-set-variable 'evil-want-keybinding nil)
-(customize-set-variable 'evil-want-C-i-jump nil)
-(customize-set-variable 'evil-want-C-u-scroll t)
-(customize-set-variable 'evil-respect-visual-line-mode t)
-(customize-set-variable 'evil-undo-system 'undo-tree)
+(use-package evil
+  :init
+  (setq evil-want-keybinding nil)
+  :custom
+  (evil-want-integration t)
+  (evil-want-C-i-jump nil)
+  (evil-want-C-u-scroll t)
+  (evil-respect-visual-line-mode t)
+  (evil-undo-system 'undo-tree)
+  :config
 
-;; Load Evil and enable it globally
-(evil-mode 1)
+  (evil-mode 1)
 
-;; Turn on undo-tree globally
-(global-undo-tree-mode)
+  (define-key evil-normal-state-map (kbd ";") 'project-async-shell-command)
+  (define-key evil-normal-state-map (kbd "!") 'async-shell-command)
 
-;; centaur-tabs
-;; (define-key evil-normal-state-map (kbd "L") 'centaur-tabs-forward)
-;; (define-key evil-normal-state-map (kbd "H") 'centaur-tabs-backward)
+  (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
 
-;; tab-bar-mode
-;; (define-key evil-normal-state-map (kbd "L") 'tab-bar-switch-to-next-tab)
-;; (define-key evil-normal-state-map (kbd "H") 'tab-bar-switch-to-prev-tab)
+  (define-key evil-normal-state-map (kbd "s") 'avy-goto-char)
 
-;; tab-line-mode
-;; (define-key evil-normal-state-map (kbd "L") 'tab-line-switch-to-next-tab)
-;; (define-key evil-normal-state-map (kbd "H") 'tab-line-switch-to-prev-tab)
+  (define-key evil-normal-state-map (kbd "K") 't/describe-thing-at-point)
 
-;; tab-line-mode
-(define-key evil-normal-state-map (kbd "L") 'awesome-tab-forward)
-(define-key evil-normal-state-map (kbd "H") 'awesome-tab-backward)
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-;; move tabs
-(define-key evil-normal-state-map (kbd "M-S-<left>") 'awesome-tab-move-current-tab-to-left)
-(define-key evil-normal-state-map (kbd "M-S-<right>") 'awesome-tab-move-current-tab-to-right)
+  (define-key evil-normal-state-map (kbd "q") 'kill-current-buffer)
 
-;; show hunk diff
-(define-key evil-normal-state-map (kbd "I") 'diff-hl-show-hunk)
+  (evil-set-initial-state 'shell-mode 'normal)
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
 
-(define-key evil-normal-state-map (kbd "q") 'kill-current-buffer)
-(define-key evil-normal-state-map (kbd "M-q") 'evil-window-delete)
-
-(define-key evil-normal-state-map (kbd "s") 'avy-goto-char)
-
-(define-key evil-insert-state-map (kbd "C-f") 'copilot-accept-completion)
-
-;; Disable so so it doesn't conflict with embark
-(define-key evil-normal-state-map (kbd "C-.") nil)
-
-;; Ctrl-p is for finding files...
-(define-key evil-normal-state-map (kbd "C-p") nil)
-
-;; show diagnostics buffer
-(define-key evil-normal-state-map (kbd "C-o") 'flymake-show-buffer-diagnostics)
-
-;; describe thing at point
-(define-key evil-normal-state-map (kbd "K") 't/describe-thing-at-point)
-
-(define-key evil-normal-state-map (kbd ";") 'project-async-shell-command)
-
-;; Turn on evil-commentary
-(evil-commentary-mode)
-
-;; Enable evil-multiedit
-(require 'evil-multiedit)
-(evil-multiedit-default-keybinds)
-
-;; Rebind `universal-argument' to 'C-M-u' since 'C-u' now scrolls the buffer
-(global-set-key (kbd "C-M-u") 'universal-argument)
-
-;; C-h is backspace in insert state
-(define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
-
-;; Use visual line motions even outside of visual-line-mode buffers
-(evil-global-set-key 'motion "j" 'evil-next-visual-line)
-(evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-
-;; Enable collection of evil-specific configurations
-(evil-collection-init)
+(use-package evil-collection
+  :config
+  (evil-collection-init))

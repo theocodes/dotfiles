@@ -5,7 +5,7 @@
 (local default-foreground (get-hex "Comment" "fg"))
 (local selected-foreground "White")
 (local default-background "NONE")
-(local selected-background "#3f33af")
+(local selected-background (get-hex "@variable" "fg"))
 (local default-modified-state nil)
 (local selected-modified-state "White")
 

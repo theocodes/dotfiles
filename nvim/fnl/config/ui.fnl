@@ -1,8 +1,8 @@
 (import-macros {: color!} :hibiscus.vim)
 (import-macros {: hi!} :macros)
 
-(color! "modus-vivendi")
-; (color! "starry")
+; (color! "modus-vivendi")
+(color! "horizon")
 
 ;; Overrides
 (hi! Normal { :bg "NONE"})

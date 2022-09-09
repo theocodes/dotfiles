@@ -1,13 +1,16 @@
-;; how long before which-key shows up
-(setq which-key-idle-delay 1)
 
-;; load which-key
-(which-key-mode 1)
+(use-package which-key
+  :init
+  (setq which-key-idle-delay 1)
+  :config
+  (which-key-mode 1))
 
-(general-create-definer rune/leader-keys
-  :keymaps '(normal insert visual emacs)
-  :prefix "SPC"
-  :global-prefix "C-SPC")
+(use-package general
+  :config
+  (general-create-definer rune/leader-keys
+                          :keymaps '(normal insert visual emacs)
+                          :prefix "SPC"
+                          :global-prefix "C-SPC"))
 
 (rune/leader-keys
     "n"  '(:ignore t :which-key "notes")
@@ -41,7 +44,7 @@
     "mta"  '(rspec-verify-all :which-key "run all specs")
 
     "b"  '(:ignore t :which-key "buffers")
-    "bb" '(consult-buffer :which-key "list and find buffer")
+    "bb" '(consult-project-buffer :which-key "list and find buffer")
     "bd" '(kill-current-buffer :which-key "kill current buffer")
 
     "p"  '(:ignore t :which-key "project")
@@ -65,7 +68,6 @@
     "`"   '(persp-switch :which-key "switch/create perspective")
     "."   '(find-file :which-key "find file"))
 
-(global-set-key (kbd "C-p") 'project-find-file)
 (global-set-key (kbd "M-t") 'tab-new)
 
 ;; split window and focus on new window
@@ -99,8 +101,8 @@
 ;; Use Embark to show bindings in a key prefix with `C-h`
 (setq prefix-help-command #'embark-prefix-help-command)
 
-(with-eval-after-load 'embark-consult
-  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
+;(with-eval-after-load 'embark-consult
+;  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
 (global-set-key (kbd "M-l") 'evil-window-right)
 (global-set-key (kbd "M-h") 'evil-window-left)

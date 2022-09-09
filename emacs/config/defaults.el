@@ -1,6 +1,5 @@
-;; Make emacs load system PATH when launching via GUI
-(when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize))
+;; Make ESC quit prompts
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; Use y/n instead of yes/no
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -39,9 +38,6 @@
 ;; Move custom away from .emacs
 (setq custom-file "~/.emacs.d/custom.el")
 
-;; init
-;;(xclip-mode 1) ;; copy to system clipboard (x-plat)
-
 ;; magit
 (setq-default with-editor-emacsclient-executable "emacsclient")
 (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
@@ -51,3 +47,5 @@
 
 ;; don't ask for confirmation if output buffer is taken
 (setq async-shell-command-buffer 'new-buffer)
+
+(use-package no-littering)

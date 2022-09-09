@@ -36,23 +36,14 @@
 
 ;; Load popper
 
-(require 'popper)
+(use-package popper
+  :init
+  (setq popper-mode-line t
+        popper-display-control 'user
+        popper-reference-buffers '("\\(Async Shell Command\\|popup\\)\\*$"))
+  :config
+  (global-set-key (kbd "C-`") 'popper-toggle-latest)
+  (global-set-key (kbd "M-`") 'popper-cycle)
+  (global-set-key (kbd "C-M-`") 'popper-toggle-type)
 
-;; (setq popper-reference-buffers
-;;       '("\\*Messages\\*"
-;;         "Output\\*$"
-;;         "\\*Async Shell Command\\*"
-;;         help-mode
-;;         compilation-mode))
-
-(setq popper-mode-line t
-      popper-display-control 'user)
-
-(setq popper-reference-buffers
-      '("\\(Async Shell Command\\|popup\\)\\*$"))
-
-(global-set-key (kbd "C-`") 'popper-toggle-latest)
-(global-set-key (kbd "M-`") 'popper-cycle)
-(global-set-key (kbd "C-M-`") 'popper-toggle-type)
-
-(popper-mode 1)
+  (popper-mode 1))

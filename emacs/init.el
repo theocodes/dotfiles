@@ -1,85 +1,25 @@
 ;;; -*- lexical-binding: t; -*-
 
-;; Packages to install
-
-(setq packages
-      '(use-package
-         ace-window
-         awesome-tab
-         evil
-         evil-collection
-         evil-commentary
-         evil-multiedit
-         undo-tree
-         all-the-icons
-         helpful
-         general
-         which-key
-         exec-path-from-shell
-         consult
-         embark
-         embark-consult
-         marginalia
-         orderless
-         vertico
-         company
-         perspective
-         org
-         org-bullets
-         org-roam
-         org-appear
-         magit
-         projectile
-         denote
-         markdown-mode
-         modus-themes
-         doom-themes
-         doom-modeline
-         pulsar
-         web-mode
-         haml-mode
-         emmet-mode
-         highlight-indent-guides
-         ;; highlight-indentation
-         terraform-mode
-         diff-hl
-         git-gutter
-         deft
-         popper
-         avy
-         vterm
-         eshell-git-prompt
-         inf-ruby
-         haml-mode
-         lsp-mode
-         lsp-ui
-         rainbow-delimiters
-         neotree
-         yaml-mode
-         coffee-mode
-         counsel))
-
 ;; Modules to load
-
 (setq modules
-      '("straight"
+      '("bootstrap"
         "utils"
 
         "config/modes/evil"
-        "config/modes/org"
-        "config/modes/neotree"
+        ;; "config/modes/org"
 
         "config/defaults"
         "config/ui"
         "config/editing"
         "config/completion"
+        "config/autocomplete"
+        "config/projects"
         "config/windows"
-        "config/notes"
-        "config/shells"
+        ;; "config/notes"
+        ;; "config/shells"
         "config/programming"
         "config/keybindings"))
 
 ;; Load modules
-
 (dolist (x modules)
   (load (concat config-dir x)))

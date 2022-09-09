@@ -59,7 +59,7 @@
 
   ;; Colorschemes
   (use! :ishan9299/modus-theme-vim)
-  (use! :ray-x/starry.nvim)
+  (use! :lunarvim/horizon.nvim)
 
   ;; Indentation lines
   (use! :lukas-reineke/indent-blankline.nvim)
@@ -91,9 +91,7 @@
   (use! "phaazon/mind.nvim"
         :branch "v2"
         :requires ["nvim-lua/plenary.nvim"]
-        :module "config.plugins.mind")
-
-  (use! "~/Code/notery"))
+        :module "config.plugins.mind"))
 
 (augroup! :packer_user_config
   [[BufWritePost] "*/plugins.fnl" '(do
