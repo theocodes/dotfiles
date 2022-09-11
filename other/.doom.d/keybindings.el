@@ -44,6 +44,12 @@
       :leader
       :n "mts" #'theocodes/rspec-spec)
 
+(map! :desc "Toggle eshell popup"
+      :g "s-i" #'+eshell/toggle)
+
+(map! :desc "Toggle eshell"
+      :g "s-I" #'theocodes/eshell-toggle)
+
 ;; Window management
 
 (map! :desc "Vertically split window and focus new"
