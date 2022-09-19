@@ -57,6 +57,9 @@
    :j {:name "journal"
        :c [t.journal-capture "Capture a journal entry"]}
 
+   :p {:name "project"
+       :f ["<cmd>FzfLua files<CR>" "Find file"]}
+
    :m {:name "misc"
        :s ["<cmd>FzfLua spell_suggest<CR>" "Suggest spellings"]}
 
