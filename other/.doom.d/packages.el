@@ -50,3 +50,4 @@
 ;(unpin! t)
 
 (package! denote)
+(package! ef-themes)

@@ -28,6 +28,15 @@
 
 (map! :g "s-." #'embark-act)
 
+(map! :leader
+      :n "n n" #'theocodes/denote-notes)
+
+(map! :leader
+      :n "n f" #'theocodes/denote-find-file)
+
+(map! :leader
+      :n "n c" #'denote)
+
 ;; Shell
 
 (map! :desc "Run shell command in current directory"
@@ -36,19 +45,19 @@
 (map! :desc "Run shell command in project root"
       :n "\;" #'project-async-shell-command)
 
-(map! :desc "Run spec file"
-      :leader
-      :n "mtv" #'theocodes/rspec-file)
+;; (map! :desc "Run spec file"
+;;       :leader
+;;       :n "mtv" #'theocodes/rspec-file)
 
-(map! :desc "Run single spec"
-      :leader
-      :n "mts" #'theocodes/rspec-spec)
+;; (map! :desc "Run single spec"
+;;       :leader
+;;       :n "mts" #'theocodes/rspec-spec)
 
 (map! :desc "Toggle eshell popup"
-      :g "s-i" #'+eshell/toggle)
+      :g "s-i" #'+vterm/toggle)
 
 (map! :desc "Toggle eshell"
-      :g "s-I" #'theocodes/eshell-toggle)
+      :g "s-I" #'+vterm/here)
 
 ;; Window management
 

@@ -1,5 +1,26 @@
 ;;; $DOOMDIR/utils.el -*- lexical-binding: t; -*-
 
+;; Note taking
+
+(defun theocodes/denote-new-journal ()
+    "Create a new journal denote note."
+  (interactive)
+  (let ((test "hello"))
+   (message test)))
+
+(defun theocodes/denote-notes ()
+  "Open notes directory in Dired."
+  (interactive)
+  (dired "~/Dropbox/notes/"))
+
+(defun theocodes/denote-find-file ()
+  "Search for notes in denote directory."
+  (interactive)
+  (cd "~/Dropbox/notes")
+  (call-interactively 'find-file))
+
+;; Running tests
+
 (defun theocodes/rspec-file ()
   (interactive)
   (let* ((filename (buffer-file-name))
@@ -12,6 +33,8 @@
          (line (line-number-at-pos))
          (cmd (format "rspec %s:%s" filename line)))
     (projectile-run-async-shell-command-in-root cmd)))
+
+;; Window management
 
 (defun theocodes/split-window ()
   "Horizontally splits window and focus new split"
@@ -28,30 +51,10 @@
 (defun theocodes/dwim-delete-window ()
   "Closes a split window or tab."
   (interactive)
-  (if (= (length (window-list)) 1)
-      (tab-close)
-    (delete-window)))
+  (cond ((> (length (window-list)) 1) (delete-window))
+        (t (kill-current-buffer))))
 
-(defun theocodes/denote-search-note ()
-  "Search for notes in denote directory."
-  (interactive)
-  (consult-find (denote-directory)))
-
-(defun theocodes/select-tab (n)
-  "Switches to the 'n' tab."
-  (interactive)
-  (tab-bar-select-tab n))
-
-(defun theocodes/describe-thing-at-point ()
-  "Describes thing at point.
-The order of inspection is as follows:
-  - Attempt to describe as an elisp symbol
-  - Hand over to lsp if enabled"
-  (interactive)
-  (let ((thing (symbol-at-point)))
-    (if (and (boundp 'lsp-mode) lsp-mode)
-        (lsp-describe-thing-at-point)
-        (help-xref-interned thing))))
+;; Shell emulators
 
 (defun theocodes/eshell-toggle ()
   "Toggle an full-sized eshell instance in the context of current project."
@@ -86,13 +89,7 @@ The order of inspection is as follows:
          (buf (get-buffer name)))
     (if buf
         (if (string= (buffer-name buf) (buffer-name))
-	    (popper-toggle-latest)
+            (popper-toggle-latest)
           (display-buffer name))
       (with-current-buffer (projectile-run-vterm name)
         (rename-buffer name)))))
-
-(defun theocodes/open-vterm-tab ()
-  "Opens a new tab and instantiate a vterm session at projectile root."
-  (interactive)
-  (tab-new)
-  (projectile-run-vterm))
