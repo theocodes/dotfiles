@@ -20,5 +20,7 @@
 (hi! ExtraWhitespace { :bg "Red"})
 (hi! Whitespace { :bg "#222422"})
 (hi! NormalFloat { :bg "NONE"})
+(hi! FloatBorder { :fg "White" :bg "NONE"})
+(hi! MsgArea { :fg "#ffffff" :bg "NONE"})
 
 (hi! IndentBlanklineIndent1 {:fg "#1f1f1e"})
