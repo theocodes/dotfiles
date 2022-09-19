@@ -4,7 +4,7 @@
 (local open-fn
   (lambda []
     (let [util (require "packer.util")]
-      (util.float { :border "rounded"}))))
+      (util.float { :border "single"}))))
 
 (packer-setup {:display { :open_fn open-fn}})
 
@@ -85,13 +85,9 @@
   (use! :nvim-neo-tree/neo-tree.nvim
         :branch "v2.x"
         :requires ["nvim-lua/plenary.nvim" "kyazdani42/nvim-web-devicons" "MunifTanjim/nui.nvim"]
-        :module "config.plugins.neotree")
+        :module "config.plugins.neotree"))
 
   ;; Note taking
-  (use! "phaazon/mind.nvim"
-        :branch "v2"
-        :requires ["nvim-lua/plenary.nvim"]
-        :module "config.plugins.mind"))
 
 (augroup! :packer_user_config
   [[BufWritePost] "*/plugins.fnl" '(do
