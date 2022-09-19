@@ -1,12 +1,12 @@
 font:
-  size: 14
+  size: 16
 
   normal:
-    family: "Iosevka"
-    style: Regular
+    family: Iosevka Nerd Font
+    style: Light
 
   bold:
-    family: "Iosevka"
+    family: Iosevka Nerd Font
     style: Medium
 
 selection:
@@ -14,7 +14,7 @@ selection:
 
 window:
   decorations: buttonless
-  opacity: 0.98
+  opacity: 0.99
   padding:
     x: 4
     y: 4
@@ -23,4 +23,4 @@ mouse:
   hide_when_typing: true
 
 import:
-  - ~/.config/alacritty/themes/horizon_dark.yml
+  - ~/.config/alacritty/themes/ayu_dark.yml
