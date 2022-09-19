@@ -1,20 +1,9 @@
 (local lspconfig (require :lspconfig))
-(local keymaps (require :config.keymaps))
+(local keymaps (require :core.keymaps))
 (local cmp-nvim-lsp (require :cmp_nvim_lsp))
 
 (local capabilities (cmp-nvim-lsp.update_capabilities (vim.lsp.protocol.make_client_capabilities)))
-
-(local border [["🭽" "FloatBorder"]
-               ["▔" "FloatBorder"]
-               ["🭾" "FloatBorder"]
-               ["▕" "FloatBorder"]
-               ["🭿" "FloatBorder"]
-               ["▁" "FloatBorder"]
-               ["🭼" "FloatBorder"]
-               ["▏" "FloatBorder"]])
-
-
-(local handlers {:textDocument/hover (vim.lsp.with vim.lsp.handlers.hover {:border border})})
+(local handlers {:textDocument/hover (vim.lsp.with vim.lsp.handlers.hover {:border "single"})})
 
 ;; Enable gopls
 (lspconfig.gopls.setup {:on_attach keymaps.set-lsp-mappings

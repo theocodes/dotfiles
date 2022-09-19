@@ -16,7 +16,7 @@
 
   ;; Git in the gutter
   (use! :lewis6991/gitsigns.nvim
-        :module "config.plugins.gitsigns")
+        :module "plugins.gitsigns")
 
   ;; General
   (use! :terrortylor/nvim-comment)
@@ -26,8 +26,13 @@
   (use! :folke/which-key.nvim)
   (use! :tpope/vim-fugitive)
   (use! :tpope/vim-eunuch)
-  (use! :akinsho/toggleterm.nvim)
   (use! :nvim-lua/plenary.nvim)
+
+  ;; Terminal integration
+  ; (use! :numToStr/FTerm.nvim
+  ;       :module "config.plugins.fterm")
+  (use! :akinsho/toggleterm.nvim
+        :module "core.term")
 
   ;; Completion
   (use! :hrsh7th/cmp-buffer)
@@ -39,12 +44,12 @@
 
   ;; LSP
   (use! :neovim/nvim-lspconfig
-        :module "config.plugins.lsp")
+        :module "plugins.lsp")
 
   ;; Fuzzy finder
   (use! :ibhagwan/fzf-lua
         :requires ["kyazdani42/nvim-web-devicons"]
-        :module "config.plugins.fzf")
+        :module "plugins.fzf")
   (use! :maxjacobson/vim-fzf-coauthorship
         :requires ["junegunn/fzf"])
 
@@ -69,23 +74,23 @@
 
   ;; Better tabs
   (use! :noib3/nvim-cokeline
-        :module "config.plugins.cokeline")
+        :module "plugins.cokeline")
 
   ;; buffer line
   (use! :nvim-lualine/lualine.nvim
         :requires ["kyazdani42/nvim-web-devicons"]
-        :module "config.plugins.lualine")
+        :module "plugins.lualine")
 
   ;; Treesitter
   (use! :nvim-treesitter/nvim-treesitter
         :run ":TSUpdate"
-        :module "config.plugins.treesitter")
+        :module "plugins.treesitter")
 
   ;; File browser
   (use! :nvim-neo-tree/neo-tree.nvim
         :branch "v2.x"
         :requires ["nvim-lua/plenary.nvim" "kyazdani42/nvim-web-devicons" "MunifTanjim/nui.nvim"]
-        :module "config.plugins.neotree"))
+        :module "plugins.neotree"))
 
   ;; Note taking
 

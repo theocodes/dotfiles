@@ -1,9 +1,7 @@
-(import-macros {: g!
-                : map!} :hibiscus.vim)
+(import-macros {: g! : map!} :hibiscus.vim)
 
 (local denote (require :denote))
 (local wk (require :which-key))
-(local t (require :config.plugins.toggleterm))
 
 (g! mapleader " ")
 (g! maplocalleader ",")
@@ -21,12 +19,9 @@
 (map! [v] "<S-TAB>" "<gv" "Dedent selected block")
 (map! [x] "J" ":move '>+1<CR>gv-gv" "Move block down")
 (map! [x] "K" ":move '<-2<CR>gv-gv" "Move block up")
-(map! [n :verbose] ";" ":!" "Run command")
+(map! [n :verbose] ";" ":Cmd " "Run command")
+; (map! [n :verbose] ";" ":!" "Run command")
 (map! [n] "<C-h>t" "<cmd>FzfLua help_tags<CR>" "Help tags")
-
-; Move these to localleader?
-(map! [n] "<leader>mtv" 't.run-spec-file "Run rspec file")
-(map! [n] "<leader>mts" 't.run-single-spec "Run single spec")
 
 (wk.register
   {:. ["<cmd>FzfLua files<CR>" "Fuzzy find files"]
@@ -34,7 +29,6 @@
    :<TAB> ["<C-^>" "Switch to last buffer"]
 
    :g {:name "git"
-       :g [t.lazygit-toggle "Open lazygit"]
        :s ["<cmd>FzfLua git_status<CR>" "Status"]
        :z ["<cmd>FzfLua git_stash<CR>" "Stash"]
        :b ["<cmd>FzfLua git_branches<CR>" "Branches"]
@@ -54,8 +48,8 @@
        :f ["<cmd>FzfLua files cwd=~/Dropbox/notes<CR>" "Find note"]
        :c [denote.capture-note "Capture note"]}
 
-   :j {:name "journal"
-       :c [t.journal-capture "Capture a journal entry"]}
+   :j {:name "journal"}
+       ; :c [t.journal-capture "Capture a journal entry"]}
 
    :p {:name "project"
        :f ["<cmd>FzfLua files<CR>" "Find file"]}
