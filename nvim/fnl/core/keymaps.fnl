@@ -3,11 +3,14 @@
 (local denote (require :denote))
 (local wk (require :which-key))
 
+(local utils (require :utils))
+
 (g! mapleader " ")
 (g! maplocalleader ",")
 
 (map! [n :verbose] "<C-x><C-e>" ":FnlBuffer<CR>" "Eval fennel file")
-(map! [n] "q" ":q!<CR>" "Close window without saving")
+(map! [n] "Q" ":q!<CR>" "Quit without saving")
+(map! [n] "q" 'utils.close-dwim "Close current buffer")
 (map! [n] "s" ":HopWord<CR>" "Hop to word anywhere")
 (map! [n] "<C-c>" ":set hlsearch!<CR>" "Clear search highlighting")
 (map! [n] "<C-p>" ":FzfLua git_files<CR>" "Fuzzy find files in git")
@@ -19,8 +22,8 @@
 (map! [v] "<S-TAB>" "<gv" "Dedent selected block")
 (map! [x] "J" ":move '>+1<CR>gv-gv" "Move block down")
 (map! [x] "K" ":move '<-2<CR>gv-gv" "Move block up")
-(map! [n :verbose] ";" ":Cmd " "Run command")
-; (map! [n :verbose] ";" ":!" "Run command")
+; (map! [n :verbose] ";" ":Cmd " "Run command")
+(map! [n :verbose] ";" ":!" "Run command")
 (map! [n] "<C-h>t" "<cmd>FzfLua help_tags<CR>" "Help tags")
 
 (wk.register

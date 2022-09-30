@@ -3,7 +3,7 @@ font:
 
   normal:
     family: Iosevka Nerd Font
-    style: Light
+    style: Regular
 
   bold:
     family: Iosevka Nerd Font
@@ -22,5 +22,8 @@ window:
 mouse:
   hide_when_typing: true
 
+key_bindings:
+  - { key: X,  mods: Command,           chars: "\x1bx"                       }
+
 import:
-  - ~/.config/alacritty/themes/ayu_dark.yml
+  - ~/.config/alacritty/themes/ayu-dark.yml

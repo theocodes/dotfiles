@@ -2,8 +2,10 @@ local wezterm = require 'wezterm';
 
 return {
   color_scheme = "Tomorrow Night Bright",
-  font = wezterm.font("Iosevka Term", { weight = "Medium" }),
-  tab_bar_at_bottom = false,
+  -- color_scheme = "Horizon Dark (base16)",
+  -- color_scheme = "Hacktober",
+  font = wezterm.font("Iosevka Nerd Font", { weight = "Regular" }),
+  tab_bar_at_bottom = true,
   font_size = 16,
   scrollback_lines = 8500,
   use_fancy_tab_bar = false,

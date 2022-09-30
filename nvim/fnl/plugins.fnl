@@ -29,8 +29,6 @@
   (use! :nvim-lua/plenary.nvim)
 
   ;; Terminal integration
-  ; (use! :numToStr/FTerm.nvim
-  ;       :module "config.plugins.fterm")
   (use! :akinsho/toggleterm.nvim
         :module "core.term")
 

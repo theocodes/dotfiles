@@ -22,5 +22,6 @@
 (hi! NormalFloat { :bg "NONE"})
 (hi! FloatBorder { :fg "White" :bg "NONE"})
 (hi! MsgArea { :fg "#ffffff" :bg "NONE"})
+(hi! ModeMsg { :fg "#ffffff" :bg "NONE"})
 (hi! IndentBlanklineIndent1 {:fg "#1f1f1e"})
 
