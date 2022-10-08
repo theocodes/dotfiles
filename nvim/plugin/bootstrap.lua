@@ -15,19 +15,19 @@ local function bootstrap (url)
 end
 
 bootstrap "https://github.com/wbthomason/packer.nvim"
-bootstrap "https://github.com/udayvir-singh/tangerine.nvim"
-bootstrap "https://github.com/udayvir-singh/hibiscus.nvim"
+-- bootstrap "https://github.com/udayvir-singh/tangerine.nvim"
+-- bootstrap "https://github.com/udayvir-singh/hibiscus.nvim"
 
-require "tangerine".setup {
-  compiler = {
-    verbose = false,
-    hooks = {"onsave", "oninit"}
-  },
-  eval = {
-    float  = true,
-    diagnostic = {
-      virtual = true,
-      timeout = 10
-    }
-  },
-}
+-- require "tangerine".setup {
+--   compiler = {
+--     verbose = false,
+--     hooks = {"onsave", "oninit"}
+--   },
+--   eval = {
+--     float  = true,
+--     diagnostic = {
+--       virtual = true,
+--       timeout = 10
+--     }
+--   },
+-- }
