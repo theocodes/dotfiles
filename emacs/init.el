@@ -7,13 +7,13 @@
 	"defaults"
         "keybindings"
 	"completion"
-        "autocompletion"
+        ;"autocompletion"
 	"projects"
-        "editing"
+        ;"editing"
         "programming"
-	"windows"
-        "shells"
-        "notes"
+	;"windows"
+        ;"shells"
+        ;"notes"
         "ui"))
 
 ;; Load modules

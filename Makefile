@@ -11,4 +11,5 @@ link:
 	mkdir -p ~/.config/git && stow -R -v -t ~/.config/git git
 	mkdir -p ~/.config/wezterm && stow -R -v -t ~/.config/wezterm wezterm
 	stow -R -v zsh
+	stow -R -v helix
 	stow -R -v other

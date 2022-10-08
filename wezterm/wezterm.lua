@@ -1,10 +1,25 @@
 local wezterm = require 'wezterm';
 
+function basename(s)
+  return string.gsub(s, '(.*[/\\])(.*)', '%2')
+end
+
+wezterm.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    local pane = tab.active_pane
+    local title = ' ' .. pane.pane_id .. ': ' .. basename(pane.current_working_dir) .. ' '
+
+    return {
+      { Text = title },
+    }
+  end
+)
+
 return {
   color_scheme = "Tomorrow Night Bright",
-  -- color_scheme = "Horizon Dark (base16)",
-  -- color_scheme = "Hacktober",
-  font = wezterm.font("Iosevka Nerd Font", { weight = "Regular" }),
+  -- font = wezterm.font("Iosevka Nerd Font", { weight = "Regular" }),
+  font = wezterm.font("CaskaydiaCove Nerd Font", { weight = "Regular" }),
   tab_bar_at_bottom = true,
   font_size = 16,
   scrollback_lines = 8500,
@@ -15,6 +30,13 @@ return {
     right = 0,
     top = 0,
     bottom = 0,
+  },
+  colors = {
+      tab_bar = {
+        background = 'black',
+        active_tab = { fg_color = 'white', bg_color = '#e95678', intensity = 'Bold' },
+        inactive_tab = { bg_color = 'black', fg_color = 'white' },
+      },
   },
   keys = {
     -- Tab

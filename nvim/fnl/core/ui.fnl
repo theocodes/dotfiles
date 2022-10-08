@@ -6,12 +6,14 @@
 
 ;; Overrides
 (hi! Normal { :bg "NONE"})
+(hi! Visual { :bg "#1f1b1c"})
 (hi! NormalNC { :bg "NONE"})
 (hi! FzfLuaNormal { :bg "NONE"})
 (hi! LineNr { :bg "NONE" :fg "#3b4045"})
 (hi! SignColumn {})
-(hi! CursorLine { :bg "#120026"})
-(hi! CursorLineNr { :bg "#171616" :fg "#3f33af"})
+(hi! GitSignsCurrentLineBlame { :fg "Grey"})
+(hi! CursorLine { :bg "#1f1b1c"})
+(hi! CursorLineNr { :bg "#171616" :fg "#e95678"})
 (hi! GitSignsChange { :bg "NONE" :fg "Yellow"})
 (hi! GitSignsAdd { :bg "NONE" :fg "#6ffc03"})
 (hi! GitSignsDelete { :bg "NONE" :fg "Red"})
