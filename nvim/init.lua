@@ -2,6 +2,7 @@ require("plugins")
 require("defauts")
 require("keymaps")
 require("editing")
+require("lsp")
 require("ui")
 
 -- plugin config

@@ -1,4 +1,6 @@
-return require('packer').startup(function(use)
+local packer = require("packer")
+
+return packer.startup({function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
@@ -11,6 +13,12 @@ return require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-eunuch'
   use 'nvim-lua/plenary.nvim'
+
+  -- auto pair stuff
+  use { 'windwp/nvim-autopairs', module = 'nvim-autopairs.completion.cmp' }
+
+  -- LSP
+  use 'neovim/nvim-lspconfig'
 
   -- Git in the gutter
   use 'lewis6991/gitsigns.nvim'
@@ -63,4 +71,11 @@ return require('packer').startup(function(use)
 
   -- Colorschemes
   use 'Mofiqul/adwaita.nvim'
-end)
+end,
+config = {
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'single' })
+    end
+  }
+}})

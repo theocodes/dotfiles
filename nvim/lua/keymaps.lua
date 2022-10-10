@@ -3,6 +3,9 @@ local map = require("utils").map
 -- set leader to space
 vim.g.mapleader = " "
 
+-- Switch to prev buffer
+map("n", "<TAB>", "<C-^>")
+
 -- fuzzy-find files
 map("n", "<C-p>", "<cmd>FzfLua git_files<CR>", { silent = true })
 map("n", "<leader>pf", "<cmd>FzfLua git_files<CR>", { silent = true })
