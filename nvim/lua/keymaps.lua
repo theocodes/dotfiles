@@ -6,6 +6,12 @@ vim.g.mapleader = " "
 -- Switch to prev buffer
 map("n", "<TAB>", "<C-^>")
 
+-- easy motion
+map("n", "s", ":HopWord<CR>")
+
+-- eval lua file
+map("n", "<C-x><C-e>", ":so<CR>")
+
 -- fuzzy-find files
 map("n", "<C-p>", "<cmd>FzfLua git_files<CR>", { silent = true })
 map("n", "<leader>pf", "<cmd>FzfLua git_files<CR>", { silent = true })

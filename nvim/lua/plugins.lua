@@ -1,5 +1,12 @@
 local packer = require("packer")
 
+local group = vim.api.nvim_create_augroup("PackerSync", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "plugins.lua",
+  command = ":so | PackerSync",
+  group = group
+})
+
 return packer.startup({function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
