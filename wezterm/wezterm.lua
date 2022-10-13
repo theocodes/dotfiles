@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm';
 
-function basename(s)
+local function basename(s)
   return string.gsub(s, '(.*[/\\])(.*)', '%2')
 end
 
@@ -19,7 +19,7 @@ wezterm.on(
 return {
   color_scheme = "Tomorrow Night Bright",
   font = wezterm.font("CaskaydiaCove Nerd Font", { weight = "Regular" }),
-  tab_bar_at_bottom = false,
+  tab_bar_at_bottom = true,
   font_size = 16,
   scrollback_lines = 8500,
   use_fancy_tab_bar = false,

@@ -26,4 +26,4 @@ key_bindings:
   - { key: X,  mods: Command,           chars: "\x1bx"                       }
 
 import:
-  - ~/.config/alacritty/themes/ayu-dark.yml
+  - ~/.config/alacritty/themes/monokai_pro.yml
