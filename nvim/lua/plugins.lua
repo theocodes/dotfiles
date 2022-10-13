@@ -18,11 +18,20 @@ return packer.startup({function(use)
   use 'dag/vim-fish'
   use 'folke/which-key.nvim'
   use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
   use 'tpope/vim-eunuch'
   use 'nvim-lua/plenary.nvim'
+  use 'github/copilot.vim'
+
+  -- Buffer/Tab bar
+  use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+  -- use {
+  --   'romgrk/barbar.nvim',
+  --   requires = {'kyazdani42/nvim-web-devicons'}
+  -- }
 
   -- auto pair stuff
-  use { 'windwp/nvim-autopairs', module = 'nvim-autopairs.completion.cmp' }
+  use { 'windwp/nvim-autopairs' }
 
   -- LSP
   use 'neovim/nvim-lspconfig'
@@ -41,7 +50,7 @@ return packer.startup({function(use)
   use {
   "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
-    requires = { 
+    requires = {
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",

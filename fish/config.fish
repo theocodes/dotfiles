@@ -7,6 +7,7 @@ set -x EDITOR "nvim"
 set -x GOPATH $HOME/go
 set -x CARGOPATH $HOME/.cargo
 set -x ALTERNATE_EDITOR ""
+set -x HUSKY 0
 
 # Set $DISPLAY to be used by XServer for chromedriver etc
 if string match -q '*WSL*' (uname -r)

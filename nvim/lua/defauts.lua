@@ -27,3 +27,4 @@ o.list = true
 o.listchars = "tab:»·,trail:·,nbsp:~"
 o.completeopt = { "menu", "menuone", "noselect" }
 
+vim.cmd [[set noshowmode]]

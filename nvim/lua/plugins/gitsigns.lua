@@ -10,9 +10,10 @@ gitsigns.setup({
   current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = "right_align",
-    delay = 1000,
-    ignore_whitespace = false
+    delay = 0,
+    ignore_whitespace = true
   },
   current_line_blame_formatter_opts = { relative_time = false },
+  current_line_blame_formatter = '<summary> [<author>]',
   update_debounce = 100
 })

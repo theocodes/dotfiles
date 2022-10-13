@@ -17,8 +17,10 @@ hop.setup {
 
 cmp.setup {
   mapping = cmp.mapping.preset.insert({
-    ["<TAB>"] = cmp.mapping.select_next_item(),
-    ["<S-TAB>"] = cmp.mapping.select_prev_item(),
+    ["<C-return>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-c>"] = cmp.mapping.abort(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-k>"] = cmp.mapping.select_prev_item(),
   }),
   sources = cmp.config.sources(
   {
@@ -26,5 +28,12 @@ cmp.setup {
   },
   {
     { name = "buffer" }
-  })
+  }),
+  snippet = {
+    expand = function(args)
+      local luasnip = require("luasnip")
+      luasnip.lsp_expand(args.body)
+    end
+  }
 }
+
