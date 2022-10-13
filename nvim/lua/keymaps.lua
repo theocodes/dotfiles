@@ -13,12 +13,12 @@ map("n", "s", ":HopWord<CR>")
 map("n", "<leader>hh", "<cmd>FzfLua help_tags<CR>")
 
 -- Moving between tabs
-map("n", "H", ":BufferLineCyclePrev<CR>")
-map("n", "L", ":BufferLineCycleNext<CR>")
+map("n", "H", ":BufferLineCyclePrev<CR>", { silent = true})
+map("n", "L", ":BufferLineCycleNext<CR>", { silent = true})
 
 -- Move tabs
-map("n", "<C-h>", ":BufferLineMovePrev<CR>")
-map("n", "<C-l>", ":BufferLineMoveNext<CR>")
+map("n", "<C-h>", ":BufferLineMovePrev<CR>", { silent = true})
+map("n", "<C-l>", ":BufferLineMoveNext<CR>", { silent = true})
 
 -- Pin tab
 map("n", "<leader>tp", "<cmd>BufferLineTogglePin<CR>", { silent = true })
