@@ -5,23 +5,34 @@ require("bufferline").setup{
   options = {
     show_buffer_close_icons = false,
     show_buffer_icons = false,
+    show_tab_indicators = true,
+    show_modified_icon = false,
+    show_duplicate_prefix = false,
     separator_style = "thin",
+    name_formatter = function(buf) return "  " .. buf.name end,
     buffer_close_icon = "",
     left_trunc_marker = "",
     right_trunc_marker = "",
     modified_icon = "",
-    show_modified_icon = false,
     max_name_length = 20,
     diagnostics = "nvim_lsp",
     tab_size = 0,
     indicator = {
-      style = "none",
+      icon = "▎",
+      style = "icon",
     }
   }
 }
 
 set_highlight('BufferlineFill', { bg = "NONE" })
 set_highlight('BufferlineBufferSelected', { bg = "NONE", italic = false, bold = true })
+
+local primary = get_highlight("String")
+
+set_highlight('BufferlineIndicatorSelected', {
+  bg = "NONE",
+  fg = primary.foreground, italic = false, bold = true
+})
 
 set_highlight('BufferlineHintSelected', {
   bg = "NONE",
