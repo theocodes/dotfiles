@@ -4,6 +4,9 @@
 (local ncomment (require :nvim_comment))
 (ncomment.setup)
 
+(local autopairs (require :nvim-autopairs))
+(autopairs.setup)
+
 (local hop (require :hop))
 (hop.setup {:keys "etovxqpdygfblzhckisuran"})
 
