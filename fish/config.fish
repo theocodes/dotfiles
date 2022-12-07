@@ -25,6 +25,13 @@ abbr a asdf
 abbr b bat
 abbr dev ./scripts/dev
 abbr tf terraform
+abbr gco git checkout
+abbr gs git status
+abbr gca git commit -a
+abbr gcam git commit -a -m
+abbr gp git push
+abbr gl git pull --ff-only
+abbr gf git fetch
 
 # ALIASES
 # ...
