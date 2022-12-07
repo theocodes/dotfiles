@@ -1,5 +1,12 @@
 local term = require("toggleterm")
-local map = require("utils").map
+
+function map(mode, lhs, rhs, opts)
+    local options = { noremap = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.keymap.set(mode, lhs, rhs, options)
+end
 
 term.setup({
   size = 20,

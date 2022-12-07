@@ -14,20 +14,40 @@ local function bootstrap (url)
 	end
 end
 
-bootstrap "https://github.com/wbthomason/packer.nvim"
--- bootstrap "https://github.com/udayvir-singh/tangerine.nvim"
--- bootstrap "https://github.com/udayvir-singh/hibiscus.nvim"
+--bootstrap "https://github.com/wbthomason/packer.nvim"
+bootstrap "https://github.com/udayvir-singh/hibiscus.nvim"
+bootstrap "https://github.com/udayvir-singh/tangerine.nvim"
 
--- require "tangerine".setup {
---   compiler = {
---     verbose = false,
---     hooks = {"onsave", "oninit"}
---   },
---   eval = {
---     float  = true,
---     diagnostic = {
---       virtual = true,
---       timeout = 10
---     }
---   },
--- }
+require "tangerine".setup {
+	-- save fnl output in a separate dir, it gets automatically added to package.path
+	target = vim.fn.stdpath [[data]] .. "/tangerine",
+
+	-- compile files in &rtp
+	rtpdirs = {
+		"plugin",
+		"colors",
+	},
+
+
+	keymaps = {
+		eval_buffer = "gE",
+	},
+
+
+	eval = {
+		float  = true,
+
+		diagnostic = {
+			virtual = true,  -- show errors in virtual text
+			timeout = 10     -- how long should the error persist
+		}
+	},
+
+	compiler = {
+		-- disable popup showing compiled files
+		verbose = false,
+
+		-- compile every time changed are made to fennel files or on entering vim
+		hooks = {"onsave", "oninit"}
+	}
+}
