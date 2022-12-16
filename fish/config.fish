@@ -10,9 +10,9 @@ set -x ALTERNATE_EDITOR ""
 set -x HUSKY 0
 
 # Set $DISPLAY to be used by XServer for chromedriver etc
-if string match -q '*WSL*' (uname -r)
-  set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-end
+# if string match -q '*WSL*' (uname -r)
+#   set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+# end
 
 # ABBREVIATIONS
 abbr e $EDITOR
