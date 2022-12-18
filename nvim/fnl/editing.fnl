@@ -1,3 +1,5 @@
+(import-macros {: g!} :hibiscus.vim)
+
 (local session (require :auto-session))
 (session.setup {:log_level :error})
 
@@ -27,3 +29,5 @@
                        (let [luasnip (require :luasnip)]
                          (luasnip.lsp_expand args.body)))}})
 
+;; enable ruby auto-formatting
+(g! rufo_auto_formatting 1)

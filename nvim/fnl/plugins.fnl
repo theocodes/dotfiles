@@ -24,18 +24,20 @@
   (use! :lewis6991/gitsigns.nvim)
   (use! :windwp/nvim-autopairs)
   (use! :lukas-reineke/indent-blankline.nvim)
+  (use! :sbdchd/neoformat)
+  ; (use! :ruby-formatter/rufo-vim)
 
   ;; tabs
   (use! :akinsho/bufferline.nvim
-       :tag "v2.*"
-       :requires ["kyazdani42/nvim-web-devicons"])
+        :tag "v2.*"
+        :requires ["kyazdani42/nvim-web-devicons"])
 
   ;; easy motion
   (use! :phaazon/hop.nvim
         :branch "v2")
 
   ;; colorscheme
-  (use! :Mofiqul/adwaita.nvim)
+  (use! :catppuccin/nvim :as "catppuccin")
 
   ;; session management
   (use! :rmagatti/auto-session)
@@ -70,6 +72,9 @@
   (use! "hrsh7th/cmp-nvim-lsp")
   (use! "hrsh7th/nvim-cmp")
   (use! "L3MON4D3/LuaSnip")
+
+  ;; package manager
+  (use! :williamboman/mason.nvim)
 
   ;; floating terminal
   (use! :akinsho/toggleterm.nvim)

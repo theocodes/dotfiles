@@ -10,5 +10,8 @@
 (require :plugins.fzf)
 (require :plugins.gitsigns)
 (require :plugins.lualine)
-(require :plugins.bufferline)
 (require :plugins.toggleterm)
+;;(require :plugins.bufferline)
+
+(local mason (require :mason))
+(mason.setup)
