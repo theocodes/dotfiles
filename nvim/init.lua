@@ -1,3 +1,31 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- must set leader before lazy
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- load plugins
+require("lazy").setup('plugins')
+
+-- load config
+require("options")
+require("ui")
+require("keymaps")
+require("editing")
+
+-- toggleterm stuff - needs to be moved
+
 local term = require("toggleterm")
 
 function map(mode, lhs, rhs, opts)
@@ -7,22 +35,6 @@ function map(mode, lhs, rhs, opts)
     end
     vim.keymap.set(mode, lhs, rhs, options)
 end
-
-term.setup({
-  size = 20,
-  hide_number = true,
-  direction = "float",
-  start_in_insert = true,
-  insert_mappings = true,
-  shade_terminals = true,
-  close_on_exit = true,
-  shell = vim.o.shell,
-  float_opts = {
-    border = "single",
-    winblend = 0,
-    highlights = { border = "Normal", background = "Normal" },
-  }
-})
 
 local t = require("toggleterm.terminal")
 local terminal = t.Terminal
