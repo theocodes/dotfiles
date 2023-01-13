@@ -2,7 +2,7 @@ font:
   size: 14
 
   normal:
-    family: Iosevka 
+    family: Iosevka
     style: Regular
 
   bold:
@@ -26,4 +26,4 @@ key_bindings:
   - { key: X,  mods: Command,           chars: "\x1bx"                       }
 
 import:
-  - ~/.config/alacritty/themes/monokai_pro.yml
+  - ~/.config/alacritty/themes/horizon-dark.yml
