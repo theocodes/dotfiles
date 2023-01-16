@@ -25,3 +25,6 @@ vmap("<S-TAB>", "<gv")
 -- move block up and down
 xmap("J", ":move '>+1<CR>gv-gv")
 xmap("K", ":move '<-2<CR>gv-gv")
+
+-- toggle undo tree
+nmap("<leader>u", ":UndotreeToggle<CR>")

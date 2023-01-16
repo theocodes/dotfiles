@@ -10,7 +10,6 @@ return {
   -- currently causing lag
   --"github/copilot.vim",
   "windwp/nvim-autopairs",
-  "lukas-reineke/indent-blankline.nvim",
   "Mofiqul/adwaita.nvim",
   "lunarvim/horizon.nvim",
   "axelf4/vim-strip-trailing-whitespace",
