@@ -12,7 +12,7 @@ rebase = false
 defaultBranch = master
 
 [core]
-excludesfile = /Users/theocodes/.config/git/ignore
+excludesfile = /home/theocodes/.config/git/ignore
 
 [github]
 user = theocodes

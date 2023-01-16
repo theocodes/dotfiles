@@ -4,3 +4,4 @@
 tmp/
 .tool-versions
 *#
+.solargraph.yml
