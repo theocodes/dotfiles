@@ -19,8 +19,6 @@
 (dolist (x modules)
   (load (concat config-dir x)))
 
-(set-face-background 'default "unspecified-bg" (selected-frame))
-
 (when (theocodes/executable-find "win32yank.exe")
   (setq interprogram-cut-function 'wsl-copy)
   (setq interprogram-paste-function 'wsl-paste))
