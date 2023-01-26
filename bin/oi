@@ -10,33 +10,12 @@ if [[ "$(uname)" = "Darwin" ]]; then
 else
   echo "Linux system detected."
 
-  sudo add-apt-repository ppa:neovim-ppa/stable -y
-  sudo add-apt-repository ppa:lazygit-team/release -y
-  sudo apt-add-repository ppa:fish-shell/release-3 -y
-
   sudo apt update -y
 
-  # TODO Add missing deps
-  sudo apt install -y make stow neovim libsqlite3-dev fish unzip lazygit
-
-  # install shell prompt
-  if ! command -v starship &> /dev/null; then
-    sh - "$(curl -fsSL https://starship.rs/install.sh)" -- -y
-  fi
-
-  # install version manager
-  if [ ! -d "$HOME/.asdf" ]; then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
-  fi
-
-  # install cd jump
-
-  if ! command -v jump &> /dev/null; then
-    pushd /tmp
-    wget https://github.com/gsamokovarov/jump/releases/download/v0.40.0/jump_0.40.0_amd64.deb
-    sudo dpkg -i jump_0.40.0_amd64.deb
-    popd
-  fi
+  sudo apt install -y \
+    emacs \
+    stow tmux build-essential unzip zlib1g-dev libssl-dev redis-server libvips-tools \
+    chromium-chromedriver libpq-dev
 fi
 
 popd
