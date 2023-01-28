@@ -24,9 +24,9 @@
 ;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
 ;;   (load-theme 'doom-molokai t))
 
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :init (doom-modeline-mode 1))
 
 ;; (defun on-after-init ()
 ;;   (unless (display-graphic-p (selected-frame))
@@ -60,3 +60,9 @@
                 vterm-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; customize modeline
+(set-face-background 'mode-line "unspecified-bg")
+(set-face-background 'mode-line-inactive "unspecified-bg")
+(set-face-background 'mode-line-buffer-id "unspecified-bg")
+(setq column-number-mode t) ;; show both line and column numbers

@@ -13,7 +13,7 @@
 
   (evil-mode 1)
 
-  (define-key evil-normal-state-map (kbd ";") 'project-async-shell-command)
+  (define-key evil-normal-state-map (kbd ";") 'projectile-run-async-shell-command-in-root)
   (define-key evil-normal-state-map (kbd "!") 'async-shell-command)
 
   (define-key evil-normal-state-map (kbd "Q") 'evil-quit)

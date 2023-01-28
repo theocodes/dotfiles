@@ -55,13 +55,10 @@
     "pf"  '(projectile-find-file :which-key "find file in project")
     "pk"  '(projectile-kill-buffers :which-key "kill all project buffers")
 
-    "o"  '(:ignore t :which-key "open")
-    "op" '(theocodes/neotree-project-dir :which-key "open project side view")
-    "ot" '(t/open-vterm-tab :which-key "open project vterm in new tab")
-
     "g"  '(:ignore t :which-key "git")
     "gb" '(magit-branch :which-key "branch actions")
     "gg" '(magit :which-key "magit status")
+    "gl" '(magit-blame :which-key "magit blame")
 
     "*"   '(consult-ripgrep :which-key "search in project")
     "TAB" '(evil-switch-to-windows-last-buffer :which-key "switch to last buffer")
@@ -69,12 +66,11 @@
     "`"   '(persp-switch :which-key "switch/create perspective")
     "."   '(find-file :which-key "find file"))
 
-(global-set-key (kbd "M-t") 'tab-new)
-
 ;; split window and focus on new window
-(global-set-key (kbd "M-<return>") (lambda () (interactive) (evil-window-vsplit) (other-window 1)))
-(global-set-key (kbd "M-S-<return>") (lambda () (interactive) (split-window-below) (other-window 1)))
+(global-set-key (kbd "M-RET") (lambda () (interactive) (evil-window-vsplit) (other-window 1)))
+(global-set-key (kbd "M--") (lambda () (interactive) (split-window-below) (other-window 1)))
 
+(global-set-key (kbd "M-t") 'tab-bar-new-tab)
 (global-set-key (kbd "M-w") 'theocodes/delete-window)
 
 ;; Paste with M-v (mac) or Ctrl-Shift-v
@@ -114,15 +110,17 @@
 (global-set-key [remap eshell-forward-argument] #'evil-window-right)
 (global-set-key [remap eshell-backward-argument] #'evil-window-left)
 
-(global-set-key (kbd "M-1") (lambda () (interactive) (t/switch-to-perspective-by-number 1)))
-(global-set-key (kbd "M-2") (lambda () (interactive) (t/switch-to-perspective-by-number 2)))
-(global-set-key (kbd "M-3") (lambda () (interactive) (t/switch-to-perspective-by-number 3)))
-(global-set-key (kbd "M-4") (lambda () (interactive) (t/switch-to-perspective-by-number 4)))
-(global-set-key (kbd "M-5") (lambda () (interactive) (t/switch-to-perspective-by-number 5)))
-(global-set-key (kbd "M-6") (lambda () (interactive) (t/switch-to-perspective-by-number 6)))
+(global-set-key (kbd "M-1") (lambda () (interactive) (tab-bar-select-tab 1)))
+(global-set-key (kbd "M-2") (lambda () (interactive) (tab-bar-select-tab 2)))
+(global-set-key (kbd "M-3") (lambda () (interactive) (tab-bar-select-tab 3)))
+(global-set-key (kbd "M-4") (lambda () (interactive) (tab-bar-select-tab 4)))
+(global-set-key (kbd "M-5") (lambda () (interactive) (tab-bar-select-tab 5)))
+(global-set-key (kbd "M-6") (lambda () (interactive) (tab-bar-select-tab 6)))
 
 ;; shells
 (global-set-key (kbd "M-i") 't/eshell-popup-toggle)
 (global-set-key (kbd "M-I") 't/eshell-toggle)
-(global-set-key (kbd "M-o") 't/vterm-popup-toggle)
-(global-set-key (kbd "M-O") 't/vterm-toggle)
+
+;; reuse buffer when navigatin in dired
+(put 'dired-find-alternate-file 'disabled nil)
+(global-set-key [remap dired-find-file] #'dired-find-alternate-file)

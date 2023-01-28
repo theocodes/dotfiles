@@ -11,7 +11,6 @@
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook (lsp-mode . efs/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-c l"
         lsp-headerline-breadcrumb-enable nil)
@@ -48,12 +47,14 @@
 
 ;; autocomplete
 (use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
+  ;; :after lsp-mode
+  ;; :hook (lsp-mode . company-mode)
   :bind (:map company-active-map
          ("<tab>" . company-complete-selection))
         (:map lsp-mode-map
          ("<tab>" . company-indent-or-complete-common))
   :custom
   (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
+  (company-idle-delay 0.0)
+  :init
+  (global-company-mode 1))
