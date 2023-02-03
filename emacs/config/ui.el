@@ -1,5 +1,5 @@
 ;; setting fonts (GUI only)
-(set-face-attribute 'default nil :font "Iosevka Comfy" :height 160 :weight 'regular)
+;;(set-face-attribute 'default nil :font "Iosevka Comfy" :height 160 :weight 'regular)
 
 ;; disable welcome screen
 (setq inhibit-startup-message t)
@@ -13,6 +13,7 @@
 ;; disable file menu (ie File Edit etc..)
 (menu-bar-mode -1)
 
+;; set theme
 (use-package gruber-darker-theme
   :config
   (load-theme 'gruber-darker t))
@@ -23,16 +24,6 @@
 ;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 ;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
 ;;   (load-theme 'doom-molokai t))
-
-;; (use-package doom-modeline
-;;   :ensure t
-;;   :init (doom-modeline-mode 1))
-
-;; (defun on-after-init ()
-;;   (unless (display-graphic-p (selected-frame))
-;;     (set-face-background 'default "unspecified-bg" (selected-frame))))
-
-;; (add-hook 'window-setup-hook 'on-after-init)
 
 ;; remove background color on tty
 (defun on-frame-open (&optional frame)
