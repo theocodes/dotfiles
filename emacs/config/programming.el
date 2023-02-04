@@ -36,6 +36,9 @@
   (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
   (add-hook 'ruby-mode-hook 'lsp))
 
+(use-package web-mode)
+(use-package emmet-mode)
+
 ;; javascript
 
 (setq web-mode-code-indent-offset 2

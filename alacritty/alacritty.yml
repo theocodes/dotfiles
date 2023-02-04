@@ -1,12 +1,12 @@
 font:
-  size: 12
+  size: 14
 
   normal:
-    family: Iosevka
+    family: Iosevka Nerd Font
     style: Medium
 
   bold:
-    family: Iosevka
+    family: Iosevka Nerd Font
     style: Bold
 
 selection:
@@ -16,8 +16,8 @@ window:
   # decorations: none
   opacity: 0.99
   padding:
-    x: 4
-    y: 4
+    x: 0
+    y: 0
 
 mouse:
   hide_when_typing: true
@@ -26,4 +26,4 @@ key_bindings:
   - { key: X,  mods: Command,           chars: "\x1bx"                       }
 
 import:
-  - ~/.config/alacritty/themes/horizon-dark.yml
+  - ~/.config/alacritty/themes/dracula.yml

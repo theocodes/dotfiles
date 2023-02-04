@@ -19,11 +19,11 @@ cmd - l [
 ]
 
 cmd - return [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "9"
+  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "8"
 ]
 
 cmd + shift - return [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "0"
+  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "9"
 ]
 
 cmd - d [
@@ -35,7 +35,7 @@ cmd + shift - r [
 ]
 
 cmd - w [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k 'q'
+  "alacritty" : skhd -k "ctrl - b" &&  skhd -k 'x'
 ]
 
 cmd - t [

@@ -3,8 +3,8 @@ function fish_greeting; end
 
 # VARIABLES
 set -x DOTFILES $HOME/dotfiles
-set -x EDITOR "emacsclient --tty"
-#set -x EDITOR "nvim"
+# set -x EDITOR "emacsclient --tty"
+set -x EDITOR "nvim"
 set -x GOPATH $HOME/go
 set -x CARGOPATH $HOME/.cargo
 set -x ALTERNATE_EDITOR ""
