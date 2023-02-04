@@ -21,9 +21,17 @@ nmap("<TAB>", "<C-^>", { desc = "Switch to previous buffer" })
 nmap("<leader>op", "<cmd>Neotree float reveal_force_cwd<cr>", { desc = "Show floating Neotree" })
 nmap("q", ":bd<CR>", { desc = "Kill buffer" })
 nmap("Q", "<cmd>qa<cr>", { desc = "Quit" })
-nmap("H", "<cmd>BufferLineCyclePrev<cr>", { desc = "Go to Previous tab" })
-nmap("L", "<cmd>BufferLineCycleNext<cr>", { desc = "Go to Next tab" })
-nmap("<C-x><C-e>", ":so %<CR>", { desc = "Eval lua files" })
+
+nmap("<leader>bb", "<cmd>Telescope buffers<cr>", { desc = "Find buffer" })
+
+nmap("<C-x><C-e>", "<cmd>source %<cr>", { desc = "Eval file" })
+nmap("<C-p>", "<cmd>Telescope find_files<cr>", { desc = "Find file" })
+
+nmap("<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Move to pane/split below" })
+nmap("<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Move to pane/split above" })
+nmap("<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Move to pane/split to the left" })
+nmap("<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Move to pane/split to the right" })
+
 vmap("<TAB>", ">gv", { desc = "Indent selection" })
 vmap("<S-TAB>", "<gv", { desc = "Deindent selection" })
 xmap("J", ":move '>+1<CR>gv-gv", { desc = "Move selected down" })

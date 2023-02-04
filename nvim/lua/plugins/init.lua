@@ -1,12 +1,11 @@
 return {
   -- "lewis6991/gitsigns.nvim",
   "dag/vim-fish",
-  -- "terrortylor/nvim-comment",
   "axelf4/vim-strip-trailing-whitespace",
-  -- "machakann/vim-highlightedyank",
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
   "tpope/vim-eunuch",
+  "christoomey/vim-tmux-navigator",
   -- currently causing lag
   --"github/copilot.vim",
   -- "windwp/nvim-autopairs",
@@ -17,4 +16,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   "mbbill/undotree",
   { "maxjacobson/vim-fzf-coauthorship", dependencies = { "junegunn/fzf" } },
+
+  -- disabled
+  { "akinsho/bufferline.nvim", enabled = false },
 }
