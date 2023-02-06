@@ -5,6 +5,7 @@ keybinds {
         // bind "Alt c" { Copy; }
         bind "Alt P" { SwitchToMode "Pane"; }
         bind "Alt T" { SwitchToMode "Tab"; }
+        bind "Alt s" { SwitchToMode "Scroll"; }
 
         bind "Alt n" { NewPane; }
         bind "Alt h" { MoveFocus "Left"; }
@@ -21,7 +22,8 @@ keybinds {
         bind "Alt 3" { GoToTab 3; }
         bind "Alt 4" { GoToTab 4; }
         bind "Alt 5" { GoToTab 5; }
-        bind "Alt F" { ToggleFloatingPanes; }
+        bind "Alt i" { ToggleFloatingPanes; }
+        bind "Alt F" { TogglePaneFrames; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
@@ -261,7 +263,7 @@ themes {
     }
 
     catppuccin-mocha {
-        bg "#585b70" // Surface2
+        bg "#ffffff" // Surface2
         fg "#cdd6f4"
         red "#f38ba8"
         green "#a6e3a1"
@@ -270,19 +272,19 @@ themes {
         magenta "#f5c2e7" // Pink
         orange "#fab387" // Peach
         cyan "#89dceb" // Sky
-        black "#181825" // Mantle
+        black "#000000" // Mantle
         white "#cdd6f4"
     }
 }
 
 
-theme "catppuccin-mocha"
-///theme "one-half-dark"
+// theme "catppuccin-mocha"
+theme "one-half-dark"
 
 // The name of the default layout to load on startup
 // Default: "default"
 //
-// default_layout "compact"
+default_layout "compact"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
