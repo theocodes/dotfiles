@@ -200,5 +200,9 @@ return {
     end,
   },
 
-  "fatih/vim-go"
+  -- golang support
+  "fatih/vim-go",
+
+  -- KDL support (zellij)
+  "imsnif/kdl.vim"
 }
