@@ -3,7 +3,6 @@ function fish_greeting; end
 
 # VARIABLES
 set -x DOTFILES $HOME/dotfiles
-# set -x EDITOR "emacsclient --tty"
 set -x EDITOR "nvim"
 set -x GOPATH $HOME/go
 set -x CARGOPATH $HOME/.cargo
@@ -19,9 +18,13 @@ set -x HUSKY 0
 abbr e $EDITOR
 abbr rel exec $SHELL
 abbr lg lazygit
+abbr z zellij
 abbr ll exa -al
-abbr work tmux new-session -A -s work
-abbr play tmux new-session -A -s play
+# abbr work tmux new-session -A -s work
+# abbr play tmux new-session -A -s play
+abbr work zellij -s work
+abbr play zellij -s play
+abbr zr zellij run --
 abbr a asdf
 abbr b bat
 abbr dev ./scripts/dev
