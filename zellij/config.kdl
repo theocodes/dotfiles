@@ -6,12 +6,21 @@ keybinds {
         bind "Alt P" { SwitchToMode "Pane"; }
         bind "Alt T" { SwitchToMode "Tab"; }
         bind "Alt s" { SwitchToMode "Scroll"; }
+        bind "Alt r" { SwitchToMode "Resize"; }
 
         bind "Alt n" { NewPane; }
+        bind "Alt m" { NewPane "Down"; }
+
         bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
         bind "Alt l" { MoveFocus "Right"; }
+
         bind "Alt H" { MovePane "Left"; }
+        bind "Alt J" { MovePane "Down"; }
+        bind "Alt K" { MovePane "Up"; }
         bind "Alt L" { MovePane "Right"; }
+
         bind "Alt f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "Alt w" { CloseFocus; }
         bind "Alt t" { NewTab; }
