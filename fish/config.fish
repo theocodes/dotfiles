@@ -10,9 +10,9 @@ set -x ALTERNATE_EDITOR ""
 set -x HUSKY 0
 
 # Set $DISPLAY to be used by XServer for chromedriver etc
-# if string match -q '*WSL*' (uname -r)
-#   set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-# end
+if string match -q '*WSL*' (uname -r)
+  set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+end
 
 # ABBREVIATIONS
 abbr e $EDITOR
@@ -22,8 +22,8 @@ abbr z zellij
 abbr ll exa -al
 # abbr work tmux new-session -A -s work
 # abbr play tmux new-session -A -s play
-abbr work zellij -s work
-abbr play zellij -s play
+abbr work zellij attach -c work
+abbr play zellij attach -c play
 abbr zr zellij run --
 abbr a asdf
 abbr b bat
