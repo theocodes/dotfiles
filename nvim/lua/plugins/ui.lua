@@ -25,6 +25,7 @@ return {
 
   -- statusline
   {
+    enabled = false,
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(plugin)

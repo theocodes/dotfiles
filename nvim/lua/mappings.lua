@@ -35,3 +35,11 @@ nmap("<leader>mtv", function()
 
   utils.zellij_run("rspec " .. file, { floating = true })
 end, { desc ="Run single rspec spec" })
+
+nmap("<leader>l", function()
+  utils.zellij_run("go run main.go", { floating = true, close_on_exit = true })
+end, { desc ="Run go program" })
+
+nmap("<leader>mr", function()
+  utils.zellij_run("cargo run", { floating = true, close_on_exit = false })
+end, { desc ="cargo run" })

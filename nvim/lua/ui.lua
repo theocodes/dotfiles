@@ -1,3 +1,8 @@
 
 -- set colorscheme
-vim.cmd.colorscheme "catppuccin"
+vim.g.moonflyItalics = false
+vim.g.moonflyTransparent = true
+vim.cmd.colorscheme "moonfly"
+
+-- simple status line
+vim.cmd [[ hi StatusLine NONE ]]

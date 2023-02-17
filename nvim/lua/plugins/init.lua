@@ -54,6 +54,7 @@ return {
   	}
   },
 
+  "bluz71/vim-moonfly-colors",
   "lewis6991/gitsigns.nvim",
   "dag/vim-fish",
   "terrortylor/nvim-comment",
