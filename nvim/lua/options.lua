@@ -27,4 +27,4 @@ opt.termguicolors = true
 opt.mouse = "a"
 opt.list = true
 opt.listchars = "tab:»·,trail:·,nbsp:~"
-opt.completeopt = { "menu", "menuone", "noselect"}
+-- opt.completeopt = { "menu", "menuone", "noselect"}

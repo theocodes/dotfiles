@@ -52,7 +52,7 @@ return {
       wk.setup(opts)
       wk.register({
         mode = { "n", "v" },
-       -- ["g"] = { name = "+goto" },
+       -- ["l"] = { name = "+lsp" },
        -- ["gz"] = { name = "+surround" },
        -- ["]"] = { name = "+next" },
        -- ["["] = { name = "+prev" },

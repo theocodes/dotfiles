@@ -16,6 +16,7 @@ local map_opts = { remap = true, silent = true }
 M.nmap = make_mapper("n", map_opts)
 M.vmap = make_mapper("v", map_opts)
 M.xmap = make_mapper("x", map_opts)
+M.imap = make_mapper("i", map_opts)
 
 -- Terminal
 
