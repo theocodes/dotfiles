@@ -1,7 +1,7 @@
 # Colors (Darkside)
 colors:
   primary:
-    background: '#222324'
+    background: '#111418'
     foreground: '#BABABA'
 
   # Normal colors

@@ -1,12 +1,12 @@
 font:
-  size: 12
+  size: 13
 
   normal:
-    family: Iosevka Nerd Font
+    family: ComicMonoNF
     style: Regular
 
   bold:
-    family: Iosevka Nerd Font
+    family: ComicMonoNF
     style: Bold
 
 selection:
@@ -23,5 +23,5 @@ mouse:
   hide_when_typing: true
 
 import:
-  - ~/.config/alacritty/themes/dracula.yml
+  - ~/.config/alacritty/themes/darkside.yml
   - C:\Users\theon\AppData\Roaming\Alacritty\wsl.yml
