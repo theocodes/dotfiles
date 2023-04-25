@@ -69,7 +69,6 @@ return {
       })
 
       local lsp = require("lsp-zero")
-
       local cmp = require('cmp')
 
       lsp.preset({
@@ -194,4 +193,53 @@ return {
       vim.g.rustfmt_autosave = 1
     end
   },
+
+  "evanleck/vim-svelte",
+
+  {
+    "elixir-tools/elixir-tools.nvim",
+    ft = { "elixir", "eex", "heex", "surface" },
+    config = function()
+      local elixir = require("elixir")
+      local elixirls = require("elixir.elixirls")
+
+      elixir.setup {
+        credo = {},
+        elixirls = {
+          enabled = true,
+          settings = elixirls.settings {
+            dialyzerEnabled = false,
+            enableTestLenses = true,
+          },
+          on_attach = function(client, bufnr)
+            local map_opts = { buffer = true, noremap = true}
+
+            -- run the codelens under the cursor
+            vim.keymap.set("n", "<space>r",  vim.lsp.codelens.run, map_opts)
+            -- remove the pipe operator
+            vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", map_opts)
+            -- add the pipe operator
+            vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", map_opts)
+            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", map_opts)
+
+            -- bindings for standard LSP functions.
+            vim.keymap.set("n", "<space>df", "<cmd>lua vim.lsp.buf.format()<cr>", map_opts)
+            vim.keymap.set("n", "<space>gd", "<cmd>lua vim.diagnostic.open_float()<cr>", map_opts)
+            vim.keymap.set("n", "<space>dt", "<cmd>lua vim.lsp.buf.definition()<cr>", map_opts)
+            vim.keymap.set("n", "<space>K", "<cmd>lua vim.lsp.buf.hover()<cr>", map_opts)
+            vim.keymap.set("n", "<space>gD","<cmd>lua vim.lsp.buf.implementation()<cr>", map_opts)
+            vim.keymap.set("n", "<space>1gD","<cmd>lua vim.lsp.buf.type_definition()<cr>", map_opts)
+
+            vim.keymap.set("n", "<space>gr", ":References<cr>", map_opts)
+            vim.keymap.set("n", "<space>g0", ":DocumentSymbols<cr>", map_opts)
+            vim.keymap.set("n", "<space>gW", ":WorkspaceSymbols<cr>", map_opts)
+            vim.keymap.set("n", "<leader>d", ":Diagnostics<cr>", map_opts)
+          end,
+        }
+      }
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  }
 }

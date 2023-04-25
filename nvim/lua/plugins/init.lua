@@ -39,6 +39,8 @@ return {
     'tzachar/local-highlight.nvim',
   },
 
+  "tiagovla/tokyodark.nvim",
+
   {
     "bluz71/vim-moonfly-colors",
     name = "moonfly",
