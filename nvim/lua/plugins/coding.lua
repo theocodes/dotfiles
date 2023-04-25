@@ -215,7 +215,7 @@ return {
             local map_opts = { buffer = true, noremap = true}
 
             -- run the codelens under the cursor
-            vim.keymap.set("n", "<space>r",  vim.lsp.codelens.run, map_opts)
+            vim.keymap.set("n", "<space>mts",  vim.lsp.codelens.run, map_opts)
             -- remove the pipe operator
             vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", map_opts)
             -- add the pipe operator
