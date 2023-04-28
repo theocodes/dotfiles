@@ -1,18 +1,4 @@
 return {
-  -- robot helper
-  {
-    "zbirenbaum/copilot.lua",
-    lazy = false,
-    opts = {
-      suggestion = {
-        auto_trigger = true,
-        keymap = {
-          accept = "<TAB>"
-        }
-      }
-    },
-  },
-
   -- auto pairs
   {
     "echasnovski/mini.pairs",
@@ -101,6 +87,7 @@ return {
         local opts = {buffer = bufnr}
         local bind = vim.keymap.set
 
+        bind("n", "gd", '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
         bind("n", "K", '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
         bind('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
       end)
@@ -185,6 +172,7 @@ return {
           on_attach = function(_, bufnr)
             vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
             vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+            vim.keymap.set('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = bufnr })
           end,
         },
       })
@@ -196,6 +184,7 @@ return {
 
   "evanleck/vim-svelte",
 
+  -- elixir
   {
     "elixir-tools/elixir-tools.nvim",
     ft = { "elixir", "eex", "heex", "surface" },

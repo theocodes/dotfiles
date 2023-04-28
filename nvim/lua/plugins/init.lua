@@ -56,6 +56,7 @@ return {
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
   "tpope/vim-eunuch",
+  "github/copilot.vim",
   "windwp/nvim-autopairs",
   "Mofiqul/adwaita.nvim",
   "lunarvim/horizon.nvim",
@@ -64,4 +65,11 @@ return {
   "nvim-treesitter/nvim-treesitter",
   "mbbill/undotree",
   { "maxjacobson/vim-fzf-coauthorship", dependencies = { "junegunn/fzf" } },
+
+  {
+    "theocodes/noted.nvim",
+    enabled = false,
+    name = "noted",
+    dir = "/home/theocodes/Code/noted.nvim"
+  }
 }

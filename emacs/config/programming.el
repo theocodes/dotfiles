@@ -36,8 +36,8 @@
   (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
   (add-hook 'ruby-mode-hook 'lsp))
 
-(use-package web-mode)
-(use-package emmet-mode)
+;; (use-package web-mode)
+;; (use-package emmet-mode)
 
 ;; javascript
 

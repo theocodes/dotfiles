@@ -10,7 +10,8 @@ nmap("q", "<cmd>bd<cr>", { desc = "Close buffer" })
 nmap("<C-x><C-e>", ":so %<CR>", { desc = "Eval current file" })
 nmap("<leader>u", ":UndotreeToggle<CR>", { desc ="Toggle undo tree" })
 nmap("<leader><TAB>", "<C-^>", { desc = "Switch to previous buffer" })
-nmap(";", ":!", { desc = "Start shell command", silent = false })
+nmap("!", ":!", { desc = "Start shell command", silent = false })
+nmap(";", ":", { desc = "Start shell command", silent = false })
 
 nmap("<esc>", "<cmd>nohl<cr>", { desc = "Clear search selection" })
 
@@ -42,7 +43,7 @@ end, { desc ="Run single rspec spec" })
 nmap("<leader>mr", function()
   local file = vim.fn.expand('%:p')
 
-  utils.zellij_run("qury " .. file, { floating = true, close_on_exit = false })
+  utils.zellij_run("qury " .. file, { floating = true, close_on_exit = true })
 end, { desc ="Run go program" })
 
 -- nmap("<leader>mr", function()
