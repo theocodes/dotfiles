@@ -48,7 +48,7 @@
 
 (use-package! gptel
   :config
-  (setq! gptel-api-key "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" ;; TODO move this to a private file
+  (setq! gptel-api-key "KEY_HERE" ;; TODO move this to a private file
          gptel-model "gpt-3.5-turbo"))
 
 ;; accept completion from copilot and fallback to company
