@@ -49,3 +49,6 @@
 (setq async-shell-command-buffer 'new-buffer)
 
 (use-package no-littering)
+
+;; disable bell noise
+(setq ring-bell-function 'ignore)
