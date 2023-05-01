@@ -1,4 +1,4 @@
-;; Completion != Autocompletion
+;;; -*- lexical-binding: t; -*-
 
 (defun t/minibuffer-backward-kill (arg)
   "When minibuffer is completing a file name delete up to parent
@@ -40,3 +40,12 @@ folder, otherwise delete a word"
   (marginalia-mode))
 
 (use-package consult)
+
+(use-package embark
+  :bind
+  (("M-." . embark-act)
+   ("M-/" . embark-dwim)))
+
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
