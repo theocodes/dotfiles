@@ -2,6 +2,18 @@
 
 ;; Helper functions
 
+(defun denote-create-daily-note ()
+  "Custom function to create a daily note in denote"
+  (interactive)
+  (denote (format-time-string "%a, %d %b %Y") '("journal")))
+
+(defun t/close-thing ()
+  "Custom function to close the split if exists or the buffer."
+  (interactive)
+  (if (= (length (window-list)) 1)
+      (kill-current-buffer)
+    (delete-window)))
+
 (defun theocodes/neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
@@ -27,18 +39,6 @@
          (line (line-number-at-pos))
          (cmd (format "rspec %s:%s" filename line)))
     (projectile-run-async-shell-command-in-root cmd)))
-
-(defun theocodes/delete-window ()
-  "Closes a split window or tab."
-  (interactive)
-  (if (= (length (window-list)) 1)
-      (tab-close)
-    (delete-window)))
-
-(defun t/denote-search-note ()
-  "Search for notes in denote directory."
-  (interactive)
-  (consult-find (denote-directory)))
 
 (defun t/select-tab (n)
   "Switches to the 'n' tab."

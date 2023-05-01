@@ -15,9 +15,8 @@
 
 (rune/leader-keys
     "n"  '(:ignore t :which-key "notes")
-    "nn" '(deft :which-key "open notes")
-    "nc" '(denote :which-key "create a new note")
-    "nd" '(deft-delete-file :which-key "delete a new note")
+    "nc" '(denote-open-or-create :which-key "open or create a new note")
+    "nd" '(denote-create-daily-note :which-key "create a new daily note")
     "nf" '(deft-find-file :which-key "find a note")
 
     "f"  '(:ignore t :which-key "files")
@@ -109,17 +108,6 @@
 ;; override M-{hl} on eshell to move to side windows
 (global-set-key [remap eshell-forward-argument] #'evil-window-right)
 (global-set-key [remap eshell-backward-argument] #'evil-window-left)
-
-(global-set-key (kbd "M-1") (lambda () (interactive) (tab-bar-select-tab 1)))
-(global-set-key (kbd "M-2") (lambda () (interactive) (tab-bar-select-tab 2)))
-(global-set-key (kbd "M-3") (lambda () (interactive) (tab-bar-select-tab 3)))
-(global-set-key (kbd "M-4") (lambda () (interactive) (tab-bar-select-tab 4)))
-(global-set-key (kbd "M-5") (lambda () (interactive) (tab-bar-select-tab 5)))
-(global-set-key (kbd "M-6") (lambda () (interactive) (tab-bar-select-tab 6)))
-
-;; shells
-(global-set-key (kbd "M-i") 't/eshell-popup-toggle)
-(global-set-key (kbd "M-I") 't/eshell-toggle)
 
 ;; reuse buffer when navigatin in dired
 (put 'dired-find-alternate-file 'disabled nil)

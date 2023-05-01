@@ -13,6 +13,7 @@
         "config/projects"
         "config/windows"
         "config/programming"
+        "config/notes"
         "config/keybindings"))
 
 ;; Load modules
