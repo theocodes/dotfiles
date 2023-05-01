@@ -1,12 +1,10 @@
+;;; -*- lexical-binding: t; -*-
 
 ;; use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
 ;; delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; show changes from hit in the gutter
-;;(require 'diff-hl)
 
 (use-package diff-hl
   :config
@@ -29,22 +27,8 @@
   :config
   (evil-commentary-mode))
 
-;(require 'web-mode)
-;(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-;(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-;(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-;(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-;(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-;(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-;(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-
 ;; enable emmet on web-mode
 (add-hook 'web-mode-hook 'emmet-mode)
-
-;; show whitespace
-;(setq-local show-trailing-whitespace t)
-;(setq whitespace-style (quote (face spaces tabs space-mark tab-mark)))
-;(global-whitespace-mode 1)
 
 ;; automatic parens pairing
 (electric-pair-mode 1)
