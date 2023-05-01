@@ -36,9 +36,6 @@
   (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
   (add-hook 'ruby-mode-hook 'lsp))
 
-;; (use-package web-mode)
-;; (use-package emmet-mode)
-
 ;; javascript
 
 (setq web-mode-code-indent-offset 2
@@ -48,16 +45,3 @@
       js-indent-level 2
       css-indent-offset 2)
 
-;; autocomplete
-(use-package company
-  ;; :after lsp-mode
-  ;; :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
-        ;; (:map lsp-mode-map
-        ;;  ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0)
-  :init
-  (global-company-mode 1))
