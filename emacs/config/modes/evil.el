@@ -30,7 +30,7 @@
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-  (define-key evil-normal-state-map (kbd "q") 'kill-current-buffer)
+  (define-key evil-normal-state-map (kbd "q") #'t/close-thing)
 
   (evil-set-initial-state 'shell-mode 'normal)
   (evil-set-initial-state 'messages-buffer-mode 'normal)
