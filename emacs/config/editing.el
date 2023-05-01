@@ -53,3 +53,28 @@
   (unless (display-graphic-p)
           (require 'evil-terminal-cursor-changer)
           (evil-terminal-cursor-changer-activate)))
+
+(use-package corfu
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-preview-current nil)    ;; Disable current candidate preview
+  (corfu-preselect 'prompt)      ;; Preselect the prompt
+  (corfu-scroll-margin 5)        ;; Use scroll margin
+  :init
+  (global-corfu-mode))
+
+(use-package corfu-terminal
+  :after corfu
+  :init
+  (corfu-terminal-mode))
+
+
+(use-package kind-icon
+    :after corfu
+    :config
+    (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
