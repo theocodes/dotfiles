@@ -54,3 +54,7 @@
               ("C-<tab>" . 'copilot-accept-completion-by-word))
   :config
   (add-hook 'prog-mode-hook 'copilot-mode))
+
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
