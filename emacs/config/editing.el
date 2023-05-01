@@ -37,6 +37,11 @@
   :config
   (rainbow-delimiters-mode 1))
 
+;; use system clipboard
+(use-package xclip
+  :config
+  (xclip-mode 1))
+
 (use-package undo-tree
   :config
   (global-undo-tree-mode 1))
