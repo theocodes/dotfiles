@@ -52,3 +52,8 @@
 
 ;; disable bell noise
 (setq ring-bell-function 'ignore)
+
+;; load env vars when using emacs from GUI
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
