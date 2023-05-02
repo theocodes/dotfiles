@@ -34,6 +34,12 @@
                (slot . -1)
                (window-height . 0.40)))
 
+(add-to-list 'display-buffer-alist
+             '("\\*\\(ChatGPT\\)"
+               (t/focused)
+               (side . bottom)
+               (slot . -1)
+               (window-height . 0.40)))
 ;; Load popper
 
 (use-package popper
