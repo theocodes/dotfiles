@@ -50,7 +50,6 @@ return {
         ["select_up"] = "<C-k>",
         ["select_down"] = "<C-j>",
     },
-    open_api_key_env = "OPENAI_API_KEY",
     shortcuts = {
         {
             name = "textify",

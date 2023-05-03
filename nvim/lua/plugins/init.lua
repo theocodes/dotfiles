@@ -83,5 +83,5 @@ return {
     enabled = false,
     name = "noted",
     dir = "/home/theocodes/Code/noted.nvim"
-  }
+  },
 }
