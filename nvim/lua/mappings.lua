@@ -14,6 +14,7 @@ nmap("!", ":!", { desc = "Start shell command", silent = false })
 nmap(";", ":", { desc = "Start shell command", silent = false })
 
 nmap("<esc>", "<cmd>nohl<cr>", { desc = "Clear search selection" })
+nmap("<C-n>", "<cmd>NeoAIToggle<CR>", { desc = "Toggle ChatGPT window" })
 
 vmap("<TAB>", ">gv", { desc = "Indent selection" })
 vmap("<S-TAB>", "<gv", { desc = "De-indent selection" })

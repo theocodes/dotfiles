@@ -30,6 +30,7 @@
   "mini.pairs": { "branch": "main", "commit": "61811b4f3e29dc4926f8418dd64aebe0013914c2" },
   "moonfly": { "branch": "master", "commit": "c96dce6cde6cce912df14e5316dd3322fdc278e4" },
   "neo-tree.nvim": { "branch": "v2.x", "commit": "74040b34278910d9b467fd914862e2a9a1ebacaa" },
+  "neoai.nvim": { "branch": "main", "commit": "b90180e30d143afb71490b92b08c1e9121d4416a" },
   "nui.nvim": { "branch": "main", "commit": "d147222a1300901656f3ebd5b95f91732785a329" },
   "nvim-autopairs": { "branch": "master", "commit": "6a5faeabdbcc86cfbf1561ae430a451a72126e81" },
   "nvim-cmp": { "branch": "main", "commit": "01f697a68905f9dcae70960a9eb013695a17f9a2" },
