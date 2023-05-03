@@ -17,7 +17,6 @@
     "n"  '(:ignore t :which-key "notes")
     "nc" '(denote-open-or-create :which-key "open or create a new note")
     "nd" '(denote-create-daily-note :which-key "create a new daily note")
-    "nf" '(deft-find-file :which-key "find a note")
 
     "f"  '(:ignore t :which-key "files")
     "fr" '(consult-recent-file :which-key "open a recent file")

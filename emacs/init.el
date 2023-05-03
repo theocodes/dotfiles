@@ -14,6 +14,7 @@
         "config/windows"
         "config/programming"
         "config/notes"
+        "config/terminal"
         "config/keybindings"))
 
 ;; Load modules

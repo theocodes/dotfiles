@@ -1,5 +1,5 @@
 ;; setting fonts (GUI only)
-(set-face-attribute 'default nil :font "Comic Mono" :height 140 :weight 'regular)
+(set-face-attribute 'default nil :font "Comic Mono" :height 130 :weight 'regular)
 
 ;; disable welcome screen
 (setq inhibit-startup-message t)
@@ -50,3 +50,19 @@
 (set-face-background 'mode-line-inactive "unspecified-bg")
 (set-face-background 'mode-line-buffer-id "unspecified-bg")
 (setq column-number-mode t) ;; show both line and column numbers
+
+(use-package doom-modeline
+  :config
+  (doom-modeline-mode 1))
+
+;; Change the format of the window frame title
+(setq frame-title-format "%b - Emacs")
+
+(use-package highlight-indent-guides
+  :custom
+  (highlight-indent-guides-method 'bitmap)
+  ;; (highlight-indent-guides-suppress-auto-error t)
+  ;; (highlight-indent-guides-responsive 'stack)
+  (highlight-indent-guides-delay 0)
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))

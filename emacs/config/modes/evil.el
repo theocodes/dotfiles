@@ -26,6 +26,8 @@
 
   (define-key evil-normal-state-map (kbd "K") 't/describe-thing-at-point)
 
+  (define-key evil-normal-state-map (kbd "M-i") 't/vterm-popup-toggle)
+
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)

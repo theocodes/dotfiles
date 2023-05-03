@@ -1,14 +1,5 @@
 ;; LSP
 
-;; (use-package lsp
-;;   :init
-;;   (setq lsp-keymap-prefix "C-c l"
-;;         lsp-headerline-breadcrumb-enable nil))
-
-;; (use-package lsp-ui
-;;   :init
-;;   (setq lsp-ui-sideline-show-hover nil))
-
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
@@ -28,6 +19,8 @@
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
 ;; ruby
+
+(use-package inf-ruby)
 
 (use-package ruby-mode
   :init
