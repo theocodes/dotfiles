@@ -23,7 +23,7 @@ xmap("J", ":move '>+1<CR>gv-gv", { desc = "Move line down" })
 xmap("K", ":move '<-2<CR>gv-gv", { desc = "Move line up" })
 
 nmap("<leader>gg", function()
-  utils.zellij_run("lazygit", { floating = true, close_on_exit = true })
+  utils.zellij_run("lazygit", { down = true, close_on_exit = true })
 end, { desc ="Run lazygit" })
 
 -- Test runner helpers
@@ -32,20 +32,33 @@ nmap("<leader>mts", function()
   local file = vim.fn.expand('%:p')
   local line = vim.api.nvim_eval "line('.')"
 
-  utils.zellij_run("rspec " .. file .. ":" .. line, { floating = true })
+  utils.zellij_run("rspec " .. file .. ":" .. line, { down = true })
 end, { desc ="Run single rspec spec" })
 
 nmap("<leader>mtv", function()
   local file = vim.fn.expand('%:p')
 
-  utils.zellij_run("rspec " .. file, { floating = true })
+  utils.zellij_run("rspec " .. file, { down = true })
 end, { desc ="Run single rspec spec" })
+
+-- Note taking helpers
+
+nmap("<leader>nc", function()
+  utils.zellij_run("notes", { down = true, close_on_exit = true })
+end, { desc ="Find or create note" })
+
+nmap("<leader>nd", function()
+  utils.zellij_run("notes daily", { down = true, close_on_exit = true })
+end, { desc ="Find or create note" })
+
+-- qury runner
 
 nmap("<leader>mr", function()
   local file = vim.fn.expand('%:p')
 
   utils.zellij_run("qury " .. file, { floating = true, close_on_exit = true })
 end, { desc ="Run go program" })
+
 
 -- nmap("<leader>mr", function()
 --   utils.zellij_run("cargo run", { floating = true, close_on_exit = false })
