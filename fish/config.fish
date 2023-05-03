@@ -9,6 +9,7 @@ set -x CARGOPATH $HOME/.cargo
 set -x ALTERNATE_EDITOR ""
 set -x HUSKY 0
 set -x COLORTERM "truecolor"
+set -x OPENAI_API_KEY (cat ~/.authinfo | awk '{print $6}')
 
 # Set $DISPLAY to be used by XServer for chromedriver etc
 if string match -q '*WSL*' (uname -r)
@@ -37,6 +38,7 @@ abbr gcam git commit -a -m
 abbr gp git push
 abbr gl git pull --ff-only
 abbr gf git fetch
+abbr n notes
 
 # ALIASES
 # ...

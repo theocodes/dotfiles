@@ -1,94 +1,74 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ruby
 
-DIR="${NOTES_DIR:-$HOME/Dropbox/notes}"
-ARG=$1
-DATE="$(date '+%Y%m%d%H%M%S')"
-EXT=".md"
+# frozen_string_literal: true
 
-pushd () {
-    command pushd "$@" > /dev/null
-}
+NOTES_DIR = File.expand_path('~/Dropbox/notes')
 
-popd () {
-    command popd "$@" > /dev/null
-}
+TEMPLATE = <<~TEMPLATE
+  ---
+  Title: {title}
+  Date: {date}
+  Tags: {tags}
+  ---
+TEMPLATE
 
-# open_today_journal() {
-#   FILENAME="$DIR/journal/$TODAY.md"
-#
-#   if [ ! -f $FILENAME ]; then
-#     TITLE="$(date '+%a %d %b %Y')"
-#     echo "# $TITLE" > $FILENAME
-#   fi
-#
-#   nvim -c "norm Go" \
-#     -c "norm Go## $(date +%H:%M)" \
-#     -c "norm G2o" \
-#     -c "norm zz" \
-#     -c "startinsert" $FILENAME
-# }
+TAGS = <<~TAGS
+  journal
+  dev
+TAGS
 
-# open_note() {
-#   NAME=$(fzf --print-query --preview 'glow -s dark {}' --height 100% --preview-window=right,60% | xargs | sed 's/\.md//')
-#
-#   # bail if name is empty
-#   [ "$NAME" = "" ] && exit 0
-#
-#   # replace spaces with underscores
-#   FULLPATH="$DIR/${NAME// /_}.md"
-#
-#   # create file and add title
-#   if [ ! -f $FULLPATH ]; then
-#     # create dir in case it doesn't exist yet
-#     mkdir -p $(dirname $FULLPATH)
-#
-#     FILENAME=$(basename $NAME)
-#     TITLE="$(echo $FILENAME | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')"
-#     echo "# $TITLE" > $FULLPATH
-#   fi
-#
-#   nvim -c "norm G2o" \
-#     -c "norm zz" $FULLPATH
-# }
+def create_note(title, tags)
+  datetime = Time.now.strftime('%Y%m%dT%H%M%S')
 
-create_note() {
-  local TITLE="title placeholder"
-  read -p "Enter title: " TITLE
+  normalized_title = title.gsub(',', '')
+  filename = "#{datetime}--#{normalized_title.downcase.gsub(/\s+/, '-')}__#{tags.join('_')}.md"
+  filepath = File.join(NOTES_DIR, filename)
 
-  local TAGS="tags placeholder"
-  read -p "Enter tags (comma separated): " TAGS
+  File.open(filepath, 'w') do |file|
+    file.write(TEMPLATE.gsub('{title}', title)
+                       .gsub('{date}', datetime)
+                       .gsub('{tags}', tags.join(', ')))
+  end
 
-  echo "$TITLE"
-  echo "$TAGS"
-}
+  File.join(NOTES_DIR, filename)
+end
 
-open_note() {
-  # local NAME=$(fzf --print-query --preview 'glow -s dark {}' --height 100% --preview-window=top,80% | xargs | sed 's/\.md//')
-  local NAME=$(fzf --print-query --preview 'glow -s dark {}' --height 100% --preview-window=top,80%)
+def create_daily_note
+  title = Time.now.strftime('%a, %d %b %Y')
+  create_note title, ['daily']
+end
 
-  echo $NAME
-  exit 0
+def open_file(filepath)
+  system("nvim #{filepath}")
+end
 
-  # bail if name is empty
-  [ "$NAME" = "" ] && exit 0
+def run
+  command = ARGV.first
 
-  local FULLPATH="$DIR/${NAME// /_}"
+  case command
+  when 'daily'
+    file = create_daily_note
+    open_file file
+  else
+    lines = `fzf -d #{NOTES_DIR} --print-query --border --preview 'glow {}'`.split("\n")
+    return if lines.empty?
 
-  if [ -f $FULLPATH ]; then
-    nvim ${FULLPATH}
-    exit 0
-  fi
+    title = lines.first
+    filepath = lines.last
 
-  echo $FULLPATH
-}
+    if title == ''
+      open_file filepath
+    else
+      lines = `echo "#{TAGS}" | fzf --multi --print-query`.split("\n")
+      query = lines.first
 
-pushd $DIR
+      if query == ''
+        open_file create_note(title, lines[1..])
+      else
+        open_file create_note(title, query.split(','))
+      end
+    end
+  end
+end
 
-if [ ! -z "$ARG" ]; then
-  [ "$ARG" = "new" ] && create_note && exit 0
-fi
-
-open_note
-
-popd
-
+run
