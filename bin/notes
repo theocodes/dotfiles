@@ -6,9 +6,10 @@ NOTES_DIR = File.expand_path('~/Dropbox/notes')
 
 TEMPLATE = <<~TEMPLATE
   ---
-  Title: {title}
-  Date: {date}
-  Tags: {tags}
+  title: {title}
+  date: {date}
+  tags: {tags}
+  identifier: {identifier}
   ---
 TEMPLATE
 
@@ -18,16 +19,21 @@ TAGS = <<~TAGS
 TAGS
 
 def create_note(title, tags)
-  datetime = Time.now.strftime('%Y%m%dT%H%M%S')
+  time = Time.now
+  identifier = time.strftime('%Y%m%dT%H%M%S')
+  date = time.strftime('%a, %d %b %Y @ %H:%M:%S')
 
-  normalized_title = title.gsub(',', '')
-  filename = "#{datetime}--#{normalized_title.downcase.gsub(/\s+/, '-')}__#{tags.join('_')}.md"
+  normalized_title = title.gsub(',', '').downcase.gsub(/\s+/, '-')
+
+  tags = tags.join('_')
+  filename = "#{datetime}--#{[normalized_title, tags].join('__')}.md"
   filepath = File.join(NOTES_DIR, filename)
 
   File.open(filepath, 'w') do |file|
     file.write(TEMPLATE.gsub('{title}', title)
-                       .gsub('{date}', datetime)
-                       .gsub('{tags}', tags.join(', ')))
+                       .gsub('{date}', date)
+                       .gsub('{identifier}', identifier)
+                       .gsub('{tags}', tags.gsub('_', ', ')))
   end
 
   File.join(NOTES_DIR, filename)
@@ -47,17 +53,24 @@ def run
 
   case command
   when 'daily'
-    file = create_daily_note
-    open_file file
+    date = Time.now.strftime('%Y%m%d')
+    existing_file = `find #{NOTES_DIR} -name '#{date}*daily.md'`
+
+    if existing_file.empty?
+      file = create_daily_note
+      open_file file
+    else
+      open_file existing_file
+    end
   else
-    lines = `fzf -d #{NOTES_DIR} --print-query --border --preview 'glow {}'`.split("\n")
+    lines = `ls #{NOTES_DIR} | fzf --print-query --preview 'glow #{NOTES_DIR}/{}'`.split("\n")
     return if lines.empty?
 
     title = lines.first
     filepath = lines.last
 
-    if title == ''
-      open_file filepath
+    if File.exist?(File.join(NOTES_DIR, filepath))
+      open_file "#{NOTES_DIR}/#{filepath}"
     else
       lines = `echo "#{TAGS}" | fzf --multi --print-query`.split("\n")
       query = lines.first
