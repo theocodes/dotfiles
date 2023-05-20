@@ -230,5 +230,8 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-  }
+  },
+
+  -- syntax highlighting for lots of languages
+  "sheerun/vim-polyglot"
 }
