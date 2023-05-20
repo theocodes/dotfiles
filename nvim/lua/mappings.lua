@@ -32,13 +32,13 @@ nmap("<leader>mts", function()
   local file = vim.fn.expand('%:p')
   local line = vim.api.nvim_eval "line('.')"
 
-  utils.zellij_run("rspec " .. file .. ":" .. line, { down = true })
+  utils.zellij_run("rspec " .. file .. ":" .. line, { floating = true })
 end, { desc ="Run single rspec spec" })
 
 nmap("<leader>mtv", function()
   local file = vim.fn.expand('%:p')
 
-  utils.zellij_run("rspec " .. file, { down = true })
+  utils.zellij_run("rspec " .. file, { floating = true })
 end, { desc ="Run single rspec spec" })
 
 -- Note taking helpers
