@@ -10,9 +10,12 @@ set -x ALTERNATE_EDITOR ""
 set -x HUSKY 0
 set -x COLORTERM "truecolor"
 set -x OPENAI_API_KEY (cat ~/.authinfo | awk '{print $6}')
+set -x NOTES_DIR "~/Dropbox/notes"
 
-# Set $DISPLAY to be used by XServer for chromedriver etc
 if string match -q '*WSL*' (uname -r)
+  set -x NOTES_DIR "~/winhome/Dropbox/notes"
+
+  # Set $DISPLAY to be used by XServer for chromedriver etc
   set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 end
 

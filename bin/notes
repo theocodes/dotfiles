@@ -2,7 +2,7 @@
 
 # frozen_string_literal: true
 
-NOTES_DIR = File.expand_path('~/Dropbox/notes')
+NOTES_DIR = File.expand_path(ENV.fetch('NOTES_DIR'))
 
 TEMPLATE = <<~TEMPLATE
   ---
@@ -26,7 +26,7 @@ def create_note(title, tags)
   normalized_title = title.gsub(',', '').downcase.gsub(/\s+/, '-')
 
   tags = tags.join('_')
-  filename = "#{datetime}--#{[normalized_title, tags].join('__')}.md"
+  filename = "#{identifier}--#{[normalized_title, tags].join('__')}.md"
   filepath = File.join(NOTES_DIR, filename)
 
   File.open(filepath, 'w') do |file|
