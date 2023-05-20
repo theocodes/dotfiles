@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# ymlr - YAML key path reader
+#
+# Reads a YAML file and prints the full path for a given key
+# if provided or all keys.
+#
+# Usage: ymlr <file> <optional key>
+#
+# example.yml
+# ---
+# foo:
+#  bar: 1
+#  baz: 2
+#  boo:
+#    quack: 3
+# qux: 3
+#
+# $ ymlr example.yml
+# foo.bar
+# foo.baz
+# foo.boo.quack
+# qux
+#
+
+require 'yaml'
+require 'pry'
+
+file, key = ARGV
+contents = YAML.load_file(file, aliases: true)
+
+def traverse_contents(contents, path: [])
+  results = []
+
+  contents.each do |key, value|
+    path << key
+
+    # if value.is_a?(Hash)
+    #   results += traverse_contents(value, path:)
+    # else
+    #   results << path.join('.')
+    #   path = []
+    # end
+
+    binding.pry
+  end
+
+  results
+end
+
+results = traverse_contents(contents)
+print results.join("\n")
