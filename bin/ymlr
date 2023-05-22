@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'yaml'
+
 # ymlr - YAML key path reader
 #
 # Reads a YAML file and prints the full path for a given key
@@ -24,30 +26,22 @@
 # qux
 #
 
-require 'yaml'
-require 'pry'
-
-file, key = ARGV
+file = ARGV
 contents = YAML.load_file(file, aliases: true)
 
-def traverse_contents(contents, path: [])
+def process(items, path: [])
   results = []
 
-  contents.each do |key, value|
-    path << key
-
-    # if value.is_a?(Hash)
-    #   results += traverse_contents(value, path:)
-    # else
-    #   results << path.join('.')
-    #   path = []
-    # end
-
-    binding.pry
+  items.each do |key, value|
+    if value.is_a?(Hash)
+      results += process(value, path: path + [key])
+    else
+      results << (path + [key]).join('.')
+    end
   end
 
   results
 end
 
-results = traverse_contents(contents)
+results = process(contents)
 print results.join("\n")
