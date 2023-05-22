@@ -15,6 +15,7 @@ nmap(";", ":", { desc = "Start shell command", silent = false })
 
 nmap("<esc>", "<cmd>nohl<cr>", { desc = "Clear search selection" })
 nmap("<C-n>", "<cmd>NeoAIToggle<CR>", { desc = "Toggle ChatGPT window" })
+nmap("<leader><leader>", require("oil").open, { desc = "Open parent directory" })
 
 vmap("<TAB>", ">gv", { desc = "Indent selection" })
 vmap("<S-TAB>", "<gv", { desc = "De-indent selection" })
@@ -59,6 +60,11 @@ nmap("<leader>mr", function()
   utils.zellij_run("qury " .. file, { floating = true, close_on_exit = true })
 end, { desc ="Run go program" })
 
+nmap("<leader>mr", function()
+  local file = vim.fn.expand('%:p')
+
+  utils.zellij_run("qury " .. file, { floating = true, close_on_exit = true })
+end, { desc ="Run go program" })
 
 -- nmap("<leader>mr", function()
 --   utils.zellij_run("cargo run", { floating = true, close_on_exit = false })

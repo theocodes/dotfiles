@@ -61,6 +61,18 @@ return {
     }
   },
 
+  {
+    'stevearc/oil.nvim',
+    opts = {
+      columns = {
+        -- "icon",
+        "permissions",
+        "size"
+      }
+    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+
   "dag/vim-fish",
   "terrortylor/nvim-comment",
   "axelf4/vim-strip-trailing-whitespace",
