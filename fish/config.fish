@@ -9,8 +9,11 @@ set -x CARGOPATH $HOME/.cargo
 set -x ALTERNATE_EDITOR ""
 set -x HUSKY 0
 set -x COLORTERM "truecolor"
-set -x OPENAI_API_KEY (cat ~/.authinfo | awk '{print $6}')
 set -x NOTES_DIR "~/Dropbox/notes"
+
+if test -e $HOME/.authinfo
+  set -x OPENAI_API_KEY (cat ~/.authinfo | awk '{print $6}')
+end
 
 if string match -q '*WSL*' (uname -r)
   set -x NOTES_DIR "~/winhome/Dropbox/notes"
@@ -25,8 +28,6 @@ abbr rel exec $SHELL
 abbr lg lazygit
 abbr z zellij
 abbr ll exa -al
-# abbr work tmux new-session -A -s work
-# abbr play tmux new-session -A -s play
 abbr work zellij attach -c work
 abbr play zellij attach -c play
 abbr zr zellij run --
