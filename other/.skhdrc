@@ -1,73 +1,69 @@
 cmd - h [
-  "alacritty" : skhd -k "ctrl - b" && skhd -k "h"
+  "alacritty" : skhd -k "alt - h"
   "emacs" : skhd -k "ctrl - w" && skhd -k "h"
 ]
 
 cmd - j [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "j"
+  "alacritty" : skhd -k "alt - j"
   "emacs" : skhd -k "ctrl - w" && skhd -k "j"
 ]
 
 cmd - k [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "k"
+  "alacritty" : skhd -k "alt - k"
   "emacs" : skhd -k "ctrl - w" && skhd -k "k"
 ]
 
 cmd - l [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "l"
+  "alacritty" : skhd -k "alt - l"
   "emacs" : skhd -k "ctrl - w" && skhd -k "l"
 ]
 
 cmd - return [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "8"
+  "alacritty" : skhd -k "alt - n"
 ]
 
 cmd + shift - return [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "9"
+  "alacritty" : skhd -k "alt - m"
 ]
 
 cmd - d [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "d"
-]
-
-cmd + shift - r [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "r"
+  "alacritty" : skhd -k "alt - d"
 ]
 
 cmd - w [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k 'x'
+  "alacritty" : skhd -k "alt - w"
 ]
 
 cmd - t [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "c"
+  "alacritty" : skhd -k "alt - t"
 ]
 
 cmd - 1 [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "1"
+  "alacritty" : skhd -k "alt - 1"
 ]
 
 cmd - 2 [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "2"
+  "alacritty" : skhd -k "alt - 2"
 ]
 
 cmd - 3 [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "3"
+  "alacritty" : skhd -k "alt - 3"
 ]
 
 cmd - 4 [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "4"
+  "alacritty" : skhd -k "alt - 4"
 ]
 
 cmd - 5 [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "5"
+  "alacritty" : skhd -k "alt - 5"
 ]
 
 cmd - 6 [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "6"
+  "alacritty" : skhd -k "alt - 6"
 ]
 
 cmd - 7 [
-  "alacritty" : skhd -k "ctrl - b" &&  skhd -k "7"
+  "alacritty" : skhd -k "alt - 7"
 ]
 
 cmd + shift + ctrl - p : skhd -t "¯\_(ツ)_/¯"

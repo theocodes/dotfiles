@@ -13,7 +13,8 @@ selection:
   save_to_clipboard: true
 
 window:
-  decorations: none
+  # decorations: none
+  option_as_alt: Both
   opacity: 0.99
   padding:
     x: 0
