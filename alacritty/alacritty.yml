@@ -1,12 +1,11 @@
 font:
-  size: 12
+  size: 13
 
   normal:
-    family: Iosevka Nerd Font
-    style: Regular
+    family: ComicMono NF
 
   bold:
-    family: Iosevka Nerd Font
+    family: ComicMono NF
     style: Bold
 
 selection:
