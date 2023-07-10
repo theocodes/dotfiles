@@ -18,6 +18,14 @@ cmd - l [
   "emacs" : skhd -k "ctrl - w" && skhd -k "l"
 ]
 
+cmd - i [
+  "alacritty" : skhd -k "alt - i"
+]
+
+cmd - r [
+  "alacritty" : skhd -k "alt - r"
+]
+
 cmd - return [
   "alacritty" : skhd -k "alt - n"
 ]
