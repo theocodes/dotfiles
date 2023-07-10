@@ -1,5 +1,8 @@
 ;;; $DOOMDIR/keybindings.el -*- lexical-binding: t; -*-
 
+(map! :desc "Go to previous tab" :n "H" #'centaur-tabs-backward)
+(map! :desc "Go to next tab" :n "L" #'centaur-tabs-forward)
+
 (map! :desc "Last buffer"
       :leader
       "TAB" #'evil-switch-to-windows-last-buffer)

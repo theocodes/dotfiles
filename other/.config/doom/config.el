@@ -70,3 +70,5 @@
 (use-package! company
   :config
   (setq company-idle-delay 0.5))
+
+(setq mac-command-modifier 'meta)
