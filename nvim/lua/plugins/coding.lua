@@ -64,6 +64,9 @@ return {
         suggest_lsp_servers = false,
       })
 
+      -- to stop deprecation warnings
+      lsp.skip_server_setup({'sqls'})
+
       lsp.setup_nvim_cmp({
         preselect = 'none',
         completion = {
