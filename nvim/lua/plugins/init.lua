@@ -9,6 +9,7 @@ return {
     }
   },
 
+  "rebelot/kanagawa.nvim",
   "folke/which-key.nvim",
 
   {
