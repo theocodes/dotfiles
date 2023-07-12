@@ -13,6 +13,7 @@ defaultBranch = master
 
 [core]
 excludesfile = /home/theocodes/.config/git/ignore
+	editor = nvim
 
 [github]
 user = theocodes

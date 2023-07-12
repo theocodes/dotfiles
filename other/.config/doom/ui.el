@@ -3,7 +3,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'ef-dark)
+(setq doom-theme 'gruber-darker)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -28,3 +28,10 @@
 
 ;; Change the format of the window frame title
 (setq frame-title-format "Emacs")
+
+(defun on-frame-open (&optional frame)
+  "If the FRAME created in terminal don't load background color."
+  (unless (display-graphic-p frame)
+    (set-face-background 'default "unspecified-bg" frame)))
+
+(on-frame-open)

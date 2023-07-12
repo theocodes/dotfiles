@@ -52,5 +52,5 @@
 (package! ef-themes)
 (package! gptel)
 (package! denote)
-(package! copilot
-  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+(package! copilot :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+(package! gruber-darker-theme)

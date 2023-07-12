@@ -44,4 +44,17 @@ M.zellij_run = function(cmd, o)
   io.popen(base .. " " .. flags .. " -- " .. cmd)
 end
 
+local function highlight(group, fg, bg, style)
+  local cmd = string.format("highlight %s guifg=%s guibg=%s gui=%s", group, fg, bg, style)
+  vim.cmd(cmd)
+end
+
+M.hi = function(group, opts)
+  local fg = opts.fg or "NONE"
+  local bg = opts.bg or "NONE"
+  local style = opts.style or "NONE"
+
+  highlight(group, fg, bg, style)
+end
+
 return M

@@ -1,2 +1,2 @@
-(setq config-dir "~/dotfiles/emacs/")
-(load (concat config-dir "init.el"))
+; (setq config-dir "~/dotfiles/emacs/")
+; (load (concat config-dir "init.el"))

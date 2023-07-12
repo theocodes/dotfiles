@@ -7,3 +7,4 @@ packer_compiled.lua
 fish/functions/_fzf*
 fish/functions/fzf*
 fish/functions/fisher*
+lazy-lock.json

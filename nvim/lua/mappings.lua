@@ -5,6 +5,7 @@ local xmap = utils.xmap
 local imap = utils.imap
 
 nmap("<leader>op", "<cmd>Neotree float reveal_force_cwd<cr>", { desc = "Show floating Neotree" })
+nmap("<leader>gpt", "<cmd>NeoAIToggle<cr>", { desc = "Toggle ChatGPT" })
 nmap("Q", "<cmd>qa<cr>", { desc = "Quit all" })
 nmap("q", "<cmd>bd<cr>", { desc = "Close buffer" })
 nmap("<C-x><C-e>", ":so %<CR>", { desc = "Eval current file" })
@@ -12,6 +13,15 @@ nmap("<leader>u", ":UndotreeToggle<CR>", { desc ="Toggle undo tree" })
 nmap("<leader><TAB>", "<C-^>", { desc = "Switch to previous buffer" })
 nmap("!", ":!", { desc = "Start shell command", silent = false })
 nmap(";", ":", { desc = "Start shell command", silent = false })
+nmap("<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "Show git blame for line" })
+nmap("<leader>gp", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk in line" })
+
+nmap("<leader>sr", [[<cmd>lua require("persistence").load()<cr>]], { desc = "Restore last session" })
+
+nmap("H", "<cmd>BufferPrevious<CR>", { desc = "Previous buffer" })
+nmap("L", "<cmd>BufferNext<CR>", { desc = "Next buffer" })
+nmap("<leader>bp", "<cmd>BufferPin<CR>", { desc = "Pin buffer" })
+nmap("<leader>bc", "<cmd>BufferCloseAllButPinned<CR>", { desc = "Close all buffers except pinned" })
 
 nmap("<esc>", "<cmd>nohl<cr>", { desc = "Clear search selection" })
 nmap("<C-n>", "<cmd>NeoAIToggle<CR>", { desc = "Toggle ChatGPT window" })
@@ -65,6 +75,13 @@ nmap("<leader>mr", function()
 
   utils.zellij_run("qury " .. file, { floating = true, close_on_exit = true })
 end, { desc ="Run go program" })
+
+-- ymlr runner
+
+nmap("<leader>yml", function()
+  local file = vim.fn.expand('%:p')
+
+end, { desc ="Run single rspec spec" })
 
 -- nmap("<leader>mr", function()
 --   utils.zellij_run("cargo run", { floating = true, close_on_exit = false })

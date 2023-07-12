@@ -92,16 +92,43 @@ return {
     end,
   },
 
+  {'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function() vim.g.barbar_auto_setup = false end,
+    opts = {
+      animation = false,
+      icons = {
+        filetype = { enabled = false },
+        pinned = {
+          button = "",
+          filename = true,
+          separator = {left = '', right = ''},
+        },
+        inactive = {
+          separator = {left = '', right = ''},
+        },
+        button = '',
+        separator_at_end = false,
+        separator = {left = '', right = ''},
+      }
+    },
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  },
+
   -- indent guides for Neovim
   {
     "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
     event = "BufReadPost",
     opts = {
-      -- char = "▏",
       char = "│",
       filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
-      show_trailing_blankline_indent = false,
+      show_trailing_blankline_indent = true,
       show_current_context = false,
+      show_current_context_start = false
     },
   },
 
@@ -127,20 +154,20 @@ return {
   },
 
   -- better vim.ui
-  {
-    "stevearc/dressing.nvim",
-    lazy = true,
-    init = function()
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
-    end,
-  },
+  -- {
+  --   "stevearc/dressing.nvim",
+  --   lazy = true,
+  --   init = function()
+  --     ---@diagnostic disable-next-line: duplicate-set-field
+  --     vim.ui.select = function(...)
+  --       require("lazy").load({ plugins = { "dressing.nvim" } })
+  --       return vim.ui.select(...)
+  --     end
+  --     ---@diagnostic disable-next-line: duplicate-set-field
+  --     vim.ui.input = function(...)
+  --       require("lazy").load({ plugins = { "dressing.nvim" } })
+  --       return vim.ui.input(...)
+  --     end
+  --   end,
+  -- },
 }
