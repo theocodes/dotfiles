@@ -64,6 +64,9 @@ return {
         suggest_lsp_servers = false,
       })
 
+      -- to stop deprecation warnings
+      lsp.skip_server_setup({'sqls'})
+
       lsp.setup_nvim_cmp({
         preselect = 'none',
         completion = {
@@ -197,7 +200,7 @@ return {
         elixirls = {
           enabled = true,
           settings = elixirls.settings {
-            dialyzerEnabled = false,
+            dialyzerEnabled = true,
             enableTestLenses = true,
           },
           on_attach = function(client, bufnr)
@@ -223,6 +226,9 @@ return {
             vim.keymap.set("n", "<space>g0", ":DocumentSymbols<cr>", map_opts)
             vim.keymap.set("n", "<space>gW", ":WorkspaceSymbols<cr>", map_opts)
             vim.keymap.set("n", "<leader>d", ":Diagnostics<cr>", map_opts)
+
+            -- format on save
+            vim.api.nvim_command("au BufWritePost *.ex lua vim.lsp.buf.format()")
           end,
         }
       }
