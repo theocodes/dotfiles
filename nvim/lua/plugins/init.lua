@@ -11,28 +11,12 @@ return {
     }
   },
 
-  -- {
-  -- 	"rmagatti/auto-session",
-  -- 	config = {
-  --     log_level = "error"
-  -- 	}
-  -- },
-
   {
-    "folke/persistence.nvim",
-    event = "BufReadPre", -- this will only start session saving when an actual file was opened
-    opts = {
-      options = {"globals", "buffers", "curdir", "tabpages", "winsize"},
-      pre_save = function() vim.api.nvim_exec_autocmds('User', {pattern = 'SessionSavePre'}) end,
+    "rmagatti/auto-session",
+    config = {
+      log_level = "error"
     }
   },
-
-  -- {
-  -- "m4xshen/smartcolumn.nvim",
-  --   opts = {
-  --     colorcolumn = 120
-  --   }
-  -- },
 
   {
     'tzachar/local-highlight.nvim',
