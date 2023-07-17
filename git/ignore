@@ -6,3 +6,4 @@ tmp/
 *#
 .solargraph.yml
 scratch
+*.dump*
