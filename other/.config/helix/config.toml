@@ -1,0 +1,36 @@
+theme = "adwaita-dark"
+
+[editor]
+line-number = "relative"
+cursorline = true
+true-color = true
+bufferline = "multiple"
+color-modes = true
+rulers = [80]
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+right = ["selections", "position", "version-control"]
+
+[editor.indent-guides]
+render = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+"$" = "goto_line_end"
+G = "goto_last_line"
+q = "wclose"
+Q = ":qa!"
+M = "record_macro"
+m = "replay_macro"
+
+[keys.select]
