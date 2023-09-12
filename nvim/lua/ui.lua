@@ -83,19 +83,19 @@ local hi = require("utils").hi
 -- vim.g.moonflyNormalFloat = false
 -- vim.cmd.colorscheme "moonfly"
 
--- vim.g.adwaita_darker = true -- for darker version
--- vim.g.adwaita_disable_cursorline = true -- to disable cursorline
--- vim.g.adwaita_transparent = true -- makes the background transparent
+vim.g.adwaita_darker = true -- for darker version
+vim.g.adwaita_disable_cursorline = true -- to disable cursorline
+vim.g.adwaita_transparent = true -- makes the background transparent
 -- vim.cmd.colorscheme "adwaita"
 
-vim.g.tokyodark_transparent_background = true
-vim.g.tokyodark_enable_italic_comment = false
-vim.g.tokyodark_enable_italic = false
-vim.g.tokyodark_color_gamma = "1.0"
-vim.cmd.colorscheme "tokyodark"
+vim.cmd.colorscheme "one_monokai"
+-- vim.g.tokyodark_transparent_background = true
+-- vim.g.tokyodark_enable_italic_comment = false
+-- vim.g.tokyodark_enable_italic = false
+-- vim.g.tokyodark_color_gamma = "1.0"
+-- vim.cmd.colorscheme "tokyodark"
 
 -- vim.cmd.colorscheme "monokai"
-
 -- vim.cmd.colorscheme "horizon"
 
 -- simple status line
@@ -115,5 +115,8 @@ vim.cmd.colorscheme "tokyodark"
 hi("CursorLine", { bg = "NONE" })
 hi("StatusLine", { bg = "NONE" })
 
-hi("BufferDefaultInactive", { bg = "#282828" })
-hi("BufferDefaultCurrent", { bg = "NONE" })
+hi("BufferDefaultInactive", { bg = "NONE" })
+hi("BufferDefaultCurrent", { bg = "NONE", fg = "#fc9867" })
+hi("BufferDefaultVisible", { bg = "NONE" })
+hi("BufferDefaultVisibleMod", { bg = "NONE" })
+hi("BufferDefaultTabpageFill", { bg = "NONE" })

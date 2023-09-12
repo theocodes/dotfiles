@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+OUTPUT=$(fzf --preview 'batcat --color "always" {}' --preview-window=up)
+
+if [[ ! -z "${OUTPUT}" ]]; then
+  hx $OUTPUT
+fi

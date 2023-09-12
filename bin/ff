@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Search using rg and fzf with preview
+out=$(rg . --line-number --column --no-heading --glob '!.git' | \
+      fzf +i --exact --delimiter : --preview 'batcat --style=full --color=always --highlight-line {2} {1}' --preview-window 'up,~4,+{2}+4/2')
+
+# Remove cruft leaving something like: 'file:line:column'
+ref=$(echo $out | sed -E 's/([a-zA-Z0-9/-_]*):([0-9]*):([0-9]*):.*/\1:\2:\3/')
+
+if [[ ! -z "${ref}" ]]; then
+  hx $ref
+fi

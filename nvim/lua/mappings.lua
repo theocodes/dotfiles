@@ -8,14 +8,14 @@ nmap("<leader>op", "<cmd>Neotree float reveal_force_cwd<cr>", { desc = "Show flo
 nmap("<leader>gpt", "<cmd>NeoAIToggle<cr>", { desc = "Toggle ChatGPT" })
 nmap("Q", "<cmd>qa<cr>", { desc = "Quit all" })
 nmap("q", "<cmd>bd<cr>", { desc = "Close buffer" })
+nmap("<leader>bd", "<cmd>bd<cr>", { desc = "Close buffer" })
 nmap("<C-x><C-e>", ":so %<CR>", { desc = "Eval current file" })
 nmap("<leader>u", ":UndotreeToggle<CR>", { desc ="Toggle undo tree" })
 nmap("<leader><TAB>", "<C-^>", { desc = "Switch to previous buffer" })
+nmap("<leader>db", "<cmd>DBUIToggle<CR>", { desc = "Open DB UI" })
 nmap("!", ":!", { desc = "Start shell command", silent = false })
 nmap(";", ":", { desc = "Start shell command", silent = false })
-nmap("<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "Show git blame for line" })
-nmap("<leader>gp", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk in line" })
-
+nmap("<C-h>", "<cmd>G blame<CR>", { desc = "Show git blame" })
 nmap("<leader>sr", [[<cmd>lua require("persistence").load()<cr>]], { desc = "Restore last session" })
 
 nmap("H", "<cmd>BufferPrevious<CR>", { desc = "Previous buffer" })
@@ -38,6 +38,9 @@ nmap("<leader>gg", function()
 end, { desc ="Run lazygit" })
 
 -- Test runner helpers
+
+nmap("<leader>ts", "<cmd>TestNearest<CR>", { desc ="Run nearest spec" })
+nmap("<leader>tv", "<cmd>TestFile<CR>", { desc ="Run whole file" })
 
 nmap("<leader>mts", function()
   local file = vim.fn.expand('%:p')

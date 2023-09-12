@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+PAIRS = {
+  tom: ['Tom Chipchase', 'tom@chipchase.com'],
+  jer: ['Jeremaia Harrison', 'jeremaia.harrison@gmail.com']
+}.freeze
+
+def user
+  PAIRS.each do |key, values|
+    return values if ARGV.first.include?(key.to_s)
+  end
+
+  []
+end
+
+name, email = user
+if name && email
+  puts "Co-authored-by: #{name} <#{email}>"
+else
+  puts 'No pair found'
+end

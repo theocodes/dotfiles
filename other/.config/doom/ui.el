@@ -4,7 +4,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'gruber-darker)
-(setq doom-theme 'doom-monokai-classic)
+(setq doom-theme 'ef-dark)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -19,7 +19,10 @@
 ;; accept. For example:
 ;;
 
-(setq doom-font (font-spec :family "Comic Mono" :size 14 :weight 'regular)
+;; (setq doom-font (font-spec :family "Comic Mono" :size 16 :weight 'regular)
+;;       doom-variable-pitch-font (font-spec :family "Comic Mono" :size 13))
+
+(setq doom-font (font-spec :family "ComicMono NF" :size 16 :weight 'bold)
       doom-variable-pitch-font (font-spec :family "Comic Mono" :size 13))
 
 (use-package! centaur-tabs

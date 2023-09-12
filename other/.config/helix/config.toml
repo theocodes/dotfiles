@@ -1,21 +1,22 @@
-theme = "adwaita-dark"
+theme = "custom"
 
 [editor]
 line-number = "relative"
-cursorline = true
+cursorline = false
 true-color = true
 bufferline = "multiple"
 color-modes = true
 rulers = [80]
+gutters = ["diff", "diagnostics", "spacer", "line-numbers", "spacer"]
 
 [editor.statusline]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
-right = ["selections", "position", "version-control"]
+right = ["diagnostics", "selections", "position-percentage", "position", "version-control"]
 
 [editor.indent-guides]
-render = true
+render = false
 
 [editor.cursor-shape]
 insert = "bar"
@@ -25,12 +26,34 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
+
+[editor.soft-wrap]
+enable = true
+
 [keys.normal]
+"0" = "goto_line_start"
 "$" = "goto_line_end"
 G = "goto_last_line"
-q = "wclose"
+q = ":buffer-close"
 Q = ":qa!"
 M = "record_macro"
 m = "replay_macro"
+"C-p" = "file_picker"
+K = "hover"
+"H" = "goto_previous_buffer"
+"L" = "goto_next_buffer"
+y = ":clipboard-yank"
+p = "paste_clipboard_after"
 
 [keys.select]
+"0" = "goto_line_start"
+"$" = "goto_line_end"
+
+[keys.normal."C-x"]
+"C-e" = ":config-reload"
+ 
+[keys.normal."space"]
+"tab" = "goto_last_modified_file"

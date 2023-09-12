@@ -1,12 +1,15 @@
 return {
   -- auto pairs
-  {
-    "echasnovski/mini.pairs",
-    event = "VeryLazy",
-    config = function(_, opts)
-      require("mini.pairs").setup(opts)
-    end,
-  },
+  --{
+  --  "echasnovski/mini.pairs",
+  --  event = "VeryLazy",
+  --  config = function(_, opts)
+  --    require("mini.pairs").setup(opts)
+  --  end,
+  --},
+
+  -- test runner
+  "vim-test/vim-test",
 
   -- comments
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
@@ -27,8 +30,8 @@ return {
 
   -- lsp
   {
-	  "VonHeikemen/lsp-zero.nvim",
-	  dependencies = {
+    "VonHeikemen/lsp-zero.nvim",
+    dependencies = {
       -- LSP Support
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',

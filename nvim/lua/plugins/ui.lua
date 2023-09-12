@@ -99,6 +99,7 @@ return {
     },
     init = function() vim.g.barbar_auto_setup = false end,
     opts = {
+      maximum_padding = 0,
       animation = false,
       icons = {
         filetype = { enabled = false },

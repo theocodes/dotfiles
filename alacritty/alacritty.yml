@@ -1,5 +1,5 @@
 font:
-  size: 13
+  size: 11
 
   normal:
     family: ComicMono NF
@@ -12,9 +12,9 @@ selection:
   save_to_clipboard: true
 
 window:
-  # decorations: none
+  decorations: none
   option_as_alt: Both
-  opacity: 0.99
+  opacity: 0.97
   padding:
     x: 0
     y: 0

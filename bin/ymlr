@@ -26,7 +26,7 @@ require 'yaml'
 # qux
 #
 
-file = ARGV
+file = ARGV[0]
 contents = YAML.load_file(file, aliases: true)
 
 def process(items, path: [])

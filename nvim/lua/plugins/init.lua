@@ -12,10 +12,10 @@ return {
   },
 
   {
-    "rmagatti/auto-session",
-    config = {
-      log_level = "error"
-    }
+   "rmagatti/auto-session",
+   config = {
+     log_level = "error"
+   }
   },
 
   {
@@ -23,12 +23,12 @@ return {
   },
 
   "tiagovla/tokyodark.nvim",
-
   {
-    "bluz71/vim-moonfly-colors",
-    name = "moonfly",
-    lazy = true,
-    priority = 1000
+    "cpea2506/one_monokai.nvim",
+    opts = {
+      transparent = true,
+      italics = false
+    }
   },
 
   {
@@ -64,14 +64,21 @@ return {
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
   "tpope/vim-eunuch",
+  "tpope/vim-dadbod",
+  "kristijanhusak/vim-dadbod-ui",
   "github/copilot.vim",
-  "windwp/nvim-autopairs",
   "Mofiqul/adwaita.nvim",
   "axelf4/vim-strip-trailing-whitespace",
   "machakann/vim-highlightedyank",
   "nvim-treesitter/nvim-treesitter",
   "mbbill/undotree",
   { "maxjacobson/vim-fzf-coauthorship", dependencies = { "junegunn/fzf" } },
+
+  {
+      'windwp/nvim-autopairs',
+      event = "InsertEnter",
+      opts = {} -- this is equalent to setup({}) function
+  }
 
   -- {
   --   "theocodes/noted.nvim",

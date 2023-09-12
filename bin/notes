@@ -3,6 +3,7 @@
 # frozen_string_literal: true
 
 NOTES_DIR = File.expand_path(ENV.fetch('NOTES_DIR'))
+EDITOR = ENV.fetch("EDITOR", "nvim") 
 
 TEMPLATE = <<~TEMPLATE
   ---
@@ -45,7 +46,7 @@ def create_daily_note
 end
 
 def open_file(filepath)
-  system("nvim #{filepath}")
+  system("#{EDITOR} #{filepath}")
 end
 
 def run
